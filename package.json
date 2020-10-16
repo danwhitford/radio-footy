@@ -11,7 +11,9 @@
     "get:bbc": "ts-node get_bbc.ts",
     "get:ts": "ts-node get_ts.ts",
     "get": "npm-run-all get:*",
-    "build:site": "ts-node build_site.ts"
+    "build:site": "ts-node build_site.ts",
+    "stage": "cp site/index.html docs/index.html",
+    "publish": "git add docs/index.html && git commit -m 'publish' && git push"
   },
   "author": "",
   "license": "ISC",
