@@ -18,8 +18,8 @@ matches.sort((m, mm) => {
 
 const rolledMatches = {}
 for(let match of matches) {
-    const date = new Date(match.datetime).toLocaleDateString()
-    match.time = new Date(match.datetime).toLocaleTimeString()
+    const date = new Date(match.datetime).toLocaleDateString('en-GB', {weekday: 'long', day: 'numeric', month: 'long'})
+    match.time = new Date(match.datetime).toLocaleTimeString('en-GB')
     if(date in rolledMatches) {
         rolledMatches[date].push(match)
     } else {
