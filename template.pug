@@ -12,4 +12,6 @@ each date in matches
                 td= '📅' + match.time
                 td= '⚽' + match.title
                 td='📻' + match.station
+                td
+                    a(href=match.calString)= 'Add to calendar'
     hr

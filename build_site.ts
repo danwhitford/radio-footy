@@ -18,8 +18,12 @@ matches.sort((m, mm) => {
 
 const rolledMatches = {}
 for(let match of matches) {
+    const d = new Date(match.datetime)
     const date = new Date(match.datetime).toLocaleDateString('en-GB', {weekday: 'long', day: 'numeric', month: 'long'})
     match.time = new Date(match.datetime).toLocaleTimeString('en-GB', {hour12: false})
+    const from = new Date(match.datetime).toISOString().replace(/-/g, '').replace(/:/g, '').replace(/\./g, '')
+    const to = new Date(d.getFullYear(), d.getMonth(), d.getDay(), d.getHours() + 2, d.getMinutes()).toISOString().replace(/-/g, '').replace(/:/g, '').replace(/\./g, '')
+    match.calString = `http://www.google.com/calendar/event?action=TEMPLATE&dates=${from}%2F${to}&text=${match.title}&location=${match.station}&details=${match.title}`
     if(date in rolledMatches) {
         rolledMatches[date].push(match)
     } else {
