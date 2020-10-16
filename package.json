@@ -12,7 +12,7 @@
     "get:ts": "ts-node get_ts.ts",
     "get": "npm-run-all get:*",
     "build:site": "ts-node build_site.ts",
-    "stage": "cp site/index.html docs/index.html",
+    "prePublish": "cp site/index.html docs/index.html",
     "publish": "git commit -am 'publish' && git push"
   },
   "author": "",
