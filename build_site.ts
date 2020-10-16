@@ -16,9 +16,27 @@ matches.sort((m, mm) => {
     return new Date(m.datetime).valueOf() - new Date(mm.datetime).valueOf()
 })
 
+const rolledMatches = {}
+for(let match of matches) {
+    const date = new Date(match.datetime).toLocaleDateString()
+    match.time = new Date(match.datetime).toLocaleTimeString()
+    if(date in rolledMatches) {
+        rolledMatches[date].push(match)
+    } else {
+        rolledMatches[date] = [match]
+    }
+}
+
+const rolledMatchesArray = Object.keys(rolledMatches).map(ob => {
+    return {
+        date: [ob],
+        matches: rolledMatches[ob],
+    }
+})
+
 const compiledFunction = pug.compileFile('template.pug')
 
-const site = compiledFunction({matches})
+const site = compiledFunction({matches: rolledMatchesArray})
 
 const fd = fs.openSync('site/index.html', 'w')
 fs.writeFileSync(fd, site)

@@ -1,10 +1,14 @@
 
 link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/water.css@2/out/water.css')
 
-ul
-    each match in matches
-        li
-            p= match.title
-            p= match.station
-            p= match.datetime
+h1 Football on the radio ⚽ 📻
 
+each date in matches
+    h2= date.date
+    table
+        each match in date.matches
+            tr
+                td= '📅' + match.time
+                td= '⚽' + match.title
+                td='📻' + match.station
+    hr

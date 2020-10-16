@@ -8,7 +8,6 @@ fs.closeSync(fd)
 const ret = []
 for(let match of schedule) {
     if (match['League'] === 'Premier League' && (match['livefeed'] as any[]).some(feed => feed['feedname'] === 'talkSPORT')) {
-        console.log(match)
 
         const d = new Date(match['Date'])
         ret.push({

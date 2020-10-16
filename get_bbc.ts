@@ -17,10 +17,11 @@ days.each((_i, day) => {
             const prem = (d.children.filter(c => c?.data?.startsWith('Premier League Football')))
             if (prem.length > 0) {
                 const d = new Date(parseInt(program.attribs['data-time']) * 1000)
+                const title = prem[0].data.split(',')[1].trim()
                 ret.push({
                     station: 'BBC Radio 5 Live',
                     datetime: d,
-                    title: prem[0].data,
+                    title: title,
                 })
             }
         })
