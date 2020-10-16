@@ -13,7 +13,7 @@
     "get": "npm-run-all get:*",
     "build:site": "ts-node build_site.ts",
     "stage": "cp site/index.html docs/index.html",
-    "publish": "git add docs/index.html && git commit -m 'publish' && git push"
+    "publish": "git commit -am 'publish' && git push"
   },
   "author": "",
   "license": "ISC",
