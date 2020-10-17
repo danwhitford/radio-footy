@@ -19,8 +19,8 @@ matches.sort((m, mm) => {
 const rolledMatches = {}
 for (let match of matches) {
     const d = new Date(Date.parse(match.datetime))
-    const date = new Date(match.datetime).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })
-    match.time = new Date(match.datetime).toLocaleTimeString('en-GB', { hour12: false, hour: 'numeric', minute: 'numeric' })
+    const date = new Date(match.datetime).toLocaleDateString('en-GB', { timeZone: 'Europe/London', weekday: 'long', day: 'numeric', month: 'long' })
+    match.time = new Date(match.datetime).toLocaleTimeString('en-GB', { timeZone: 'Europe/London', hour12: false, hour: 'numeric', minute: 'numeric' })
     const from = new Date(d.getFullYear(), d.getMonth(), d.getDay(), d.getHours(), d.getMinutes())
         .toISOString()
         .replace(/-/g, '').replace(/:/g, '').replace(/\./g, '')
