@@ -28,9 +28,8 @@ jobs:
       env:
         CI: true
     - name: Commit files
-      run: |
-        cp -f site/index.html docs/index.html
-        git config --local user.email "whitford.dsw@gmail.com"
-        git config --local user.name "GitHub Action"
-        git commit -m "Add changes" -a
-        git push
+    - run: cp -f site/index.html docs/index.html
+    - run: git config --local user.email "whitford.dsw@gmail.com"
+    - run: git config --local user.name "Daniel Whitford"
+    - run: git commit -m "Add changes" -a
+    - run: git push
