@@ -21,11 +21,14 @@ for (let match of matches) {
     const d = new Date(Date.parse(match.datetime))
     const date = new Date(match.datetime).toLocaleDateString('en-GB', { timeZone: 'Europe/London', weekday: 'long', day: 'numeric', month: 'long' })
     match.time = new Date(match.datetime).toLocaleTimeString('en-GB', { timeZone: 'Europe/London', hour12: false, hour: 'numeric', minute: 'numeric' })
-    const from = new Date(d.getFullYear(), d.getMonth(), d.getDay(), d.getHours(), d.getMinutes())
+    
+    const d2 = new Date(d)
+    d2.setHours(d2.getHours() + 2)
+
+    const from = d
         .toISOString()
         .replace(/-/g, '').replace(/:/g, '').replace(/\./g, '')
-    const to = new
-        Date(d.getFullYear(), d.getMonth(), d.getDay(), d.getHours() + 2, d.getMinutes())
+    const to = d2
         .toISOString().replace(/-/g, '').replace(/:/g, '')
         .replace(/\./g, '')
 
