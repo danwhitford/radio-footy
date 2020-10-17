@@ -13,6 +13,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+        fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
@@ -24,3 +27,10 @@ jobs:
     - run: cat site/index.html
       env:
         CI: true
+    - name: Commit files
+      run: |
+        cp -f site/index.html docs/index.html
+        git config --local user.email "whitford.dsw@gmail.com
+        git config --local user.name "GitHub Action"
+        git commit -m "Add changes" -a
+        git push
