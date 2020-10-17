@@ -39,5 +39,5 @@ jobs:
     - run: cp -f site/index.html docs/index.html
     - run: git config --local user.email "whitford.dsw@gmail.com"
     - run: git config --local user.name "Daniel Whitford"
-    - run: git commit -m "Add changes" -a
+    - run: git commit -m "Add changes" -a --allow-empty
     - run: git push
