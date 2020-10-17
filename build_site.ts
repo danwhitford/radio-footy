@@ -19,9 +19,12 @@ matches.sort((m, mm) => {
 const rolledMatches = {}
 for (let match of matches) {
     const d = new Date(Date.parse(match.datetime))
+
+    console.log(d)
     const date = new Date(match.datetime).toLocaleDateString('en-GB', { timeZone: 'Europe/London', weekday: 'long', day: 'numeric', month: 'long' })
     match.time = new Date(match.datetime).toLocaleTimeString('en-GB', { timeZone: 'Europe/London', hour12: false, hour: 'numeric', minute: 'numeric' })
-    
+    console.log(match.time)
+
     const d2 = new Date(d)
     d2.setHours(d2.getHours() + 2)
 

@@ -1,4 +1,5 @@
 import * as fs from 'fs'
+import { zonedTimeToUtc } from 'date-fns-tz'
 
 const fd = fs.openSync('feeds/ts.json', 'r')
 const contents = fs.readFileSync(fd)
@@ -10,9 +11,10 @@ for(let match of schedule) {
     if (match['League'] === 'Premier League' && (match['livefeed'] as any[]).some(feed => feed['feedname'] === 'talkSPORT')) {
 
         const d = new Date(match['Date'])
+        const utc = zonedTimeToUtc(d, 'Europe/London')
         ret.push({
             station: 'TalkSport',
-            datetime: d,
+            datetime: utc,
             title: (match['title'] as string).split(': ').pop()
         })
     }
