@@ -11,7 +11,7 @@
     "get:bbc": "ts-node get_bbc.ts",
     "get:ts": "ts-node get_ts.ts",
     "get": "npm-run-all get:*",
-    "build:site": "ts-node build_site.ts",
+    "build": "ts-node build_site.ts",
     "prepublishOnly": "cp -f site/index.html docs/index.html",
     "publish": "git commit -am 'publish' && git push"
   },
