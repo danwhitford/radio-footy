@@ -4,7 +4,7 @@ import * as fs from 'fs'
 const files = ['data/ts.json', 'data/5live.json']
 let matches = []
 
-for(let file of files) {
+for (let file of files) {
     const fd = fs.openSync(file, 'r')
     const content = fs.readFileSync(fd)
     fs.closeSync(fd)
@@ -17,14 +17,20 @@ matches.sort((m, mm) => {
 })
 
 const rolledMatches = {}
-for(let match of matches) {
-    const d = new Date(match.datetime)
-    const date = new Date(match.datetime).toLocaleDateString('en-GB', {weekday: 'long', day: 'numeric', month: 'long'})
-    match.time = new Date(match.datetime).toLocaleTimeString('en-GB', {hour12: false, hour: 'numeric', minute: 'numeric'})
-    const from = new Date(match.datetime).toISOString().replace(/-/g, '').replace(/:/g, '').replace(/\./g, '')
-    const to = new Date(d.getFullYear(), d.getMonth(), d.getDay(), d.getHours() + 2, d.getMinutes()).toISOString().replace(/-/g, '').replace(/:/g, '').replace(/\./g, '')
+for (let match of matches) {
+    const d = new Date(Date.parse(match.datetime))
+    const date = new Date(match.datetime).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })
+    match.time = new Date(match.datetime).toLocaleTimeString('en-GB', { hour12: false, hour: 'numeric', minute: 'numeric' })
+    const from = new Date(d.getFullYear(), d.getMonth(), d.getDay(), d.getHours(), d.getMinutes())
+        .toISOString()
+        .replace(/-/g, '').replace(/:/g, '').replace(/\./g, '')
+    const to = new
+        Date(d.getFullYear(), d.getMonth(), d.getDay(), d.getHours() + 2, d.getMinutes())
+        .toISOString().replace(/-/g, '').replace(/:/g, '')
+        .replace(/\./g, '')
+
     match.calString = `http://www.google.com/calendar/event?action=TEMPLATE&dates=${from}%2F${to}&text=${match.title}&location=${match.station}&details=${match.title}`
-    if(date in rolledMatches) {
+    if (date in rolledMatches) {
         rolledMatches[date].push(match)
     } else {
         rolledMatches[date] = [match]
@@ -40,7 +46,7 @@ const rolledMatchesArray = Object.keys(rolledMatches).map(ob => {
 
 const compiledFunction = pug.compileFile('template.pug')
 
-const site = compiledFunction({matches: rolledMatchesArray})
+const site = compiledFunction({ matches: rolledMatchesArray })
 
 const fd = fs.openSync('site/index.html', 'w')
 fs.writeFileSync(fd, site)
