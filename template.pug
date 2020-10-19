@@ -11,8 +11,9 @@ html
             table
                 each match in date.matches
                     tr
-                        td
+                        th
                             a(href=match.calString)= '📅' + match.time
-                        td= '⚽' + match.title
-                        td= '📻' + match.station
+                        th= '📻' + match.station
+                    tr
+                        td(colspan=2)= '⚽' + match.title
             hr
