@@ -13,7 +13,8 @@
     "get": "npm-run-all get:*",
     "build": "ts-node build_site.ts",
     "prepublishOnly": "cp -f site/index.html docs/index.html",
-    "publish": "git commit -am 'publish' && git push"
+    "publish": "git commit -am 'publish' && git push",
+    "format": "prettier -w ."
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +23,7 @@
     "date-fns": "^2.16.1",
     "date-fns-tz": "^1.0.12",
     "npm-run-all": "^4.1.5",
+    "prettier": "^2.1.2",
     "pug": "^3.0.0",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.3"

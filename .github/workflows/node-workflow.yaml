@@ -1,6 +1,6 @@
 name: Node.js CI
 
-on: 
+on:
   push:
     branches:
       - main
@@ -9,7 +9,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -17,27 +16,28 @@ jobs:
         node-version: [12.x]
 
     steps:
-    - uses: actions/checkout@v2
-      with:
-        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
-        fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: npm run fetch
-    - run: npm run get
-    - run: npm run build --if-present
-    - run: cat site/index.html
-      env:
-        CI: true
-    - name: Commit files
-      uses: actions/checkout@v2
-      with:
-        clean: 'false'
-    - run: cp -f site/index.html docs/index.html
-    - run: git config --local user.email "whitford.dsw@gmail.com"
-    - run: git config --local user.name "Daniel Whitford"
-    - run: git commit -m "Add changes" -a --allow-empty
-    - run: git push
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install
+      - run: npm run fetch
+      - run: npm run get
+      - run: npm run build --if-present
+      - run: cat site/index.html
+        env:
+          CI: true
+      - name: Commit files
+        uses: actions/checkout@v2
+        with:
+          clean: "false"
+      - run: cp -f site/index.html docs/index.html
+      - run: git config --local user.email "whitford.dsw@gmail.com"
+      - run: git config --local user.name "Daniel Whitford"
+      - run: npm run format
+      - run: git commit -m "Add changes" -a --allow-empty
+      - run: git push
