@@ -9,15 +9,21 @@ fs.closeSync(fd);
 const ret = [];
 for (let match of schedule) {
   if (
-    ["Premier League", "Champions League"].includes(match["League"]) &&
     (match["livefeed"] as any[]).some(
-      (feed) => feed["feedname"] === "talkSPORT"
+      (feed) =>
+        feed["feedname"] === "talkSPORT" || feed["feedname"] == "talkSPORT2"
     )
   ) {
     const d = new Date(match["Date"]);
     const utc = zonedTimeToUtc(d, "Europe/London");
+    const channel = match["livefeed"]
+      .map((feed) => feed["feedname"])
+      .filter(
+        (feedname) => feedname === "talkSPORT" || feedname == "talkSPORT2"
+      )
+      .pop();
     ret.push({
-      station: "TalkSport",
+      station: channel,
       datetime: utc,
       title: (match["title"] as string).split(": ").pop(),
     });
