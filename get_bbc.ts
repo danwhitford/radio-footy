@@ -1,5 +1,4 @@
 import * as fs from 'fs'
-import * as cheerio from 'cheerio'
 
 const fd = fs.openSync('feeds/bbc.json', 'r')
 const contents = fs.readFileSync(fd)
@@ -10,7 +9,7 @@ const ret = []
 
 for(let program of schedule) {
     const {titles} = program
-    if (titles.primary === "5 Live Sport" && titles.secondary === "Premier League Football 2020-21") {
+    if (titles.primary === "5 Live Sport" && ["Premier League Football 2020-21", "Champions League Football 2020-21"].includes(titles.secondary)) {
         ret.push({
             station: 'BBC Radio 5 Live',
             datetime: program.start,
