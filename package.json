@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "fetch:bbc": "wget https://ukradiolive.com/bbc-radio-5-live/schedule -O feeds/5live.html",
+    "fetch:bbc": "bash fetch-bbc.sh",
     "fetch:ts": "wget https://talksport.com/wp-json/talksport/v2/talksport-live/commentary -O feeds/ts.json",
     "fetch": "npm-run-all fetch:*",
     "get:bbc": "ts-node get_bbc.ts",
@@ -19,7 +19,6 @@
   "license": "ISC",
   "dependencies": {
     "@types/cheerio": "^0.22.22",
-    "cheerio": "^1.0.0-rc.3",
     "date-fns": "^2.16.1",
     "date-fns-tz": "^1.0.12",
     "nodemon": "^2.0.5",
