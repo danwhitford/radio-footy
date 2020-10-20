@@ -1,6 +1,6 @@
 {
   "name": "Wireless Football",
-  "short_name": "radio-footy",
+  "short_name": "Wireless Footy",
   "description": "Timings for live football commentaries on the radio",
   "display": "standalone",
   "scope": "/",
