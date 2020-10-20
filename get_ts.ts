@@ -26,6 +26,7 @@ for (let match of schedule) {
       station: channel,
       datetime: utc,
       title: (match["title"] as string).split(": ").pop(),
+      competition: match["League"],
     });
   }
 }

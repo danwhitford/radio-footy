@@ -8,12 +8,18 @@ html
 
         each date in matches
             h2= date.date
-            table
-                each match in date.matches
-                    tr
-                        th
-                            a(href=match.calString)= '📅' + match.time
-                        th= '📻' + match.station
-                    tr
-                        td(colspan=2)= '⚽' + match.title
-            hr
+            each match in date.matches
+                p
+                    a(href=match.calString)
+                        span(style="margin-right: 5px")= match.clockEmoji
+                        span= match.time
+                p
+                    span(style="margin-right: 5px")= '📻'
+                    span= match.station
+                p
+                    span(style="margin-right: 5px")= '⚽'
+                    span= match.title
+                p
+                    span(style="margin-right: 5px")= '🏆'
+                    span= match.competition
+                hr

@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import { title } from "process";
 
 const fd = fs.openSync("feeds/bbc.json", "r");
 const contents = fs.readFileSync(fd);
@@ -11,6 +12,7 @@ for (let program of schedule) {
   const { titles } = program;
   if (
     titles.primary === "5 Live Sport" &&
+    (titles.tertiary as string).includes(" v ") &&
     [
       "Premier League Football 2020-21",
       "Champions League Football 2020-21",
@@ -20,6 +22,7 @@ for (let program of schedule) {
       station: "BBC Radio 5 Live",
       datetime: program.start,
       title: titles.tertiary,
+      competition: titles.secondary,
     });
   }
 }
