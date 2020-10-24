@@ -1,30 +1,28 @@
 doctype html
 html(lang='en-GB')
     head
-        link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/water.css@2/out/water.css')
+        link(rel='stylesheet', href='./style.css')
+        link( href="https://fonts.googleapis.com/css2?family=Lora&display=swap", rel="stylesheet")
         meta(name='viewport', content='width=device-width, initial-scale=1' )
         meta(name='description' content='Timings for live football commentaries on the radio')
         link(rel='icon' type='image/svg+xml' href='favicon.svg')
         link(rel='manifest' href='/manifest.webmanifest')
-        title= '🎙 | English football on the radio'
+        title= 'English football on the radio'
 
     body
-        h1 Football on the radio ⚽ 📻
+        div(class='container')
+            h1(class='page-title')= 'Football' 
+            p(class='page-subtitle')= 'on the radio'
 
-        each date in matches
-            h2= date.date
-            each match in date.matches
-                p
-                    a(href=match.calString)
-                        span(style="margin-right: 5px")= match.clockEmoji
-                        span= match.time
-                p
-                    span(style="margin-right: 5px")= '📻'
-                    span= match.station
-                p
-                    span(style="margin-right: 5px")= '⚽'
-                    span= match.title
-                p
-                    span(style="margin-right: 5px")= '🏆'
-                    span= match.competition
-                hr
+            each date in matches
+                h2(class='date')= date.date
+                table
+                    each match in date.matches
+                        tr
+                            td(class='time')
+                                a(href=match.calString)= match.time
+                            td(class='title')= match.title
+                        tr
+                            td(class='station')= match.station
+                            td(class='competition')= match.competition
+                            

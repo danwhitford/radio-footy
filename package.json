@@ -12,7 +12,8 @@
     "get:ts": "ts-node get_ts.ts",
     "get": "npm-run-all get:*",
     "build": "ts-node build_site.ts",
-    "prepublishOnly": "cp -f site/index.html docs/index.html",
+    "build:watch": "ls template.pug | entr npm run build",
+    "prepublishOnly": "cp -f site/* docs/",
     "publish": "git commit -am 'publish' && git push",
     "format": "prettier -w ."
   },
