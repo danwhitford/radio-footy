@@ -39,5 +39,5 @@ jobs:
       - run: git config --local user.email "whitford.dsw@gmail.com"
       - run: git config --local user.name "Daniel Whitford"
       - run: npm run format
-      - run: git commit -m "Add changes" -a --allow-empty
+      - run: git commit -m "Auto deploy" -a --allow-empty
       - run: git push
