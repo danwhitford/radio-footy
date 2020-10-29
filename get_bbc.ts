@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import { title } from "process";
+import { competitionNormaliser } from "./shared";
 
 const fd = fs.openSync("feeds/bbc.json", "r");
 const contents = fs.readFileSync(fd);
@@ -22,7 +23,7 @@ for (let program of schedule) {
       station: "BBC Radio 5 Live",
       datetime: program.start,
       title: titles.tertiary,
-      competition: titles.secondary,
+      competition: competitionNormaliser(titles.secondary),
     });
   }
 }
