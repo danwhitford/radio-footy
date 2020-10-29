@@ -1,0 +1,29 @@
+{
+  "name": "Wireless Football",
+  "short_name": "Wireless Footy",
+  "description": "Timings for live football commentaries on the radio",
+  "display": "standalone",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "48x48",
+      "type": "image/svg"
+    },
+    {
+      "src": "favicon.png",
+      "sizes": "72x72",
+      "type": "image/svg"
+    },
+    {
+      "src": "favicon.png",
+      "sizes": "96x96",
+      "type": "image/svg"
+    },
+    {
+      "src": "favicon.png",
+      "sizes": "144x144",
+      "type": "image/svg"
+    }
+  ]
+}
