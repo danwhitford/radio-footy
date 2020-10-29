@@ -1,5 +1,4 @@
 import * as fs from "fs";
-import { title } from "process";
 import { normaliseCompetitionName } from "./shared";
 
 const fd = fs.openSync("feeds/bbc.json", "r");

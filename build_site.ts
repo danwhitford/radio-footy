@@ -1,14 +1,9 @@
 import * as pug from "pug";
 import * as fs from "fs";
-import * as clock from "node-emoji-clock";
-import { format, utcToZonedTime } from "date-fns-tz";
+import { utcToZonedTime } from "date-fns-tz";
 
 const files = ["data/ts.json", "data/5live.json"];
 let matches = [];
-
-function timeToEmoji(d: Date) {
-  return clock.timeToEmoji(utcToZonedTime(d, "Europe/London"));
-}
 
 for (let file of files) {
   const fd = fs.openSync(file, "r");
@@ -54,7 +49,6 @@ for (let match of matches) {
     .replace(/\./g, "");
 
   match.calString = `http://www.google.com/calendar/event?action=TEMPLATE&dates=${from}%2F${to}&text=${match.title}&location=${match.station}&details=${match.title}`;
-  match.clockEmoji = timeToEmoji(d);
   if (date in rolledMatches) {
     rolledMatches[date].push(match);
   } else {
