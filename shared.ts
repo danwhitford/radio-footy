@@ -5,7 +5,7 @@ const competitions = [
   "Championship",
 ];
 
-export function competitionNormaliser(name: string) {
+export function normaliseCompetitionName(name: string) {
   for (let comp of competitions) {
     if (name.startsWith(comp)) {
       return comp;

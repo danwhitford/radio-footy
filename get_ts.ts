@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import { zonedTimeToUtc } from "date-fns-tz";
-import { competitionNormaliser } from "./shared";
+import { normaliseCompetitionName } from "./shared";
 
 const fd = fs.openSync("feeds/ts.json", "r");
 const contents = fs.readFileSync(fd);
@@ -27,7 +27,7 @@ for (let match of schedule) {
       station: channel,
       datetime: utc,
       title: (match["title"] as string).split(": ").pop(),
-      competition: competitionNormaliser(match["League"]),
+      competition: normaliseCompetitionName(match["League"]),
     });
   }
 }
