@@ -3,6 +3,8 @@ const competitions = [
   "Champions League",
   "Europa League",
   "Championship",
+  "FA Cup",
+  "English Football League Trophy",
 ];
 
 export function normaliseCompetitionName(name: string) {
@@ -11,5 +13,5 @@ export function normaliseCompetitionName(name: string) {
       return comp;
     }
   }
-  throw new Error("Competition not recognised");
+  throw new Error("Competition not recognised " + name);
 }
