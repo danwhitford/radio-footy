@@ -13,5 +13,6 @@ export function normaliseCompetitionName(name: string) {
       return comp;
     }
   }
-  throw new Error("Competition not recognised " + name);
+  console.log("No conversion for", name);
+  return name;
 }
