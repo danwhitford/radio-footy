@@ -10,13 +10,13 @@ const schedule = JSON.parse(contents.toString("binary"));
 fs.closeSync(fd);
 
 const observable = from(schedule).pipe(
-  filter(match => {
+  filter((match) => {
     return (match["livefeed"] as any[]).some(
       (feed) =>
         feed["feedname"] === "talkSPORT" || feed["feedname"] == "talkSPORT2"
-    )
+    );
   }),
-  map(match => {
+  map((match) => {
     const d = new Date(match["Date"]);
     const utc = zonedTimeToUtc(d, "Europe/London");
     const channel = match["livefeed"]
@@ -32,10 +32,10 @@ const observable = from(schedule).pipe(
       competition: normaliseCompetitionName(match["League"]),
     };
   }),
-  toArray(),
-)
+  toArray()
+);
 
-observable.subscribe(v => {
+observable.subscribe((v) => {
   const outFd = fs.openSync("data/ts.json", "w");
   fs.writeFileSync(outFd, JSON.stringify(v));
-})
+});
