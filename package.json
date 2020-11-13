@@ -5,12 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "fetch:bbc": "bash fetch-bbc.sh",
-    "fetch:ts": "wget https://talksport.com/wp-json/talksport/v2/talksport-live/commentary -O feeds/ts.json",
-    "fetch": "npm-run-all fetch:*",
-    "get:bbc": "ts-node get_bbc.ts",
-    "get:ts": "ts-node get_ts.ts",
-    "get": "npm-run-all get:*",
+    "get": "ts-node get_data.ts",
     "build": "ts-node build_site.ts",
     "build:watch": "ls template.pug | entr npm run build",
     "prepublishOnly": "cp -f site/* docs/",
@@ -21,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^14.11.10",
+    "cross-fetch": "^3.0.6",
     "date-fns": "^2.16.1",
     "date-fns-tz": "^1.0.12",
     "npm-run-all": "^4.1.5",
