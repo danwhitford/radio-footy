@@ -51,8 +51,3 @@ const observable = from(programs).pipe(
 );
 
 export default observable
-
-// observable.subscribe((v) => {
-//   const outFd = fs.openSync("data/5live.json", "w");
-//   fs.writeFileSync(outFd, JSON.stringify(v));
-// });
