@@ -1,80 +1,13 @@
 import * as pug from "pug";
 import * as fs from "fs";
-import { concat, of, zip } from "rxjs";
-import { groupBy, map, mergeAll, mergeMap, toArray } from "rxjs/operators";
-import bbcObservable from "./observables/bbc";
-import talksportObservable from "./observables/talksport";
+import matchesObservable from "./observables/matchesObservable";
 
-const matchObservable = concat(bbcObservable, talksportObservable)
-  .pipe(
-    mergeAll(),
-    toArray(),
-    map((ar: any[]) =>
-      ar.sort((m, mm) => {
-        return new Date(m.datetime).valueOf() - new Date(mm.datetime).valueOf();
-      })
-    ),
-    mergeAll(),
-    map((m) => {
-      return {
-        date: new Date(m.datetime).toLocaleDateString("en-GB", {
-          timeZone: "Europe/London",
-          weekday: "long",
-          day: "numeric",
-          month: "long",
-        }),
-        ...m,
-      };
-    }),
-    map((m) => {
-      const d = new Date(m.datetime);
+matchesObservable.subscribe((v) => {
+  const compiledFunction = pug.compileFile("template.pug");
 
-      const d2 = new Date(d);
-      d2.setHours(d2.getHours() + 2);
+  const site = compiledFunction({ matches: v });
 
-      const from = d
-        .toISOString()
-        .replace(/-/g, "")
-        .replace(/:/g, "")
-        .replace(/\./g, "");
-      const to = d2
-        .toISOString()
-        .replace(/-/g, "")
-        .replace(/:/g, "")
-        .replace(/\./g, "");
-
-      return {
-        calString: `http://www.google.com/calendar/event?action=TEMPLATE&dates=${from}%2F${to}&text=${m.title}&location=${m.station}&details=${m.title}`,
-        ...m,
-      };
-    }),
-    map((m) => {
-      return {
-        time: new Date(m.datetime).toLocaleTimeString("en-GB", {
-          timeZone: "Europe/London",
-          hour12: false,
-          hour: "numeric",
-          minute: "numeric",
-        }),
-        ...m,
-      };
-    }),
-    groupBy((m) => m.date),
-    mergeMap((group) => zip(of(group.key), group.pipe(toArray()))),
-    map((pair) => {
-      return {
-        date: pair[0],
-        matches: pair[1],
-      };
-    }),
-    toArray()
-  )
-  .subscribe((v) => {
-    const compiledFunction = pug.compileFile("template.pug");
-
-    const site = compiledFunction({ matches: v });
-
-    const fd = fs.openSync("site/index.html", "w");
-    fs.writeFileSync(fd, site);
-    fs.closeSync(fd);
-  });
+  const fd = fs.openSync("site/index.html", "w");
+  fs.writeFileSync(fd, site);
+  fs.closeSync(fd);
+});
