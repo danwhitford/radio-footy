@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "get": "ts-node get_data.ts",
     "build": "ts-node build_site.ts",
     "build:watch": "ls template.pug | entr npm run build",
     "prepublishOnly": "cp -f site/* docs/",
