@@ -2,10 +2,11 @@ import { zonedTimeToUtc } from "date-fns-tz";
 import { normaliseCompetitionName } from "./shared";
 import { from } from "rxjs";
 import { filter, map, tap, toArray, mergeAll } from "rxjs/operators";
-import { fetch } from 'cross-fetch'
+import { fetch } from "cross-fetch";
 
-const res = fetch('https://talksport.com/wp-json/talksport/v2/talksport-live/commentary')
-  .then(r => r.json())
+const res = fetch(
+  "https://talksport.com/wp-json/talksport/v2/talksport-live/commentary"
+).then((r) => r.json());
 
 const observable = from(res).pipe(
   mergeAll(),
