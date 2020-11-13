@@ -1,13 +1,8 @@
-import * as fs from "fs";
 import { from } from "rxjs";
 import { filter, map, mergeAll, mergeMap, pluck, tap, toArray } from "rxjs/operators";
 import { normaliseCompetitionName } from "./shared";
 import { add, format } from 'date-fns'
 import { fetch } from 'cross-fetch'
-// const fd = fs.openSync("feeds/bbc.json", "r");
-// const contents = fs.readFileSync(fd);
-// const schedule = JSON.parse(contents.toString("binary"));
-// fs.closeSync(fd);
 
 const baseUrl = 'https://rms.api.bbc.co.uk/v2/experience/inline/schedules/bbc_radio_five_live/'
 

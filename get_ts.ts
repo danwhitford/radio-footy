@@ -1,4 +1,3 @@
-import * as fs from "fs";
 import { zonedTimeToUtc } from "date-fns-tz";
 import { normaliseCompetitionName } from "./shared";
 import { from } from "rxjs";
@@ -8,12 +7,8 @@ import { fetch } from 'cross-fetch'
 const res = fetch('https://talksport.com/wp-json/talksport/v2/talksport-live/commentary')
   .then(r => r.json())
 
-<<<<<<< HEAD
 const observable = from(res).pipe(
   mergeAll(),
-=======
-const observable = from(schedule).pipe(
->>>>>>> 56b45867d5d5171de75741415b0a4c55ddfabfdc
   filter((match) => {
     return (match["livefeed"] as any[]).some(
       (feed) =>
