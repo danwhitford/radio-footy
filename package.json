@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node index.ts",
-    "run:watch": "ls template.pug | entr npm run build",
+    "start": "ts-node getFeed.ts && ts-node buildSite.ts",
+    "run:watch": "ls template.pug site/filter.js | entr npm run build:site",
     "prepublishOnly": "cp -f site/* docs/",
     "publish": "git commit -am 'publish' && git push",
-    "format": "prettier -w ."
+    "format": "prettier -w .",
+    "build:site": "ts-node buildSite.ts",
+    "get:feed": "ts-node getFeed.ts"
   },
   "author": "",
   "license": "ISC",
