@@ -4,10 +4,8 @@ window.onload = function () {
     const rows = document.getElementsByTagName("tr");
     for (row of rows) {
       const comp = row.getAttribute("data-competition");
-      const teams = row
-        .getAttribute("data-teams")
-        .split(" v ")
-        
+      const teams = row.getAttribute("data-teams").split(" v ");
+
       if (comp.startsWith(filter) || teams.some((t) => t.startsWith(filter))) {
         row.hidden = false;
       } else {
