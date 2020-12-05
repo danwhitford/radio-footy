@@ -63,6 +63,14 @@ function prepareForPug(pair) {
   };
 }
 
+function normaliseTitle(m) {
+  const proper = m.title.replace(/\bvs\b/g, "v")
+  return {
+    ...m,
+    title: proper,
+  }
+}
+
 const matchObservable = concat(bbcObservable, talksportObservable).pipe(
   mergeAll(),
   toArray(),
@@ -71,6 +79,7 @@ const matchObservable = concat(bbcObservable, talksportObservable).pipe(
   map(addDateString),
   map(addCalString),
   map(addTimeString),
+  map(normaliseTitle),
   groupBy((m) => m.date),
   mergeMap((group) => zip(of(group.key), group.pipe(toArray()))),
   map(prepareForPug),

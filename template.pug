@@ -14,7 +14,10 @@ html(lang='en-GB')
             h1(class='page-title')= 'Football' 
             p(class='page-subtitle')= 'on the radio'
 
-            input(type='text' placeholder='Search...' id='filter-input')
+            input(type='text' placeholder='Search...' id='filter-input' list='filter-datalist')
+            datalist(id='filter-datalist')
+                each filterOption in filterOptions
+                    option(value=filterOption)
 
             each date in matches
                 h2(class='date' data-date=date.date)= date.date
