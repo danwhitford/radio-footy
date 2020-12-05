@@ -24,7 +24,6 @@ window.onload = function () {
           hide = false;
         }
       }
-      console.log(hide);
       table.hidden = hide;
       const header = document.querySelector(
         `h2[data-date="${table.getAttribute("data-date")}"]`
