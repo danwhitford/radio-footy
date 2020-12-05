@@ -2,9 +2,9 @@ window.onload = function () {
   document.getElementById("filter-input").oninput = function (e) {
     const filter = e.target.value;
     if (filter.length < 1) {
-      document.getElementsByTagName('datalist')[0].id = ''
+      document.getElementsByTagName("datalist")[0].id = "";
     } else {
-      document.getElementsByTagName('datalist')[0].id = 'filter-datalist'
+      document.getElementsByTagName("datalist")[0].id = "filter-datalist";
     }
     const rows = document.getElementsByTagName("tr");
     for (row of rows) {
