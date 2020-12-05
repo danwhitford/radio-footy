@@ -64,11 +64,11 @@ function prepareForPug(pair) {
 }
 
 function normaliseTitle(m) {
-  const proper = m.title.replace(/\bvs\b/g, "v")
+  const proper = m.title.replace(/\bvs\b/g, "v");
   return {
     ...m,
     title: proper,
-  }
+  };
 }
 
 const matchObservable = concat(bbcObservable, talksportObservable).pipe(
