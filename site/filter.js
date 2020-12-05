@@ -6,8 +6,8 @@ window.onload = function () {
       const comp = row.getAttribute("data-competition");
       const teams = row
         .getAttribute("data-teams")
-        .split(" ")
-        .filter((t) => !["v", "vs"].includes(t));
+        .split(" v ")
+        
       if (comp.startsWith(filter) || teams.some((t) => t.startsWith(filter))) {
         row.hidden = false;
       } else {
