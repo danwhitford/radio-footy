@@ -15,10 +15,9 @@ html(lang='en-GB')
             p(class='page-subtitle')= 'on the radio'
 
             input(placeholder='Search...' id='filter-input' list='filter-datalist' autofocus)
-            datalist(id='filter-datalist')
-                select(size=10)
-                    each filterOption in filterOptions
-                        option(value=filterOption)
+            datalist(id='')
+                each filterOption in filterOptions
+                    option(value=filterOption)
 
             each date in matches
                 h2(class='date' data-date=date.date)= date.date
