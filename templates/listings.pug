@@ -1,7 +1,7 @@
 doctype html
 html(lang='en-GB')
     head
-        link(rel='stylesheet', href='./style.css')
+        link(rel='stylesheet', href='/style.css')
         link( href="https://fonts.googleapis.com/css2?family=Lora&display=swap", rel="stylesheet")
         meta(name='viewport', content='width=device-width, initial-scale=1' )
         meta(name='description' content='Timings for live football commentaries on the radio')
@@ -11,13 +11,25 @@ html(lang='en-GB')
 
     body
         div(class='container')
+            div(class='topnav')
+                div(class='dropdown')
+                    button= 'Competitions'
+                    div(class='dropdown-content')
+                        each comp in competitions
+                            a(href='/competitions/' + urlEncode(comp) + '.html')= comp
+                div(class='dropdown')
+                    button= 'Stations'
+                    div(class='dropdown-content')
+                        each station in stations
+                            a(href='/stations/' + urlEncode(station) + '.html')= station
+                div(class='dropdown')
+                    button= 'Teams'
+                    div(class='dropdown-content')
+                        each team in teams
+                            a(href='/teams/' + urlEncode(team) + '.html')= team
+
             h1(class='page-title')= 'Football' 
             p(class='page-subtitle')= 'on the radio'
-
-            input(placeholder='Search...' id='filter-input' list='filter-datalist' autofocus)
-            datalist(id='')
-                each filterOption in filterOptions
-                    option(value=filterOption)
 
             each date in matches
                 h2(class='date' data-date=date.date)= date.date

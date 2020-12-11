@@ -1,0 +1,37 @@
+doctype html
+html(lang='en-GB')
+    head
+        link(rel='stylesheet', href='../style.css')
+        link( href="https://fonts.googleapis.com/css2?family=Lora&display=swap", rel="stylesheet")
+        meta(name='viewport', content='width=device-width, initial-scale=1' )
+        meta(name='description' content='Timings for live football commentaries on the radio')
+        link(rel='icon' type='image/svg+xml' href='favicon.svg')
+        link(rel='manifest' href='/manifest.webmanifest')
+        title= 'English football on the radio'
+
+    body
+        div(class='container')
+            div(class='topnav')
+                div(class='dropdown')
+                    button= 'Competitions'
+                    div(class='dropdown-content')
+                        each comp in competitions
+                            a(href='/competitions/' + urlEncode(comp) + '.html')= comp
+                div(class='dropdown')
+                    button= 'Stations'
+                    div(class='dropdown-content')
+                        each station in stations
+                            a(href='/stations/' + urlEncode(station) + '.html')= station
+                div(class='dropdown')
+                    button= 'Teams'
+                    div(class='dropdown-content')
+                        each team in teams
+                            a(href='/teams/' + urlEncode(team) + '.html')= team
+
+            h1(class='page-title')= 'Football' 
+            p(class='page-subtitle')= 'on the radio'
+
+            h1 #{directory.charAt(0).toUpperCase() + directory.slice(1)}
+            div(class='dirlist')
+                each page in pages
+                    a(href= urlEncode(page) + '.html')= page
