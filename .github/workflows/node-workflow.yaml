@@ -24,6 +24,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - run: mkdir -p site/competitions
+      - run: mkdir -p site/teams
+      - run: mkdir -p site/stations
       - run: npm ci
       - run: npm start
       - run: cat site/index.html
@@ -34,7 +37,7 @@ jobs:
         with:
           clean: "false"
       - run: cp -f site/index.html docs/index.html
-      - run: cp -f site/filter.js docs/filter.js
+      - run: cp -f site/* docs/
       - run: git config --local user.email "whitford.dsw@gmail.com"
       - run: git config --local user.name "Daniel Whitford"
       - run: npm run format
