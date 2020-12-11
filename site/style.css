@@ -67,7 +67,7 @@ table {
 }
 
 .dropdown {
-  float:left;
+  float: left;
   min-width: 100px;
 }
 
@@ -75,7 +75,7 @@ table {
   width: 100%;
   font-size: 16px;
   border: none;
-  border-bottom: 1px dashed  #0e0e0e;
+  border-bottom: 1px dashed #0e0e0e;
   outline: none;
   color: #0e0e0e;
   margin-bottom: 40px;
@@ -85,7 +85,7 @@ table {
 }
 
 .dropdown button:hover {
-  border-bottom: 1px solid  #0e0e0e;
+  border-bottom: 1px solid #0e0e0e;
 }
 
 .dropdown .dropdown-content {

@@ -39,6 +39,7 @@
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
+  margin-top: 40px;
   margin-bottom: 0px;
 }
 
@@ -52,6 +53,10 @@ a {
   text-decoration: underline dotted;
 }
 
+a:hover {
+  text-decoration: underline solid;
+}
+
 tr:nth-child(even) td {
   padding-bottom: 15px;
 }
@@ -59,4 +64,47 @@ tr:nth-child(even) td {
 table {
   width: 100%;
   border-spacing: 5px;
+}
+
+.dropdown {
+  float: left;
+  min-width: 100px;
+}
+
+.dropdown button {
+  width: 100%;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px dashed #0e0e0e;
+  outline: none;
+  color: #0e0e0e;
+  margin-bottom: 40px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+}
+
+.dropdown button:hover {
+  border-bottom: 1px solid #0e0e0e;
+}
+
+.dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid #0e0e0e;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropdown-content a {
+  display: block;
+  float: none;
+}
+
+.dirlist a {
+  display: block;
 }
