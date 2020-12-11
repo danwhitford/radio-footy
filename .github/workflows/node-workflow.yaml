@@ -37,7 +37,7 @@ jobs:
         with:
           clean: "false"
       - run: cp -f site/index.html docs/index.html
-      - run: cp -f site/* docs/
+      - run: cp -rf site/* docs/
       - run: git config --local user.email "whitford.dsw@gmail.com"
       - run: git config --local user.name "Daniel Whitford"
       - run: npm run format
