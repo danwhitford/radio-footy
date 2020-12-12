@@ -27,9 +27,9 @@ jobs:
       - run: mkdir -p site/competitions
       - run: mkdir -p site/teams
       - run: mkdir -p site/stations
-      - run: git rm docs/teams/* && mkdir -p docs/teams
-      - run: git rm docs/stations/* && mkdir -p docs/stations
-      - run: git rm docs/competitions/* && mkdir -p docs/competitions
+      - run: rm docs/teams/* && mkdir -p docs/teams
+      - run: rm docs/stations/* && mkdir -p docs/stations
+      - run: rm docs/competitions/* && mkdir -p docs/competitions
       - run: npm ci
       - run: npm start
       - run: cat site/index.html
