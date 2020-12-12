@@ -99,14 +99,14 @@ buildFilteredListingsPage(
   "templates/listings.pug",
   siteData,
   "site/stations",
-  teams,
+  stations,
   (el) => (match) => match.station === el
 );
 buildFilteredListingsPage(
   "templates/listings.pug",
   siteData,
   "site/competitions",
-  teams,
+  competitions,
   (el) => (match) => match.competition === el
 );
 
