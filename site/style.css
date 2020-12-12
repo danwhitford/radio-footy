@@ -76,6 +76,8 @@ table {
   border-bottom: 1px dashed #0e0e0e;
   padding-top: 1px;
   padding-bottom: 1px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 .navlink a {

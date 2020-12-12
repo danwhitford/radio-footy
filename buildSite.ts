@@ -2,12 +2,58 @@ import * as pug from "pug";
 import * as fs from "fs";
 const assert = require("assert").strict;
 
-const data = fs.readFileSync("data.json", "utf8");
-assert.ok(data.length > 0);
-
 function urlEncode(s: string) {
   return encodeURI(s.toLocaleLowerCase().replace(/[ ]+/g, "-"));
 }
+
+function build(buildFn, data, out) {
+  const page = buildFn(data)
+  const fd = fs.openSync(out, "w");
+  fs.writeFileSync(fd, page);
+  fs.closeSync(fd);
+}
+
+function buildListingsPage(template: string, data: any, out: string) {
+  const fn = pug.compileFile(template)
+  build(fn, {
+    matches: data,
+    competitions,
+    stations,
+    teams,
+    urlEncode,
+  }, out)
+}
+
+function buildDirIndexPage(template: string, directory: string, data: any, out: string) {
+  const fn = pug.compileFile(template);
+  build(fn, {
+    directory: directory,
+    pages: data,
+    competitions,
+    stations,
+    teams,
+    urlEncode,
+  }, out);
+}
+
+function buildFilteredListingsPage(template: string, data: any, outDir: string, els: any[], filterFunc: any) {
+  for (const el of els) {
+    const filtered = data
+      .map((day) => {
+        return {
+          ...day,
+          matches: day.matches.filter(filterFunc(el)),
+        };
+      })
+      .filter((day) => day.matches.length > 0);
+    const addy = urlEncode(el);
+    buildListingsPage(template, filtered, `${outDir}/${addy}.html`)
+  }
+}
+
+const data = fs.readFileSync("data.json", "utf8");
+assert.ok(data.length > 0);
+const siteData = JSON.parse(data);
 
 let competitions = JSON.parse(data)
   .flatMap((day) => day.matches.map((match) => match.competition))
@@ -22,127 +68,11 @@ let stations = JSON.parse(data)
   .filter((x, i, a) => a.indexOf(x) == i)
   .sort();
 
-const compiledFunction = pug.compileFile("templates/listings.pug");
-const site = compiledFunction({
-  matches: JSON.parse(data),
-  competitions,
-  stations,
-  teams,
-  urlEncode,
-});
+buildListingsPage("templates/listings.pug", siteData, 'site/index.html')
+buildFilteredListingsPage("templates/listings.pug", siteData, 'site/teams', teams, (el) => (match) => match.title.split(" v ").includes(el))
+buildFilteredListingsPage("templates/listings.pug", siteData, 'site/stations', teams, (el) => (match) => match.station === el)
+buildFilteredListingsPage("templates/listings.pug", siteData, 'site/competitions', teams, (el) => (match) => match.competition === el)
 
-let fd = fs.openSync("site/index.html", "w");
-fs.writeFileSync(fd, site);
-fs.closeSync(fd);
-
-const dirTemplate = pug.compileFile("templates/dir-index.pug");
-let dirIndex = dirTemplate({
-  directory: "stations",
-  pages: stations,
-  competitions,
-  stations,
-  teams,
-  urlEncode,
-});
-fd = fs.openSync("site/stations/index.html", "w");
-fs.writeFileSync(fd, dirIndex);
-fs.closeSync(fd);
-
-dirIndex = dirTemplate({
-  directory: "competitions",
-  pages: competitions,
-  competitions,
-  stations,
-  teams,
-  urlEncode,
-});
-fd = fs.openSync("site/competitions/index.html", "w");
-fs.writeFileSync(fd, dirIndex);
-fs.closeSync(fd);
-
-dirIndex = dirTemplate({
-  directory: "teams",
-  pages: teams,
-  competitions,
-  stations,
-  teams,
-  urlEncode,
-});
-fd = fs.openSync("site/teams/index.html", "w");
-fs.writeFileSync(fd, dirIndex);
-fs.closeSync(fd);
-
-const siteData = JSON.parse(data);
-for (const team of teams) {
-  const filtered = siteData
-    .map((day) => {
-      return {
-        ...day,
-        matches: day.matches.filter((match) =>
-          match.title.split(" v ").includes(team)
-        ),
-      };
-    })
-    .filter((day) => day.matches.length > 0);
-
-  const site = compiledFunction({
-    matches: filtered,
-    competitions,
-    stations,
-    teams,
-    urlEncode,
-  });
-
-  const addy = urlEncode(team);
-  let fd = fs.openSync(`site/teams/${addy}.html`, "w");
-  fs.writeFileSync(fd, site);
-  fs.closeSync(fd);
-}
-
-for (const comp of competitions) {
-  const filtered = siteData
-    .map((day) => {
-      return {
-        ...day,
-        matches: day.matches.filter((match) => match.competition === comp),
-      };
-    })
-    .filter((day) => day.matches.length > 0);
-
-  const site = compiledFunction({
-    matches: filtered,
-    competitions,
-    stations,
-    teams,
-    urlEncode,
-  });
-
-  const addy = urlEncode(comp);
-  let fd = fs.openSync(`site/competitions/${addy}.html`, "w");
-  fs.writeFileSync(fd, site);
-  fs.closeSync(fd);
-}
-
-for (const station of stations) {
-  const filtered = siteData
-    .map((day) => {
-      return {
-        ...day,
-        matches: day.matches.filter((match) => match.station === station),
-      };
-    })
-    .filter((day) => day.matches.length > 0);
-
-  const site = compiledFunction({
-    matches: filtered,
-    competitions,
-    stations,
-    teams,
-    urlEncode,
-  });
-
-  const addy = urlEncode(station);
-  let fd = fs.openSync(`site/stations/${addy}.html`, "w");
-  fs.writeFileSync(fd, site);
-  fs.closeSync(fd);
-}
+buildDirIndexPage('templates/dir-index.pug', 'stations', stations, 'site/stations/index.html')
+buildDirIndexPage('templates/dir-index.pug', 'teams', teams, 'site/teams/index.html')
+buildDirIndexPage('templates/dir-index.pug', 'competitions', competitions, 'site/competitions/index.html')
