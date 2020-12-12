@@ -71,6 +71,25 @@ table {
   min-width: 100px;
 }
 
+.navlink {
+  float: left;
+  border-bottom: 1px dashed #0e0e0e;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.navlink a {
+  text-decoration: none;
+}
+
+.navlink:hover {
+  background-color:#0e0e0e;
+}
+
+.navlink:hover a {
+  color: white;
+}
+
 .dropdown button {
   width: 100%;
   font-size: 16px;
@@ -86,6 +105,8 @@ table {
 
 .dropdown button:hover {
   border-bottom: 1px solid #0e0e0e;
+  background-color: #0e0e0e;
+  color: white;
 }
 
 .dropdown .dropdown-content {
