@@ -76,10 +76,16 @@ ul {
   margin: 0 auto;
 }
 
-li {
+ul li {
   display: inline-block;
-  width: 25%;
-  text-align: center;
+  padding: 0 5px;
+  /* float: none; */
+  /* width: 24%; */
+  /* text-align: center; */
+}
+
+ul li:first-child {
+  padding-left: 0;
 }
 
 li:hover {
