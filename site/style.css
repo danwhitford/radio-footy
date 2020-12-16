@@ -78,7 +78,8 @@ ul {
 
 li {
   display: inline-block;
-  width: 25%;
+  float: none;
+  width: 24%;
   text-align: center;
 }
 
