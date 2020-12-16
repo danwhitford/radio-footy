@@ -11,24 +11,15 @@ html(lang='en-GB')
 
     body
         div(class='container')
-            div(class='topnav')
-                div(class='navlink')
+            ul
+                li
                     a(href='/')= 'Home'
-                div(class='dropdown')
-                    button= 'Competitions'
-                    div(class='dropdown-content')
-                        each comp in competitions
-                            a(href='/competitions/' + urlEncode(comp) + '.html')= comp
-                div(class='dropdown')
-                    button= 'Stations'
-                    div(class='dropdown-content')
-                        each station in stations
-                            a(href='/stations/' + urlEncode(station) + '.html')= station
-                div(class='dropdown')
-                    button= 'Teams'
-                    div(class='dropdown-content')
-                        each team in teams
-                            a(href='/teams/' + urlEncode(team) + '.html')= team
+                li
+                    a(href='/teams')= 'Teams'
+                li
+                    a(href='/competitions')= 'Comps'
+                li
+                    a(href='/stations')= 'Stations'
 
             h1(class='page-title')= 'Football' 
             p(class='page-subtitle')= 'on the radio'
