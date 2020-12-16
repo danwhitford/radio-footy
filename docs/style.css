@@ -66,68 +66,26 @@ table {
   border-spacing: 5px;
 }
 
-.dropdown {
-  float: left;
-  min-width: 100px;
-}
-
-.navlink {
-  float: left;
-  border-bottom: 1px dashed #0e0e0e;
-  padding-top: 1px;
-  padding-bottom: 1px;
-  padding-left: 6px;
-  padding-right: 6px;
-}
-
-.navlink a {
-  text-decoration: none;
-}
-
-.navlink:hover {
-  background-color: #0e0e0e;
-}
-
-.navlink:hover a {
-  color: white;
-}
-
-.dropdown button {
-  width: 100%;
-  font-size: 16px;
-  border: none;
-  border-bottom: 1px dashed #0e0e0e;
-  outline: none;
-  color: #0e0e0e;
-  margin-bottom: 40px;
-  background-color: inherit;
-  font-family: inherit; /* Important for vertical align on mobile phones */
-  margin: 0; /* Important for vertical align on mobile phones */
-}
-
-.dropdown button:hover {
-  border-bottom: 1px solid #0e0e0e;
-  background-color: #0e0e0e;
-  color: white;
-}
-
-.dropdown .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: white;
-  padding: 10px;
-  border: 1px solid #0e0e0e;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown:hover .dropdown-content a {
-  display: block;
-  float: none;
-}
-
 .dirlist a {
   display: block;
+}
+
+ul {
+  padding-left: 0;
+  width: 100%;
+}
+
+li {
+  display: inline-block;
+  width: 20%;
+  text-align: center;
+}
+
+li:hover {
+  background-color: #0e0e0e;
+  border-radius: 5px;
+}
+
+li:hover a {
+  color: white;
 }
