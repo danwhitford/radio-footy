@@ -6,7 +6,7 @@ const competitions = [
   "FA Cup",
   "English Football League Trophy",
   "International Football",
-    "EFL Cup",
+  "EFL Cup",
 ];
 
 export function normaliseCompetitionName(name: string) {
