@@ -1,7 +1,0 @@
-extends base.pug
-
-block content
-    h2 #{directory.charAt(0).toUpperCase() + directory.slice(1)}
-    div(class='dirlist')
-        each page in pages
-            a(href= urlEncode(page) + '.html')= page

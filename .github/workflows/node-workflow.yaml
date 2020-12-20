@@ -24,24 +24,15 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: mkdir -p site/competitions
-      - run: mkdir -p site/teams
-      - run: mkdir -p site/stations
-      - run: rm -f docs/teams/* && mkdir -p docs/teams
-      - run: rm -f docs/stations/* && mkdir -p docs/stations
-      - run: rm -f docs/competitions/* && mkdir -p docs/competitions
       - run: npm ci
       - run: npm start
-      - run: cat site/index.html
+      - run: cat docs/data.json
         env:
           CI: true
       - name: Commit files
         uses: actions/checkout@v2
         with:
           clean: "false"
-      - run: cp -f site/index.html docs/index.html
-      - run: cp -f data.json docs/data.json
-      - run: cp -rf site/* docs/
       - run: git config --local user.email "whitford.dsw@gmail.com"
       - run: git config --local user.name "Daniel Whitford"
       - run: npm run format

@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node getFeed.ts && ts-node buildSite.ts",
+    "start": "ts-node getFeed.ts",
     "run:watch": "ls template.pug site/filter.js | entr npm run build:site",
     "format": "prettier -w .",
-    "build:site": "ts-node buildSite.ts",
     "get:feed": "ts-node getFeed.ts"
   },
   "author": "",
