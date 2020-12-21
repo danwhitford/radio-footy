@@ -27,15 +27,11 @@ jobs:
       - run: npm ci
       - run: npm start
       - run: cat docs/data.json
-        env:
-          CI: true
-      - name: Commit files
-        uses: actions/checkout@v2
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
-          clean: "false"
-      - run: git config --local user.email "whitford.dsw@gmail.com"
-      - run: git config --local user.name "Daniel Whitford"
-      - run: npm run format
-      - run: git add .
-      - run: git commit -m "Auto deploy" -a --allow-empty
-      - run: git push
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: build # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch
