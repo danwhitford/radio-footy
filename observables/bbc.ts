@@ -19,13 +19,14 @@ function* generateWeek() {
   const today = new Date();
   for (let i = 0; i <= 7; ++i) {
     const d = add(today, { days: i });
-    yield format(d, "Y-M-dd");
+    yield format(d, "Y-MM-dd");
   }
 }
 
 const programs = from(generateWeek()).pipe(
   map((v) => baseUrl + v),
   mergeMap((url) => fetch(url)),
+  tap(m => console.log(m)),
   filter((res) => res.status === 200),
   mergeMap((res) => res.json()),
   pluck("data"),
