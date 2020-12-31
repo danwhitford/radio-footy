@@ -26,7 +26,6 @@ function* generateWeek() {
 const programs = from(generateWeek()).pipe(
   map((v) => baseUrl + v),
   mergeMap((url) => fetch(url)),
-  tap(m => console.log(m)),
   filter((res) => res.status === 200),
   mergeMap((res) => res.json()),
   pluck("data"),
