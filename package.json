@@ -6,9 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node src/getFeed.ts",
-    "run:watch": "ls template.pug site/filter.js | entr npm run build:site",
     "format": "prettier -w .",
-    "get:feed": "ts-node getFeed.ts",
     "build": "tsc"
   },
   "author": "",
