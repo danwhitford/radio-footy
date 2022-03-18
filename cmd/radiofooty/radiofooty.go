@@ -5,9 +5,15 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"sort"
+	"strings"
 	"time"
+
 	"whitford.io/radiofooty/internal/interchange"
 )
+
+const niceDate = "Monday, Jan 2"
+const timeLayout = "15:04"
 
 func getTalkSportMatches() []interchange.MergedMatch {
 	url := "https://talksport.com/wp-json/talksport/v2/talksport-live/commentary"
@@ -19,8 +25,6 @@ func getTalkSportMatches() []interchange.MergedMatch {
 
 	var matches []interchange.MergedMatch
 	longForm := "2006-01-02 15:04:05"
-	niceDate := "Monday, Jan 2nd"
-	timeLayout := "15:04"
 	loc, _ := time.LoadLocation("Europe/London")
 
 	for _, m := range tsFeed {
@@ -41,15 +45,52 @@ func getTalkSportMatches() []interchange.MergedMatch {
 		displayTime := t.Format(timeLayout)
 		datetime := t.Format(time.RFC3339)
 		m := interchange.MergedMatch{Time: displayTime, Date: displayDate, Station: feedname, Datetime: datetime, Title: title, Competition: m.League}
-		matches = append(matches, m)		
+		matches = append(matches, m)
 	}
+	return matches
+}
+
+func getBBCMatches() []interchange.MergedMatch {
+	var matches = []interchange.MergedMatch{}
+	longFormat := "2006-01-02T15:04:05Z"
+	baseUrl := "https://rms.api.bbc.co.uk/v2/experience/inline/schedules/bbc_radio_five_live/"
+	urls := []string{}
+	urlTime := "2006-01-02"
+	start := time.Now()
+	for i := 0; i < 8; i++ {
+		t := start.AddDate(0, 0, i)
+		urls = append(urls, baseUrl+t.Format(urlTime))
+	}
+
+	var bbcFeed interchange.BBCFeed
+	for _, url := range urls {
+		resp, _ := http.Get(url)
+		defer resp.Body.Close()
+		body, _ := io.ReadAll(resp.Body)
+		json.Unmarshal(body, &bbcFeed)
+
+		for _, data := range bbcFeed.Data {
+			for _, prog := range data.Data {
+				if (prog.Title.Primary == "5 Live Sport") && (strings.Contains(prog.Title.Secondary, "Football")) && strings.Contains(prog.Title.Tertiary, " v ") {
+					start, _ := time.Parse(longFormat, prog.Start)
+					clock := start.Format(timeLayout)
+					date := start.Format(niceDate)
+					m := interchange.MergedMatch{Time: clock, Date: date, Station: "BBC Radio 5", Datetime: start.Format(time.RFC3339), Title: prog.Title.Tertiary, Competition: prog.Title.Secondary}
+					matches = append(matches, m)
+				}
+			}
+		}
+	}
+
 	return matches
 }
 
 func main() {
 	var mergedFeed interchange.Merged
+	var matches []interchange.MergedMatch
 
-	matches := getTalkSportMatches()
+	matches = append(matches, getTalkSportMatches()...)
+	matches = append(matches, getBBCMatches()...)
 
 	matchesRollup := make(map[string][]interchange.MergedMatch)
 	for _, match := range matches {
@@ -61,12 +102,15 @@ func main() {
 			matchesRollup[match.Date] = []interchange.MergedMatch{match}
 		}
 	}
-	
-	for k, v :=  range matchesRollup {
+
+	for k, v := range matchesRollup {
 		md := interchange.MergedMatchDay{Date: k, Matches: v}
 		mergedFeed = append(mergedFeed, md)
 	}
 
+	sort.Slice(mergedFeed, func(i, j int) bool {
+		return mergedFeed[i].Matches[0].Datetime < mergedFeed[j].Matches[0].Datetime
+	})
 	output, _ := json.Marshal(mergedFeed)
 	fmt.Println(string(output))
 }

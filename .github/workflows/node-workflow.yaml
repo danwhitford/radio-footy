@@ -21,13 +21,13 @@ jobs:
           fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-go@v2
         with:
           node-version: ${{ matrix.node-version }}
       - run: mkdir -p docs
       - run: npm ci
       - run: npm run build
-      - run: node dist/getFeed.js
+      - run: go run cmd/danlisp/danlisp.go > docs/data.json
       - run: cat docs/data.json
 
       - name: Deploy 🚀
