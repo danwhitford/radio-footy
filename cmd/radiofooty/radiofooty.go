@@ -9,7 +9,7 @@ import (
 	"whitford.io/radiofooty/internal/interchange"
 )
 
-func main() {
+func getTalkSportMatches() []interchange.MergedMatch {
 	url := "https://talksport.com/wp-json/talksport/v2/talksport-live/commentary"
 	resp, _ := http.Get(url)
 	defer resp.Body.Close()
@@ -17,7 +17,6 @@ func main() {
 	var tsFeed interchange.TSFeed
 	json.Unmarshal(body, &tsFeed)
 
-	var mergedFeed interchange.Merged
 	var matches []interchange.MergedMatch
 	longForm := "2006-01-02 15:04:05"
 	niceDate := "Monday, Jan 2nd"
@@ -44,6 +43,13 @@ func main() {
 		m := interchange.MergedMatch{Time: displayTime, Date: displayDate, Station: feedname, Datetime: datetime, Title: title, Competition: m.League}
 		matches = append(matches, m)		
 	}
+	return matches
+}
+
+func main() {
+	var mergedFeed interchange.Merged
+
+	matches := getTalkSportMatches()
 
 	matchesRollup := make(map[string][]interchange.MergedMatch)
 	for _, match := range matches {
