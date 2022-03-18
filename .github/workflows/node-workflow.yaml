@@ -20,10 +20,11 @@ jobs:
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
           fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use go
         uses: actions/setup-go@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          go-version: '^1.18.1' # The Go version to download (if necessary) and use.
+      - run: go version
       - run: mkdir -p docs
       - run: go run cmd/radiofooty/radiofooty.go > docs/data.json
       - run: cat docs/data.json
