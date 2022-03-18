@@ -47,6 +47,7 @@ func getTalkSportMatches() []interchange.MergedMatch {
 		m := interchange.MergedMatch{Time: displayTime, Date: displayDate, Station: feedname, Datetime: datetime, Title: title, Competition: m.League}
 		matches = append(matches, m)
 	}
+
 	return matches
 }
 
@@ -111,6 +112,11 @@ func main() {
 	sort.Slice(mergedFeed, func(i, j int) bool {
 		return mergedFeed[i].Matches[0].Datetime < mergedFeed[j].Matches[0].Datetime
 	})
+	for _, matchDay := range mergedFeed {
+		sort.Slice(matchDay.Matches, func(i, j int) bool {
+			return matchDay.Matches[i].Time < matchDay.Matches[j].Time
+		})
+	}
 	output, _ := json.Marshal(mergedFeed)
 	fmt.Println(string(output))
 }
