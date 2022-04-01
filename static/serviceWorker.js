@@ -13,8 +13,6 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('fetch', function(event) {
-    console.log(event.request)
-    console.log(caches.match(event.request))
     event.respondWith(
       fetch(event.request).catch(function() {
         return caches.match(event.request);
