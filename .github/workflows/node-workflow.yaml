@@ -25,6 +25,7 @@ jobs:
         with:
           go-version: '1.18' # The Go version to download (if necessary) and use.
       - run: go version
+      - run: go run cmd/radiofooty/radiofooty.go
       - run: mkdir -p docs
       - run: cp index.html docs/index.html
 
