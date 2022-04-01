@@ -33,12 +33,12 @@ func main() {
 	}
 
 	data := struct {
-		MatchDays []interchange.MergedMatchDay
-		Pad func(string, int) string
-		Repeat func(string, int) string
+		MatchDays   []interchange.MergedMatchDay
+		Pad         func(string, int) string
+		Repeat      func(string, int) string
 		RepeatBlind func(int, int) string
-		Col int
-	} {
+		Col         int
+	}{
 		MatchDays: matches,
 		Pad: func(s string, n int) string {
 			l := len(s)
@@ -49,14 +49,14 @@ func main() {
 			return strings.Repeat(s, i)
 		},
 		RepeatBlind: func(i, j int) string {
-			return strings.Repeat("\u00A0", j-i)	
+			return strings.Repeat("\u00A0", j-i)
 		},
 		Col: col,
 	}
 
 	f, _ := os.Create("index.html")
 	defer f.Close()
-	w := bufio.NewWriter(f)	
+	w := bufio.NewWriter(f)
 	err := template.Execute(w, data)
 	if err != nil {
 		panic(err)
