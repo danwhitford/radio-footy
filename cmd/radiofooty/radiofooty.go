@@ -1,122 +1,65 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
-	"io"
-	"net/http"
-	"sort"
+	// "encoding/json"
+	// "fmt"
+	"bufio"
+	"html/template"
+	"os"
 	"strings"
-	"time"
 
+	"whitford.io/radiofooty/internal/feeds"
 	"whitford.io/radiofooty/internal/interchange"
 )
 
-const niceDate = "Monday, Jan 2"
-const timeLayout = "15:04"
-
-func getTalkSportMatches() []interchange.MergedMatch {
-	url := "https://talksport.com/wp-json/talksport/v2/talksport-live/commentary"
-	resp, _ := http.Get(url)
-	defer resp.Body.Close()
-	body, _ := io.ReadAll(resp.Body)
-	var tsFeed interchange.TSFeed
-	json.Unmarshal(body, &tsFeed)
-
-	var matches []interchange.MergedMatch
-	longForm := "2006-01-02 15:04:05"
-	loc, _ := time.LoadLocation("Europe/London")
-
-	for _, m := range tsFeed {
-		var feedname string
-		for _, feed := range m.Livefeed {
-			if feed.Feedname == "talkSPORT" {
-				feedname = "talkSPORT"
-			} else if feed.Feedname == "talkSPORT2" {
-				feedname = "talkSPORT2"
-			}
-		}
-		if feedname == "" {
-			continue
-		}
-		t, _ := time.ParseInLocation(longForm, m.Date, loc)
-		title := fmt.Sprintf("%s v %s", m.HomeTeam, m.AwayTeam)
-		displayDate := t.Format(niceDate)
-		displayTime := t.Format(timeLayout)
-		datetime := t.Format(time.RFC3339)
-		m := interchange.MergedMatch{Time: displayTime, Date: displayDate, Station: feedname, Datetime: datetime, Title: title, Competition: m.League}
-		matches = append(matches, m)
-	}
-
-	return matches
-}
-
-func getBBCMatches() []interchange.MergedMatch {
-	var matches = []interchange.MergedMatch{}
-	longFormat := "2006-01-02T15:04:05Z"
-	baseUrl := "https://rms.api.bbc.co.uk/v2/experience/inline/schedules/bbc_radio_five_live/"
-	urls := []string{}
-	urlTime := "2006-01-02"
-	start := time.Now()
-	for i := 0; i < 8; i++ {
-		t := start.AddDate(0, 0, i)
-		urls = append(urls, baseUrl+t.Format(urlTime))
-	}
-
-	var bbcFeed interchange.BBCFeed
-	for _, url := range urls {
-		resp, _ := http.Get(url)
-		defer resp.Body.Close()
-		body, _ := io.ReadAll(resp.Body)
-		json.Unmarshal(body, &bbcFeed)
-
-		for _, data := range bbcFeed.Data {
-			for _, prog := range data.Data {
-				if (prog.Title.Primary == "5 Live Sport") && (strings.Contains(prog.Title.Secondary, "Football")) && strings.Contains(prog.Title.Tertiary, " v ") {
-					start, _ := time.Parse(longFormat, prog.Start)
-					clock := start.Format(timeLayout)
-					date := start.Format(niceDate)
-					m := interchange.MergedMatch{Time: clock, Date: date, Station: "BBC Radio 5", Datetime: start.Format(time.RFC3339), Title: prog.Title.Tertiary, Competition: prog.Title.Secondary}
-					matches = append(matches, m)
-				}
-			}
-		}
-	}
-
-	return matches
-}
-
 func main() {
-	var mergedFeed interchange.Merged
-	var matches []interchange.MergedMatch
+	matches := feeds.GetMergedMatches()
 
-	matches = append(matches, getTalkSportMatches()...)
-	matches = append(matches, getBBCMatches()...)
+	template, er := template.ParseFiles("./internal/website/template.gohtml")
+	if er != nil {
+		panic(er)
+	}
 
-	matchesRollup := make(map[string][]interchange.MergedMatch)
-	for _, match := range matches {
-		val, prs := matchesRollup[match.Date]
-		if prs {
-			val = append(val, match)
-			matchesRollup[match.Date] = val
-		} else {
-			matchesRollup[match.Date] = []interchange.MergedMatch{match}
+	col := 0
+	for _, matchDay := range matches {
+		for _, match := range matchDay.Matches {
+			if len(match.Title) > col {
+				col = len(match.Title)
+			}
+			if len(match.Station) > col {
+				col = len(match.Station)
+			}
 		}
 	}
 
-	for k, v := range matchesRollup {
-		md := interchange.MergedMatchDay{Date: k, Matches: v}
-		mergedFeed = append(mergedFeed, md)
+	data := struct {
+		MatchDays []interchange.MergedMatchDay
+		Pad func(string, int) string
+		Repeat func(string, int) string
+		RepeatBlind func(int, int) string
+		Col int
+	} {
+		MatchDays: matches,
+		Pad: func(s string, n int) string {
+			l := len(s)
+			p := n - l
+			return s + strings.Repeat("\u00A0", p)
+		},
+		Repeat: func(s string, i int) string {
+			return strings.Repeat(s, i)
+		},
+		RepeatBlind: func(i, j int) string {
+			return strings.Repeat("\u00A0", j-i)	
+		},
+		Col: col,
 	}
 
-	sort.Slice(mergedFeed, func(i, j int) bool {
-		return mergedFeed[i].Matches[0].Datetime < mergedFeed[j].Matches[0].Datetime
-	})
-	for _, matchDay := range mergedFeed {
-		sort.Slice(matchDay.Matches, func(i, j int) bool {
-			return matchDay.Matches[i].Time < matchDay.Matches[j].Time
-		})
+	f, _ := os.Create("index.html")
+	defer f.Close()
+	w := bufio.NewWriter(f)	
+	err := template.Execute(w, data)
+	if err != nil {
+		panic(err)
 	}
-	output, _ := json.Marshal(mergedFeed)
-	fmt.Println(string(output))
+	w.Flush()
 }

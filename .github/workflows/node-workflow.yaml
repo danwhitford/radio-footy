@@ -27,7 +27,7 @@ jobs:
       - run: go version
       - run: mkdir -p docs
       - run: go run cmd/radiofooty/radiofooty.go > docs/data.json
-      - run: cat docs/data.json
+      - run: cp index.html docs/index.html
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
