@@ -17,7 +17,10 @@ const timeLayout = "15:04"
 
 func getTalkSportMatches() []interchange.MergedMatch {
 	url := "https://talksport.com/wp-json/talksport/v2/talksport-live/commentary"
-	resp, _ := http.Get(url)
+	resp, err := http.Get(url)
+	if err != nil {
+		panic(err)
+	}
 	defer resp.Body.Close()
 	body, _ := io.ReadAll(resp.Body)
 	var tsFeed interchange.TSFeed
@@ -65,7 +68,10 @@ func getBBCMatches() []interchange.MergedMatch {
 
 	var bbcFeed interchange.BBCFeed
 	for _, url := range urls {
-		resp, _ := http.Get(url)
+		resp, err := http.Get(url)
+		if err != nil {
+			panic(err)
+		}
 		defer resp.Body.Close()
 		body, _ := io.ReadAll(resp.Body)
 		json.Unmarshal(body, &bbcFeed)
