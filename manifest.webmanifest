@@ -1,9 +1,9 @@
 {
     "name": "Wireless Football",
-    "short_name": "radiofooty",
-    "description": "Listings for football on the radio in the coming week",
+    "short_name": "Radio Footy",
+    "description": "Listings for football matches on the wireless in the coming week",
     "start_url": "/",
-    "display": "fullscreen",
+    "display": "standalone",
     "theme_color": "#B12A34",
     "background_color": "#B12A34",
     "icons": [
