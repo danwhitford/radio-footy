@@ -1,0 +1,26 @@
+{
+    "name": "Wireless Football",
+    "short_name": "radiofooty",
+    "description": "Listings for football on the radio in the coming week",
+    "start_url": "/",
+    "display": "fullscreen",
+    "theme_color": "#B12A34",
+    "background_color": "#B12A34",
+    "icons": [
+        {
+            "src": "icons/icon400.png",
+            "sizes": "400x400",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/icon500.png",
+            "sizes": "500x500",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/icon512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
