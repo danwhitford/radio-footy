@@ -60,6 +60,7 @@ func getBBCMatches() []interchange.MergedMatch {
 	baseUrl := "https://rms.api.bbc.co.uk/v2/experience/inline/schedules/bbc_radio_five_live/"
 	urls := []string{}
 	urlTime := "2006-01-02"
+	loc, _ := time.LoadLocation("Europe/London")
 	start := time.Now()
 	for i := 0; i < 8; i++ {
 		t := start.AddDate(0, 0, i)
@@ -80,6 +81,7 @@ func getBBCMatches() []interchange.MergedMatch {
 			for _, prog := range data.Data {
 				if (prog.Title.Primary == "5 Live Sport") && (strings.Contains(prog.Title.Secondary, "Football")) && strings.Contains(prog.Title.Tertiary, " v ") {
 					start, _ := time.Parse(longFormat, prog.Start)
+					start = start.In(loc)
 					clock := start.Format(timeLayout)
 					date := start.Format(niceDate)
 					m := interchange.MergedMatch{Time: clock, Date: date, Station: "BBC Radio 5", Datetime: start.Format(time.RFC3339), Title: prog.Title.Tertiary, Competition: prog.Title.Secondary}
