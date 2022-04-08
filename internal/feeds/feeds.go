@@ -3,12 +3,11 @@ package feeds
 import (
 	"encoding/json"
 	"fmt"
-	"io"
-	"net/http"
 	"sort"
 	"strings"
 	"time"
 
+	"whitford.io/radiofooty/internal/filecacher"
 	"whitford.io/radiofooty/internal/interchange"
 )
 
@@ -17,12 +16,7 @@ const timeLayout = "15:04"
 
 func getTalkSportMatches() []interchange.MergedMatch {
 	url := "https://talksport.com/wp-json/talksport/v2/talksport-live/commentary"
-	resp, err := http.Get(url)
-	if err != nil {
-		panic(err)
-	}
-	defer resp.Body.Close()
-	body, _ := io.ReadAll(resp.Body)
+	body, _ := filecacher.GetUrl(url)
 	var tsFeed interchange.TSFeed
 	json.Unmarshal(body, &tsFeed)
 
@@ -69,12 +63,7 @@ func getBBCMatches() []interchange.MergedMatch {
 
 	var bbcFeed interchange.BBCFeed
 	for _, url := range urls {
-		resp, err := http.Get(url)
-		if err != nil {
-			panic(err)
-		}
-		defer resp.Body.Close()
-		body, _ := io.ReadAll(resp.Body)
+		body, _ := filecacher.GetUrl(url)
 		json.Unmarshal(body, &bbcFeed)
 
 		for _, data := range bbcFeed.Data {
