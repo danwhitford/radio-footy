@@ -45,7 +45,7 @@
         <p><b>{{ .Date }}</b></p>
         <p class="row">+-{{ call $.Repeat "-" $.Col}}-+</p>
         {{ range .Matches }}
-        <p class="row text-row">| <b>{{ call $.Pad .Time $.Col }} |</b></p>
+        <p class="row text-row">| <b>{{ call $.Pad .Time $.Col }}</b> |</p>
         <p class="row text-row">| {{ call $.Pad .Station $.Col }} |</p>
         <p class="row text-row">| <b>{{ call $.Pad .Title $.Col }}</b> |</p>
         <p class="row text-row">| {{ call $.Pad .Competition $.Col }} |</p>
