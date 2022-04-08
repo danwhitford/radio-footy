@@ -36,7 +36,7 @@ func GetUrl(url string) ([]byte, error) {
 	if err != nil {
 		fmt.Println("Could not open file from cache")
 		if !os.IsNotExist(err) {
-			fmt.Println("File open error was not recognised")
+			fmt.Println("File open error was not recognised. This is bad.")
 			return nil, err
 		} else {
 			fmt.Println("File does not exist, fetching and caching...")
