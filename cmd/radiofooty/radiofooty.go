@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"os"
 	"strings"
+	"unicode/utf8"
 
 	"whitford.io/radiofooty/internal/feeds"
 	"whitford.io/radiofooty/internal/interchange"
@@ -38,7 +39,7 @@ func main() {
 	}{
 		MatchDays: matches,
 		Pad: func(s string, n int) string {
-			l := len(s)
+			l := utf8.RuneCountInString(s)
 			p := n - l
 			return s + strings.Repeat("\u00A0", p)
 		},
