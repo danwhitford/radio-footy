@@ -1,8 +1,6 @@
 package main
 
 import (
-	// "encoding/json"
-	// "fmt"
 	"bufio"
 	"html/template"
 	"os"
@@ -36,7 +34,6 @@ func main() {
 		MatchDays   []interchange.MergedMatchDay
 		Pad         func(string, int) string
 		Repeat      func(string, int) string
-		RepeatBlind func(int, int) string
 		Col         int
 	}{
 		MatchDays: matches,
@@ -47,9 +44,6 @@ func main() {
 		},
 		Repeat: func(s string, i int) string {
 			return strings.Repeat(s, i)
-		},
-		RepeatBlind: func(i, j int) string {
-			return strings.Repeat("\u00A0", j-i)
 		},
 		Col: col,
 	}
