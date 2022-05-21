@@ -32,10 +32,10 @@ func main() {
 	}
 
 	data := struct {
-		MatchDays   []interchange.MergedMatchDay
-		Pad         func(string, int) string
-		Repeat      func(string, int) string
-		Col         int
+		MatchDays []interchange.MergedMatchDay
+		Pad       func(string, int) string
+		Repeat    func(string, int) string
+		Col       int
 	}{
 		MatchDays: matches,
 		Pad: func(s string, n int) string {

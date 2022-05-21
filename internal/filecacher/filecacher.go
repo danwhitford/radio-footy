@@ -3,12 +3,12 @@ package filecacher
 import (
 	"crypto/sha1"
 	"encoding/hex"
+	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"os"
 	"path/filepath"
-	"log"
-	"fmt"
 )
 
 func getAndSave(url, fname string) ([]byte, error) {
@@ -30,7 +30,7 @@ func getAndSave(url, fname string) ([]byte, error) {
 }
 
 func GetUrl(url string) ([]byte, error) {
-	log.Printf("Getting URL: %s\n", url)	
+	log.Printf("Getting URL: %s\n", url)
 	h := sha1.Sum([]byte(url))
 	fname := hex.EncodeToString(h[:])
 	data, err := os.ReadFile(fmt.Sprintf(".cache/%s", fname))

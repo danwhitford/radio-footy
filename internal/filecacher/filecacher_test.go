@@ -40,7 +40,7 @@ func TestCreatesCache(t *testing.T) {
 func TestUsesCache(t *testing.T) {
 	setup()
 	defer shutdown()
-	
+
 	b, err := GetUrl("https://www.example.com")
 	if err != nil {
 		t.Fatalf("err was %v", err)
