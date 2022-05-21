@@ -3,11 +3,12 @@ package filecacher
 import (
 	"crypto/sha1"
 	"encoding/hex"
-	"fmt"
 	"io"
 	"net/http"
 	"os"
 	"path/filepath"
+	"log"
+	"fmt"
 )
 
 func getAndSave(url, fname string) ([]byte, error) {
@@ -20,7 +21,7 @@ func getAndSave(url, fname string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println("Writing file...")
+	log.Println("Writing file...")
 	err = os.WriteFile(filepath.Join(".cache", fname), body, 0644)
 	if err != nil {
 		return nil, err
@@ -29,21 +30,21 @@ func getAndSave(url, fname string) ([]byte, error) {
 }
 
 func GetUrl(url string) ([]byte, error) {
-	fmt.Printf("Getting URL: %s\n", url)	
+	log.Printf("Getting URL: %s\n", url)	
 	h := sha1.Sum([]byte(url))
 	fname := hex.EncodeToString(h[:])
 	data, err := os.ReadFile(fmt.Sprintf(".cache/%s", fname))
 	if err != nil {
-		fmt.Println("Could not open file from cache")
+		log.Println("Could not open file from cache")
 		if !os.IsNotExist(err) {
-			fmt.Println("File open error was not recognised. This is bad.")
+			log.Println("File open error was not recognised. This is bad.")
 			return nil, err
 		} else {
-			fmt.Println("File does not exist, fetching and caching...")
+			log.Println("File does not exist, fetching and caching...")
 			return getAndSave(url, fname)
 		}
 	} else {
-		fmt.Println("File exists, using cache")
+		log.Println("File exists, using cache")
 		return data, nil
 	}
 }
