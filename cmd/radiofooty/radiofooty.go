@@ -23,11 +23,11 @@ func main() {
 	col := 0
 	for _, matchDay := range matches {
 		for _, match := range matchDay.Matches {
-			if len(match.Title) > col {
-				col = len(match.Title)
+			if utf8.RuneCountInString(match.Title) > col {
+				col = utf8.RuneCountInString(match.Title)
 			}
-			if len(match.Station) > col {
-				col = len(match.Station)
+			if utf8.RuneCountInString(match.Station) > col {
+				col = utf8.RuneCountInString(match.Station)
 			}
 		}
 	}
