@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"html/template"
+	"log"
 	"os"
 	"strings"
 	"unicode/utf8"
@@ -38,9 +39,12 @@ func main() {
 		Col       int
 	}{
 		MatchDays: matches,
-		Pad: func(s string, n int) string {
+		Pad: func(s string, n int) string {			
 			l := utf8.RuneCountInString(s)
 			p := n - l
+			if p < 0 {
+				log.Panicf("Cannot pad string \"%s\" to length %d", s, n)
+			}
 			return s + strings.Repeat("\u00A0", p)
 		},
 		Repeat: func(s string, i int) string {
