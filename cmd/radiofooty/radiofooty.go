@@ -29,6 +29,9 @@ func main() {
 			if utf8.RuneCountInString(match.Station) > col {
 				col = utf8.RuneCountInString(match.Station)
 			}
+			if utf8.RuneCountInString(match.Competition) > col {
+				col = utf8.RuneCountInString(match.Competition)
+			}
 		}
 	}
 
