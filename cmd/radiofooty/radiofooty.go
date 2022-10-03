@@ -89,7 +89,7 @@ func writeCal(data interface{}) {
 	if err != nil {
 		panic(err)
 	}
-	f, _ := os.Create("icalendar")
+	f, _ := os.Create("icalendar.ics")
 	defer f.Close()
 	w := bufio.NewWriter(f)
 	err = calTemplate.Execute(w, data)
