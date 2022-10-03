@@ -7,6 +7,7 @@ import (
 	"os"
 	"strings"
 	"unicode/utf8"
+	"time"
 
 	"whitford.io/radiofooty/internal/feeds"
 	"whitford.io/radiofooty/internal/interchange"
@@ -14,11 +15,6 @@ import (
 
 func main() {
 	matches := feeds.GetMergedMatches()
-
-	template, er := template.ParseFiles("./internal/website/template.gohtml")
-	if er != nil {
-		panic(er)
-	}
 
 	col := 0
 	for _, matchDay := range matches {
@@ -42,7 +38,7 @@ func main() {
 		Col       int
 	}{
 		MatchDays: matches,
-		Pad: func(s string, n int) string {			
+		Pad: func(s string, n int) string {
 			l := utf8.RuneCountInString(s)
 			p := n - l
 			if p < 0 {
@@ -56,10 +52,47 @@ func main() {
 		Col: col,
 	}
 
+	events := feeds.MergedMatchDayToEventList(matches)
+	dtstamp := time.Now().UTC().Format(interchange.CalTimeString)
+	calData := struct {
+		DtStamp string
+		Events  []interchange.CalEvent
+	}{
+		DtStamp: dtstamp,
+		Events: events,
+	}
+
+	// Write index.html
+	writeIndex(data)
+
+	// Write iCalendar
+	writeCal(calData)
+}
+
+func writeIndex(data interface{}) {
+	template, err := template.ParseFiles("./internal/website/template.go.tmpl")
+	if err != nil {
+		panic(err)
+	}
 	f, _ := os.Create("index.html")
 	defer f.Close()
 	w := bufio.NewWriter(f)
-	err := template.Execute(w, data)
+	err = template.Execute(w, data)
+	if err != nil {
+		panic(err)
+	}
+	w.Flush()
+}
+
+func writeCal(data interface{}) {
+	calTemplate, err := template.ParseFiles("./internal/website/icalendar.go.tmpl")
+	if err != nil {
+		panic(err)
+	}
+	f, _ := os.Create("icalendar")
+	defer f.Close()
+	w := bufio.NewWriter(f)
+	err = calTemplate.Execute(w, data)
 	if err != nil {
 		panic(err)
 	}

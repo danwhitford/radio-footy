@@ -3,6 +3,7 @@ package feeds
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"sort"
 	"strings"
 	"time"
@@ -115,4 +116,22 @@ func GetMergedMatches() []interchange.MergedMatchDay {
 		})
 	}
 	return mergedFeed
+}
+
+func MergedMatchDayToEventList(mergedMatches []interchange.MergedMatchDay) []interchange.CalEvent {
+	events := make([]interchange.CalEvent, 0)
+	for _, day := range mergedMatches {
+		for _, match := range day.Matches {
+			starttime, err := time.Parse(time.RFC3339, match.Datetime)
+			if err != nil {
+				log.Fatalln(err)
+			}
+			event := interchange.CalEvent{
+				Uid: strings.ReplaceAll(strings.ToLower(fmt.Sprintf("%s/%s", match.Title, match.Competition)), " ", ""),
+				DtStart: starttime.Format(interchange.CalTimeString),
+			}
+			events = append(events, event)
+		}
+	}
+	return events
 }

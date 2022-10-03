@@ -49,3 +49,10 @@ type BBCTitles struct {
 	Secondary string `json:"secondary"`
 	Tertiary  string `json:"tertiary"`
 }
+
+type CalEvent struct {
+	Uid string
+	DtStart string
+}
+
+const CalTimeString = "20060102T150405Z"
