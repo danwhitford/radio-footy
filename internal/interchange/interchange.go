@@ -53,6 +53,8 @@ type BBCTitles struct {
 type CalEvent struct {
 	Uid string
 	DtStart string
+	Summary string
+	Location string
 }
 
 const CalTimeString = "20060102T150405Z"

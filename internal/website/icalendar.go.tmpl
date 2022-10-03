@@ -5,6 +5,8 @@ PRODID:-wirelessfootball.co.uk/icalendar{{ printf "\r" }}
 {{- range .Events }}
 BEGIN:VEVENT{{ printf "\r" }}
 UID:{{ .Uid }}{{ printf "\r" }}
+SUMMARY:{{ .Summary }}
+LOCATION:{{ .Location }}
 DTSTAMP:{{ $.DtStamp }}{{ printf "\r" }}
 DTSTART:{{ .DtStart }}{{ printf "\r" }}
 DURATION:PT2H{{ printf "\r" }}

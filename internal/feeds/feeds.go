@@ -129,6 +129,8 @@ func MergedMatchDayToEventList(mergedMatches []interchange.MergedMatchDay) []int
 			event := interchange.CalEvent{
 				Uid: strings.ReplaceAll(strings.ToLower(fmt.Sprintf("%s/%s", match.Title, match.Competition)), " ", ""),
 				DtStart: starttime.Format(interchange.CalTimeString),
+				Summary: match.Title,
+				Location: match.Station,
 			}
 			events = append(events, event)
 		}
