@@ -1,13 +1,13 @@
-BEGIN:VCALENDAR
-VERSION:2.0
-METHOD:PUBLISH
-PRODID:-wirelessfootball.co.uk/icalendar
+BEGIN:VCALENDAR{{ printf "\r" }}
+VERSION:2.0{{ printf "\r" }}
+METHOD:PUBLISH{{ printf "\r" }}
+PRODID:-wirelessfootball.co.uk/icalendar{{ printf "\r" }}
 {{- range .Events }}
-BEGIN:VEVENT
-UID:{{ .Uid }}
-DTSTAMP:{{ $.DtStamp }}
-DTSTART:{{ .DtStart }}
-DURATION:PT2H
-END:VEVENT
+BEGIN:VEVENT{{ printf "\r" }}
+UID:{{ .Uid }}{{ printf "\r" }}
+DTSTAMP:{{ $.DtStamp }}{{ printf "\r" }}
+DTSTART:{{ .DtStart }}{{ printf "\r" }}
+DURATION:PT2H{{ printf "\r" }}
+END:VEVENT{{ printf "\r" }}
 {{- end }}
-END:VCALENDAR
+END:VCALENDAR{{ printf "\r" }}
