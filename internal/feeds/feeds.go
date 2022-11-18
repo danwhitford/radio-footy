@@ -37,6 +37,9 @@ func getTalkSportMatches() []interchange.MergedMatch {
 		if feedname == "" {
 			continue
 		}
+		if m.League == "" {
+			continue	
+		}
 		t, _ := time.ParseInLocation(longForm, m.Date, loc)
 		title := fmt.Sprintf("%s v %s", m.HomeTeam, m.AwayTeam)
 		displayDate := t.Format(niceDate)
