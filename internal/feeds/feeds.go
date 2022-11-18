@@ -175,6 +175,7 @@ func GetMergedMatches() []interchange.MergedMatchDay {
 func mapTeamName(name string) string {
 	nameMapper := map[string]string{
 		"IR Iran": "Iran",
+		"Korea Republic": "South Korea",
 	}
 	newName, prs := nameMapper[name]
 	if prs {
