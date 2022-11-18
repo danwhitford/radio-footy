@@ -117,6 +117,33 @@ func GetMergedMatches() []interchange.MergedMatchDay {
 		matches[i].Title = newTitle
 	}
 
+	// Roll up stations
+	stationsRollUp := make(map[string][]interchange.MergedMatch)
+	for _, match := range matches {
+		hashLol := fmt.Sprintf("%s%s%s%s", match.Competition, match.Date, match.Time, match.Title)
+		_, prs := stationsRollUp[hashLol]
+		if prs {
+			stationsRollUp[hashLol] = append(stationsRollUp[hashLol], match)
+		} else {
+			stationsRollUp[hashLol] = []interchange.MergedMatch{match}
+		}
+	}
+	matches = make([]interchange.MergedMatch, 0)
+	for _, v := range stationsRollUp {
+		if len(v) > 1 {
+			stations := make([]string, 0)
+			for _, foo := range v {
+				stations = append(stations, foo.Station)
+			}
+			smoshed := v[0]
+			smoshed.Station = strings.Join(stations, " | ")
+			matches = append(matches, smoshed)
+		} else {
+			matches = append(matches, v[0])
+		}
+	}
+
+	// Roll up dates
 	matchesRollup := make(map[string][]interchange.MergedMatch)
 	for _, match := range matches {
 		val, prs := matchesRollup[match.Date]
@@ -136,6 +163,7 @@ func GetMergedMatches() []interchange.MergedMatchDay {
 	sort.Slice(mergedFeed, func(i, j int) bool {
 		return mergedFeed[i].Matches[0].Datetime < mergedFeed[j].Matches[0].Datetime
 	})
+
 	for _, matchDay := range mergedFeed {
 		sort.Slice(matchDay.Matches, func(i, j int) bool {
 			return matchDay.Matches[i].Time < matchDay.Matches[j].Time
