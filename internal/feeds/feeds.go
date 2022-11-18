@@ -38,7 +38,7 @@ func getTalkSportMatches() []interchange.MergedMatch {
 			continue
 		}
 		if m.League == "" {
-			continue	
+			continue
 		}
 		t, _ := time.ParseInLocation(longForm, m.Date, loc)
 		title := fmt.Sprintf("%s v %s", m.HomeTeam, m.AwayTeam)
@@ -72,7 +72,7 @@ func getBBCMatches() []interchange.MergedMatch {
 
 		for _, data := range bbcFeed.Data {
 			for _, prog := range data.Data {
-				if (prog.Title.Primary == "5 Live Sport") && (strings.Contains(prog.Title.Secondary, "Football")) && strings.Contains(prog.Title.Tertiary, " v ") {
+				if isFootballMatch(prog.Title) {
 					start, _ := time.Parse(longFormat, prog.Start)
 					start = start.In(loc)
 					clock := start.Format(timeLayout)
@@ -85,6 +85,16 @@ func getBBCMatches() []interchange.MergedMatch {
 	}
 
 	return matches
+}
+
+func isFootballMatch(title interchange.BBCTitles) bool {
+	if title.Primary == "World Cup" {
+		return strings.Contains(title.Tertiary, " v ")
+	} else {
+		return (title.Primary == "5 Live Sport") &&
+			(strings.Contains(title.Secondary, "Football")) &&
+			strings.Contains(title.Tertiary, " v ")
+	}
 }
 
 func GetMergedMatches() []interchange.MergedMatchDay {
@@ -130,9 +140,9 @@ func MergedMatchDayToEventList(mergedMatches []interchange.MergedMatchDay) []int
 				log.Fatalln(err)
 			}
 			event := interchange.CalEvent{
-				Uid: strings.ReplaceAll(strings.ToLower(fmt.Sprintf("%s/%s", match.Title, match.Competition)), " ", ""),
-				DtStart: starttime.UTC().Format(interchange.CalTimeString),
-				Summary: match.Title,
+				Uid:      strings.ReplaceAll(strings.ToLower(fmt.Sprintf("%s/%s", match.Title, match.Competition)), " ", ""),
+				DtStart:  starttime.UTC().Format(interchange.CalTimeString),
+				Summary:  match.Title,
 				Location: match.Station,
 			}
 			events = append(events, event)

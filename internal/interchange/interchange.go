@@ -51,9 +51,9 @@ type BBCTitles struct {
 }
 
 type CalEvent struct {
-	Uid string
-	DtStart string
-	Summary string
+	Uid      string
+	DtStart  string
+	Summary  string
 	Location string
 }
 

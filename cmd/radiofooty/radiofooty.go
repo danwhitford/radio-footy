@@ -6,8 +6,8 @@ import (
 	"log"
 	"os"
 	"strings"
-	"unicode/utf8"
 	"time"
+	"unicode/utf8"
 
 	"whitford.io/radiofooty/internal/feeds"
 	"whitford.io/radiofooty/internal/interchange"
@@ -59,7 +59,7 @@ func main() {
 		Events  []interchange.CalEvent
 	}{
 		DtStamp: dtstamp,
-		Events: events,
+		Events:  events,
 	}
 
 	// Write index.html
