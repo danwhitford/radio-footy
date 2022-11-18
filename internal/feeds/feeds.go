@@ -100,8 +100,8 @@ func isWorldCup(title interchange.BBCTitles) bool {
 
 func isLeagueGame(title interchange.BBCTitles) bool {
 	return (title.Primary == "5 Live Sport") &&
-			(strings.Contains(title.Secondary, "Football")) &&
-			strings.Contains(title.Tertiary, " v ")
+		(strings.Contains(title.Secondary, "Football")) &&
+		strings.Contains(title.Tertiary, " v ")
 }
 
 func GetMergedMatches() []interchange.MergedMatchDay {
@@ -110,6 +110,12 @@ func GetMergedMatches() []interchange.MergedMatchDay {
 
 	matches = append(matches, getTalkSportMatches()...)
 	matches = append(matches, getBBCMatches()...)
+
+	for i := range matches {
+		teams := strings.Split(matches[i].Title, " v ")
+		newTitle := fmt.Sprintf("%s v %s", mapTeamName(teams[0]), mapTeamName(teams[1]))
+		matches[i].Title = newTitle
+	}
 
 	matchesRollup := make(map[string][]interchange.MergedMatch)
 	for _, match := range matches {
@@ -136,6 +142,18 @@ func GetMergedMatches() []interchange.MergedMatchDay {
 		})
 	}
 	return mergedFeed
+}
+
+func mapTeamName(name string) string {
+	nameMapper := map[string]string{
+		"IR Iran": "Iran",
+	}
+	newName, prs := nameMapper[name]
+	if prs {
+		return newName
+	} else {
+		return name
+	}
 }
 
 func MergedMatchDayToEventList(mergedMatches []interchange.MergedMatchDay) []interchange.CalEvent {
