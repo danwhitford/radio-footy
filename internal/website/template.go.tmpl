@@ -19,21 +19,36 @@
 
         }
 
-        p {
-            opacity: 87%;
-        }
-
-        .row {
-            margin: 0;
-            white-space: nowrap;
-            overflow: visible;
-        }
-
         #container {
             display: flex;
             flex-direction: column;
-            text-align: center;
+            justify-content: center;
+            align-items: center;
         }
+
+        .matchday {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .match {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
     </style>
 </head>
 
@@ -41,15 +56,18 @@
     <div id="container">
         <h1>Football on the radio</h1>
         {{ range .MatchDays }}
-        <p><b>{{ .Date }}</b></p>
-        <p class="row">+-{{ call $.Repeat "-" $.Col}}-+</p>
-        {{ range .Matches }}
-        <p class="row text-row">| <b>{{ call $.Pad .Time $.Col }}</b> |</p>
-        <p class="row text-row">| {{ call $.Pad .Station $.Col }} |</p>
-        <p class="row text-row">| <b>{{ call $.Pad .Title $.Col }}</b> |</p>
-        <p class="row text-row">| {{ call $.Pad .Competition $.Col }} |</p>
-        <p class="row">+-{{ call $.Repeat "-" $.Col}}-+</p>
-        {{ end }}
+        <div class="matchday">
+            <p><b>{{ .Date }}</b></p>
+            {{ range .Matches }}
+                <div class="match">
+                    <p class="row text-row"><b>{{ .Time }}</b></p>
+                    <p class="row text-row">{{ .Station }}</p>
+                    <p class="row text-row">{{ .Title }}</p>
+                    <p class="row text-row">{{ .Competition }}</p>
+                </div>
+            {{ end }}
+        </div>
+        <hr />
         {{ end }}
     </div>
 </body>
