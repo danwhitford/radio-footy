@@ -114,7 +114,9 @@ func GetMergedMatches() []interchange.MergedMatchDay {
 	for i := range matches {
 		teams := strings.Split(matches[i].Title, " v ")
 		newTitle := fmt.Sprintf("%s v %s", mapTeamName(teams[0]), mapTeamName(teams[1]))
+		newComp := mapCompName(matches[i].Competition)
 		matches[i].Title = newTitle
+		matches[i].Competition = newComp
 	}
 
 	// Roll up stations
@@ -174,7 +176,7 @@ func GetMergedMatches() []interchange.MergedMatchDay {
 
 func mapTeamName(name string) string {
 	nameMapper := map[string]string{
-		"IR Iran": "Iran",
+		"IR Iran":        "Iran",
 		"Korea Republic": "South Korea",
 	}
 	newName, prs := nameMapper[name]
@@ -182,6 +184,15 @@ func mapTeamName(name string) string {
 		return newName
 	} else {
 		return name
+	}
+}
+
+func mapCompName(comp string) string {
+	switch comp {
+	case "EFL Cup Football 2022-23":
+		return "EFL Cup"
+	default:
+		return comp
 	}
 }
 
