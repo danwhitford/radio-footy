@@ -168,10 +168,27 @@ func GetMergedMatches() []interchange.MergedMatchDay {
 
 	for _, matchDay := range mergedFeed {
 		sort.Slice(matchDay.Matches, func(i, j int) bool {
+			if matchDay.Matches[i].Time == matchDay.Matches[j].Time {
+				return stationRank(matchDay.Matches[i].Station) < stationRank(matchDay.Matches[j].Station)
+			}
 			return matchDay.Matches[i].Time < matchDay.Matches[j].Time
 		})
 	}
 	return mergedFeed
+}
+
+func stationRank(station string) int {
+	switch station {
+	case "talkSPORT":
+		return 1
+	case "talkSPORT2":
+		return 2
+	case "BBC Radio 5":
+		return 3
+	default:
+		return 4
+	}
+
 }
 
 func mapTeamName(name string) string {
