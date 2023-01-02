@@ -227,7 +227,7 @@ func mapCompName(comp string) string {
 	case "Premier League Football 2022-23":
 		return "Premier League"
 	case "FA Cup Football 2022-23":
-		return "FA CUP"
+		return "FA Cup"
 	default:
 		return comp
 	}
