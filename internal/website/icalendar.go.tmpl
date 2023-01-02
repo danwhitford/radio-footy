@@ -10,6 +10,7 @@ LOCATION:{{ .Location }}{{ printf "\r" }}
 DTSTAMP:{{ $.DtStamp }}{{ printf "\r" }}
 DTSTART:{{ .DtStart }}{{ printf "\r" }}
 DURATION:PT2H{{ printf "\r" }}
+DESCRIPTION:{{ .Description }}{{ printf "\r "}}
 END:VEVENT{{ printf "\r" }}
 {{- end }}
 END:VCALENDAR{{ printf "\r" }}

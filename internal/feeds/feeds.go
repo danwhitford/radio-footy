@@ -222,10 +222,11 @@ func MergedMatchDayToEventList(mergedMatches []interchange.MergedMatchDay) []int
 				log.Fatalln(err)
 			}
 			event := interchange.CalEvent{
-				Uid:      strings.ReplaceAll(strings.ToLower(fmt.Sprintf("%s/%s", match.Title, match.Competition)), " ", ""),
-				DtStart:  starttime.UTC().Format(interchange.CalTimeString),
-				Summary:  match.Title,
-				Location: match.Station,
+				Uid:         strings.ReplaceAll(strings.ToLower(fmt.Sprintf("%s/%s", match.Title, match.Competition)), " ", ""),
+				DtStart:     starttime.UTC().Format(interchange.CalTimeString),
+				Summary:     fmt.Sprintf("%s [%s]", match.Title, match.Competition),
+				Location:    match.Station,
+				Description: fmt.Sprintf("%s\n%s\n%s", match.Title, match.Competition, match.Station),
 			}
 			events = append(events, event)
 		}
