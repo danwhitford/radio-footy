@@ -4,194 +4,266 @@ METHOD:PUBLISH
 PRODID:-wirelessfootball.co.uk/icalendar
 BEGIN:VEVENT
 UID:rangersvceltic/scottishpremiershipfootball2022-23
-SUMMARY:Rangers v Celtic
+SUMMARY:Rangers v Celtic [Scottish Premiership Football 2022-23]
 LOCATION:BBC Radio 5
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230102T123000Z
 DURATION:PT2H
+DESCRIPTION:Rangers v Celtic
+Scottish Premiership Football 2022-23
+BBC Radio 5 
 END:VEVENT
 BEGIN:VEVENT
 UID:brentfordvliverpool/premierleague
-SUMMARY:Brentford v Liverpool
+SUMMARY:Brentford v Liverpool [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230102T173000Z
 DURATION:PT2H
+DESCRIPTION:Brentford v Liverpool
+Premier League
+talkSPORT 
 END:VEVENT
 BEGIN:VEVENT
 UID:queensparkrangersvsheffieldunited/championship
-SUMMARY:Queens Park Rangers v Sheffield United
+SUMMARY:Queens Park Rangers v Sheffield United [Championship]
 LOCATION:talkSPORT
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230102T200000Z
 DURATION:PT2H
+DESCRIPTION:Queens Park Rangers v Sheffield United
+Championship
+talkSPORT 
 END:VEVENT
 BEGIN:VEVENT
 UID:arsenalvnewcastleunited/premierleaguefootball2022-23
-SUMMARY:Arsenal v Newcastle United
+SUMMARY:Arsenal v Newcastle United [Premier League Football 2022-23]
 LOCATION:BBC Radio 5
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230103T194500Z
 DURATION:PT2H
+DESCRIPTION:Arsenal v Newcastle United
+Premier League Football 2022-23
+BBC Radio 5 
 END:VEVENT
 BEGIN:VEVENT
 UID:manchesterunitedvbournemouth/premierleague
-SUMMARY:Manchester United v Bournemouth
+SUMMARY:Manchester United v Bournemouth [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230103T200000Z
 DURATION:PT2H
+DESCRIPTION:Manchester United v Bournemouth
+Premier League
+talkSPORT 
 END:VEVENT
 BEGIN:VEVENT
 UID:southamptonvnottinghamforest/premierleague
-SUMMARY:Southampton v Nottingham Forest
+SUMMARY:Southampton v Nottingham Forest [Premier League]
 LOCATION:talkSPORT2
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230104T193000Z
 DURATION:PT2H
+DESCRIPTION:Southampton v Nottingham Forest
+Premier League
+talkSPORT2 
 END:VEVENT
 BEGIN:VEVENT
 UID:astonvillavwolverhamptonwanderers/premierleague
-SUMMARY:Aston Villa v Wolverhampton Wanderers
+SUMMARY:Aston Villa v Wolverhampton Wanderers [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230104T200000Z
 DURATION:PT2H
+DESCRIPTION:Aston Villa v Wolverhampton Wanderers
+Premier League
+talkSPORT 
 END:VEVENT
 BEGIN:VEVENT
 UID:crystalpalacevtottenhamhotspur/premierleaguefootball2022-23
-SUMMARY:Crystal Palace v Tottenham Hotspur
+SUMMARY:Crystal Palace v Tottenham Hotspur [Premier League Football 2022-23]
 LOCATION:BBC Radio 5
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230104T200000Z
 DURATION:PT2H
+DESCRIPTION:Crystal Palace v Tottenham Hotspur
+Premier League Football 2022-23
+BBC Radio 5 
 END:VEVENT
 BEGIN:VEVENT
 UID:chelseavmanchestercity/premierleaguefootball2022-23
-SUMMARY:Chelsea v Manchester City
+SUMMARY:Chelsea v Manchester City [Premier League Football 2022-23]
 LOCATION:BBC Radio 5
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230105T200000Z
 DURATION:PT2H
+DESCRIPTION:Chelsea v Manchester City
+Premier League Football 2022-23
+BBC Radio 5 
 END:VEVENT
 BEGIN:VEVENT
 UID:manchesterunitedveverton/facup
-SUMMARY:Manchester United v Everton
+SUMMARY:Manchester United v Everton [FA Cup]
 LOCATION:talkSPORT
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230106T200000Z
 DURATION:PT2H
+DESCRIPTION:Manchester United v Everton
+FA Cup
+talkSPORT 
 END:VEVENT
 BEGIN:VEVENT
 UID:tottenhamhotspurvportsmouth/facup
-SUMMARY:Tottenham Hotspur v Portsmouth
+SUMMARY:Tottenham Hotspur v Portsmouth [FA Cup]
 LOCATION:talkSPORT
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230107T123000Z
 DURATION:PT2H
+DESCRIPTION:Tottenham Hotspur v Portsmouth
+FA Cup
+talkSPORT 
 END:VEVENT
 BEGIN:VEVENT
 UID:gillinghamvleicestercity/facup
-SUMMARY:Gillingham v Leicester City
+SUMMARY:Gillingham v Leicester City [FA Cup]
 LOCATION:talkSPORT2
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230107T123000Z
 DURATION:PT2H
+DESCRIPTION:Gillingham v Leicester City
+FA Cup
+talkSPORT2 
 END:VEVENT
 BEGIN:VEVENT
 UID:blackpoolvnottinghamforest/facup
-SUMMARY:Blackpool v Nottingham Forest
+SUMMARY:Blackpool v Nottingham Forest [FA Cup]
 LOCATION:talkSPORT2
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230107T150000Z
 DURATION:PT2H
+DESCRIPTION:Blackpool v Nottingham Forest
+FA Cup
+talkSPORT2 
 END:VEVENT
 BEGIN:VEVENT
 UID:blackpoolvnottinghamforest/facupfootball2022-23
-SUMMARY:Blackpool v Nottingham Forest
+SUMMARY:Blackpool v Nottingham Forest [FA Cup Football 2022-23]
 LOCATION:BBC Radio 5
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230107T150000Z
 DURATION:PT2H
+DESCRIPTION:Blackpool v Nottingham Forest
+FA Cup Football 2022-23
+BBC Radio 5 
 END:VEVENT
 BEGIN:VEVENT
 UID:brentfordvwesthamunited/facup
-SUMMARY:Brentford v West Ham United
+SUMMARY:Brentford v West Ham United [FA Cup]
 LOCATION:talkSPORT2
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230107T173000Z
 DURATION:PT2H
+DESCRIPTION:Brentford v West Ham United
+FA Cup
+talkSPORT2 
 END:VEVENT
 BEGIN:VEVENT
 UID:sheffieldwednesdayvnewcastleunited/facupfootball2022-23
-SUMMARY:Sheffield Wednesday v Newcastle United
+SUMMARY:Sheffield Wednesday v Newcastle United [FA Cup Football 2022-23]
 LOCATION:BBC Radio 5
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230107T180000Z
 DURATION:PT2H
+DESCRIPTION:Sheffield Wednesday v Newcastle United
+FA Cup Football 2022-23
+BBC Radio 5 
 END:VEVENT
 BEGIN:VEVENT
 UID:liverpoolvwolverhamptonwanderers/facup
-SUMMARY:Liverpool v Wolverhampton Wanderers
+SUMMARY:Liverpool v Wolverhampton Wanderers [FA Cup]
 LOCATION:talkSPORT
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230107T200000Z
 DURATION:PT2H
+DESCRIPTION:Liverpool v Wolverhampton Wanderers
+FA Cup
+talkSPORT 
 END:VEVENT
 BEGIN:VEVENT
 UID:liverpoolvwolverhamptonwanderers/facupfootball2022-23
-SUMMARY:Liverpool v Wolverhampton Wanderers
+SUMMARY:Liverpool v Wolverhampton Wanderers [FA Cup Football 2022-23]
 LOCATION:BBC Radio 5
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230107T200000Z
 DURATION:PT2H
+DESCRIPTION:Liverpool v Wolverhampton Wanderers
+FA Cup Football 2022-23
+BBC Radio 5 
 END:VEVENT
 BEGIN:VEVENT
 UID:cardiffcityvleedsunited/facup
-SUMMARY:Cardiff City v Leeds United
+SUMMARY:Cardiff City v Leeds United [FA Cup]
 LOCATION:talkSPORT
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230108T140000Z
 DURATION:PT2H
+DESCRIPTION:Cardiff City v Leeds United
+FA Cup
+talkSPORT 
 END:VEVENT
 BEGIN:VEVENT
 UID:cardiffcityvleedsunited/facupfootball2022-23
-SUMMARY:Cardiff City v Leeds United
+SUMMARY:Cardiff City v Leeds United [FA Cup Football 2022-23]
 LOCATION:BBC Radio 5
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230108T140000Z
 DURATION:PT2H
+DESCRIPTION:Cardiff City v Leeds United
+FA Cup Football 2022-23
+BBC Radio 5 
 END:VEVENT
 BEGIN:VEVENT
 UID:manchestercityvchelsea/facup
-SUMMARY:Manchester City v Chelsea
+SUMMARY:Manchester City v Chelsea [FA Cup]
 LOCATION:talkSPORT
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230108T163000Z
 DURATION:PT2H
+DESCRIPTION:Manchester City v Chelsea
+FA Cup
+talkSPORT 
 END:VEVENT
 BEGIN:VEVENT
 UID:manchestercityvchelsea/facupfootball2022-23
-SUMMARY:Manchester City v Chelsea
+SUMMARY:Manchester City v Chelsea [FA Cup Football 2022-23]
 LOCATION:BBC Radio 5
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230108T163000Z
 DURATION:PT2H
+DESCRIPTION:Manchester City v Chelsea
+FA Cup Football 2022-23
+BBC Radio 5 
 END:VEVENT
 BEGIN:VEVENT
 UID:oxfordunitedvarsenal/facup
-SUMMARY:Oxford United v Arsenal
+SUMMARY:Oxford United v Arsenal [FA Cup]
 LOCATION:talkSPORT
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230109T200000Z
 DURATION:PT2H
+DESCRIPTION:Oxford United v Arsenal
+FA Cup
+talkSPORT 
 END:VEVENT
 BEGIN:VEVENT
 UID:oxfordunitedvarsenal/facupfootball2022-23
-SUMMARY:Oxford United v Arsenal
+SUMMARY:Oxford United v Arsenal [FA Cup Football 2022-23]
 LOCATION:BBC Radio 5
-DTSTAMP:20230102T180253Z
+DTSTAMP:20230102T194116Z
 DTSTART:20230109T200000Z
 DURATION:PT2H
+DESCRIPTION:Oxford United v Arsenal
+FA Cup Football 2022-23
+BBC Radio 5 
 END:VEVENT
 END:VCALENDAR
