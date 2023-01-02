@@ -55,7 +55,6 @@ type CalEvent struct {
 	DtStart     string
 	Summary     string
 	Location    string
-	Description string
 }
 
 const CalTimeString = "20060102T150405Z"
