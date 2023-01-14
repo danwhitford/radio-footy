@@ -7,7 +7,7 @@ UID:manchesterunitedvmanchestercity/premierleague
 SUMMARY:Manchester United v Manchester City [Premier League]
 DESCRIPTION:Manchester United v Manchester City [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230114T000838Z
+DTSTAMP:20230114T060257Z
 DTSTART:20230114T123000Z
 DURATION:PT2H
 END:VEVENT
@@ -16,7 +16,7 @@ UID:rotherhamunitedvblackburnrovers/championship
 SUMMARY:Rotherham United v Blackburn Rovers [Championship]
 DESCRIPTION:Rotherham United v Blackburn Rovers [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230114T000838Z
+DTSTAMP:20230114T060257Z
 DTSTART:20230114T123000Z
 DURATION:PT2H
 END:VEVENT
@@ -25,16 +25,52 @@ UID:evertonvsouthampton/premierleague
 SUMMARY:Everton v Southampton [Premier League]
 DESCRIPTION:Everton v Southampton [Premier League]
 LOCATION:talkSPORT2
-DTSTAMP:20230114T000838Z
+DTSTAMP:20230114T060257Z
 DTSTART:20230114T150000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:brighton&amp;hovealbionvliverpool/premierleague
+SUMMARY:Brighton &amp; Hove Albion v Liverpool [Premier League]
+DESCRIPTION:Brighton &amp; Hove Albion v Liverpool [Premier League]
+LOCATION:BBC Radio 5
+DTSTAMP:20230114T060257Z
+DTSTART:20230114T150000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:brentfordvafcbournemouth/premierleague
+SUMMARY:Brentford v AFC Bournemouth [Premier League]
+DESCRIPTION:Brentford v AFC Bournemouth [Premier League]
+LOCATION:BBC Radio 5
+DTSTAMP:20230114T060257Z
+DTSTART:20230114T173000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:chelseavcrystalpalace/premierleague
+SUMMARY:Chelsea v Crystal Palace [Premier League]
+DESCRIPTION:Chelsea v Crystal Palace [Premier League]
+LOCATION:BBC Radio 5
+DTSTAMP:20230114T060257Z
+DTSTART:20230115T140000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:tottenhamhotspurvarsenal/premierleague
+SUMMARY:Tottenham Hotspur v Arsenal [Premier League]
+DESCRIPTION:Tottenham Hotspur v Arsenal [Premier League]
+LOCATION:BBC Radio 5
+DTSTAMP:20230114T060257Z
+DTSTART:20230115T163000Z
 DURATION:PT2H
 END:VEVENT
 BEGIN:VEVENT
 UID:wolverhamptonwanderersvliverpool/facup
 SUMMARY:Wolverhampton Wanderers v Liverpool [FA Cup]
 DESCRIPTION:Wolverhampton Wanderers v Liverpool [FA Cup]
-LOCATION:talkSPORT
-DTSTAMP:20230114T000838Z
+LOCATION:talkSPORT | BBC Radio 5
+DTSTAMP:20230114T060257Z
 DTSTART:20230117T194500Z
 DURATION:PT2H
 END:VEVENT
@@ -42,8 +78,8 @@ BEGIN:VEVENT
 UID:leedsunitedvcardiffcity/facup
 SUMMARY:Leeds United v Cardiff City [FA Cup]
 DESCRIPTION:Leeds United v Cardiff City [FA Cup]
-LOCATION:talkSPORT2
-DTSTAMP:20230114T000838Z
+LOCATION:talkSPORT2 | BBC Radio 5
+DTSTAMP:20230114T060257Z
 DTSTART:20230118T194500Z
 DURATION:PT2H
 END:VEVENT
@@ -52,7 +88,7 @@ UID:crystalpalacevmanchesterunited/premierleague
 SUMMARY:Crystal Palace v Manchester United [Premier League]
 DESCRIPTION:Crystal Palace v Manchester United [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230114T000838Z
+DTSTAMP:20230114T060257Z
 DTSTART:20230118T200000Z
 DURATION:PT2H
 END:VEVENT
@@ -61,7 +97,7 @@ UID:manchestercityvtottenhamhotspur/premierleague
 SUMMARY:Manchester City v Tottenham Hotspur [Premier League]
 DESCRIPTION:Manchester City v Tottenham Hotspur [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230114T000838Z
+DTSTAMP:20230114T060257Z
 DTSTART:20230119T200000Z
 DURATION:PT2H
 END:VEVENT
@@ -70,7 +106,7 @@ UID:sheffieldunitedvhullcity/championship
 SUMMARY:Sheffield United v Hull City [Championship]
 DESCRIPTION:Sheffield United v Hull City [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230114T000838Z
+DTSTAMP:20230114T060257Z
 DTSTART:20230120T194500Z
 DURATION:PT2H
 END:VEVENT
@@ -79,7 +115,7 @@ UID:liverpoolvchelsea/premierleague
 SUMMARY:Liverpool v Chelsea [Premier League]
 DESCRIPTION:Liverpool v Chelsea [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230114T000838Z
+DTSTAMP:20230114T060257Z
 DTSTART:20230121T123000Z
 DURATION:PT2H
 END:VEVENT
@@ -88,7 +124,7 @@ UID:coventrycityvnorwichcity/championship
 SUMMARY:Coventry City v Norwich City [Championship]
 DESCRIPTION:Coventry City v Norwich City [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230114T000838Z
+DTSTAMP:20230114T060257Z
 DTSTART:20230121T123000Z
 DURATION:PT2H
 END:VEVENT
@@ -97,8 +133,26 @@ UID:southamptonvastonvilla/premierleague
 SUMMARY:Southampton v Aston Villa [Premier League]
 DESCRIPTION:Southampton v Aston Villa [Premier League]
 LOCATION:talkSPORT2
-DTSTAMP:20230114T000838Z
+DTSTAMP:20230114T060257Z
 DTSTART:20230121T150000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:westhamunitedveverton/premierleague
+SUMMARY:West Ham United v Everton [Premier League]
+DESCRIPTION:West Ham United v Everton [Premier League]
+LOCATION:BBC Radio 5
+DTSTAMP:20230114T060257Z
+DTSTART:20230121T150000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:crystalpalacevnewcastleunited/premierleague
+SUMMARY:Crystal Palace v Newcastle United [Premier League]
+DESCRIPTION:Crystal Palace v Newcastle United [Premier League]
+LOCATION:BBC Radio 5
+DTSTAMP:20230114T060257Z
+DTSTART:20230121T173000Z
 DURATION:PT2H
 END:VEVENT
 BEGIN:VEVENT
@@ -106,7 +160,7 @@ UID:sunderlandvmiddlesbrough/championship
 SUMMARY:Sunderland v Middlesbrough [Championship]
 DESCRIPTION:Sunderland v Middlesbrough [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230114T000838Z
+DTSTAMP:20230114T060257Z
 DTSTART:20230122T120000Z
 DURATION:PT2H
 END:VEVENT
@@ -115,7 +169,7 @@ UID:fulhamvtottenhamhotspur/premierleague
 SUMMARY:Fulham v Tottenham Hotspur [Premier League]
 DESCRIPTION:Fulham v Tottenham Hotspur [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230114T000838Z
+DTSTAMP:20230114T060257Z
 DTSTART:20230123T200000Z
 DURATION:PT2H
 END:VEVENT
@@ -124,7 +178,7 @@ UID:cheltenhamtownvsheffieldwednesday/leagueone
 SUMMARY:Cheltenham Town v Sheffield Wednesday [League One]
 DESCRIPTION:Cheltenham Town v Sheffield Wednesday [League One]
 LOCATION:talkSPORT2
-DTSTAMP:20230114T000838Z
+DTSTAMP:20230114T060257Z
 DTSTART:20230124T194500Z
 DURATION:PT2H
 END:VEVENT
