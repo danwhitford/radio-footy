@@ -7,7 +7,7 @@ UID:nottinghamforestvmanchesterunited/eflcup
 SUMMARY:Nottingham Forest v Manchester United [EFL Cup]
 DESCRIPTION:Nottingham Forest v Manchester United [EFL Cup]
 LOCATION:talkSPORT | BBC Radio 5
-DTSTAMP:20230125T120349Z
+DTSTAMP:20230125T180301Z
 DTSTART:20230125T200000Z
 DURATION:PT2H
 END:VEVENT
@@ -16,7 +16,7 @@ UID:manchestercityvarsenal/facup
 SUMMARY:Manchester City v Arsenal [FA Cup]
 DESCRIPTION:Manchester City v Arsenal [FA Cup]
 LOCATION:talkSPORT
-DTSTAMP:20230125T120349Z
+DTSTAMP:20230125T180301Z
 DTSTART:20230127T200000Z
 DURATION:PT2H
 END:VEVENT
@@ -25,7 +25,7 @@ UID:walsallvleicestercity/facup
 SUMMARY:Walsall v Leicester City [FA Cup]
 DESCRIPTION:Walsall v Leicester City [FA Cup]
 LOCATION:talkSPORT
-DTSTAMP:20230125T120349Z
+DTSTAMP:20230125T180301Z
 DTSTART:20230128T123000Z
 DURATION:PT2H
 END:VEVENT
@@ -33,17 +33,8 @@ BEGIN:VEVENT
 UID:accringtonstanleyvleedsunited/facup
 SUMMARY:Accrington Stanley v Leeds United [FA Cup]
 DESCRIPTION:Accrington Stanley v Leeds United [FA Cup]
-LOCATION:talkSPORT2
-DTSTAMP:20230125T120349Z
-DTSTART:20230128T123000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:accringtonstanleyorborehamwoodvleedsunited/facup
-SUMMARY:Accrington Stanley or Boreham Wood v Leeds United [FA Cup]
-DESCRIPTION:Accrington Stanley or Boreham Wood v Leeds United [FA Cup]
-LOCATION:BBC Radio 5
-DTSTAMP:20230125T120349Z
+LOCATION:talkSPORT2 | BBC Radio 5
+DTSTAMP:20230125T180301Z
 DTSTART:20230128T123000Z
 DURATION:PT2H
 END:VEVENT
@@ -52,7 +43,7 @@ UID:fulhamvsunderland/facup
 SUMMARY:Fulham v Sunderland [FA Cup]
 DESCRIPTION:Fulham v Sunderland [FA Cup]
 LOCATION:talkSPORT2 | BBC Radio 5
-DTSTAMP:20230125T120349Z
+DTSTAMP:20230125T180301Z
 DTSTART:20230128T150000Z
 DURATION:PT2H
 END:VEVENT
@@ -61,7 +52,7 @@ UID:prestonnorthendvtottenhamhotspur/facup
 SUMMARY:Preston North End v Tottenham Hotspur [FA Cup]
 DESCRIPTION:Preston North End v Tottenham Hotspur [FA Cup]
 LOCATION:talkSPORT
-DTSTAMP:20230125T120349Z
+DTSTAMP:20230125T180301Z
 DTSTART:20230128T180000Z
 DURATION:PT2H
 END:VEVENT
@@ -70,7 +61,7 @@ UID:manchesterunitedvreading/facup
 SUMMARY:Manchester United v Reading [FA Cup]
 DESCRIPTION:Manchester United v Reading [FA Cup]
 LOCATION:talkSPORT | BBC Radio 5
-DTSTAMP:20230125T120349Z
+DTSTAMP:20230125T180301Z
 DTSTART:20230128T200000Z
 DURATION:PT2H
 END:VEVENT
@@ -79,7 +70,7 @@ UID:brightonandhovealbionvliverpool/facup
 SUMMARY:Brighton and Hove Albion v Liverpool [FA Cup]
 DESCRIPTION:Brighton and Hove Albion v Liverpool [FA Cup]
 LOCATION:talkSPORT
-DTSTAMP:20230125T120349Z
+DTSTAMP:20230125T180301Z
 DTSTART:20230129T133000Z
 DURATION:PT2H
 END:VEVENT
@@ -88,7 +79,7 @@ UID:brighton&amp;hovealbionvliverpool/facup
 SUMMARY:Brighton &amp; Hove Albion v Liverpool [FA Cup]
 DESCRIPTION:Brighton &amp; Hove Albion v Liverpool [FA Cup]
 LOCATION:BBC Radio 5
-DTSTAMP:20230125T120349Z
+DTSTAMP:20230125T180301Z
 DTSTART:20230129T133000Z
 DURATION:PT2H
 END:VEVENT
@@ -97,7 +88,7 @@ UID:wrexhamvsheffieldunited/facup
 SUMMARY:Wrexham v Sheffield United [FA Cup]
 DESCRIPTION:Wrexham v Sheffield United [FA Cup]
 LOCATION:talkSPORT | BBC Radio 5
-DTSTAMP:20230125T120349Z
+DTSTAMP:20230125T180301Z
 DTSTART:20230129T163000Z
 DURATION:PT2H
 END:VEVENT
@@ -106,7 +97,7 @@ UID:derbycountyvwesthamunited/facup
 SUMMARY:Derby County v West Ham United [FA Cup]
 DESCRIPTION:Derby County v West Ham United [FA Cup]
 LOCATION:talkSPORT
-DTSTAMP:20230125T120349Z
+DTSTAMP:20230125T180301Z
 DTSTART:20230130T194500Z
 DURATION:PT2H
 END:VEVENT
@@ -115,7 +106,7 @@ UID:newcastleunitedvsouthampton/eflcup
 SUMMARY:Newcastle United v Southampton [EFL Cup]
 DESCRIPTION:Newcastle United v Southampton [EFL Cup]
 LOCATION:talkSPORT | BBC Radio 5
-DTSTAMP:20230125T120349Z
+DTSTAMP:20230125T180301Z
 DTSTART:20230131T200000Z
 DURATION:PT2H
 END:VEVENT
@@ -124,7 +115,7 @@ UID:manchesterunitedvnottinghamforest/eflcup
 SUMMARY:Manchester United v Nottingham Forest [EFL Cup]
 DESCRIPTION:Manchester United v Nottingham Forest [EFL Cup]
 LOCATION:talkSPORT | BBC Radio 5
-DTSTAMP:20230125T120349Z
+DTSTAMP:20230125T180301Z
 DTSTART:20230201T200000Z
 DURATION:PT2H
 END:VEVENT
@@ -133,7 +124,7 @@ UID:chelseavfulham/premierleague
 SUMMARY:Chelsea v Fulham [Premier League]
 DESCRIPTION:Chelsea v Fulham [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230125T120349Z
+DTSTAMP:20230125T180301Z
 DTSTART:20230203T200000Z
 DURATION:PT2H
 END:VEVENT
@@ -142,7 +133,7 @@ UID:evertonvarsenal/premierleague
 SUMMARY:Everton v Arsenal [Premier League]
 DESCRIPTION:Everton v Arsenal [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230125T120349Z
+DTSTAMP:20230125T180301Z
 DTSTART:20230204T123000Z
 DURATION:PT2H
 END:VEVENT
@@ -151,7 +142,7 @@ UID:norwichcityvburnley/championship
 SUMMARY:Norwich City v Burnley [Championship]
 DESCRIPTION:Norwich City v Burnley [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230125T120349Z
+DTSTAMP:20230125T180301Z
 DTSTART:20230204T123000Z
 DURATION:PT2H
 END:VEVENT
