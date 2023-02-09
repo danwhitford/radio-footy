@@ -7,7 +7,7 @@ UID:birminghamcityvwestbromwichalbion/championship
 SUMMARY:Birmingham City v West Bromwich Albion [Championship]
 DESCRIPTION:Birmingham City v West Bromwich Albion [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230209T060255Z
+DTSTAMP:20230209T120334Z
 DTSTART:20230210T200000Z
 DURATION:PT2H
 END:VEVENT
@@ -16,7 +16,7 @@ UID:westhamunitedvchelsea/premierleague
 SUMMARY:West Ham United v Chelsea [Premier League]
 DESCRIPTION:West Ham United v Chelsea [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230209T060255Z
+DTSTAMP:20230209T120334Z
 DTSTART:20230211T123000Z
 DURATION:PT2H
 END:VEVENT
@@ -25,7 +25,7 @@ UID:leicestercityvtottenhamhotspur/premierleague
 SUMMARY:Leicester City v Tottenham Hotspur [Premier League]
 DESCRIPTION:Leicester City v Tottenham Hotspur [Premier League]
 LOCATION:talkSPORT2
-DTSTAMP:20230209T060255Z
+DTSTAMP:20230209T120334Z
 DTSTART:20230211T150000Z
 DURATION:PT2H
 END:VEVENT
@@ -34,7 +34,7 @@ UID:arsenalvbrentford/premierleague
 SUMMARY:Arsenal v Brentford [Premier League]
 DESCRIPTION:Arsenal v Brentford [Premier League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230209T060255Z
+DTSTAMP:20230209T120334Z
 DTSTART:20230211T150000Z
 DURATION:PT2H
 END:VEVENT
@@ -43,7 +43,7 @@ UID:afcbournemouthvnewcastleunited/premierleague
 SUMMARY:AFC Bournemouth v Newcastle United [Premier League]
 DESCRIPTION:AFC Bournemouth v Newcastle United [Premier League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230209T060255Z
+DTSTAMP:20230209T120334Z
 DTSTART:20230211T173000Z
 DURATION:PT2H
 END:VEVENT
@@ -52,7 +52,7 @@ UID:leedsunitedvmanchesterunited/premierleague
 SUMMARY:Leeds United v Manchester United [Premier League]
 DESCRIPTION:Leeds United v Manchester United [Premier League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230209T060255Z
+DTSTAMP:20230209T120334Z
 DTSTART:20230212T140000Z
 DURATION:PT2H
 END:VEVENT
@@ -61,7 +61,7 @@ UID:manchestercityvastonvilla/premierleague
 SUMMARY:Manchester City v Aston Villa [Premier League]
 DESCRIPTION:Manchester City v Aston Villa [Premier League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230209T060255Z
+DTSTAMP:20230209T120334Z
 DTSTART:20230212T163000Z
 DURATION:PT2H
 END:VEVENT
@@ -70,7 +70,7 @@ UID:liverpoolveverton/premierleague
 SUMMARY:Liverpool v Everton [Premier League]
 DESCRIPTION:Liverpool v Everton [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230209T060255Z
+DTSTAMP:20230209T120334Z
 DTSTART:20230213T200000Z
 DURATION:PT2H
 END:VEVENT
@@ -79,7 +79,7 @@ UID:milanvtottenhamhotspur/championsleague
 SUMMARY:Milan v Tottenham Hotspur [Champions League]
 DESCRIPTION:Milan v Tottenham Hotspur [Champions League]
 LOCATION:talkSPORT
-DTSTAMP:20230209T060255Z
+DTSTAMP:20230209T120334Z
 DTSTART:20230214T200000Z
 DURATION:PT2H
 END:VEVENT
@@ -88,7 +88,7 @@ UID:parissaint-germainvfcbayernmünchen/championsleague
 SUMMARY:Paris Saint-Germain v FC Bayern München [Champions League]
 DESCRIPTION:Paris Saint-Germain v FC Bayern München [Champions League]
 LOCATION:talkSPORT2
-DTSTAMP:20230209T060255Z
+DTSTAMP:20230209T120334Z
 DTSTART:20230214T200000Z
 DURATION:PT2H
 END:VEVENT
@@ -97,7 +97,7 @@ UID:acmilanvtottenhamhotspur/championsleaguefootball2022-23
 SUMMARY:AC Milan v Tottenham Hotspur [Champions League Football 2022-23]
 DESCRIPTION:AC Milan v Tottenham Hotspur [Champions League Football 2022-23]
 LOCATION:BBC Radio 5
-DTSTAMP:20230209T060255Z
+DTSTAMP:20230209T120334Z
 DTSTART:20230214T200000Z
 DURATION:PT2H
 END:VEVENT
@@ -106,7 +106,7 @@ UID:borussiadortmundvchelsea/championsleague
 SUMMARY:Borussia Dortmund v Chelsea [Champions League]
 DESCRIPTION:Borussia Dortmund v Chelsea [Champions League]
 LOCATION:talkSPORT
-DTSTAMP:20230209T060255Z
+DTSTAMP:20230209T120334Z
 DTSTART:20230215T200000Z
 DURATION:PT2H
 END:VEVENT
@@ -115,7 +115,7 @@ UID:sheffieldunitedvmiddlesbrough/championship
 SUMMARY:Sheffield United v Middlesbrough [Championship]
 DESCRIPTION:Sheffield United v Middlesbrough [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230209T060255Z
+DTSTAMP:20230209T120334Z
 DTSTART:20230215T200000Z
 DURATION:PT2H
 END:VEVENT
@@ -124,7 +124,7 @@ UID:arsenalvmanchestercity/premierleague
 SUMMARY:Arsenal v Manchester City [Premier League]
 DESCRIPTION:Arsenal v Manchester City [Premier League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230209T060255Z
+DTSTAMP:20230209T120334Z
 DTSTART:20230215T200000Z
 DURATION:PT2H
 END:VEVENT
@@ -133,7 +133,7 @@ UID:barcelonavmanchesterunited/europaleague
 SUMMARY:Barcelona v Manchester United [Europa League]
 DESCRIPTION:Barcelona v Manchester United [Europa League]
 LOCATION:talkSPORT
-DTSTAMP:20230209T060255Z
+DTSTAMP:20230209T120334Z
 DTSTART:20230216T174500Z
 DURATION:PT2H
 END:VEVENT
@@ -142,7 +142,7 @@ UID:barcelonavmanchesterunited/europaleaguefootball2022-23
 SUMMARY:Barcelona v Manchester United [Europa League Football 2022-23]
 DESCRIPTION:Barcelona v Manchester United [Europa League Football 2022-23]
 LOCATION:BBC Radio 5
-DTSTAMP:20230209T060255Z
+DTSTAMP:20230209T120334Z
 DTSTART:20230216T174500Z
 DURATION:PT2H
 END:VEVENT
@@ -151,7 +151,7 @@ UID:englandvsouthkorea/internationalfootball2022-23
 SUMMARY:England v South Korea [International Football 2022-23]
 DESCRIPTION:England v South Korea [International Football 2022-23]
 LOCATION:BBC Radio 5
-DTSTAMP:20230209T060255Z
+DTSTAMP:20230209T120334Z
 DTSTART:20230216T194500Z
 DURATION:PT2H
 END:VEVENT
@@ -160,7 +160,7 @@ UID:cardiffcityvreading/championship
 SUMMARY:Cardiff City v Reading [Championship]
 DESCRIPTION:Cardiff City v Reading [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230209T060255Z
+DTSTAMP:20230209T120334Z
 DTSTART:20230217T200000Z
 DURATION:PT2H
 END:VEVENT
