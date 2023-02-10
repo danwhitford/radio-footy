@@ -187,14 +187,11 @@ func GetMergedMatches() []interchange.MergedMatchDay {
 }
 
 func shouldSkip(s string) bool {
-	if strings.Contains(s, "Scottish") {
-		return true
-	}
-	return false
+	return strings.Contains(s, "Scottish")
 }
 
 func stationRank(station string) int {
-	switch station {
+	switch strings.Split(station, " | ")[0] {
 	case "talkSPORT":
 		return 1
 	case "talkSPORT2":
@@ -204,13 +201,13 @@ func stationRank(station string) int {
 	default:
 		return 4
 	}
-
 }
 
 func mapTeamName(name string) string {
 	nameMapper := map[string]string{
 		"IR Iran":        "Iran",
 		"Korea Republic": "South Korea",
+		"Milan":          "AC Milan",
 	}
 	newName, prs := nameMapper[name]
 	if prs {
@@ -221,16 +218,9 @@ func mapTeamName(name string) string {
 }
 
 func mapCompName(comp string) string {
-	switch comp {
-	case "EFL Cup Football 2022-23":
-		return "EFL Cup"
-	case "Premier League Football 2022-23":
-		return "Premier League"
-	case "FA Cup Football 2022-23":
-		return "FA Cup"
-	default:
-		return comp
-	}
+	comp = strings.TrimSuffix(comp, " Football 2022-23")
+
+	return comp
 }
 
 func MergedMatchDayToEventList(mergedMatches []interchange.MergedMatchDay) []interchange.CalEvent {
@@ -242,10 +232,10 @@ func MergedMatchDayToEventList(mergedMatches []interchange.MergedMatchDay) []int
 				log.Fatalln(err)
 			}
 			event := interchange.CalEvent{
-				Uid:         strings.ReplaceAll(strings.ToLower(fmt.Sprintf("%s/%s", match.Title, match.Competition)), " ", ""),
-				DtStart:     starttime.UTC().Format(interchange.CalTimeString),
-				Summary:     fmt.Sprintf("%s [%s]", match.Title, match.Competition),
-				Location:    match.Station,
+				Uid:      strings.ReplaceAll(strings.ToLower(fmt.Sprintf("%s/%s", match.Title, match.Competition)), " ", ""),
+				DtStart:  starttime.UTC().Format(interchange.CalTimeString),
+				Summary:  fmt.Sprintf("%s [%s]", match.Title, match.Competition),
+				Location: match.Station,
 			}
 			events = append(events, event)
 		}
