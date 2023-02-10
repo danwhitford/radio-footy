@@ -194,9 +194,9 @@ func stationRank(station string) int {
 	switch strings.Split(station, " | ")[0] {
 	case "talkSPORT":
 		return 1
-	case "talkSPORT2":
-		return 2
 	case "BBC Radio 5":
+		return 2
+	case "talkSPORT2":
 		return 3
 	default:
 		return 4
