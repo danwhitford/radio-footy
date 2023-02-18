@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"html/template"
 	"os"
+	"os/exec"
+	"strconv"
 	"time"
 	"unicode/utf8"
 
@@ -48,8 +50,40 @@ func main() {
 	// Write index.html
 	writeIndex(data)
 
+	// Write discordian
+	writeDiscordian(data)
+
 	// Write iCalendar
 	writeCal(calData)
+}
+
+func writeDiscordian(data struct {
+	MatchDays []interchange.MergedMatchDay
+}) {
+	for i := range data.MatchDays {
+		dts := data.MatchDays[i].Matches[0].Datetime
+		dt, _ := time.Parse(time.RFC3339, dts)
+		y := strconv.Itoa(dt.Year())
+		m := strconv.Itoa(int(dt.Month()))
+		d := strconv.Itoa(dt.Day())
+		cmd := exec.Command("ddate", d, m, y)
+		cmdout, _ := cmd.Output()
+
+		data.MatchDays[i].Date = string(cmdout)
+	}
+
+	template, err := template.ParseFiles("./internal/website/template.go.tmpl")
+	if err != nil {
+		panic(err)
+	}
+	f, _ := os.Create("discordian.html")
+	defer f.Close()
+	w := bufio.NewWriter(f)
+	err = template.Execute(w, data)
+	if err != nil {
+		panic(err)
+	}
+	w.Flush()
 }
 
 func writeIndex(data interface{}) {

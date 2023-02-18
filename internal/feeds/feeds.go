@@ -183,6 +183,7 @@ func GetMergedMatches() []interchange.MergedMatchDay {
 			return matchDay.Matches[i].Time < matchDay.Matches[j].Time
 		})
 	}
+
 	return mergedFeed
 }
 
