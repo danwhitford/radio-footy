@@ -2,54 +2,11 @@
 <html lang="en-gb">
 
 <head>
-    <title>Radio Football</title>
+    <title>Wireless Football</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="Description" content="Upcoming football matches on the wireless">
-    <meta name="theme-color" content="#121212">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
-
-    <link rel="manifest" href="manifest.webmanifest">
-
-    <style>
-        * {
-            font-family: monospace;
-            background-color: #121212;
-            color: #ffffff;
-
-        }
-
-        #container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .matchday {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin-top: 5px;
-            margin-bottom: 5px;
-        }
-
-        .match {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin-top: 5px;
-            margin-bottom: 5px;
-        }
-
-        p {
-            margin-top: 0;
-            margin-bottom: 0;
-        }
-
-    </style>
 </head>
 
 <body>
@@ -57,13 +14,11 @@
         <h1>Football on the radio</h1>
         {{ range .MatchDays }}
         <div class="matchday">
-            <p><b>{{ .Date }}</b></p>
+            <h2>{{ .Date }}</h2>
             {{ range .Matches }}
                 <div class="match">
-                    <p class="row text-row"><b>{{ .Time }}</b></p>
-                    <p class="row text-row">{{ .Station }}</p>
-                    <p class="row text-row">{{ .Title }}</p>
-                    <p class="row text-row">{{ .Competition }}</p>
+                    <p class="row text-row"><b>{{ .Time }} | {{ .Station }}</b></p>
+                    <p class="row text-row">{{ .Title }} ({{.Competition }})</p>
                 </div>
             {{ end }}
         </div>
