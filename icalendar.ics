@@ -7,7 +7,7 @@ UID:realbetisvmanchesterunited/europaleague
 SUMMARY:Real Betis v Manchester United [Europa League]
 DESCRIPTION:Real Betis v Manchester United [Europa League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230316T000918Z
+DTSTAMP:20230316T060308Z
 DTSTART:20230316T174500Z
 DURATION:PT2H
 END:VEVENT
@@ -16,7 +16,7 @@ UID:arsenalvsportinglisbon/europaleague
 SUMMARY:Arsenal v Sporting Lisbon [Europa League]
 DESCRIPTION:Arsenal v Sporting Lisbon [Europa League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230316T000918Z
+DTSTAMP:20230316T060308Z
 DTSTART:20230316T200000Z
 DURATION:PT2H
 END:VEVENT
@@ -25,7 +25,7 @@ UID:southamptonvtottenhamhotspur/premierleague
 SUMMARY:Southampton v Tottenham Hotspur [Premier League]
 DESCRIPTION:Southampton v Tottenham Hotspur [Premier League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230316T000918Z
+DTSTAMP:20230316T060308Z
 DTSTART:20230318T150000Z
 DURATION:PT2H
 END:VEVENT
@@ -34,7 +34,7 @@ UID:chelseaveverton/premierleague
 SUMMARY:Chelsea v Everton [Premier League]
 DESCRIPTION:Chelsea v Everton [Premier League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230316T000918Z
+DTSTAMP:20230316T060308Z
 DTSTART:20230318T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -43,7 +43,7 @@ UID:sheffieldunitedvblackburnrovers/facup
 SUMMARY:Sheffield United v Blackburn Rovers [FA Cup]
 DESCRIPTION:Sheffield United v Blackburn Rovers [FA Cup]
 LOCATION:BBC Radio 5
-DTSTAMP:20230316T000918Z
+DTSTAMP:20230316T060308Z
 DTSTART:20230319T120000Z
 DURATION:PT2H
 END:VEVENT
@@ -52,7 +52,7 @@ UID:arsenalvcrystalpalace/premierleague
 SUMMARY:Arsenal v Crystal Palace [Premier League]
 DESCRIPTION:Arsenal v Crystal Palace [Premier League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230316T000918Z
+DTSTAMP:20230316T060308Z
 DTSTART:20230319T140000Z
 DURATION:PT2H
 END:VEVENT
@@ -61,7 +61,7 @@ UID:italyvengland/international
 SUMMARY:Italy v England [International]
 DESCRIPTION:Italy v England [International]
 LOCATION:BBC Radio 5
-DTSTAMP:20230316T000918Z
+DTSTAMP:20230316T060308Z
 DTSTART:20230323T194500Z
 DURATION:PT2H
 END:VEVENT
