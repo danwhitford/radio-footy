@@ -6,18 +6,9 @@ BEGIN:VEVENT
 UID:realbetisvmanchesterunited/europaleague
 SUMMARY:Real Betis v Manchester United [Europa League]
 DESCRIPTION:Real Betis v Manchester United [Europa League]
-LOCATION:talkSPORT2 | BBC Radio 5
-DTSTAMP:20230316T180301Z
+LOCATION:talkSPORT2
+DTSTAMP:20230317T000849Z
 DTSTART:20230316T174500Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:arsenalvsportinglisbon/europaleague
-SUMMARY:Arsenal v Sporting Lisbon [Europa League]
-DESCRIPTION:Arsenal v Sporting Lisbon [Europa League]
-LOCATION:BBC Radio 5
-DTSTAMP:20230316T180301Z
-DTSTART:20230316T200000Z
 DURATION:PT2H
 END:VEVENT
 BEGIN:VEVENT
@@ -25,7 +16,7 @@ UID:sheffieldwednesdayvboltonwanderers/leagueone
 SUMMARY:Sheffield Wednesday v Bolton Wanderers [League One]
 DESCRIPTION:Sheffield Wednesday v Bolton Wanderers [League One]
 LOCATION:talkSPORT2
-DTSTAMP:20230316T180301Z
+DTSTAMP:20230317T000849Z
 DTSTART:20230317T194500Z
 DURATION:PT2H
 END:VEVENT
@@ -34,7 +25,7 @@ UID:nottinghamforestvnewcastleunited/premierleague
 SUMMARY:Nottingham Forest v Newcastle United [Premier League]
 DESCRIPTION:Nottingham Forest v Newcastle United [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230316T180301Z
+DTSTAMP:20230317T000849Z
 DTSTART:20230317T200000Z
 DURATION:PT2H
 END:VEVENT
@@ -43,7 +34,7 @@ UID:southamptonvtottenhamhotspur/premierleague
 SUMMARY:Southampton v Tottenham Hotspur [Premier League]
 DESCRIPTION:Southampton v Tottenham Hotspur [Premier League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230316T180301Z
+DTSTAMP:20230317T000849Z
 DTSTART:20230318T150000Z
 DURATION:PT2H
 END:VEVENT
@@ -52,7 +43,7 @@ UID:wolverhamptonwanderersvleedsunited/premierleague
 SUMMARY:Wolverhampton Wanderers v Leeds United [Premier League]
 DESCRIPTION:Wolverhampton Wanderers v Leeds United [Premier League]
 LOCATION:talkSPORT2
-DTSTAMP:20230316T180301Z
+DTSTAMP:20230317T000849Z
 DTSTART:20230318T150000Z
 DURATION:PT2H
 END:VEVENT
@@ -61,7 +52,7 @@ UID:manchestercityvburnley/facup
 SUMMARY:Manchester City v Burnley [FA Cup]
 DESCRIPTION:Manchester City v Burnley [FA Cup]
 LOCATION:talkSPORT
-DTSTAMP:20230316T180301Z
+DTSTAMP:20230317T000849Z
 DTSTART:20230318T174500Z
 DURATION:PT2H
 END:VEVENT
@@ -70,7 +61,7 @@ UID:chelseaveverton/premierleague
 SUMMARY:Chelsea v Everton [Premier League]
 DESCRIPTION:Chelsea v Everton [Premier League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230316T180301Z
+DTSTAMP:20230317T000849Z
 DTSTART:20230318T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -79,7 +70,7 @@ UID:sheffieldunitedvblackburnrovers/facup
 SUMMARY:Sheffield United v Blackburn Rovers [FA Cup]
 DESCRIPTION:Sheffield United v Blackburn Rovers [FA Cup]
 LOCATION:talkSPORT2 | BBC Radio 5
-DTSTAMP:20230316T180301Z
+DTSTAMP:20230317T000849Z
 DTSTART:20230319T120000Z
 DURATION:PT2H
 END:VEVENT
@@ -88,7 +79,7 @@ UID:arsenalvcrystalpalace/premierleague
 SUMMARY:Arsenal v Crystal Palace [Premier League]
 DESCRIPTION:Arsenal v Crystal Palace [Premier League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230316T180301Z
+DTSTAMP:20230317T000849Z
 DTSTART:20230319T140000Z
 DURATION:PT2H
 END:VEVENT
@@ -97,7 +88,7 @@ UID:brightonandhovealbionvgrimsbytown/facup
 SUMMARY:Brighton and Hove Albion v Grimsby Town [FA Cup]
 DESCRIPTION:Brighton and Hove Albion v Grimsby Town [FA Cup]
 LOCATION:talkSPORT
-DTSTAMP:20230316T180301Z
+DTSTAMP:20230317T000849Z
 DTSTART:20230319T141500Z
 DURATION:PT2H
 END:VEVENT
@@ -106,7 +97,7 @@ UID:manchesterunitedvfulham/facup
 SUMMARY:Manchester United v Fulham [FA Cup]
 DESCRIPTION:Manchester United v Fulham [FA Cup]
 LOCATION:talkSPORT
-DTSTAMP:20230316T180301Z
+DTSTAMP:20230317T000849Z
 DTSTART:20230319T163000Z
 DURATION:PT2H
 END:VEVENT
@@ -115,7 +106,7 @@ UID:barnsleyvsheffieldwednesday/leagueone
 SUMMARY:Barnsley v Sheffield Wednesday [League One]
 DESCRIPTION:Barnsley v Sheffield Wednesday [League One]
 LOCATION:talkSPORT2
-DTSTAMP:20230316T180301Z
+DTSTAMP:20230317T000849Z
 DTSTART:20230321T200000Z
 DURATION:PT2H
 END:VEVENT
@@ -124,7 +115,7 @@ UID:italyvengland/international
 SUMMARY:Italy v England [International]
 DESCRIPTION:Italy v England [International]
 LOCATION:BBC Radio 5
-DTSTAMP:20230316T180301Z
+DTSTAMP:20230317T000849Z
 DTSTART:20230323T194500Z
 DURATION:PT2H
 END:VEVENT
@@ -133,7 +124,7 @@ UID:forestgreenroversvsheffieldwednesday/leagueone
 SUMMARY:Forest Green Rovers v Sheffield Wednesday [League One]
 DESCRIPTION:Forest Green Rovers v Sheffield Wednesday [League One]
 LOCATION:talkSPORT2
-DTSTAMP:20230316T180301Z
+DTSTAMP:20230317T000849Z
 DTSTART:20230326T120000Z
 DURATION:PT2H
 END:VEVENT
@@ -142,7 +133,7 @@ UID:cheltenhamtownvsheffieldwednesday/leagueone
 SUMMARY:Cheltenham Town v Sheffield Wednesday [League One]
 DESCRIPTION:Cheltenham Town v Sheffield Wednesday [League One]
 LOCATION:talkSPORT2
-DTSTAMP:20230316T180301Z
+DTSTAMP:20230317T000849Z
 DTSTART:20230329T184500Z
 DURATION:PT2H
 END:VEVENT
@@ -151,7 +142,7 @@ UID:burnleyvsunderland/championship
 SUMMARY:Burnley v Sunderland [Championship]
 DESCRIPTION:Burnley v Sunderland [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230316T180301Z
+DTSTAMP:20230317T000849Z
 DTSTART:20230331T190000Z
 DURATION:PT2H
 END:VEVENT
