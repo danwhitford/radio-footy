@@ -209,6 +209,7 @@ func mapTeamName(name string) string {
 		"IR Iran":        "Iran",
 		"Korea Republic": "South Korea",
 		"Milan":          "AC Milan",
+		"FC Bayern München": "Bayern Munich",
 	}
 	newName, prs := nameMapper[name]
 	if prs {

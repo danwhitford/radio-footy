@@ -5,9 +5,9 @@ import "time"
 type Merged = []MergedMatchDay
 
 type MergedMatchDay struct {
-	Date    string        `json:"date"`
+	Date     string `json:"date"`
 	DateTime time.Time
-	Matches []MergedMatch `json:"matches"`
+	Matches  []MergedMatch `json:"matches"`
 }
 
 type MergedMatch struct {
@@ -54,10 +54,10 @@ type BBCTitles struct {
 }
 
 type CalEvent struct {
-	Uid         string
-	DtStart     string
-	Summary     string
-	Location    string
+	Uid      string
+	DtStart  string
+	Summary  string
+	Location string
 }
 
 const CalTimeString = "20060102T150405Z"
