@@ -7,7 +7,7 @@ UID:leedsunitedvliverpool/premierleague
 SUMMARY:Leeds United v Liverpool [Premier League]
 DESCRIPTION:Leeds United v Liverpool [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230417T120349Z
+DTSTAMP:20230417T180312Z
 DTSTART:20230417T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -16,7 +16,7 @@ UID:sheffieldunitedvbristolcity/championship
 SUMMARY:Sheffield United v Bristol City [Championship]
 DESCRIPTION:Sheffield United v Bristol City [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230417T120349Z
+DTSTAMP:20230417T180312Z
 DTSTART:20230418T184500Z
 DURATION:PT2H
 END:VEVENT
@@ -25,7 +25,7 @@ UID:chelseavrealmadrid/championsleague
 SUMMARY:Chelsea v Real Madrid [Champions League]
 DESCRIPTION:Chelsea v Real Madrid [Champions League]
 LOCATION:talkSPORT | BBC Radio 5
-DTSTAMP:20230417T120349Z
+DTSTAMP:20230417T180312Z
 DTSTART:20230418T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -34,7 +34,7 @@ UID:bayernmunichvmanchestercity/championsleague
 SUMMARY:Bayern Munich v Manchester City [Champions League]
 DESCRIPTION:Bayern Munich v Manchester City [Champions League]
 LOCATION:talkSPORT | BBC Radio 5
-DTSTAMP:20230417T120349Z
+DTSTAMP:20230417T180312Z
 DTSTART:20230419T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -43,7 +43,7 @@ UID:middlesbroughvhullcity/championship
 SUMMARY:Middlesbrough v Hull City [Championship]
 DESCRIPTION:Middlesbrough v Hull City [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230417T120349Z
+DTSTAMP:20230417T180312Z
 DTSTART:20230419T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -52,7 +52,7 @@ UID:sevillavmanchesterunited/europaleague
 SUMMARY:Sevilla v Manchester United [Europa League]
 DESCRIPTION:Sevilla v Manchester United [Europa League]
 LOCATION:talkSPORT | BBC Radio 5
-DTSTAMP:20230417T120349Z
+DTSTAMP:20230417T180312Z
 DTSTART:20230420T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -61,7 +61,7 @@ UID:arsenalvsouthampton/premierleague
 SUMMARY:Arsenal v Southampton [Premier League]
 DESCRIPTION:Arsenal v Southampton [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230417T120349Z
+DTSTAMP:20230417T180312Z
 DTSTART:20230421T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -70,7 +70,7 @@ UID:fulhamvleedsunited/premierleague
 SUMMARY:Fulham v Leeds United [Premier League]
 DESCRIPTION:Fulham v Leeds United [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230417T120349Z
+DTSTAMP:20230417T180312Z
 DTSTART:20230422T113000Z
 DURATION:PT2H
 END:VEVENT
@@ -79,7 +79,7 @@ UID:chelseawomenvbarcelonafemenino/women&#39;schampionsleague
 SUMMARY:Chelsea Women v Barcelona Femenino [Women&#39;s Champions League]
 DESCRIPTION:Chelsea Women v Barcelona Femenino [Women&#39;s Champions League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230417T120349Z
+DTSTAMP:20230417T180312Z
 DTSTART:20230422T113000Z
 DURATION:PT2H
 END:VEVENT
@@ -88,8 +88,17 @@ UID:chelseavbarcelona/championsleague
 SUMMARY:Chelsea v Barcelona [Champions League]
 DESCRIPTION:Chelsea v Barcelona [Champions League]
 LOCATION:talkSPORT2
-DTSTAMP:20230417T120349Z
+DTSTAMP:20230417T180312Z
 DTSTART:20230422T113000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:liverpoolvnottinghamforest/premierleague
+SUMMARY:Liverpool v Nottingham Forest [Premier League]
+DESCRIPTION:Liverpool v Nottingham Forest [Premier League]
+LOCATION:talkSPORT2
+DTSTAMP:20230417T180312Z
+DTSTART:20230422T140000Z
 DURATION:PT2H
 END:VEVENT
 BEGIN:VEVENT
@@ -97,7 +106,7 @@ UID:manchestercityvsheffieldunited/facup
 SUMMARY:Manchester City v Sheffield United [FA Cup]
 DESCRIPTION:Manchester City v Sheffield United [FA Cup]
 LOCATION:talkSPORT | BBC Radio 5
-DTSTAMP:20230417T120349Z
+DTSTAMP:20230417T180312Z
 DTSTART:20230422T154500Z
 DURATION:PT2H
 END:VEVENT
@@ -106,7 +115,7 @@ UID:prestonnorthendvblackburnrovers/championship
 SUMMARY:Preston North End v Blackburn Rovers [Championship]
 DESCRIPTION:Preston North End v Blackburn Rovers [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230417T120349Z
+DTSTAMP:20230417T180312Z
 DTSTART:20230422T163000Z
 DURATION:PT2H
 END:VEVENT
@@ -115,7 +124,7 @@ UID:westbromwichalbionvsunderland/championship
 SUMMARY:West Bromwich Albion v Sunderland [Championship]
 DESCRIPTION:West Bromwich Albion v Sunderland [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230417T120349Z
+DTSTAMP:20230417T180312Z
 DTSTART:20230423T110000Z
 DURATION:PT2H
 END:VEVENT
@@ -124,7 +133,7 @@ UID:newcastleunitedvtottenhamhotspur/premierleague
 SUMMARY:Newcastle United v Tottenham Hotspur [Premier League]
 DESCRIPTION:Newcastle United v Tottenham Hotspur [Premier League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230417T120349Z
+DTSTAMP:20230417T180312Z
 DTSTART:20230423T130000Z
 DURATION:PT2H
 END:VEVENT
@@ -133,7 +142,7 @@ UID:brighton&amp;hovealbionvmanchesterunited/facup
 SUMMARY:Brighton &amp; Hove Albion v Manchester United [FA Cup]
 DESCRIPTION:Brighton &amp; Hove Albion v Manchester United [FA Cup]
 LOCATION:BBC Radio 5
-DTSTAMP:20230417T120349Z
+DTSTAMP:20230417T180312Z
 DTSTART:20230423T153000Z
 DURATION:PT2H
 END:VEVENT
