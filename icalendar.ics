@@ -7,7 +7,7 @@ UID:fulhamvleedsunited/premierleague
 SUMMARY:Fulham v Leeds United [Premier League]
 DESCRIPTION:Fulham v Leeds United [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230422T000828Z
+DTSTAMP:20230422T060257Z
 DTSTART:20230422T113000Z
 DURATION:PT2H
 END:VEVENT
@@ -16,7 +16,7 @@ UID:chelseawomenvbarcelonafemenino/women&#39;schampionsleague
 SUMMARY:Chelsea Women v Barcelona Femenino [Women&#39;s Champions League]
 DESCRIPTION:Chelsea Women v Barcelona Femenino [Women&#39;s Champions League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230422T000828Z
+DTSTAMP:20230422T060257Z
 DTSTART:20230422T113000Z
 DURATION:PT2H
 END:VEVENT
@@ -25,7 +25,7 @@ UID:chelseavbarcelona/championsleague
 SUMMARY:Chelsea v Barcelona [Champions League]
 DESCRIPTION:Chelsea v Barcelona [Champions League]
 LOCATION:talkSPORT2
-DTSTAMP:20230422T000828Z
+DTSTAMP:20230422T060257Z
 DTSTART:20230422T113000Z
 DURATION:PT2H
 END:VEVENT
@@ -34,7 +34,7 @@ UID:leicestercityvwolverhamptonwanderers/premierleague
 SUMMARY:Leicester City v Wolverhampton Wanderers [Premier League]
 DESCRIPTION:Leicester City v Wolverhampton Wanderers [Premier League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230422T000828Z
+DTSTAMP:20230422T060257Z
 DTSTART:20230422T140000Z
 DURATION:PT2H
 END:VEVENT
@@ -43,7 +43,7 @@ UID:liverpoolvnottinghamforest/premierleague
 SUMMARY:Liverpool v Nottingham Forest [Premier League]
 DESCRIPTION:Liverpool v Nottingham Forest [Premier League]
 LOCATION:talkSPORT2
-DTSTAMP:20230422T000828Z
+DTSTAMP:20230422T060257Z
 DTSTART:20230422T140000Z
 DURATION:PT2H
 END:VEVENT
@@ -52,7 +52,7 @@ UID:manchestercityvsheffieldunited/facup
 SUMMARY:Manchester City v Sheffield United [FA Cup]
 DESCRIPTION:Manchester City v Sheffield United [FA Cup]
 LOCATION:talkSPORT | BBC Radio 5
-DTSTAMP:20230422T000828Z
+DTSTAMP:20230422T060257Z
 DTSTART:20230422T154500Z
 DURATION:PT2H
 END:VEVENT
@@ -61,7 +61,7 @@ UID:prestonnorthendvblackburnrovers/championship
 SUMMARY:Preston North End v Blackburn Rovers [Championship]
 DESCRIPTION:Preston North End v Blackburn Rovers [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230422T000828Z
+DTSTAMP:20230422T060257Z
 DTSTART:20230422T163000Z
 DURATION:PT2H
 END:VEVENT
@@ -70,7 +70,7 @@ UID:westbromwichalbionvsunderland/championship
 SUMMARY:West Bromwich Albion v Sunderland [Championship]
 DESCRIPTION:West Bromwich Albion v Sunderland [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230422T000828Z
+DTSTAMP:20230422T060257Z
 DTSTART:20230423T110000Z
 DURATION:PT2H
 END:VEVENT
@@ -79,7 +79,7 @@ UID:newcastleunitedvtottenhamhotspur/premierleague
 SUMMARY:Newcastle United v Tottenham Hotspur [Premier League]
 DESCRIPTION:Newcastle United v Tottenham Hotspur [Premier League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230422T000828Z
+DTSTAMP:20230422T060257Z
 DTSTART:20230423T130000Z
 DURATION:PT2H
 END:VEVENT
@@ -88,7 +88,7 @@ UID:brightonandhovealbionvmanchesterunited/facup
 SUMMARY:Brighton and Hove Albion v Manchester United [FA Cup]
 DESCRIPTION:Brighton and Hove Albion v Manchester United [FA Cup]
 LOCATION:talkSPORT
-DTSTAMP:20230422T000828Z
+DTSTAMP:20230422T060257Z
 DTSTART:20230423T153000Z
 DURATION:PT2H
 END:VEVENT
@@ -97,7 +97,7 @@ UID:brighton&amp;hovealbionvmanchesterunited/facup
 SUMMARY:Brighton &amp; Hove Albion v Manchester United [FA Cup]
 DESCRIPTION:Brighton &amp; Hove Albion v Manchester United [FA Cup]
 LOCATION:BBC Radio 5
-DTSTAMP:20230422T000828Z
+DTSTAMP:20230422T060257Z
 DTSTART:20230423T153000Z
 DURATION:PT2H
 END:VEVENT
@@ -106,7 +106,7 @@ UID:lutontownvmiddlesbrough/championship
 SUMMARY:Luton Town v Middlesbrough [Championship]
 DESCRIPTION:Luton Town v Middlesbrough [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230422T000828Z
+DTSTAMP:20230422T060257Z
 DTSTART:20230424T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -115,7 +115,7 @@ UID:astonvillavfulham/premierleague
 SUMMARY:Aston Villa v Fulham [Premier League]
 DESCRIPTION:Aston Villa v Fulham [Premier League]
 LOCATION:talkSPORT2
-DTSTAMP:20230422T000828Z
+DTSTAMP:20230422T060257Z
 DTSTART:20230425T184500Z
 DURATION:PT2H
 END:VEVENT
@@ -124,7 +124,7 @@ UID:leedsunitedvleicestercity/premierleague
 SUMMARY:Leeds United v Leicester City [Premier League]
 DESCRIPTION:Leeds United v Leicester City [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230422T000828Z
+DTSTAMP:20230422T060257Z
 DTSTART:20230425T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -133,7 +133,7 @@ UID:barcelonafemeninovchelseawomen/women&#39;schampionsleague
 SUMMARY:Barcelona Femenino v Chelsea Women [Women&#39;s Champions League]
 DESCRIPTION:Barcelona Femenino v Chelsea Women [Women&#39;s Champions League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230422T000828Z
+DTSTAMP:20230422T060257Z
 DTSTART:20230427T164500Z
 DURATION:PT2H
 END:VEVENT
