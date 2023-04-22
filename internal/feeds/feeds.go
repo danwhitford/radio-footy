@@ -17,7 +17,10 @@ const timeLayout = "15:04"
 
 func getTalkSportMatches() []interchange.MergedMatch {
 	url := "https://talksport.com/wp-json/talksport/v2/talksport-live/commentary"
-	body, _ := filecacher.GetUrl(url)
+	body, err := filecacher.GetUrl(url)
+	if err != nil {
+		panic(err)
+	}
 	var tsFeed interchange.TSFeed
 	json.Unmarshal(body, &tsFeed)
 
@@ -38,6 +41,9 @@ func getTalkSportMatches() []interchange.MergedMatch {
 			continue
 		}
 		if m.League == "" {
+			continue
+		}
+		if strings.HasPrefix(m.Title, "Women") {
 			continue
 		}
 		t, _ := time.ParseInLocation(longForm, m.Date, loc)
@@ -67,11 +73,17 @@ func getBBCMatches() []interchange.MergedMatch {
 
 	var bbcFeed interchange.BBCFeed
 	for _, url := range urls {
-		body, _ := filecacher.GetUrl(url)
+		body, err := filecacher.GetUrl(url)
+		if err != nil {
+			panic(err)
+		}
 		json.Unmarshal(body, &bbcFeed)
 
 		for _, data := range bbcFeed.Data {
 			for _, prog := range data.Data {
+				if strings.HasPrefix(prog.Title.Secondary, "Women") {
+					continue
+				}
 				if isWorldCup(prog.Title) {
 					start, _ := time.Parse(longFormat, prog.Start)
 					start = start.In(loc)

@@ -28,6 +28,7 @@ type TSGames struct {
 	HomeTeam string
 	AwayTeam string
 	League   string
+	Title    string
 }
 
 type TSLiveFeed struct {
