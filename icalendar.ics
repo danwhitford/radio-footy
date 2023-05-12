@@ -3,75 +3,12 @@ VERSION:2.0
 METHOD:PUBLISH
 PRODID:-wirelessfootball.co.uk/icalendar
 BEGIN:VEVENT
-UID:peterboroughunitedvsheffieldwednesday/leagueone
-SUMMARY:Peterborough United v Sheffield Wednesday [League One]
-DESCRIPTION:Peterborough United v Sheffield Wednesday [League One]
-LOCATION:talkSPORT2
-DTSTAMP:20230511T120508Z
-DTSTART:20230512T190000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:leedsunitedvnewcastleunited/premierleague
-SUMMARY:Leeds United v Newcastle United [Premier League]
-DESCRIPTION:Leeds United v Newcastle United [Premier League]
-LOCATION:talkSPORT
-DTSTAMP:20230511T120508Z
-DTSTART:20230513T113000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:astonvillavtottenhamhotspur/premierleague
-SUMMARY:Aston Villa v Tottenham Hotspur [Premier League]
-DESCRIPTION:Aston Villa v Tottenham Hotspur [Premier League]
-LOCATION:talkSPORT
-DTSTAMP:20230511T120508Z
-DTSTART:20230513T140000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
 UID:manchesterunitedvwolverhamptonwanderers/premierleague
 SUMMARY:Manchester United v Wolverhampton Wanderers [Premier League]
 DESCRIPTION:Manchester United v Wolverhampton Wanderers [Premier League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230511T120508Z
+DTSTAMP:20230512T001330Z
 DTSTART:20230513T140000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:boltonwanderersvbarnsley/leagueone
-SUMMARY:Bolton Wanderers v Barnsley [League One]
-DESCRIPTION:Bolton Wanderers v Barnsley [League One]
-LOCATION:talkSPORT2
-DTSTAMP:20230511T120508Z
-DTSTART:20230513T140000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:sunderlandvlutontown/championship
-SUMMARY:Sunderland v Luton Town [Championship]
-DESCRIPTION:Sunderland v Luton Town [Championship]
-LOCATION:talkSPORT2
-DTSTAMP:20230511T120508Z
-DTSTART:20230513T163000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:salfordcityvstockportcounty/leaguetwo
-SUMMARY:Salford City v Stockport County [League Two]
-DESCRIPTION:Salford City v Stockport County [League Two]
-LOCATION:talkSPORT2
-DTSTAMP:20230511T120508Z
-DTSTART:20230513T184500Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:coventrycityvmiddlesbrough/championship
-SUMMARY:Coventry City v Middlesbrough [Championship]
-DESCRIPTION:Coventry City v Middlesbrough [Championship]
-LOCATION:talkSPORT
-DTSTAMP:20230511T120508Z
-DTSTART:20230514T110000Z
 DURATION:PT2H
 END:VEVENT
 BEGIN:VEVENT
@@ -79,7 +16,7 @@ UID:evertonvmanchestercity/premierleague
 SUMMARY:Everton v Manchester City [Premier League]
 DESCRIPTION:Everton v Manchester City [Premier League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230511T120508Z
+DTSTAMP:20230512T001330Z
 DTSTART:20230514T130000Z
 DURATION:PT2H
 END:VEVENT
@@ -88,35 +25,8 @@ UID:arsenalvbrighton&amp;hovealbion/premierleague
 SUMMARY:Arsenal v Brighton &amp; Hove Albion [Premier League]
 DESCRIPTION:Arsenal v Brighton &amp; Hove Albion [Premier League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230511T120508Z
+DTSTAMP:20230512T001330Z
 DTSTART:20230514T153000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:bradfordcityvcarlisleunited/leaguetwo
-SUMMARY:Bradford City v Carlisle United [League Two]
-DESCRIPTION:Bradford City v Carlisle United [League Two]
-LOCATION:talkSPORT2
-DTSTAMP:20230511T120508Z
-DTSTART:20230514T180000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:leicestercityvliverpool/premierleague
-SUMMARY:Leicester City v Liverpool [Premier League]
-DESCRIPTION:Leicester City v Liverpool [Premier League]
-LOCATION:talkSPORT
-DTSTAMP:20230511T120508Z
-DTSTART:20230515T190000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:lutontownvsunderland/championship
-SUMMARY:Luton Town v Sunderland [Championship]
-DESCRIPTION:Luton Town v Sunderland [Championship]
-LOCATION:talkSPORT
-DTSTAMP:20230511T120508Z
-DTSTART:20230516T190000Z
 DURATION:PT2H
 END:VEVENT
 BEGIN:VEVENT
@@ -124,16 +34,7 @@ UID:intermilanvacmilan/championsleague
 SUMMARY:Inter Milan v AC Milan [Champions League]
 DESCRIPTION:Inter Milan v AC Milan [Champions League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230511T120508Z
-DTSTART:20230516T190000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:internazionalevacmilan/championsleague
-SUMMARY:Internazionale v AC Milan [Champions League]
-DESCRIPTION:Internazionale v AC Milan [Champions League]
-LOCATION:talkSPORT2
-DTSTAMP:20230511T120508Z
+DTSTAMP:20230512T001330Z
 DTSTART:20230516T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -141,63 +42,9 @@ BEGIN:VEVENT
 UID:manchestercityvrealmadrid/championsleague
 SUMMARY:Manchester City v Real Madrid [Champions League]
 DESCRIPTION:Manchester City v Real Madrid [Champions League]
-LOCATION:talkSPORT | BBC Radio 5
-DTSTAMP:20230511T120508Z
+LOCATION:BBC Radio 5
+DTSTAMP:20230512T001330Z
 DTSTART:20230517T190000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:middlesbroughvcoventrycity/championship
-SUMMARY:Middlesbrough v Coventry City [Championship]
-DESCRIPTION:Middlesbrough v Coventry City [Championship]
-LOCATION:talkSPORT2
-DTSTAMP:20230511T120508Z
-DTSTART:20230517T190000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:newcastleunitedvbrighton&amp;hovealbion/premierleague
-SUMMARY:Newcastle United v Brighton &amp; Hove Albion [Premier League]
-DESCRIPTION:Newcastle United v Brighton &amp; Hove Albion [Premier League]
-LOCATION:talkSPORT
-DTSTAMP:20230511T120508Z
-DTSTART:20230518T183000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:barnsleyvboltonwanderers/leagueone
-SUMMARY:Barnsley v Bolton Wanderers [League One]
-DESCRIPTION:Barnsley v Bolton Wanderers [League One]
-LOCATION:talkSPORT2
-DTSTAMP:20230511T120508Z
-DTSTART:20230519T190000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:tottenhamhotspurvbrentford/premierleague
-SUMMARY:Tottenham Hotspur v Brentford [Premier League]
-DESCRIPTION:Tottenham Hotspur v Brentford [Premier League]
-LOCATION:talkSPORT
-DTSTAMP:20230511T120508Z
-DTSTART:20230520T113000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:stockportcountyvsalfordcity/leaguetwo
-SUMMARY:Stockport County v Salford City [League Two]
-DESCRIPTION:Stockport County v Salford City [League Two]
-LOCATION:talkSPORT2
-DTSTAMP:20230511T120508Z
-DTSTART:20230520T113000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:carlisleunitedvbradfordcity/leaguetwo
-SUMMARY:Carlisle United v Bradford City [League Two]
-DESCRIPTION:Carlisle United v Bradford City [League Two]
-LOCATION:talkSPORT2
-DTSTAMP:20230511T120508Z
-DTSTART:20230520T140000Z
 DURATION:PT2H
 END:VEVENT
 END:VCALENDAR
