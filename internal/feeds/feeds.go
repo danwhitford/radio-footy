@@ -43,35 +43,11 @@ func GetMergedMatches() []interchange.MergedMatchDay {
 
 	for i := range matches {
 		mapTeamNames(&matches[i])
-		newComp := mapCompName(matches[i].Competition)
-		matches[i].Competition = newComp
+		mapCompName(&matches[i])
 	}
 
 	// Roll up stations
-	stationsRollUp := make(map[string][]interchange.MergedMatch)
-	for _, match := range matches {
-		hashLol := fmt.Sprintf("%s%s%s%s", match.Competition, match.Date, match.Time, match.Title)
-		_, prs := stationsRollUp[hashLol]
-		if prs {
-			stationsRollUp[hashLol] = append(stationsRollUp[hashLol], match)
-		} else {
-			stationsRollUp[hashLol] = []interchange.MergedMatch{match}
-		}
-	}
-	matches = make([]interchange.MergedMatch, 0)
-	for _, v := range stationsRollUp {
-		if len(v) > 1 {
-			stations := make([]string, 0)
-			for _, foo := range v {
-				stations = append(stations, foo.Station)
-			}
-			smoshed := v[0]
-			smoshed.Station = strings.Join(stations, " | ")
-			matches = append(matches, smoshed)
-		} else {
-			matches = append(matches, v[0])
-		}
-	}
+	matches = rollUpStations(matches)
 
 	// Roll up dates
 	matchesRollup := make(map[string][]interchange.MergedMatch)
@@ -90,6 +66,7 @@ func GetMergedMatches() []interchange.MergedMatchDay {
 		mergedFeed = append(mergedFeed, md)
 	}
 
+	// Sort by date
 	sort.Slice(mergedFeed, func(i, j int) bool {
 		return mergedFeed[i].Matches[0].Datetime < mergedFeed[j].Matches[0].Datetime
 	})
@@ -146,10 +123,39 @@ func mapTeamName(name string) string {
 	}
 }
 
-func mapCompName(comp string) string {
-	comp = strings.TrimSuffix(comp, " Football 2022-23")
+func mapCompName(match *interchange.MergedMatch)  {
+	match.Competition = strings.TrimSuffix(match.Competition, " Football 2022-23")
+}
 
-	return comp
+func rollUpStations(matches []interchange.MergedMatch) []interchange.MergedMatch {
+	stationsRollUp := make(map[string][]interchange.MergedMatch)
+	for _, match := range matches {
+		hashLol := fmt.Sprintf("%s%s%s%s", match.Competition, match.Date, match.Time, match.Title)
+		_, prs := stationsRollUp[hashLol]
+		if prs {
+			stationsRollUp[hashLol] = append(stationsRollUp[hashLol], match)
+		} else {
+			stationsRollUp[hashLol] = []interchange.MergedMatch{match}
+		}
+	}
+	matches = make([]interchange.MergedMatch, 0)
+	for _, v := range stationsRollUp {
+		if len(v) > 1 {
+			stations := make([]string, 0)
+			for _, foo := range v {
+				stations = append(stations, foo.Station)
+			}
+			smoshed := v[0]
+			sort.Slice(stations, func(i, j int) bool {
+				return stationRank(stations[i]) < stationRank(stations[j])
+			})
+			smoshed.Station = strings.Join(stations, " | ")
+			matches = append(matches, smoshed)
+		} else {
+			matches = append(matches, v[0])
+		}
+	}
+	return matches
 }
 
 func MergedMatchDayToEventList(mergedMatches []interchange.MergedMatchDay) []interchange.CalEvent {
