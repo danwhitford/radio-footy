@@ -3,3 +3,6 @@ discordian.html
 scratch/
 docs/
 icalendar.ics
+cover.out
+.cache/
+!.cache/.gitkeep

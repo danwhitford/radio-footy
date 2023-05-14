@@ -1,110 +1,19 @@
 package feeds
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"sort"
 	"strings"
 	"time"
 
-	"whitford.io/radiofooty/internal/filecacher"
 	"whitford.io/radiofooty/internal/interchange"
 )
 
 const niceDate = "Monday, Jan 2"
 const timeLayout = "15:04"
 
-func getTalkSportMatches() []interchange.MergedMatch {
-	url := "https://talksport.com/wp-json/talksport/v2/talksport-live/commentary"
-	body, err := filecacher.GetUrl(url)
-	if err != nil {
-		panic(err)
-	}
-	var tsFeed interchange.TSFeed
-	json.Unmarshal(body, &tsFeed)
-
-	var matches []interchange.MergedMatch
-	longForm := "2006-01-02 15:04:05"
-	loc, _ := time.LoadLocation("Europe/London")
-
-	for _, m := range tsFeed {
-		var feedname string
-		for _, feed := range m.Livefeed {
-			if feed.Feedname == "talkSPORT" {
-				feedname = "talkSPORT"
-			} else if feed.Feedname == "talkSPORT2" {
-				feedname = "talkSPORT2"
-			}
-		}
-		if feedname == "" {
-			continue
-		}
-		if m.League == "" {
-			continue
-		}
-		if strings.HasPrefix(m.Title, "Women") {
-			continue
-		}
-		t, _ := time.ParseInLocation(longForm, m.Date, loc)
-		title := fmt.Sprintf("%s v %s", m.HomeTeam, m.AwayTeam)
-		displayDate := t.Format(niceDate)
-		displayTime := t.Format(timeLayout)
-		datetime := t.Format(time.RFC3339)
-		m := interchange.MergedMatch{Time: displayTime, Date: displayDate, Station: feedname, Datetime: datetime, Title: title, Competition: m.League}
-		matches = append(matches, m)
-	}
-
-	return matches
-}
-
-func getBBCMatches() []interchange.MergedMatch {
-	var matches = []interchange.MergedMatch{}
-	longFormat := "2006-01-02T15:04:05Z"
-	baseUrl := "https://rms.api.bbc.co.uk/v2/experience/inline/schedules/bbc_radio_five_live/"
-	urls := []string{}
-	urlTime := "2006-01-02"
-	loc, _ := time.LoadLocation("Europe/London")
-	start := time.Now()
-	for i := 0; i < 8; i++ {
-		t := start.AddDate(0, 0, i)
-		urls = append(urls, baseUrl+t.Format(urlTime))
-	}
-
-	var bbcFeed interchange.BBCFeed
-	for _, url := range urls {
-		body, err := filecacher.GetUrl(url)
-		if err != nil {
-			panic(err)
-		}
-		json.Unmarshal(body, &bbcFeed)
-
-		for _, data := range bbcFeed.Data {
-			for _, prog := range data.Data {
-				if strings.HasPrefix(prog.Title.Secondary, "Women") {
-					continue
-				}
-				if isWorldCup(prog.Title) {
-					start, _ := time.Parse(longFormat, prog.Start)
-					start = start.In(loc)
-					clock := start.Format(timeLayout)
-					date := start.Format(niceDate)
-					m := interchange.MergedMatch{Time: clock, Date: date, Station: "BBC Radio 5", Datetime: start.Format(time.RFC3339), Title: prog.Title.Tertiary, Competition: "World Cup"}
-					matches = append(matches, m)
-				} else if isLeagueGame(prog.Title) {
-					start, _ := time.Parse(longFormat, prog.Start)
-					start = start.In(loc)
-					clock := start.Format(timeLayout)
-					date := start.Format(niceDate)
-					m := interchange.MergedMatch{Time: clock, Date: date, Station: "BBC Radio 5", Datetime: start.Format(time.RFC3339), Title: prog.Title.Tertiary, Competition: prog.Title.Secondary}
-					matches = append(matches, m)
-				}
-			}
-		}
-	}
-
-	return matches
-}
+type MatchPipeliner func(m interchange.MergedMatch) interchange.MergedMatch
 
 func isWorldCup(title interchange.BBCTitles) bool {
 	return title.Primary == "World Cup" && strings.Contains(title.Tertiary, " v ")
@@ -133,10 +42,8 @@ func GetMergedMatches() []interchange.MergedMatchDay {
 	matches = m
 
 	for i := range matches {
-		teams := strings.Split(matches[i].Title, " v ")
-		newTitle := fmt.Sprintf("%s v %s", mapTeamName(teams[0]), mapTeamName(teams[1]))
+		mapTeamNames(&matches[i])
 		newComp := mapCompName(matches[i].Competition)
-		matches[i].Title = newTitle
 		matches[i].Competition = newComp
 	}
 
@@ -216,13 +123,20 @@ func stationRank(station string) int {
 	}
 }
 
+func mapTeamNames(match *interchange.MergedMatch) {
+	teams := strings.Split(match.Title, " v ")
+	newTitle := fmt.Sprintf("%s v %s", mapTeamName(teams[0]), mapTeamName(teams[1]))
+	match.Title = newTitle
+}
+
 func mapTeamName(name string) string {
 	nameMapper := map[string]string{
-		"IR Iran":        "Iran",
-		"Korea Republic": "South Korea",
-		"Milan":          "AC Milan",
-		"FC Bayern München": "Bayern Munich",
+		"IR Iran":                  "Iran",
+		"Korea Republic":           "South Korea",
+		"Milan":                    "AC Milan",
+		"FC Bayern München":        "Bayern Munich",
 		"Brighton and Hove Albion": "Brighton & Hove Albion",
+		"Internazionale":           "Inter Milan",
 	}
 	newName, prs := nameMapper[name]
 	if prs {
