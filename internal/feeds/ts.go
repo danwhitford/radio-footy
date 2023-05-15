@@ -46,7 +46,7 @@ func getTalkSportMatches() []interchange.MergedMatch {
 		displayDate := t.Format(niceDate)
 		displayTime := t.Format(timeLayout)
 		datetime := t.Format(time.RFC3339)
-		m := interchange.MergedMatch{Time: displayTime, Date: displayDate, Station: feedname, Datetime: datetime, Title: title, Competition: m.League}
+		m := interchange.MergedMatch{Time: displayTime, Date: displayDate, Stations: []string{feedname}, Datetime: datetime, Title: title, Competition: m.League}
 		matches = append(matches, m)
 	}
 

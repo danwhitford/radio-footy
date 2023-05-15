@@ -105,13 +105,13 @@ func rollUpStations(matches []interchange.MergedMatch) []interchange.MergedMatch
 		if len(v) > 1 {
 			stations := make([]string, 0)
 			for _, foo := range v {
-				stations = append(stations, foo.Station)
+				stations = append(stations, foo.Stations...)
 			}
 			smoshed := v[0]
 			sort.Slice(stations, func(i, j int) bool {
 				return stationRank(stations[i]) < stationRank(stations[j])
 			})
-			smoshed.Station = strings.Join(stations, " | ")
+			smoshed.Stations = stations
 			matches = append(matches, smoshed)
 		} else {
 			matches = append(matches, v[0])
@@ -164,7 +164,7 @@ func sortMatchDays(matchDays []interchange.MergedMatchDay) []interchange.MergedM
 	for _, matchDay := range matchDays {
 		sort.Slice(matchDay.Matches, func(i, j int) bool {
 			if matchDay.Matches[i].Time == matchDay.Matches[j].Time {
-				return stationRank(matchDay.Matches[i].Station) < stationRank(matchDay.Matches[j].Station)
+				return stationRank(matchDay.Matches[i].Stations[0]) < stationRank(matchDay.Matches[j].Stations[0])
 			}
 			return matchDay.Matches[i].Time < matchDay.Matches[j].Time
 		})
@@ -193,11 +193,13 @@ func fuzzyMergeTeams(matches []interchange.MergedMatch) []interchange.MergedMatc
 		m1Teams := strings.Split(match[0].Title, " v ")
 		m2Teams := strings.Split(match[1].Title, " v ")
 		if m1Teams[0] == m2Teams[0] || m1Teams[1] == m2Teams[1] {
-			stationList := []string{match[0].Station, match[1].Station}
+			stationList := make([]string, 0)
+			stationList = append(stationList, match[0].Stations...)
+			stationList = append(stationList, match[1].Stations...)
 			sort.Slice(stationList, func(i, j int) bool {
 				return stationRank(stationList[i]) < stationRank(stationList[j])
 			})
-			match[0].Station = strings.Join(stationList, " | ")
+			match[0].Stations = stationList
 			merged = append(merged, match[0])
 		} else {
 			merged = append(merged, match...)
@@ -218,7 +220,7 @@ func MergedMatchDayToEventList(mergedMatches []interchange.MergedMatchDay) []int
 				Uid:      strings.ReplaceAll(strings.ToLower(fmt.Sprintf("%s/%s", match.Title, match.Competition)), " ", ""),
 				DtStart:  starttime.UTC().Format(interchange.CalTimeString),
 				Summary:  fmt.Sprintf("%s [%s]", match.Title, match.Competition),
-				Location: match.Station,
+				Location: match.Stations,
 			}
 			events = append(events, event)
 		}

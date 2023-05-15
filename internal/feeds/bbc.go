@@ -43,7 +43,7 @@ func getBBCMatches() []interchange.MergedMatch {
 					start = start.In(loc)
 					clock := start.Format(timeLayout)
 					date := start.Format(niceDate)
-					m := interchange.MergedMatch{Time: clock, Date: date, Station: "BBC Radio 5", Datetime: start.Format(time.RFC3339), Title: prog.Title.Tertiary, Competition: prog.Title.Secondary}
+					m := interchange.MergedMatch{Time: clock, Date: date, Stations: []string{"BBC Radio 5"}, Datetime: start.Format(time.RFC3339), Title: prog.Title.Tertiary, Competition: prog.Title.Secondary}
 					matches = append(matches, m)
 				}
 			}

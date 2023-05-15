@@ -29,7 +29,7 @@ func TestWriteIndex(t *testing.T) {
 								Title:       "Southampton v Manchester City",
 								Datetime:    "2023-05-15T15:00:00Z",
 								Competition: "Premier League",
-								Station:     "BBC Radio 5 Live",
+								Stations:     []string{"talkSPORT", "BBC Radio 5 Live"},
 								Time:        "15:00",
 								Date:        "Monday, May 15",
 							},
@@ -56,7 +56,7 @@ func TestWriteIndex(t *testing.T) {
             <h2>Monday, May 15</h2>
             
                 <div class="match">
-                    <p class="row text-row"><b>15:00 | BBC Radio 5 Live</b></p>
+                    <p class="row text-row"><b>15:00 | talkSPORT | BBC Radio 5 Live</b></p>
                     <p class="row text-row">Southampton v Manchester City (Premier League)</p>
                 </div>
             
@@ -76,6 +76,56 @@ func TestWriteIndex(t *testing.T) {
 
 		if diff := cmp.Diff(tst.output, buffer.String()); diff != "" {
 			t.Errorf("writeIndex(%v) mismatch (-want +got):\n%s", tst.input, diff)
+		}
+	}
+}
+
+func TestWriteCal(t *testing.T) {
+	table := []struct{
+		input struct {
+			DtStamp string
+			Events  []interchange.CalEvent
+		}
+		output string
+	}{
+		{
+			input: struct {
+				DtStamp string
+				Events  []interchange.CalEvent
+			}{
+				DtStamp: "20230515T205714Z",
+				Events: []interchange.CalEvent{
+					{
+						Uid:       "leicestercityvliverpool/premierleague",
+						DtStart:   "20230515T150000Z",
+						Summary:  "Leicester City v Liverpool",
+						Location: []string{"talkSPORT", "BBC Radio 5 Live"},
+					},
+				},
+			},
+			output: "BEGIN:VCALENDAR\r\n" +
+"VERSION:2.0\r\n" +
+"METHOD:PUBLISH\r\n" +
+"PRODID:-wirelessfootball.co.uk/icalendar\r\n" +
+"BEGIN:VEVENT\r\n" +
+"UID:leicestercityvliverpool/premierleague\r\n" +
+"SUMMARY:Leicester City v Liverpool\r\n" +
+"DESCRIPTION:Leicester City v Liverpool\r\n" +
+"LOCATION:talkSPORT | BBC Radio 5 Live\r\n" +
+"DTSTAMP:20230515T205714Z\r\n" +
+"DTSTART:20230515T150000Z\r\n" +
+"DURATION:PT2H\r\n" +
+"END:VEVENT\r\n" +
+"END:VCALENDAR\r\n",
+		},
+	}
+
+	for _, tst := range table {
+		var buffer bytes.Buffer
+		writeCal(tst.input, "../../internal/website/icalendar.go.tmpl", &buffer)
+
+		if diff := cmp.Diff(tst.output, buffer.String()); diff != "" {
+			t.Errorf("writeCal(%v) mismatch (-want +got):\n%s", tst.input, diff)
 		}
 	}
 }

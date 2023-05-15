@@ -11,12 +11,12 @@ type MergedMatchDay struct {
 }
 
 type MergedMatch struct {
-	Time        string `json:"time"`
-	Date        string `json:"date"`
-	Station     string `json:"station"`
-	Datetime    string `json:"datetime"`
-	Title       string `json:"title"`
-	Competition string `json:"competition"`
+	Time        string   `json:"time"`
+	Date        string   `json:"date"`
+	Stations    []string `json:"station"`
+	Datetime    string   `json:"datetime"`
+	Title       string   `json:"title"`
+	Competition string   `json:"competition"`
 }
 
 type TSFeed = []TSGames
@@ -58,7 +58,7 @@ type CalEvent struct {
 	Uid      string
 	DtStart  string
 	Summary  string
-	Location string
+	Location []string
 }
 
 const CalTimeString = "20060102T150405Z"

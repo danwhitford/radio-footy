@@ -17,7 +17,7 @@
             <h2>{{ .NiceDate }}</h2>
             {{ range .Matches }}
                 <div class="match">
-                    <p class="row text-row"><b>{{ .Time }} | {{ .Station }}</b></p>
+                    <p class="row text-row"><b>{{ .Time }} | {{ join .Stations " | " }}</b></p>
                     <p class="row text-row">{{ .Title }} ({{.Competition }})</p>
                 </div>
             {{ end }}

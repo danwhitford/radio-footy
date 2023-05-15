@@ -71,15 +71,15 @@ func TestRollUpStations(t *testing.T) {
 		{
 			input: []interchange.MergedMatch{
 				{
-					Station: "BBC Radio 5 Live",
+					Stations: []string{"BBC Radio 5 Live"},
 				},
 				{
-					Station: "talkSPORT",
+					Stations: []string{"talkSPORT"},
 				},
 			},
 			output: []interchange.MergedMatch{
 				{
-					Station: "talkSPORT | BBC Radio 5 Live",
+					Stations: []string{"talkSPORT", "BBC Radio 5 Live"},
 				},
 			},
 		},
@@ -302,19 +302,19 @@ func TestFuzzyMergeTeams(t *testing.T) {
 					Title:       "Chelsea v Tottenham",
 					Competition: "Premier League",
 					Datetime:    "2021-08-14T15:00:00Z",
-					Station:     "talkSPORT",
+					Stations:    []string{"talkSPORT"},
 				},
 				{
 					Title:       "Chelsea v Spurs",
 					Competition: "Premier League",
 					Datetime:    "2021-08-14T15:00:00Z",
-					Station:     "BBC Radio 5 Live",
+					Stations:    []string{"BBC Radio 5 Live"},
 				},
 				{
 					Title:       "Inverness v Hibernian",
 					Competition: "Scottish Premiership",
 					Datetime:    "2021-08-14T15:00:00Z",
-					Station:     "BBC Radio Scotland",
+					Stations:    []string{"BBC Radio Scotland"},
 				},
 			},
 			output: []interchange.MergedMatch{
@@ -322,13 +322,13 @@ func TestFuzzyMergeTeams(t *testing.T) {
 					Title:       "Chelsea v Tottenham",
 					Competition: "Premier League",
 					Datetime:    "2021-08-14T15:00:00Z",
-					Station:     "talkSPORT | BBC Radio 5 Live",
+					Stations:    []string{"talkSPORT", "BBC Radio 5 Live"},
 				},
 				{
 					Title:       "Inverness v Hibernian",
 					Competition: "Scottish Premiership",
 					Datetime:    "2021-08-14T15:00:00Z",
-					Station:     "BBC Radio Scotland",
+					Stations:    []string{"BBC Radio Scotland"},
 				},
 			},
 		},
