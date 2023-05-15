@@ -93,7 +93,6 @@ func TestRollUpStations(t *testing.T) {
 	}
 }
 
-// TODO fails intermitently???
 func TestRollUpDates(t *testing.T) {
 	table := []struct {
 		input  []interchange.MergedMatch
@@ -102,18 +101,14 @@ func TestRollUpDates(t *testing.T) {
 		{
 			input: []interchange.MergedMatch{
 				{
-					Date: "Saturday, Aug 14",
-
 					Datetime: "2021-08-14T19:00:00Z",
 					Title:    "Chelsea v Milan",
 				},
 				{
-					Date:     "Saturday, Aug 14",
 					Datetime: "2021-08-14T21:00:00Z",
 					Title:    "Bolton v Barnslay",
 				},
 				{
-					Date:     "Sunday, Aug 15",
 					Datetime: "2021-08-15T19:00:00Z",
 					Title:    "Romsey v Worthing",
 				},
@@ -124,12 +119,10 @@ func TestRollUpDates(t *testing.T) {
 					DateTime: time.Date(2021, 8, 14, 0, 0, 0, 0, time.UTC),
 					Matches: []interchange.MergedMatch{
 						{
-							Date:     "Saturday, Aug 14",
 							Datetime: "2021-08-14T19:00:00Z",
 							Title:    "Chelsea v Milan",
 						},
 						{
-							Date:     "Saturday, Aug 14",
 							Datetime: "2021-08-14T21:00:00Z",
 							Title:    "Bolton v Barnslay",
 						},
@@ -140,7 +133,6 @@ func TestRollUpDates(t *testing.T) {
 					DateTime: time.Date(2021, 8, 15, 0, 0, 0, 0, time.UTC),
 					Matches: []interchange.MergedMatch{
 						{
-							Date:     "Sunday, Aug 15",
 							Datetime: "2021-08-15T19:00:00Z",
 							Title:    "Romsey v Worthing",
 						},
@@ -151,8 +143,11 @@ func TestRollUpDates(t *testing.T) {
 	}
 
 	for _, tst := range table {
+		less := func(i, j interchange.MergedMatchDay) bool {
+			return i.NiceDate < j.NiceDate
+		}
 		got := rollUpDates(tst.input)
-		if diff := cmp.Diff(tst.output, got); diff != "" {
+		if diff := cmp.Diff(tst.output, got, cmpopts.SortSlices(less)); diff != "" {
 			t.Errorf("mismatch (-want +got):\n%s", diff)
 		}
 	}
