@@ -127,24 +127,17 @@ func rollUpDates(matches []interchange.MergedMatch) []interchange.MergedMatchDay
 		if err != nil {
 			log.Fatalf("error rolling up dates %s", err)
 		}
-		d = d.Truncate(time.Hour * 24)
-		key := d.Format(time.RFC3339)
-		val, prs := matchesRollup[key]
-		if prs {
-			val = append(val, match)
-			matchesRollup[key] = val
-		} else {
-			matchesRollup[key] = []interchange.MergedMatch{match}
-		}
+		key := d.Format(time.DateOnly)
+		matchesRollup[key] = append(matchesRollup[key], match)
 	}
 
 	matchDays := make([]interchange.MergedMatchDay, 0)
-	for k, v := range matchesRollup {
-		dt, err := time.Parse(time.RFC3339, k)
+	for k, matches := range matchesRollup {
+		dt, err := time.Parse(time.DateOnly, k)
 		if err != nil {
 			log.Fatal(err)
 		}
-		md := interchange.MergedMatchDay{NiceDate: dt.Format(niceDate), Matches: v, DateTime: dt}
+		md := interchange.MergedMatchDay{NiceDate: dt.Format(niceDate), Matches: matches, DateTime: dt}
 		matchDays = append(matchDays, md)
 	}
 

@@ -93,6 +93,7 @@ func TestRollUpStations(t *testing.T) {
 	}
 }
 
+// TODO fails intermitently???
 func TestRollUpDates(t *testing.T) {
 	table := []struct {
 		input  []interchange.MergedMatch
@@ -101,8 +102,8 @@ func TestRollUpDates(t *testing.T) {
 		{
 			input: []interchange.MergedMatch{
 				{
-					Date:     "Saturday, Aug 14",
-					
+					Date: "Saturday, Aug 14",
+
 					Datetime: "2021-08-14T19:00:00Z",
 					Title:    "Chelsea v Milan",
 				},
@@ -340,8 +341,8 @@ func TestFuzzyMergeTeams(t *testing.T) {
 
 	for _, tst := range table {
 		got := fuzzyMergeTeams(tst.input)
-		less := func(i, j int) bool {
-			return got[i].Title < got[j].Title
+		less := func(i, j interchange.MergedMatch) bool {
+			return i.Title < j.Title
 		}
 		if diff := cmp.Diff(tst.output, got, cmpopts.SortSlices(less)); diff != "" {
 			t.Errorf("mismatch (-want +got):\n%s", diff)

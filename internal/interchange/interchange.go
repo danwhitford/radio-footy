@@ -5,7 +5,7 @@ import "time"
 type Merged = []MergedMatchDay
 
 type MergedMatchDay struct {
-	NiceDate     string `json:"date"`
+	NiceDate string `json:"date"`
 	DateTime time.Time
 	Matches  []MergedMatch `json:"matches"`
 }
