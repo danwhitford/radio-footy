@@ -7,7 +7,6 @@ import (
 	"os/exec"
 	"strconv"
 	"time"
-	"unicode/utf8"
 
 	"whitford.io/radiofooty/internal/feeds"
 	"whitford.io/radiofooty/internal/interchange"
@@ -15,21 +14,6 @@ import (
 
 func main() {
 	matches := feeds.GetMergedMatches()
-
-	col := 0
-	for _, matchDay := range matches {
-		for _, match := range matchDay.Matches {
-			if utf8.RuneCountInString(match.Title) > col {
-				col = utf8.RuneCountInString(match.Title)
-			}
-			if utf8.RuneCountInString(match.Station) > col {
-				col = utf8.RuneCountInString(match.Station)
-			}
-			if utf8.RuneCountInString(match.Competition) > col {
-				col = utf8.RuneCountInString(match.Competition)
-			}
-		}
-	}
 
 	data := struct {
 		MatchDays []interchange.MergedMatchDay
