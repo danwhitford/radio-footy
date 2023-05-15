@@ -69,7 +69,7 @@ func writeDiscordian(data struct {
 		cmd := exec.Command("ddate", d, m, y)
 		cmdout, _ := cmd.Output()
 
-		data.MatchDays[i].Date = string(cmdout)
+		data.MatchDays[i].NiceDate = string(cmdout)
 	}
 
 	template, err := template.ParseFiles("./internal/website/template.go.tmpl")

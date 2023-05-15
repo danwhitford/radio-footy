@@ -14,7 +14,7 @@
         <h1>Football on the radio</h1>
         {{ range .MatchDays }}
         <div class="matchday">
-            <h2>{{ .Date }}</h2>
+            <h2>{{ .NiceDate }}</h2>
             {{ range .Matches }}
                 <div class="match">
                     <p class="row text-row"><b>{{ .Time }} | {{ .Station }}</b></p>
