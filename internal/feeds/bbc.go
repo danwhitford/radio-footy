@@ -36,7 +36,10 @@ func getBBCMatches() []interchange.MergedMatch {
 					continue
 				}
 				if isLeagueGame(prog.Title) {
-					start, _ := time.Parse(longFormat, prog.Start)
+					start, err := time.Parse(longFormat, prog.Start)
+					if err != nil {
+						panic(err)
+					}
 					start = start.In(loc)
 					clock := start.Format(timeLayout)
 					date := start.Format(niceDate)

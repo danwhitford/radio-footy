@@ -121,25 +121,30 @@ func rollUpStations(matches []interchange.MergedMatch) []interchange.MergedMatch
 }
 
 func rollUpDates(matches []interchange.MergedMatch) []interchange.MergedMatchDay {
-	matchesRollup := make(map[time.Time][]interchange.MergedMatch)
+	matchesRollup := make(map[string][]interchange.MergedMatch)
 	for _, match := range matches {
 		d, err := time.Parse(time.RFC3339, match.Datetime)
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalf("error rolling up dates %s", err)
 		}
 		d = d.Truncate(time.Hour * 24)
-		val, prs := matchesRollup[d]
+		key := d.Format(time.RFC3339)
+		val, prs := matchesRollup[key]
 		if prs {
 			val = append(val, match)
-			matchesRollup[d] = val
+			matchesRollup[key] = val
 		} else {
-			matchesRollup[d] = []interchange.MergedMatch{match}
+			matchesRollup[key] = []interchange.MergedMatch{match}
 		}
 	}
 
 	matchDays := make([]interchange.MergedMatchDay, 0)
 	for k, v := range matchesRollup {
-		md := interchange.MergedMatchDay{NiceDate: k.Format(niceDate), Matches: v, DateTime: k}
+		dt, err := time.Parse(time.RFC3339, k)
+		if err != nil {
+			log.Fatal(err)
+		}
+		md := interchange.MergedMatchDay{NiceDate: dt.Format(niceDate), Matches: v, DateTime: dt}
 		matchDays = append(matchDays, md)
 	}
 
@@ -214,7 +219,7 @@ func MergedMatchDayToEventList(mergedMatches []interchange.MergedMatchDay) []int
 		for _, match := range day.Matches {
 			starttime, err := time.Parse(time.RFC3339, match.Datetime)
 			if err != nil {
-				log.Fatalln(err)
+				log.Fatalln("error while creating event list", err)
 			}
 			event := interchange.CalEvent{
 				Uid:      strings.ReplaceAll(strings.ToLower(fmt.Sprintf("%s/%s", match.Title, match.Competition)), " ", ""),

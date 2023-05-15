@@ -102,6 +102,7 @@ func TestRollUpDates(t *testing.T) {
 			input: []interchange.MergedMatch{
 				{
 					Date:     "Saturday, Aug 14",
+					
 					Datetime: "2021-08-14T19:00:00Z",
 					Title:    "Chelsea v Milan",
 				},
