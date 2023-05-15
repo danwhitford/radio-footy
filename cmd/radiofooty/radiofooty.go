@@ -3,6 +3,8 @@ package main
 import (
 	"bufio"
 	"html/template"
+	"io"
+	"log"
 	"os"
 	"os/exec"
 	"strconv"
@@ -32,7 +34,12 @@ func main() {
 	}
 
 	// Write index.html
-	writeIndex(data)
+	f, err := os.Create("index.html")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer f.Close()
+	writeIndex(data, "./internal/website/template.go.tmpl", f)
 
 	// Write discordian
 	writeDiscordian(data)
@@ -70,19 +77,15 @@ func writeDiscordian(data struct {
 	w.Flush()
 }
 
-func writeIndex(data interface{}) {
-	template, err := template.ParseFiles("./internal/website/template.go.tmpl")
+func writeIndex(data interface{}, templatePath string, writer io.Writer) {
+	template, err := template.ParseFiles(templatePath)
 	if err != nil {
 		panic(err)
 	}
-	f, _ := os.Create("index.html")
-	defer f.Close()
-	w := bufio.NewWriter(f)
-	err = template.Execute(w, data)
+	err = template.Execute(writer, data)
 	if err != nil {
 		panic(err)
 	}
-	w.Flush()
 }
 
 func writeCal(data interface{}) {
