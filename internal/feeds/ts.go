@@ -3,6 +3,7 @@ package feeds
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"strings"
 	"time"
 
@@ -14,11 +15,18 @@ func getTalkSportMatches() []interchange.MergedMatch {
 	url := "https://talksport.com/wp-json/talksport/v2/talksport-live/commentary"
 	body, err := filecacher.GetUrl(url)
 	if err != nil {
-		panic(err)
+		log.Fatalf("error getting url: %v", err)
 	}
 	var tsFeed interchange.TSFeed
-	json.Unmarshal(body, &tsFeed)
+	err = json.Unmarshal(body, &tsFeed)
+	if err != nil {
+		log.Fatalf("error unmarshalling json: %v", err)
+	}
 
+	return tsFeedToMergedMatches(tsFeed)
+}
+
+func tsFeedToMergedMatches(tsFeed interchange.TSFeed) []interchange.MergedMatch {
 	var matches []interchange.MergedMatch
 	longForm := "2006-01-02 15:04:05"
 	loc, _ := time.LoadLocation("Europe/London")
