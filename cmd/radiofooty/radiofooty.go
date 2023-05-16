@@ -1,13 +1,10 @@
 package main
 
 import (
-	"bufio"
 	"html/template"
 	"io"
 	"log"
 	"os"
-	"os/exec"
-	"strconv"
 	"strings"
 	"time"
 
@@ -42,9 +39,6 @@ func main() {
 	defer f.Close()
 	writeIndex(data, "./internal/website/template.go.tmpl", f)
 
-	// Write discordian
-	writeDiscordian(data)
-
 	// Write iCalendar
 	fcal, err := os.Create("icalendar.ics")
 	if err != nil {
@@ -52,35 +46,6 @@ func main() {
 	}
 	defer fcal.Close()
 	writeCal(calData, "./internal/website/icalendar.go.tmpl", fcal)
-}
-
-func writeDiscordian(data struct {
-	MatchDays []interchange.MergedMatchDay
-}) {
-	for i := range data.MatchDays {
-		dts := data.MatchDays[i].Matches[0].Datetime
-		dt, _ := time.Parse(time.RFC3339, dts)
-		y := strconv.Itoa(dt.Year())
-		m := strconv.Itoa(int(dt.Month()))
-		d := strconv.Itoa(dt.Day())
-		cmd := exec.Command("ddate", d, m, y)
-		cmdout, _ := cmd.Output()
-
-		data.MatchDays[i].NiceDate = string(cmdout)
-	}
-
-	template, err := template.ParseFiles("./internal/website/template.go.tmpl")
-	if err != nil {
-		panic(err)
-	}
-	f, _ := os.Create("discordian.html")
-	defer f.Close()
-	w := bufio.NewWriter(f)
-	err = template.Execute(w, data)
-	if err != nil {
-		panic(err)
-	}
-	w.Flush()
 }
 
 func writeIndex(data interface{}, templatePath string, writer io.Writer) {
