@@ -8,11 +8,11 @@ import (
 
 func TestTsFeedToMergedMatches(t *testing.T) {
 	table := []struct {
-		input  TSFeed
+		input  []TSGames
 		output []MergedMatch
 	}{
 		{
-			input: TSFeed{
+			input: []TSGames{
 				{
 					HomeTeam: "Arsenal",
 					AwayTeam: "Chelsea",

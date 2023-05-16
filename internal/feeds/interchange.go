@@ -2,8 +2,6 @@ package feeds
 
 import "time"
 
-type Merged = []MergedMatchDay
-
 type MergedMatchDay struct {
 	NiceDate string `json:"date"`
 	DateTime time.Time
@@ -18,8 +16,6 @@ type MergedMatch struct {
 	Title       string   `json:"title"`
 	Competition string   `json:"competition"`
 }
-
-type TSFeed = []TSGames
 
 type TSGames struct {
 	Livefeed []TSLiveFeed `json:"livefeed"`
