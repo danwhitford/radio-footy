@@ -2,6 +2,7 @@ package feeds
 
 import (
 	"encoding/json"
+	"log"
 	"strings"
 	"time"
 
@@ -44,7 +45,10 @@ func isLeagueGame(title interchange.BBCTitles) bool {
 func bbcDayToMergedMatch(bbcFeed interchange.BBCFeed) []interchange.MergedMatch {
 	matches := make([]interchange.MergedMatch, 0)
 
-	loc, _ := time.LoadLocation("Europe/London")
+	loc, err := time.LoadLocation("Europe/London")
+	if err != nil {
+		log.Fatalf("error loading location: %v", err)
+	}
 	longFormat := "2006-01-02T15:04:05Z"
 
 	for _, data := range bbcFeed.Data {
