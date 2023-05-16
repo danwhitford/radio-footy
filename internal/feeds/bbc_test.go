@@ -2,22 +2,21 @@ package feeds
 
 import (
 	"testing"
-	"whitford.io/radiofooty/internal/interchange"
 	"github.com/google/go-cmp/cmp"
 )
 
 func TestBBCDayToMergedMatch(t *testing.T) {
 	table := []struct {
-		input  interchange.BBCFeed
-		output []interchange.MergedMatch
+		input  BBCFeed
+		output []MergedMatch
 	}{
 		{
-			input: interchange.BBCFeed{
-				Data: []interchange.BBCFeedData{
+			input: BBCFeed{
+				Data: []BBCFeedData{
 					{
-						Data: []interchange.BBCProgramData{
+						Data: []BBCProgramData{
 							{
-								Title: interchange.BBCTitles{
+								Title: BBCTitles{
 									Primary:   "5 Live Sport",
 									Secondary: "Premier League Football 2022-23",
 									Tertiary:  "Arsenal v Chelsea",
@@ -28,7 +27,7 @@ func TestBBCDayToMergedMatch(t *testing.T) {
 					},
 				},
 			},
-			output: []interchange.MergedMatch{
+			output: []MergedMatch{
 				{
 					Title: 	"Arsenal v Chelsea",
 					Stations: []string{"BBC Radio 5"},

@@ -8,16 +8,15 @@ import (
 	"time"
 
 	"whitford.io/radiofooty/internal/filecacher"
-	"whitford.io/radiofooty/internal/interchange"
 )
 
-func getTalkSportMatches() []interchange.MergedMatch {
+func getTalkSportMatches() []MergedMatch {
 	url := "https://talksport.com/wp-json/talksport/v2/talksport-live/commentary"
 	body, err := filecacher.GetUrl(url)
 	if err != nil {
 		log.Fatalf("error getting url: %v", err)
 	}
-	var tsFeed interchange.TSFeed
+	var tsFeed TSFeed
 	err = json.Unmarshal(body, &tsFeed)
 	if err != nil {
 		log.Fatalf("error unmarshalling json: %v", err)
@@ -26,8 +25,8 @@ func getTalkSportMatches() []interchange.MergedMatch {
 	return tsFeedToMergedMatches(tsFeed)
 }
 
-func tsFeedToMergedMatches(tsFeed interchange.TSFeed) []interchange.MergedMatch {
-	var matches []interchange.MergedMatch
+func tsFeedToMergedMatches(tsFeed TSFeed) []MergedMatch {
+	var matches []MergedMatch
 	longForm := "2006-01-02 15:04:05"
 	loc, _ := time.LoadLocation("Europe/London")
 
@@ -54,7 +53,7 @@ func tsFeedToMergedMatches(tsFeed interchange.TSFeed) []interchange.MergedMatch 
 		displayDate := t.Format(niceDate)
 		displayTime := t.Format(timeLayout)
 		datetime := t.Format(time.RFC3339)
-		m := interchange.MergedMatch{Time: displayTime, Date: displayDate, Stations: []string{feedname}, Datetime: datetime, Title: title, Competition: m.League}
+		m := MergedMatch{Time: displayTime, Date: displayDate, Stations: []string{feedname}, Datetime: datetime, Title: title, Competition: m.League}
 		matches = append(matches, m)
 	}
 

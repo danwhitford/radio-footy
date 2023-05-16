@@ -9,23 +9,22 @@ import (
 	"time"
 
 	"whitford.io/radiofooty/internal/feeds"
-	"whitford.io/radiofooty/internal/interchange"
 )
 
 func main() {
 	matches := feeds.GetMergedMatches()
 
 	data := struct {
-		MatchDays []interchange.MergedMatchDay
+		MatchDays []feeds.MergedMatchDay
 	}{
 		MatchDays: matches,
 	}
 
 	events := feeds.MergedMatchDayToEventList(matches)
-	dtstamp := time.Now().UTC().Format(interchange.CalTimeString)
+	dtstamp := time.Now().UTC().Format(feeds.CalTimeString)
 	calData := struct {
 		DtStamp string
-		Events  []interchange.CalEvent
+		Events  []feeds.CalEvent
 	}{
 		DtStamp: dtstamp,
 		Events:  events,

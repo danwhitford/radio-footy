@@ -4,30 +4,29 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"whitford.io/radiofooty/internal/interchange"
 )
 
 func TestTsFeedToMergedMatches(t *testing.T) {
 	table := []struct {
-		input  interchange.TSFeed
-		output []interchange.MergedMatch
+		input  TSFeed
+		output []MergedMatch
 	}{
 		{
-			input: interchange.TSFeed{
+			input: TSFeed{
 				{
 					HomeTeam: "Arsenal",
 					AwayTeam: "Chelsea",
 					League:   "Premier League",
 					Date:     "2020-12-26 17:30:00",
 					Title:    "Arsenal v Chelsea",
-					Livefeed: []interchange.TSLiveFeed{
+					Livefeed: []TSLiveFeed{
 						{
 							Feedname: "talkSPORT",
 						},
 					},
 				},
 			},
-			output: []interchange.MergedMatch{
+			output: []MergedMatch{
 				{
 					Time:        "17:30",
 					Date:        "Saturday, Dec 26",

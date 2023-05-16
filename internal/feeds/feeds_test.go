@@ -6,27 +6,26 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
-	"whitford.io/radiofooty/internal/interchange"
 )
 
 func TestMapTeamNames(t *testing.T) {
 	table := []struct {
-		input  interchange.MergedMatch
-		output interchange.MergedMatch
+		input  MergedMatch
+		output MergedMatch
 	}{
 		{
-			input: interchange.MergedMatch{
+			input: MergedMatch{
 				Title: "Milan v Chelsea",
 			},
-			output: interchange.MergedMatch{
+			output: MergedMatch{
 				Title: "AC Milan v Chelsea",
 			},
 		},
 		{
-			input: interchange.MergedMatch{
+			input: MergedMatch{
 				Title: "Chelsea v Milan",
 			},
-			output: interchange.MergedMatch{
+			output: MergedMatch{
 				Title: "Chelsea v AC Milan",
 			},
 		},
@@ -42,14 +41,14 @@ func TestMapTeamNames(t *testing.T) {
 
 func TestMapCompName(t *testing.T) {
 	table := []struct {
-		input  interchange.MergedMatch
-		output interchange.MergedMatch
+		input  MergedMatch
+		output MergedMatch
 	}{
 		{
-			input: interchange.MergedMatch{
+			input: MergedMatch{
 				Competition: "Premier League Football 2022-23",
 			},
-			output: interchange.MergedMatch{
+			output: MergedMatch{
 				Competition: "Premier League",
 			},
 		},
@@ -65,11 +64,11 @@ func TestMapCompName(t *testing.T) {
 
 func TestRollUpStations(t *testing.T) {
 	table := []struct {
-		input  []interchange.MergedMatch
-		output []interchange.MergedMatch
+		input  []MergedMatch
+		output []MergedMatch
 	}{
 		{
-			input: []interchange.MergedMatch{
+			input: []MergedMatch{
 				{
 					Stations: []string{"BBC Radio 5 Live"},
 				},
@@ -77,7 +76,7 @@ func TestRollUpStations(t *testing.T) {
 					Stations: []string{"talkSPORT"},
 				},
 			},
-			output: []interchange.MergedMatch{
+			output: []MergedMatch{
 				{
 					Stations: []string{"talkSPORT", "BBC Radio 5 Live"},
 				},
@@ -95,11 +94,11 @@ func TestRollUpStations(t *testing.T) {
 
 func TestRollUpDates(t *testing.T) {
 	table := []struct {
-		input  []interchange.MergedMatch
-		output []interchange.MergedMatchDay
+		input  []MergedMatch
+		output []MergedMatchDay
 	}{
 		{
-			input: []interchange.MergedMatch{
+			input: []MergedMatch{
 				{
 					Datetime: "2021-08-14T19:00:00Z",
 					Title:    "Chelsea v Milan",
@@ -113,11 +112,11 @@ func TestRollUpDates(t *testing.T) {
 					Title:    "Romsey v Worthing",
 				},
 			},
-			output: []interchange.MergedMatchDay{
+			output: []MergedMatchDay{
 				{
 					NiceDate: "Saturday, Aug 14",
 					DateTime: time.Date(2021, 8, 14, 0, 0, 0, 0, time.UTC),
-					Matches: []interchange.MergedMatch{
+					Matches: []MergedMatch{
 						{
 							Datetime: "2021-08-14T19:00:00Z",
 							Title:    "Chelsea v Milan",
@@ -131,7 +130,7 @@ func TestRollUpDates(t *testing.T) {
 				{
 					NiceDate: "Sunday, Aug 15",
 					DateTime: time.Date(2021, 8, 15, 0, 0, 0, 0, time.UTC),
-					Matches: []interchange.MergedMatch{
+					Matches: []MergedMatch{
 						{
 							Datetime: "2021-08-15T19:00:00Z",
 							Title:    "Romsey v Worthing",
@@ -143,7 +142,7 @@ func TestRollUpDates(t *testing.T) {
 	}
 
 	for _, tst := range table {
-		less := func(i, j interchange.MergedMatchDay) bool {
+		less := func(i, j MergedMatchDay) bool {
 			return i.NiceDate < j.NiceDate
 		}
 		got := rollUpDates(tst.input)
@@ -155,11 +154,11 @@ func TestRollUpDates(t *testing.T) {
 
 func TestFilterMatches(t *testing.T) {
 	table := []struct {
-		input  []interchange.MergedMatch
-		output []interchange.MergedMatch
+		input  []MergedMatch
+		output []MergedMatch
 	}{
 		{
-			input: []interchange.MergedMatch{
+			input: []MergedMatch{
 				{
 					Title:       "Chelsea v Milan",
 					Competition: "Premier League",
@@ -169,7 +168,7 @@ func TestFilterMatches(t *testing.T) {
 					Competition: "Scottish Premiership",
 				},
 			},
-			output: []interchange.MergedMatch{
+			output: []MergedMatch{
 				{
 					Title:       "Chelsea v Milan",
 					Competition: "Premier League",
@@ -188,15 +187,15 @@ func TestFilterMatches(t *testing.T) {
 
 func TestSortMatchDays(t *testing.T) {
 	table := []struct {
-		input  []interchange.MergedMatchDay
-		output []interchange.MergedMatchDay
+		input  []MergedMatchDay
+		output []MergedMatchDay
 	}{
 		{
-			input: []interchange.MergedMatchDay{
+			input: []MergedMatchDay{
 				{
 					NiceDate: "Monday, Aug 18",
 					DateTime: time.Date(2021, 8, 18, 19, 0, 0, 0, time.UTC),
-					Matches: []interchange.MergedMatch{
+					Matches: []MergedMatch{
 						{
 							Date:     "Monday, Aug 18",
 							Title:    "Brentford v Arsenal",
@@ -208,7 +207,7 @@ func TestSortMatchDays(t *testing.T) {
 				{
 					NiceDate: "Tuesday, Aug 14",
 					DateTime: time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
-					Matches: []interchange.MergedMatch{
+					Matches: []MergedMatch{
 						{
 							Date:     "Tuesday, Aug 14",
 							Title:    "Chelsea v Milan",
@@ -226,7 +225,7 @@ func TestSortMatchDays(t *testing.T) {
 				{
 					NiceDate: "Sunday, Aug 15",
 					DateTime: time.Date(2021, 8, 15, 15, 0, 0, 0, time.UTC),
-					Matches: []interchange.MergedMatch{
+					Matches: []MergedMatch{
 						{
 							Date:     "Wednesday, Aug 15",
 							Title:    "Romsey v Worthing",
@@ -236,11 +235,11 @@ func TestSortMatchDays(t *testing.T) {
 					},
 				},
 			},
-			output: []interchange.MergedMatchDay{
+			output: []MergedMatchDay{
 				{
 					NiceDate: "Tuesday, Aug 14",
 					DateTime: time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
-					Matches: []interchange.MergedMatch{
+					Matches: []MergedMatch{
 						{
 							Date:     "Tuesday, Aug 14",
 							Title:    "Bolton v Barnslay",
@@ -258,7 +257,7 @@ func TestSortMatchDays(t *testing.T) {
 				{
 					NiceDate: "Sunday, Aug 15",
 					DateTime: time.Date(2021, 8, 15, 15, 0, 0, 0, time.UTC),
-					Matches: []interchange.MergedMatch{
+					Matches: []MergedMatch{
 						{
 							Date:     "Wednesday, Aug 15",
 							Title:    "Romsey v Worthing",
@@ -270,7 +269,7 @@ func TestSortMatchDays(t *testing.T) {
 				{
 					NiceDate: "Monday, Aug 18",
 					DateTime: time.Date(2021, 8, 18, 19, 0, 0, 0, time.UTC),
-					Matches: []interchange.MergedMatch{
+					Matches: []MergedMatch{
 						{
 							Date:     "Monday, Aug 18",
 							Title:    "Brentford v Arsenal",
@@ -293,11 +292,11 @@ func TestSortMatchDays(t *testing.T) {
 
 func TestFuzzyMergeTeams(t *testing.T) {
 	table := []struct {
-		input  []interchange.MergedMatch
-		output []interchange.MergedMatch
+		input  []MergedMatch
+		output []MergedMatch
 	}{
 		{
-			input: []interchange.MergedMatch{
+			input: []MergedMatch{
 				{
 					Title:       "Chelsea v Tottenham",
 					Competition: "Premier League",
@@ -317,7 +316,7 @@ func TestFuzzyMergeTeams(t *testing.T) {
 					Stations:    []string{"BBC Radio Scotland"},
 				},
 			},
-			output: []interchange.MergedMatch{
+			output: []MergedMatch{
 				{
 					Title:       "Chelsea v Tottenham",
 					Competition: "Premier League",
@@ -336,7 +335,7 @@ func TestFuzzyMergeTeams(t *testing.T) {
 
 	for _, tst := range table {
 		got := fuzzyMergeTeams(tst.input)
-		less := func(i, j interchange.MergedMatch) bool {
+		less := func(i, j MergedMatch) bool {
 			return i.Title < j.Title
 		}
 		if diff := cmp.Diff(tst.output, got, cmpopts.SortSlices(less)); diff != "" {

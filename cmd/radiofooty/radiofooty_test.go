@@ -6,25 +6,25 @@ import (
 	"time"
 
 	"github.com/google/go-cmp/cmp"
-	"whitford.io/radiofooty/internal/interchange"
+	"whitford.io/radiofooty/internal/feeds"
 )
 
 func TestWriteIndex(t *testing.T) {
 	table := []struct {
 		input struct {
-			MatchDays []interchange.MergedMatchDay
+			MatchDays []feeds.MergedMatchDay
 		}
 		output string
 	}{
 		{
 			input: struct {
-				MatchDays []interchange.MergedMatchDay
+				MatchDays []feeds.MergedMatchDay
 			}{
-				MatchDays: []interchange.MergedMatchDay{
+				MatchDays: []feeds.MergedMatchDay{
 					{
 						NiceDate: "Monday, May 15",
 						DateTime: time.Date(2023, 5, 15, 0, 0, 0, 0, time.UTC),
-						Matches: []interchange.MergedMatch{
+						Matches: []feeds.MergedMatch{
 							{
 								Title:       "Southampton v Manchester City",
 								Datetime:    "2023-05-15T15:00:00Z",
@@ -84,17 +84,17 @@ func TestWriteCal(t *testing.T) {
 	table := []struct{
 		input struct {
 			DtStamp string
-			Events  []interchange.CalEvent
+			Events  []feeds.CalEvent
 		}
 		output string
 	}{
 		{
 			input: struct {
 				DtStamp string
-				Events  []interchange.CalEvent
+				Events  []feeds.CalEvent
 			}{
 				DtStamp: "20230515T205714Z",
-				Events: []interchange.CalEvent{
+				Events: []feeds.CalEvent{
 					{
 						Uid:       "leicestercityvliverpool/premierleague",
 						DtStart:   "20230515T150000Z",

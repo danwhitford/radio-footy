@@ -8,14 +8,13 @@ import (
 	"strings"
 	"time"
 
-	"whitford.io/radiofooty/internal/interchange"
 )
 
 const niceDate = "Monday, Jan 2"
 const timeLayout = "15:04"
 
-func GetMergedMatches() []interchange.MergedMatchDay {
-	var matches []interchange.MergedMatch
+func GetMergedMatches() []MergedMatchDay {
+	var matches []MergedMatch
 	matches = append(matches, getTalkSportMatches()...)
 	matches = append(matches, getBBCMatches()...)
 
@@ -58,7 +57,7 @@ func stationRank(station string) int {
 	}
 }
 
-func mapTeamNames(match *interchange.MergedMatch) {
+func mapTeamNames(match *MergedMatch) {
 	teams := strings.Split(match.Title, " v ")
 	if len(teams) != 2 {
 		log.Printf("Skipping match with bad title: %v", match)
@@ -85,22 +84,22 @@ func mapTeamName(name string) string {
 	}
 }
 
-func mapCompName(match *interchange.MergedMatch) {
+func mapCompName(match *MergedMatch) {
 	match.Competition = strings.TrimSuffix(match.Competition, " Football 2022-23")
 }
 
-func rollUpStations(matches []interchange.MergedMatch) []interchange.MergedMatch {
-	stationsRollUp := make(map[string][]interchange.MergedMatch)
+func rollUpStations(matches []MergedMatch) []MergedMatch {
+	stationsRollUp := make(map[string][]MergedMatch)
 	for _, match := range matches {
 		hashLol := fmt.Sprintf("%s%s%s%s", match.Competition, match.Date, match.Time, match.Title)
 		_, prs := stationsRollUp[hashLol]
 		if prs {
 			stationsRollUp[hashLol] = append(stationsRollUp[hashLol], match)
 		} else {
-			stationsRollUp[hashLol] = []interchange.MergedMatch{match}
+			stationsRollUp[hashLol] = []MergedMatch{match}
 		}
 	}
-	matches = make([]interchange.MergedMatch, 0)
+	matches = make([]MergedMatch, 0)
 	for _, v := range stationsRollUp {
 		if len(v) > 1 {
 			stations := make([]string, 0)
@@ -120,8 +119,8 @@ func rollUpStations(matches []interchange.MergedMatch) []interchange.MergedMatch
 	return matches
 }
 
-func rollUpDates(matches []interchange.MergedMatch) []interchange.MergedMatchDay {
-	matchesRollup := make(map[string][]interchange.MergedMatch)
+func rollUpDates(matches []MergedMatch) []MergedMatchDay {
+	matchesRollup := make(map[string][]MergedMatch)
 	for _, match := range matches {
 		d, err := time.Parse(time.RFC3339, match.Datetime)
 		if err != nil {
@@ -131,21 +130,21 @@ func rollUpDates(matches []interchange.MergedMatch) []interchange.MergedMatchDay
 		matchesRollup[key] = append(matchesRollup[key], match)
 	}
 
-	matchDays := make([]interchange.MergedMatchDay, 0)
+	matchDays := make([]MergedMatchDay, 0)
 	for k, matches := range matchesRollup {
 		dt, err := time.Parse(time.DateOnly, k)
 		if err != nil {
 			log.Fatal(err)
 		}
-		md := interchange.MergedMatchDay{NiceDate: dt.Format(niceDate), Matches: matches, DateTime: dt}
+		md := MergedMatchDay{NiceDate: dt.Format(niceDate), Matches: matches, DateTime: dt}
 		matchDays = append(matchDays, md)
 	}
 
 	return matchDays
 }
 
-func filterMatches(matches []interchange.MergedMatch) []interchange.MergedMatch {
-	filtered := make([]interchange.MergedMatch, 0)
+func filterMatches(matches []MergedMatch) []MergedMatch {
+	filtered := make([]MergedMatch, 0)
 	for _, match := range matches {
 		if shouldSkip(match.Competition) {
 			continue
@@ -155,7 +154,7 @@ func filterMatches(matches []interchange.MergedMatch) []interchange.MergedMatch 
 	return filtered
 }
 
-func sortMatchDays(matchDays []interchange.MergedMatchDay) []interchange.MergedMatchDay {
+func sortMatchDays(matchDays []MergedMatchDay) []MergedMatchDay {
 	sort.Slice(matchDays, func(i, j int) bool {
 		return matchDays[i].DateTime.Before(matchDays[j].DateTime)
 	})
@@ -173,9 +172,9 @@ func sortMatchDays(matchDays []interchange.MergedMatchDay) []interchange.MergedM
 	return matchDays
 }
 
-func fuzzyMergeTeams(matches []interchange.MergedMatch) []interchange.MergedMatch {
-	merged := make([]interchange.MergedMatch, 0)
-	matchesRollup := make(map[string][]interchange.MergedMatch)
+func fuzzyMergeTeams(matches []MergedMatch) []MergedMatch {
+	merged := make([]MergedMatch, 0)
+	matchesRollup := make(map[string][]MergedMatch)
 	for _, match := range matches {
 		key := fmt.Sprintf("%s%s", match.Competition, match.Datetime)
 		matchesRollup[key] = append(matchesRollup[key], match)
@@ -208,17 +207,17 @@ func fuzzyMergeTeams(matches []interchange.MergedMatch) []interchange.MergedMatc
 	return merged
 }
 
-func MergedMatchDayToEventList(mergedMatches []interchange.MergedMatchDay) []interchange.CalEvent {
-	events := make([]interchange.CalEvent, 0)
+func MergedMatchDayToEventList(mergedMatches []MergedMatchDay) []CalEvent {
+	events := make([]CalEvent, 0)
 	for _, day := range mergedMatches {
 		for _, match := range day.Matches {
 			starttime, err := time.Parse(time.RFC3339, match.Datetime)
 			if err != nil {
 				log.Fatalln("error while creating event list", err)
 			}
-			event := interchange.CalEvent{
+			event := CalEvent{
 				Uid:      strings.ReplaceAll(strings.ToLower(fmt.Sprintf("%s/%s", match.Title, match.Competition)), " ", ""),
-				DtStart:  starttime.UTC().Format(interchange.CalTimeString),
+				DtStart:  starttime.UTC().Format(CalTimeString),
 				Summary:  fmt.Sprintf("%s [%s]", match.Title, match.Competition),
 				Location: match.Stations,
 			}

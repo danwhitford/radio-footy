@@ -7,11 +7,10 @@ import (
 	"time"
 
 	"whitford.io/radiofooty/internal/filecacher"
-	"whitford.io/radiofooty/internal/interchange"
 )
 
-func getBBCMatches() []interchange.MergedMatch {
-	var matches = []interchange.MergedMatch{}
+func getBBCMatches() []MergedMatch {
+	var matches = []MergedMatch{}
 	baseUrl := "https://rms.api.bbc.co.uk/v2/experience/inline/schedules/bbc_radio_five_live/"
 	urls := []string{}
 	urlTime := "2006-01-02"
@@ -21,7 +20,7 @@ func getBBCMatches() []interchange.MergedMatch {
 		urls = append(urls, baseUrl+t.Format(urlTime))
 	}
 
-	var bbcFeed interchange.BBCFeed
+	var bbcFeed BBCFeed
 	for _, url := range urls {
 		body, err := filecacher.GetUrl(url)
 		if err != nil {
@@ -36,14 +35,14 @@ func getBBCMatches() []interchange.MergedMatch {
 	return matches
 }
 
-func isLeagueGame(title interchange.BBCTitles) bool {
+func isLeagueGame(title BBCTitles) bool {
 	return (title.Primary == "5 Live Sport") &&
 		(strings.Contains(title.Secondary, "Football")) &&
 		strings.Contains(title.Tertiary, " v ")
 }
 
-func bbcDayToMergedMatch(bbcFeed interchange.BBCFeed) []interchange.MergedMatch {
-	matches := make([]interchange.MergedMatch, 0)
+func bbcDayToMergedMatch(bbcFeed BBCFeed) []MergedMatch {
+	matches := make([]MergedMatch, 0)
 
 	loc, err := time.LoadLocation("Europe/London")
 	if err != nil {
@@ -64,7 +63,7 @@ func bbcDayToMergedMatch(bbcFeed interchange.BBCFeed) []interchange.MergedMatch 
 				start = start.In(loc)
 				clock := start.Format(timeLayout)
 				date := start.Format(niceDate)
-				m := interchange.MergedMatch{Time: clock, Date: date, Stations: []string{"BBC Radio 5"}, Datetime: start.Format(time.RFC3339), Title: prog.Title.Tertiary, Competition: prog.Title.Secondary}
+				m := MergedMatch{Time: clock, Date: date, Stations: []string{"BBC Radio 5"}, Datetime: start.Format(time.RFC3339), Title: prog.Title.Tertiary, Competition: prog.Title.Secondary}
 				matches = append(matches, m)
 			}
 		}
