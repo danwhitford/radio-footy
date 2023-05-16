@@ -17,9 +17,9 @@ jobs:
           fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
 
       - name: Use go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v4
         with:
-          go-version: '1.18' # The Go version to download (if necessary) and use.
+          go-version-file: './go.mod'
       - run: sudo apt install -y ddate
       - run: go version
       - run: go test -v ./...
