@@ -64,7 +64,7 @@ func writeIndex(data interface{}, templatePath string, writer io.Writer) {
 func writeCal(data interface{}, templatePath string, w io.Writer) {
 	funcs := template.FuncMap{
 		"join": strings.Join,
-	}	
+	}
 	calTemplate, err := template.New("icalendar.go.tmpl").Funcs(funcs).ParseFiles(templatePath)
 	if err != nil {
 		panic(err)

@@ -16,7 +16,7 @@ func getTalkSportMatches() []MergedMatch {
 	if err != nil {
 		log.Fatalf("error getting url: %v", err)
 	}
-	var tsFeed []TSGames
+	var tsFeed []TSGame
 	err = json.Unmarshal(body, &tsFeed)
 	if err != nil {
 		log.Fatalf("error unmarshalling json: %v", err)
@@ -25,7 +25,7 @@ func getTalkSportMatches() []MergedMatch {
 	return tsFeedToMergedMatches(tsFeed)
 }
 
-func tsFeedToMergedMatches(tsFeed []TSGames) []MergedMatch {
+func tsFeedToMergedMatches(tsFeed []TSGame) []MergedMatch {
 	var matches []MergedMatch
 	longForm := "2006-01-02 15:04:05"
 	loc, _ := time.LoadLocation("Europe/London")

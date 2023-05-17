@@ -1,8 +1,8 @@
 package feeds
 
 import (
-	"testing"
 	"github.com/google/go-cmp/cmp"
+	"testing"
 )
 
 func TestBBCDayToMergedMatch(t *testing.T) {
@@ -29,12 +29,12 @@ func TestBBCDayToMergedMatch(t *testing.T) {
 			},
 			output: []MergedMatch{
 				{
-					Title: 	"Arsenal v Chelsea",
-					Stations: []string{"BBC Radio 5"},
+					Title:       "Arsenal v Chelsea",
+					Stations:    []string{"BBC Radio 5"},
 					Competition: "Premier League Football 2022-23",
-					Time:     "17:30",
-					Date:     "Saturday, Dec 26",
-					Datetime: "2020-12-26T17:30:00Z",
+					Time:        "17:30",
+					Date:        "Saturday, Dec 26",
+					Datetime:    "2020-12-26T17:30:00Z",
 				},
 			},
 		},

@@ -17,7 +17,7 @@ type MergedMatch struct {
 	Competition string   `json:"competition"`
 }
 
-type TSGames struct {
+type TSGame struct {
 	Livefeed []TSLiveFeed `json:"livefeed"`
 	Sport    string
 	Date     string

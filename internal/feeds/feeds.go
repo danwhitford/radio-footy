@@ -7,7 +7,6 @@ import (
 	"sort"
 	"strings"
 	"time"
-
 )
 
 const niceDate = "Monday, Jan 2"
@@ -18,6 +17,10 @@ func GetMergedMatches() []MergedMatchDay {
 	matches = append(matches, getTalkSportMatches()...)
 	matches = append(matches, getBBCMatches()...)
 
+	return mergedMatchesToMergedMatchDays(matches)
+}
+
+func mergedMatchesToMergedMatchDays(matches []MergedMatch) []MergedMatchDay {
 	// Filter out matches we don't want
 	matches = filterMatches(matches)
 

@@ -29,7 +29,7 @@ func TestWriteIndex(t *testing.T) {
 								Title:       "Southampton v Manchester City",
 								Datetime:    "2023-05-15T15:00:00Z",
 								Competition: "Premier League",
-								Stations:     []string{"talkSPORT", "BBC Radio 5 Live"},
+								Stations:    []string{"talkSPORT", "BBC Radio 5 Live"},
 								Time:        "15:00",
 								Date:        "Monday, May 15",
 							},
@@ -81,7 +81,7 @@ func TestWriteIndex(t *testing.T) {
 }
 
 func TestWriteCal(t *testing.T) {
-	table := []struct{
+	table := []struct {
 		input struct {
 			DtStamp string
 			Events  []feeds.CalEvent
@@ -96,27 +96,27 @@ func TestWriteCal(t *testing.T) {
 				DtStamp: "20230515T205714Z",
 				Events: []feeds.CalEvent{
 					{
-						Uid:       "leicestercityvliverpool/premierleague",
-						DtStart:   "20230515T150000Z",
+						Uid:      "leicestercityvliverpool/premierleague",
+						DtStart:  "20230515T150000Z",
 						Summary:  "Leicester City v Liverpool",
 						Location: []string{"talkSPORT", "BBC Radio 5 Live"},
 					},
 				},
 			},
 			output: "BEGIN:VCALENDAR\r\n" +
-"VERSION:2.0\r\n" +
-"METHOD:PUBLISH\r\n" +
-"PRODID:-wirelessfootball.co.uk/icalendar\r\n" +
-"BEGIN:VEVENT\r\n" +
-"UID:leicestercityvliverpool/premierleague\r\n" +
-"SUMMARY:Leicester City v Liverpool\r\n" +
-"DESCRIPTION:Leicester City v Liverpool\r\n" +
-"LOCATION:talkSPORT | BBC Radio 5 Live\r\n" +
-"DTSTAMP:20230515T205714Z\r\n" +
-"DTSTART:20230515T150000Z\r\n" +
-"DURATION:PT2H\r\n" +
-"END:VEVENT\r\n" +
-"END:VCALENDAR\r\n",
+				"VERSION:2.0\r\n" +
+				"METHOD:PUBLISH\r\n" +
+				"PRODID:-wirelessfootball.co.uk/icalendar\r\n" +
+				"BEGIN:VEVENT\r\n" +
+				"UID:leicestercityvliverpool/premierleague\r\n" +
+				"SUMMARY:Leicester City v Liverpool\r\n" +
+				"DESCRIPTION:Leicester City v Liverpool\r\n" +
+				"LOCATION:talkSPORT | BBC Radio 5 Live\r\n" +
+				"DTSTAMP:20230515T205714Z\r\n" +
+				"DTSTART:20230515T150000Z\r\n" +
+				"DURATION:PT2H\r\n" +
+				"END:VEVENT\r\n" +
+				"END:VCALENDAR\r\n",
 		},
 	}
 

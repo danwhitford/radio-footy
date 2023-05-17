@@ -70,7 +70,7 @@ func TestRollUpStations(t *testing.T) {
 		{
 			input: []MergedMatch{
 				{
-					Stations: []string{"BBC Radio 5 Live"},
+					Stations: []string{"BBC Radio 5"},
 				},
 				{
 					Stations: []string{"talkSPORT"},
@@ -78,7 +78,7 @@ func TestRollUpStations(t *testing.T) {
 			},
 			output: []MergedMatch{
 				{
-					Stations: []string{"talkSPORT", "BBC Radio 5 Live"},
+					Stations: []string{"talkSPORT", "BBC Radio 5"},
 				},
 			},
 		},
@@ -213,6 +213,14 @@ func TestSortMatchDays(t *testing.T) {
 							Title:    "Chelsea v Milan",
 							Datetime: "2021-08-14T15:00:00Z",
 							Time:     "15:00",
+							Stations: []string{"talkSPORT"},
+						},
+						{
+							Date:     "Tuesday, Aug 14",
+							Title:    "Fulham v Brentford",
+							Datetime: "2021-08-14T15:00:00Z",
+							Time:     "15:00",
+							Stations: []string{"talkSPORT2"},
 						},
 						{
 							Date:     "Tuesday, Aug 14",
@@ -251,6 +259,14 @@ func TestSortMatchDays(t *testing.T) {
 							Title:    "Chelsea v Milan",
 							Datetime: "2021-08-14T15:00:00Z",
 							Time:     "15:00",
+							Stations: []string{"talkSPORT"},
+						},
+						{
+							Date:     "Tuesday, Aug 14",
+							Title:    "Fulham v Brentford",
+							Datetime: "2021-08-14T15:00:00Z",
+							Time:     "15:00",
+							Stations: []string{"talkSPORT2"},
 						},
 					},
 				},
@@ -307,7 +323,7 @@ func TestFuzzyMergeTeams(t *testing.T) {
 					Title:       "Chelsea v Spurs",
 					Competition: "Premier League",
 					Datetime:    "2021-08-14T15:00:00Z",
-					Stations:    []string{"BBC Radio 5 Live"},
+					Stations:    []string{"talkSPORT2"},
 				},
 				{
 					Title:       "Inverness v Hibernian",
@@ -321,7 +337,7 @@ func TestFuzzyMergeTeams(t *testing.T) {
 					Title:       "Chelsea v Tottenham",
 					Competition: "Premier League",
 					Datetime:    "2021-08-14T15:00:00Z",
-					Stations:    []string{"talkSPORT", "BBC Radio 5 Live"},
+					Stations:    []string{"talkSPORT", "talkSPORT2"},
 				},
 				{
 					Title:       "Inverness v Hibernian",
@@ -339,6 +355,114 @@ func TestFuzzyMergeTeams(t *testing.T) {
 			return i.Title < j.Title
 		}
 		if diff := cmp.Diff(tst.output, got, cmpopts.SortSlices(less)); diff != "" {
+			t.Errorf("mismatch (-want +got):\n%s", diff)
+		}
+	}
+}
+
+func TestMergedMatchesToMergedMatchDays(t *testing.T) {
+	table := []struct {
+		input  []MergedMatch
+		output []MergedMatchDay
+	}{
+		{
+			input: []MergedMatch{
+				{
+					Date:        "Saturday, Aug 14",
+					Title:       "Chelsea v Tottenham",
+					Competition: "Premier League",
+					Datetime:    "2021-08-14T15:00:00Z",
+					Stations:    []string{"talkSPORT", "BBC Radio 5"},
+				},
+				{
+					Date:        "Saturday, Aug 14",
+					Title:       "Inverness v Hibernian",
+					Competition: "Scottish Premiership",
+					Datetime:    "2021-08-14T15:00:00Z",
+					Stations:    []string{"BBC Radio Scotland"},
+				},
+				{
+					Date:        "Sunday, Aug 15",
+					Title:       "Chelsea v Spurs",
+					Competition: "Premier League",
+					Datetime:    "2021-08-15T15:00:00Z",
+					Stations:    []string{"BBC Radio 5"},
+				},
+			},
+			output: []MergedMatchDay{
+				{
+					NiceDate: "Saturday, Aug 14",
+					DateTime: time.Date(2021, 8, 14, 0, 0, 0, 0, time.UTC),
+					Matches: []MergedMatch{
+						{
+							Date:        "Saturday, Aug 14",
+							Title:       "Chelsea v Tottenham",
+							Competition: "Premier League",
+							Datetime:    "2021-08-14T15:00:00Z",
+							Stations:    []string{"talkSPORT", "BBC Radio 5"},
+						},
+					},
+				},
+				{
+					NiceDate: "Sunday, Aug 15",
+					DateTime: time.Date(2021, 8, 15, 0, 0, 0, 0, time.UTC),
+					Matches: []MergedMatch{
+						{
+							Date:        "Sunday, Aug 15",
+							Title:       "Chelsea v Spurs",
+							Competition: "Premier League",
+							Datetime:    "2021-08-15T15:00:00Z",
+							Stations:    []string{"BBC Radio 5"},
+						},
+					},
+				},
+			},
+		},
+	}
+
+	for _, tst := range table {
+		got := mergedMatchesToMergedMatchDays(tst.input)
+		if diff := cmp.Diff(tst.output, got); diff != "" {
+			t.Errorf("mismatch (-want +got):\n%s", diff)
+		}
+	}
+}
+
+func TestMergedMatchDayToEventList(t *testing.T) {
+	table := []struct {
+		input  []MergedMatchDay
+		output []CalEvent
+	}{
+		{
+			input: []MergedMatchDay{
+				{
+					NiceDate: "Saturday, Aug 14",
+					DateTime: time.Date(2021, 8, 14, 0, 0, 0, 0, time.UTC),
+					Matches: []MergedMatch{
+						{
+							Date:        "Saturday, Aug 14",
+							Title:       "Chelsea v Tottenham",
+							Competition: "Premier League",
+							Datetime:    "2021-08-14T15:00:00Z",
+							Stations:    []string{"talkSPORT", "BBC Radio 5"},
+						},
+					},
+				},
+			},
+			output: []CalEvent{
+				{
+					Uid:      "chelseavtottenham/premierleague",
+					DtStart:  "20210814T150000Z",
+					Summary:  "Chelsea v Tottenham [Premier League]",
+					Location: []string{"talkSPORT", "BBC Radio 5"},
+				},
+			},
+		},
+	}
+
+	for _, tst := range table {
+		got := MergedMatchDayToEventList(tst.input)
+		if diff := cmp.Diff(tst.output, got); diff != "" {
 			t.Errorf("mismatch (-want +got):\n%s", diff)
 		}
 	}
