@@ -1,7 +1,10 @@
 package filecacher
 
 import (
+	"io"
+	"net/http"
 	"os"
+	"strings"
 	"testing"
 )
 
@@ -16,11 +19,20 @@ func shutdown() {
 	}
 }
 
+type DummyGetter struct{}
+func (getter DummyGetter) Get(url string) (*http.Response, error) {
+	response := http.Response{
+		Body: io.NopCloser(strings.NewReader("Hello, world!")),
+	}
+	return &response, nil
+}
+
+
 func TestCreatesCache(t *testing.T) {
 	setup()
 	defer shutdown()
 
-	b, err := GetUrl("https://www.example.com")
+	b, err := GetUrl("https://www.example.com", DummyGetter{})
 	if err != nil {
 		t.Fatalf("err was %v", err)
 	}
@@ -41,7 +53,7 @@ func TestUsesCache(t *testing.T) {
 	setup()
 	defer shutdown()
 
-	b, err := GetUrl("https://www.example.com")
+	b, err := GetUrl("https://www.example.com", DummyGetter{})
 	if err != nil {
 		t.Fatalf("err was %v", err)
 	}
@@ -49,7 +61,7 @@ func TestUsesCache(t *testing.T) {
 		t.Fatal("b was nil")
 	}
 
-	b, err = GetUrl("https://www.example.com")
+	b, err = GetUrl("https://www.example.com", DummyGetter{})
 	if err != nil {
 		t.Fatalf("err was %v", err)
 	}

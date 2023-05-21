@@ -12,7 +12,7 @@ import (
 
 func getTalkSportMatches() []MergedMatch {
 	url := "https://talksport.com/wp-json/talksport/v2/talksport-live/commentary"
-	body, err := filecacher.GetUrl(url)
+	body, err := filecacher.GetUrl(url, filecacher.HttpGetter{})
 	if err != nil {
 		log.Fatalf("error getting url: %v", err)
 	}

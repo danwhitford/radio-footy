@@ -69,8 +69,7 @@ func writeCal(data interface{}, templatePath string, w io.Writer) {
 	if err != nil {
 		panic(err)
 	}
-	f, _ := os.Create("icalendar.ics")
-	defer f.Close()
+	
 	err = calTemplate.Execute(w, data)
 	if err != nil {
 		panic(err)
