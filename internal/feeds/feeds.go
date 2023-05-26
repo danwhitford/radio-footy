@@ -189,20 +189,32 @@ func fuzzyMergeTeams(matches []MergedMatch) []MergedMatch {
 			continue
 		}
 
-			
-		m1Teams := strings.Split(matches[0].Title, " v ")
-		m2Teams := strings.Split(matches[1].Title, " v ")
-		if m1Teams[0] == m2Teams[0] || m1Teams[1] == m2Teams[1] {
-			stationList := make([]string, 0)
-			stationList = append(stationList, matches[0].Stations...)
-			stationList = append(stationList, matches[1].Stations...)
-			sort.Slice(stationList, func(i, j int) bool {
-				return stationRank(stationList[i]) < stationRank(stationList[j])
-			})
-			matches[0].Stations = stationList
-			merged = append(merged, matches[0])
-		} else {
-			merged = append(merged, matches...)
+		toCheck := make([]MergedMatch, 0)
+		toCheck = append(toCheck, matches...)
+		for len(toCheck) > 0 {
+			candidate := toCheck[0]
+			toCheck = toCheck[1:]
+			matched := false
+			for i, other := range toCheck {
+				m1Teams := strings.Split(candidate.Title, " v ")
+				m2Teams := strings.Split(other.Title, " v ")
+				if m1Teams[0] == m2Teams[0] || m1Teams[1] == m2Teams[1] {
+					stationList := make([]string, 0)
+					stationList = append(stationList, candidate.Stations...)
+					stationList = append(stationList, other.Stations...)
+					sort.Slice(stationList, func(i, j int) bool {
+						return stationRank(stationList[i]) < stationRank(stationList[j])
+					})
+					candidate.Stations = stationList
+					merged = append(merged, candidate)
+					toCheck = append(toCheck[:i], toCheck[i+1:]...)
+					matched = true
+					break
+				}
+			}
+			if !matched {
+				merged = append(merged, candidate)
+			}
 		}
 	}
 	return merged
