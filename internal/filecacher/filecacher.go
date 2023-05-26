@@ -17,6 +17,7 @@ type Getter interface {
 }
 
 type HttpGetter struct{}
+
 func (getter HttpGetter) Get(url string) (*http.Response, error) {
 	return http.Get(url)
 }

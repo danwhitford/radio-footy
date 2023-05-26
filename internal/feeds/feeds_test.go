@@ -311,6 +311,7 @@ func TestFuzzyMergeTeams(t *testing.T) {
 		input  []MergedMatch
 		output []MergedMatch
 	}{
+
 		{
 			input: []MergedMatch{
 				{
@@ -326,10 +327,10 @@ func TestFuzzyMergeTeams(t *testing.T) {
 					Stations:    []string{"talkSPORT2"},
 				},
 				{
-					Title:       "Inverness v Hibernian",
-					Competition: "Scottish Premiership",
+					Title:       "Wolves v Everton",
+					Competition: "Premier League",
 					Datetime:    "2021-08-14T15:00:00Z",
-					Stations:    []string{"BBC Radio Scotland"},
+					Stations:    []string{"BBC Radio 5 Live"},
 				},
 			},
 			output: []MergedMatch{
@@ -340,10 +341,10 @@ func TestFuzzyMergeTeams(t *testing.T) {
 					Stations:    []string{"talkSPORT", "talkSPORT2"},
 				},
 				{
-					Title:       "Inverness v Hibernian",
-					Competition: "Scottish Premiership",
+					Title:       "Wolves v Everton",
+					Competition: "Premier League",
 					Datetime:    "2021-08-14T15:00:00Z",
-					Stations:    []string{"BBC Radio Scotland"},
+					Stations:    []string{"BBC Radio 5 Live"},
 				},
 			},
 		},

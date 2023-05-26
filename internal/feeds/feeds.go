@@ -183,28 +183,26 @@ func fuzzyMergeTeams(matches []MergedMatch) []MergedMatch {
 		matchesRollup[key] = append(matchesRollup[key], match)
 	}
 
-	for key, match := range matchesRollup {
-		if len(match) > 2 {
-			log.Fatalf("Too many matches for key %s: %v", key, match)
-		}
-		if len(match) == 1 {
-			merged = append(merged, match[0])
+	for _, matches := range matchesRollup {
+		if len(matches) == 1 {
+			merged = append(merged, matches[0])
 			continue
 		}
 
-		m1Teams := strings.Split(match[0].Title, " v ")
-		m2Teams := strings.Split(match[1].Title, " v ")
+			
+		m1Teams := strings.Split(matches[0].Title, " v ")
+		m2Teams := strings.Split(matches[1].Title, " v ")
 		if m1Teams[0] == m2Teams[0] || m1Teams[1] == m2Teams[1] {
 			stationList := make([]string, 0)
-			stationList = append(stationList, match[0].Stations...)
-			stationList = append(stationList, match[1].Stations...)
+			stationList = append(stationList, matches[0].Stations...)
+			stationList = append(stationList, matches[1].Stations...)
 			sort.Slice(stationList, func(i, j int) bool {
 				return stationRank(stationList[i]) < stationRank(stationList[j])
 			})
-			match[0].Stations = stationList
-			merged = append(merged, match[0])
+			matches[0].Stations = stationList
+			merged = append(merged, matches[0])
 		} else {
-			merged = append(merged, match...)
+			merged = append(merged, matches...)
 		}
 	}
 	return merged
