@@ -7,7 +7,7 @@ UID:sevillavroma/europaleague
 SUMMARY:Sevilla v Roma [Europa League]
 DESCRIPTION:Sevilla v Roma [Europa League]
 LOCATION:talkSPORT
-DTSTAMP:20230530T001507Z
+DTSTAMP:20230530T120444Z
 DTSTART:20230531T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -16,7 +16,7 @@ UID:manchestercityvmanchesterunited/facup
 SUMMARY:Manchester City v Manchester United [FA Cup]
 DESCRIPTION:Manchester City v Manchester United [FA Cup]
 LOCATION:talkSPORT | BBC Radio 5
-DTSTAMP:20230530T001507Z
+DTSTAMP:20230530T120444Z
 DTSTART:20230603T140000Z
 DURATION:PT2H
 END:VEVENT
@@ -25,7 +25,7 @@ UID:manchestercityvintermilan/championsleague
 SUMMARY:Manchester City v Inter Milan [Champions League]
 DESCRIPTION:Manchester City v Inter Milan [Champions League]
 LOCATION:talkSPORT
-DTSTAMP:20230530T001507Z
+DTSTAMP:20230530T120444Z
 DTSTART:20230610T190000Z
 DURATION:PT2H
 END:VEVENT
