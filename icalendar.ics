@@ -3,20 +3,11 @@ VERSION:2.0
 METHOD:PUBLISH
 PRODID:-wirelessfootball.co.uk/icalendar
 BEGIN:VEVENT
-UID:manchestercityvmanchesterunited/facup
-SUMMARY:Manchester City v Manchester United [FA Cup]
-DESCRIPTION:Manchester City v Manchester United [FA Cup]
-LOCATION:talkSPORT | BBC Radio 5
-DTSTAMP:20230603T120445Z
-DTSTART:20230603T140000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
 UID:manchestercityvintermilan/championsleague
 SUMMARY:Manchester City v Inter Milan [Champions League]
 DESCRIPTION:Manchester City v Inter Milan [Champions League]
 LOCATION:talkSPORT | BBC Radio 5
-DTSTAMP:20230603T120445Z
+DTSTAMP:20230604T001644Z
 DTSTART:20230610T190000Z
 DURATION:PT2H
 END:VEVENT
