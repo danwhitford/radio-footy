@@ -7,7 +7,7 @@ UID:manchestercityvintermilan/championsleague
 SUMMARY:Manchester City v Inter Milan [Champions League]
 DESCRIPTION:Manchester City v Inter Milan [Champions League]
 LOCATION:talkSPORT | BBC Radio 5
-DTSTAMP:20230610T001403Z
+DTSTAMP:20230610T120428Z
 DTSTART:20230610T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -16,7 +16,7 @@ UID:maltavengland/international
 SUMMARY:Malta v England [International]
 DESCRIPTION:Malta v England [International]
 LOCATION:BBC Radio 5
-DTSTAMP:20230610T001403Z
+DTSTAMP:20230610T120428Z
 DTSTART:20230616T184500Z
 DURATION:PT2H
 END:VEVENT
@@ -25,7 +25,7 @@ UID:norwayvscotland/international
 SUMMARY:Norway v Scotland [International]
 DESCRIPTION:Norway v Scotland [International]
 LOCATION:BBC Radio 5
-DTSTAMP:20230610T001403Z
+DTSTAMP:20230610T120428Z
 DTSTART:20230617T160000Z
 DURATION:PT2H
 END:VEVENT
