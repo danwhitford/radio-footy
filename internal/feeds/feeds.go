@@ -96,28 +96,36 @@ func mapCompName(match *MergedMatch) {
 
 func rollUpStations(matches []MergedMatch) []MergedMatch {
 	stationsRollUp := make(map[string][]MergedMatch)
-	for _, match := range matches {
-		hashLol := fmt.Sprintf("%s%s%s%s", match.Competition, match.Date, match.Time, match.Title)
-		_, prs := stationsRollUp[hashLol]
-		if prs {
-			stationsRollUp[hashLol] = append(stationsRollUp[hashLol], match)
-		} else {
-			stationsRollUp[hashLol] = []MergedMatch{match}
-		}
+	for _, match := range matches {		
+		hashLol := fmt.Sprintf("%s%s%s", match.Competition, match.Date, match.Title)		
+		stationsRollUp[hashLol] = append(stationsRollUp[hashLol], match)		
 	}
 	matches = make([]MergedMatch, 0)
 	for _, v := range stationsRollUp {
 		if len(v) > 1 {
 			stations := make([]string, 0)
+			events := make([]MergedMatchRadioEvent, 0)
 			for _, foo := range v {
 				stations = append(stations, foo.Stations...)
+			}
+			for _, foo := range v {
+				event := MergedMatchRadioEvent{
+					Station: foo.Stations[0],
+					Date: 	foo.Date,
+					Time: 	foo.Time,
+				}
+				events = append(events, event)
 			}
 			smoshed := v[0]
 			sort.Slice(stations, func(i, j int) bool {
 				return stationRank(stations[i]) < stationRank(stations[j])
 			})
+			sort.Slice(events, func(i, j int) bool {
+				return stationRank(events[i].Station) < stationRank(events[j].Station)
+			})
 			smoshed.Stations = stations
-			matches = append(matches, smoshed)
+			smoshed.RadioEvents = events
+			matches = append(matches, smoshed)			
 		} else {
 			matches = append(matches, v[0])
 		}

@@ -71,14 +71,32 @@ func TestRollUpStations(t *testing.T) {
 			input: []MergedMatch{
 				{
 					Stations: []string{"BBC Radio 5"},
+					Time:     "17:30",
+					Date:     "Saturday, Dec 26",
 				},
 				{
 					Stations: []string{"talkSPORT"},
+					Time:     "17:30",
+					Date:     "Saturday, Dec 26",
 				},
 			},
 			output: []MergedMatch{
 				{
+					Time:     "17:30",
+					Date:     "Saturday, Dec 26",
 					Stations: []string{"talkSPORT", "BBC Radio 5"},
+					RadioEvents: []MergedMatchRadioEvent{
+						{
+							Station: "talkSPORT",
+							Time:    "17:30",
+							Date:    "Saturday, Dec 26",
+						},
+						{
+							Station: "BBC Radio 5",
+							Time:    "17:30",
+							Date:    "Saturday, Dec 26",
+						},
+					},
 				},
 			},
 		},

@@ -73,7 +73,14 @@ func bbcDayToMergedMatch(bbcFeed BBCFeed) []MergedMatch {
 				start = start.In(loc)
 				clock := start.Format(timeLayout)
 				date := start.Format(niceDate)
-				m := MergedMatch{Time: clock, Date: date, Stations: []string{"BBC Radio 5"}, Datetime: start.Format(time.RFC3339), Title: prog.Title.Tertiary, Competition: prog.Title.Secondary}
+				m := MergedMatch{
+					Time:        clock,
+					Date:        date,
+					Stations:    []string{"BBC Radio 5"},
+					Datetime:    start.Format(time.RFC3339),
+					Title:       prog.Title.Tertiary,
+					Competition: prog.Title.Secondary,
+				}
 				matches = append(matches, m)
 			} else if isCricket(prog.Title) {
 				start, err := time.Parse(longFormat, prog.Start)
@@ -84,11 +91,11 @@ func bbcDayToMergedMatch(bbcFeed BBCFeed) []MergedMatch {
 				clock := start.Format(timeLayout)
 				date := start.Format(niceDate)
 				m := MergedMatch{
-					Time: clock, 
-					Date: date, 
-					Stations: []string{prog.Network.ShortTitle}, 
-					Datetime: start.Format(time.RFC3339), 
-					Title: strings.Replace(prog.Title.Tertiary, "Ashes", "", 1), 
+					Time:        clock,
+					Date:        date,
+					Stations:    []string{prog.Network.ShortTitle},
+					Datetime:    start.Format(time.RFC3339),
+					Title:       strings.Replace(prog.Title.Tertiary, "Ashes", "", 1),
 					Competition: "The Ashes",
 				}
 				matches = append(matches, m)

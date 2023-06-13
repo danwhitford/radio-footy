@@ -15,6 +15,13 @@ type MergedMatch struct {
 	Datetime    string   `json:"datetime"`
 	Title       string   `json:"title"`
 	Competition string   `json:"competition"`
+	RadioEvents []MergedMatchRadioEvent
+}
+
+type MergedMatchRadioEvent struct {
+	Station string
+	Time    string
+	Date    string
 }
 
 type TSGame struct {
@@ -40,8 +47,8 @@ type BBCFeedData struct {
 }
 
 type BBCProgramData struct {
-	Title BBCTitles `json:"titles"`
-	Start string    `json:"start"`
+	Title   BBCTitles  `json:"titles"`
+	Start   string     `json:"start"`
 	Network BBCNetwork `json:"network"`
 }
 
