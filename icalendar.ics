@@ -7,7 +7,7 @@ UID:maltavengland/international
 SUMMARY:Malta v England [International]
 DESCRIPTION:Malta v England [International]
 LOCATION:BBC Radio 5
-DTSTAMP:20230612T120453Z
+DTSTAMP:20230613T001500Z
 DTSTART:20230616T184500Z
 DURATION:PT2H
 END:VEVENT
@@ -16,7 +16,7 @@ UID:norwayvscotland/international
 SUMMARY:Norway v Scotland [International]
 DESCRIPTION:Norway v Scotland [International]
 LOCATION:BBC Radio 5
-DTSTAMP:20230612T120453Z
+DTSTAMP:20230613T001500Z
 DTSTART:20230617T160000Z
 DURATION:PT2H
 END:VEVENT
@@ -25,8 +25,17 @@ UID:englandvnorthmacedonia/international
 SUMMARY:England v North Macedonia [International]
 DESCRIPTION:England v North Macedonia [International]
 LOCATION:BBC Radio 5
-DTSTAMP:20230612T120453Z
+DTSTAMP:20230613T001500Z
 DTSTART:20230619T184500Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:scotlandvgeorgia/international
+SUMMARY:Scotland v Georgia [International]
+DESCRIPTION:Scotland v Georgia [International]
+LOCATION:BBC Radio 5
+DTSTAMP:20230613T001500Z
+DTSTART:20230620T184500Z
 DURATION:PT2H
 END:VEVENT
 END:VCALENDAR
