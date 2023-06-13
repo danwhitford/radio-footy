@@ -89,6 +89,9 @@ func mapTeamName(name string) string {
 
 func mapCompName(match *MergedMatch) {
 	match.Competition = strings.TrimSuffix(match.Competition, " Football 2022-23")
+	if match.Competition == "Test Match Special" {
+		match.Competition = "The Ashes"
+	}
 }
 
 func rollUpStations(matches []MergedMatch) []MergedMatch {

@@ -11,13 +11,18 @@ import (
 
 func getBBCMatches() []MergedMatch {
 	var matches = []MergedMatch{}
-	baseUrl := "https://rms.api.bbc.co.uk/v2/experience/inline/schedules/bbc_radio_five_live/"
+	baseUrls := []string{
+		"https://rms.api.bbc.co.uk/v2/experience/inline/schedules/bbc_radio_five_live/",
+		"https://rms.api.bbc.co.uk/v2/experience/inline/schedules/bbc_radio_five_live_sports_extra/",
+	}
 	urls := []string{}
 	urlTime := "2006-01-02"
 	start := time.Now()
 	for i := 0; i < 8; i++ {
 		t := start.AddDate(0, 0, i)
-		urls = append(urls, baseUrl+t.Format(urlTime))
+		for _, baseUrl := range baseUrls {
+			urls = append(urls, baseUrl+t.Format(urlTime))
+		}
 	}
 
 	var bbcFeed BBCFeed
@@ -39,6 +44,11 @@ func isLeagueGame(title BBCTitles) bool {
 	return (title.Primary == "5 Live Sport") &&
 		(strings.Contains(title.Secondary, "Football")) &&
 		strings.Contains(title.Tertiary, " v ")
+}
+
+func isCricket(title BBCTitles) bool {
+	return (title.Primary == "Test Match Special" && title.Secondary == "The Ashes") ||
+		(title.Primary == "The Ashes" && title.Secondary == "Test Match Special")
 }
 
 func bbcDayToMergedMatch(bbcFeed BBCFeed) []MergedMatch {
@@ -64,6 +74,23 @@ func bbcDayToMergedMatch(bbcFeed BBCFeed) []MergedMatch {
 				clock := start.Format(timeLayout)
 				date := start.Format(niceDate)
 				m := MergedMatch{Time: clock, Date: date, Stations: []string{"BBC Radio 5"}, Datetime: start.Format(time.RFC3339), Title: prog.Title.Tertiary, Competition: prog.Title.Secondary}
+				matches = append(matches, m)
+			} else if isCricket(prog.Title) {
+				start, err := time.Parse(longFormat, prog.Start)
+				if err != nil {
+					panic(err)
+				}
+				start = start.In(loc)
+				clock := start.Format(timeLayout)
+				date := start.Format(niceDate)
+				m := MergedMatch{
+					Time: clock, 
+					Date: date, 
+					Stations: []string{prog.Network.ShortTitle}, 
+					Datetime: start.Format(time.RFC3339), 
+					Title: strings.Replace(prog.Title.Tertiary, "Ashes", "", 1), 
+					Competition: "The Ashes",
+				}
 				matches = append(matches, m)
 			}
 		}
