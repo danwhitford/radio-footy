@@ -47,8 +47,9 @@ func isLeagueGame(title BBCTitles) bool {
 }
 
 func isCricket(title BBCTitles) bool {
-	return (title.Primary == "Test Match Special" && title.Secondary == "The Ashes") ||
-		(title.Primary == "The Ashes" && title.Secondary == "Test Match Special")
+	return strings.Contains(title.Tertiary, " v ") &&
+		((title.Primary == "Test Match Special" && title.Secondary == "The Ashes") ||
+			(title.Primary == "The Ashes" && title.Secondary == "Test Match Special"))
 }
 
 func bbcDayToMergedMatch(bbcFeed BBCFeed) []MergedMatch {
@@ -95,9 +96,15 @@ func bbcDayToMergedMatch(bbcFeed BBCFeed) []MergedMatch {
 					Date:        date,
 					Stations:    []string{prog.Network.ShortTitle},
 					Datetime:    start.Format(time.RFC3339),
-					Title:       strings.Replace(prog.Title.Tertiary, "Ashes", "", 1),
+					Title:       strings.Replace(prog.Title.Tertiary, " Ashes ", " ", 1),
 					Competition: "The Ashes",
 				}
+
+				//debug
+				if !strings.Contains(m.Title, " v ") {
+					log.Fatalf("oh no %+v\n", prog)
+				}
+
 				matches = append(matches, m)
 			}
 		}

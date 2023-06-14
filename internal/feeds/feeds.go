@@ -3,7 +3,6 @@ package feeds
 import (
 	"fmt"
 	"log"
-	"os"
 	"sort"
 	"strings"
 	"time"
@@ -56,15 +55,14 @@ func stationRank(station string) int {
 	case "talkSPORT2":
 		return 3
 	default:
-		return 4
+		return 99
 	}
 }
 
 func mapTeamNames(match *MergedMatch) {
 	teams := strings.Split(match.Title, " v ")
 	if len(teams) != 2 {
-		log.Printf("Skipping match with bad title: %v", match)
-		os.Exit(1)
+		log.Fatalf("Got match with bad title: %+v", match)
 	}
 	newTitle := fmt.Sprintf("%s v %s", mapTeamName(teams[0]), mapTeamName(teams[1]))
 	match.Title = newTitle
@@ -96,9 +94,9 @@ func mapCompName(match *MergedMatch) {
 
 func rollUpStations(matches []MergedMatch) []MergedMatch {
 	stationsRollUp := make(map[string][]MergedMatch)
-	for _, match := range matches {		
-		hashLol := fmt.Sprintf("%s%s%s", match.Competition, match.Date, match.Title)		
-		stationsRollUp[hashLol] = append(stationsRollUp[hashLol], match)		
+	for _, match := range matches {
+		hashLol := fmt.Sprintf("%s%s%s", match.Competition, match.Date, match.Title)
+		stationsRollUp[hashLol] = append(stationsRollUp[hashLol], match)
 	}
 	matches = make([]MergedMatch, 0)
 	for _, v := range stationsRollUp {
@@ -111,8 +109,8 @@ func rollUpStations(matches []MergedMatch) []MergedMatch {
 			for _, foo := range v {
 				event := MergedMatchRadioEvent{
 					Station: foo.Stations[0],
-					Date: 	foo.Date,
-					Time: 	foo.Time,
+					Date:    foo.Date,
+					Time:    foo.Time,
 				}
 				events = append(events, event)
 			}
@@ -125,8 +123,15 @@ func rollUpStations(matches []MergedMatch) []MergedMatch {
 			})
 			smoshed.Stations = stations
 			smoshed.RadioEvents = events
-			matches = append(matches, smoshed)			
+			matches = append(matches, smoshed)
 		} else {
+			v[0].RadioEvents = []MergedMatchRadioEvent{
+				{
+					Station: v[0].Stations[0],
+					Date:    v[0].Date,
+					Time:    v[0].Time,
+				},
+			}
 			matches = append(matches, v[0])
 		}
 	}
