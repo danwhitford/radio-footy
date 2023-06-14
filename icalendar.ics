@@ -4,10 +4,10 @@ METHOD:PUBLISH
 PRODID:-wirelessfootball.co.uk/icalendar
 BEGIN:VEVENT
 UID:englandvaustralia-1sttest,day1/theashes
-SUMMARY:England v Australia - 1st  Test, Day 1 [The Ashes]
-DESCRIPTION:England v Australia - 1st  Test, Day 1 [The Ashes]
+SUMMARY:England v Australia - 1st Test, Day 1 [The Ashes]
+DESCRIPTION:England v Australia - 1st Test, Day 1 [The Ashes]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230613T120510Z
+DTSTAMP:20230614T132323Z
 DTSTART:20230616T092500Z
 DURATION:PT2H
 END:VEVENT
@@ -16,26 +16,17 @@ UID:maltavengland/international
 SUMMARY:Malta v England [International]
 DESCRIPTION:Malta v England [International]
 LOCATION:BBC Radio 5
-DTSTAMP:20230613T120510Z
+DTSTAMP:20230614T132323Z
 DTSTART:20230616T184500Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:englandvaustralia-1sttest,day2/theashes
-SUMMARY:England v Australia - 1st  Test, Day 2 [The Ashes]
-DESCRIPTION:England v Australia - 1st  Test, Day 2 [The Ashes]
-LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230613T120510Z
-DTSTART:20230617T090000Z
 DURATION:PT2H
 END:VEVENT
 BEGIN:VEVENT
 UID:englandvaustralia-1sttest,day2/theashes
 SUMMARY:England v Australia - 1st Test, Day 2 [The Ashes]
 DESCRIPTION:England v Australia - 1st Test, Day 2 [The Ashes]
-LOCATION:Radio 5 Live
-DTSTAMP:20230613T120510Z
-DTSTART:20230617T100000Z
+LOCATION:Radio 5 Sports Extra
+DTSTAMP:20230614T132323Z
+DTSTART:20230617T090000Z
 DURATION:PT2H
 END:VEVENT
 BEGIN:VEVENT
@@ -43,34 +34,25 @@ UID:norwayvscotland/international
 SUMMARY:Norway v Scotland [International]
 DESCRIPTION:Norway v Scotland [International]
 LOCATION:BBC Radio 5
-DTSTAMP:20230613T120510Z
+DTSTAMP:20230614T132323Z
 DTSTART:20230617T160000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:englandvaustralia-1sttest,day3/theashes
-SUMMARY:England v Australia - 1st  Test, Day 3 [The Ashes]
-DESCRIPTION:England v Australia - 1st  Test, Day 3 [The Ashes]
-LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230613T120510Z
-DTSTART:20230618T090000Z
 DURATION:PT2H
 END:VEVENT
 BEGIN:VEVENT
 UID:englandvaustralia-1sttest,day3/theashes
 SUMMARY:England v Australia - 1st Test, Day 3 [The Ashes]
 DESCRIPTION:England v Australia - 1st Test, Day 3 [The Ashes]
-LOCATION:Radio 5 Live
-DTSTAMP:20230613T120510Z
+LOCATION:Radio 5 Live | Radio 5 Sports Extra
+DTSTAMP:20230614T132323Z
 DTSTART:20230618T110000Z
 DURATION:PT2H
 END:VEVENT
 BEGIN:VEVENT
 UID:englandvaustralia-1sttest,day4/theashes
-SUMMARY:England v Australia - 1st  Test, Day 4 [The Ashes]
-DESCRIPTION:England v Australia - 1st  Test, Day 4 [The Ashes]
+SUMMARY:England v Australia - 1st Test, Day 4 [The Ashes]
+DESCRIPTION:England v Australia - 1st Test, Day 4 [The Ashes]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230613T120510Z
+DTSTAMP:20230614T132323Z
 DTSTART:20230619T090000Z
 DURATION:PT2H
 END:VEVENT
@@ -79,16 +61,16 @@ UID:englandvnorthmacedonia/international
 SUMMARY:England v North Macedonia [International]
 DESCRIPTION:England v North Macedonia [International]
 LOCATION:BBC Radio 5
-DTSTAMP:20230613T120510Z
+DTSTAMP:20230614T132323Z
 DTSTART:20230619T184500Z
 DURATION:PT2H
 END:VEVENT
 BEGIN:VEVENT
 UID:englandvaustralia-1sttest,day5/theashes
-SUMMARY:England v Australia - 1st  Test, Day 5 [The Ashes]
-DESCRIPTION:England v Australia - 1st  Test, Day 5 [The Ashes]
+SUMMARY:England v Australia - 1st Test, Day 5 [The Ashes]
+DESCRIPTION:England v Australia - 1st Test, Day 5 [The Ashes]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230613T120510Z
+DTSTAMP:20230614T132323Z
 DTSTART:20230620T090000Z
 DURATION:PT2H
 END:VEVENT
@@ -97,7 +79,7 @@ UID:scotlandvgeorgia/international
 SUMMARY:Scotland v Georgia [International]
 DESCRIPTION:Scotland v Georgia [International]
 LOCATION:BBC Radio 5
-DTSTAMP:20230613T120510Z
+DTSTAMP:20230614T132323Z
 DTSTART:20230620T184500Z
 DURATION:PT2H
 END:VEVENT
