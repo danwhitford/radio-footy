@@ -94,6 +94,12 @@ func TestWriteIndex(t *testing.T) {
 
 			* {
 					font-family: LonUn;
+					background-color: black;
+					color: rgba(243, 240, 110, 1);
+			}
+
+			hr {
+				border-top: 1px solid rgba(243, 240, 110, 1);
 			}
 		</style>
 
