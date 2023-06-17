@@ -85,6 +85,18 @@ func TestWriteIndex(t *testing.T) {
     <meta name="Description" content="Upcoming football matches on the wireless">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
+
+		<style>
+			@font-face {
+					font-family: LonUn;
+					src: url(lu.ttf);
+			}
+
+			* {
+					font-family: LonUn;
+			}
+		</style>
+
 </head>
 
 <body>
