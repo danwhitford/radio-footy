@@ -19,7 +19,7 @@ func getTalkSportMatches() []MergedMatch {
 	var tsFeed []TSGame
 	err = json.Unmarshal(body, &tsFeed)
 	if err != nil {
-		log.Fatalf("error unmarshalling json: %v", err)
+		log.Fatalf("error unmarshalling json: %v. Body: %s", err, body)
 	}
 
 	return tsFeedToMergedMatches(tsFeed)
