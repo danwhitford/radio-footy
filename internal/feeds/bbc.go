@@ -47,9 +47,9 @@ func isLeagueGame(title BBCTitles) bool {
 }
 
 func isCricket(title BBCTitles) bool {
-	return strings.Contains(title.Tertiary, " v ") &&
-		((title.Primary == "Test Match Special" && title.Secondary == "The Ashes") ||
-			(title.Primary == "The Ashes" && title.Secondary == "Test Match Special"))
+	return !strings.Contains(title.Tertiary, "Women") &&
+		strings.Contains(title.Tertiary, " v ") &&
+		(title.Primary == "The Ashes" && title.Secondary == "Test Match Special")
 }
 
 func bbcDayToMergedMatch(bbcFeed BBCFeed) []MergedMatch {

@@ -85,18 +85,6 @@ func TestRollUpStations(t *testing.T) {
 					Time:     "17:30",
 					Date:     "Saturday, Dec 26",
 					Stations: []string{"talkSPORT", "BBC Radio 5"},
-					RadioEvents: []MergedMatchRadioEvent{
-						{
-							Station: "talkSPORT",
-							Time:    "17:30",
-							Date:    "Saturday, Dec 26",
-						},
-						{
-							Station: "BBC Radio 5",
-							Time:    "17:30",
-							Date:    "Saturday, Dec 26",
-						},
-					},
 				},
 			},
 		},
@@ -118,18 +106,6 @@ func TestRollUpStations(t *testing.T) {
 					Time:     "10:00",
 					Date:     "Saturday, Dec 26",
 					Stations: []string{"BBC Radio 5", "BBC Radio 5 Extra"},
-					RadioEvents: []MergedMatchRadioEvent{
-						{
-							Station: "BBC Radio 5",
-							Time:    "10:00",
-							Date:    "Saturday, Dec 26",
-						},
-						{
-							Station: "BBC Radio 5 Extra",
-							Time:    "12:00",
-							Date:    "Saturday, Dec 26",
-						},
-					},
 				},
 			},
 		},
@@ -452,7 +428,6 @@ func TestMergedMatchesToMergedMatchDays(t *testing.T) {
 							Competition: "Premier League",
 							Datetime:    "2021-08-14T15:00:00Z",
 							Stations:    []string{"talkSPORT", "BBC Radio 5"},
-							RadioEvents: []MergedMatchRadioEvent{{Station: "talkSPORT", Date: "Saturday, Aug 14"}},
 						},
 					},
 				},
@@ -466,7 +441,6 @@ func TestMergedMatchesToMergedMatchDays(t *testing.T) {
 							Competition: "Premier League",
 							Datetime:    "2021-08-15T15:00:00Z",
 							Stations:    []string{"BBC Radio 5"},
-							RadioEvents: []MergedMatchRadioEvent{{Station: "BBC Radio 5", Date: "Sunday, Aug 15"}},
 						},
 					},
 				},

@@ -15,7 +15,6 @@ type MergedMatch struct {
 	Datetime    string   `json:"datetime"`
 	Title       string   `json:"title"`
 	Competition string   `json:"competition"`
-	RadioEvents []MergedMatchRadioEvent
 }
 
 type MergedMatchRadioEvent struct {

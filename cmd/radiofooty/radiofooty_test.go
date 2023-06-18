@@ -33,18 +33,6 @@ func TestWriteIndex(t *testing.T) {
 								Stations:    []string{"talkSPORT", "BBC Radio 5 Live"},
 								Time:        "15:00",
 								Date:        "Monday, May 15",
-								RadioEvents: []feeds.MergedMatchRadioEvent{
-									{
-										Station: "talkSPORT",
-										Date:    "Monday, May 15",
-										Time:    "15:00",
-									},
-									{
-										Station: "BBC Radio 5 Live",
-										Date:    "Monday, May 15",
-										Time:    "15:00",
-									},
-								},
 							},
 						},
 					},
@@ -59,18 +47,6 @@ func TestWriteIndex(t *testing.T) {
 								Stations:    []string{"BBC Radio 5 Live", "BBC Radio 5 Extra"},
 								Time:        "10:00",
 								Date:        "Tuesday, May 16",
-								RadioEvents: []feeds.MergedMatchRadioEvent{
-									{
-										Station: "BBC Radio 5 Live",
-										Date:    "Tuesday, May 16",
-										Time:    "10:00",
-									},
-									{
-										Station: "BBC Radio 5 Extra",
-										Date:    "Tuesday, May 16",
-										Time:    "12:00",
-									},
-								},
 							},
 						},
 					},
@@ -113,8 +89,7 @@ func TestWriteIndex(t *testing.T) {
             <h2>Monday, May 15</h2>
             
                 <div class="match">
-                    <p class="row text-row"><b>15:00 | talkSPORT</b></p>
-                    <p class="row text-row"><b>15:00 | BBC Radio 5 Live</b></p>
+                    <p class="row text-row"><b>15:00 | talkSPORT | BBC Radio 5 Live</b></p>
                     <p class="row text-row">Southampton v Manchester City (Premier League)</p>
                 </div>
             
@@ -125,8 +100,7 @@ func TestWriteIndex(t *testing.T) {
             <h2>Tuesday, May 16</h2>
             
                 <div class="match">
-									<p class="row text-row"><b>10:00 | BBC Radio 5 Live</b></p>
-									<p class="row text-row"><b>12:00 | BBC Radio 5 Extra</b></p>
+									<p class="row text-row"><b>10:00 | BBC Radio 5 Live | BBC Radio 5 Extra</b></p>
 									<p class="row text-row">England v Australia (The Ashes)</p>
 								</div>
             

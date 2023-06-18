@@ -122,16 +122,8 @@ func rollUpStations(matches []MergedMatch) []MergedMatch {
 				return stationRank(events[i].Station) < stationRank(events[j].Station)
 			})
 			smoshed.Stations = stations
-			smoshed.RadioEvents = events
 			matches = append(matches, smoshed)
 		} else {
-			v[0].RadioEvents = []MergedMatchRadioEvent{
-				{
-					Station: v[0].Stations[0],
-					Date:    v[0].Date,
-					Time:    v[0].Time,
-				},
-			}
 			matches = append(matches, v[0])
 		}
 	}
