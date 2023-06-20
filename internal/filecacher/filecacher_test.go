@@ -1,6 +1,7 @@
 package filecacher
 
 import (
+	"fmt"
 	"io"
 	"net/http"
 	"os"
@@ -19,9 +20,15 @@ func shutdown() {
 	}
 }
 
-type DummyGetter struct{}
+type DummyGetter struct{
+	used bool
+}
 
-func (getter DummyGetter) Get(url string) (*http.Response, error) {
+func (getter *DummyGetter) Get(url string) (*http.Response, error) {
+	if getter.used {
+		return nil, fmt.Errorf("getter has been used")
+	}
+	getter.used = true
 	response := http.Response{
 		Body: io.NopCloser(strings.NewReader("Hello, world!")),
 		StatusCode: 200,
@@ -33,7 +40,8 @@ func TestCreatesCache(t *testing.T) {
 	setup()
 	defer shutdown()
 
-	b, err := GetUrl("https://www.example.com", DummyGetter{})
+	getter := DummyGetter{}
+	b, err := GetUrl("https://www.example.com", &getter)
 	if err != nil {
 		t.Fatalf("err was %v", err)
 	}
@@ -54,7 +62,8 @@ func TestUsesCache(t *testing.T) {
 	setup()
 	defer shutdown()
 
-	b, err := GetUrl("https://www.example.com", DummyGetter{})
+	getter := DummyGetter{}
+	b, err := GetUrl("https://www.example.com", &getter)
 	if err != nil {
 		t.Fatalf("err was %v", err)
 	}
@@ -62,7 +71,7 @@ func TestUsesCache(t *testing.T) {
 		t.Fatal("b was nil")
 	}
 
-	b, err = GetUrl("https://www.example.com", DummyGetter{})
+	b, err = GetUrl("https://www.example.com", &getter)
 	if err != nil {
 		t.Fatalf("err was %v", err)
 	}
