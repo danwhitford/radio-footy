@@ -3,26 +3,25 @@ package feeds
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"strings"
 	"time"
 
 	"whitford.io/radiofooty/internal/filecacher"
 )
 
-func getTalkSportMatches() []MergedMatch {
+func getTalkSportMatches() ([]MergedMatch, error) {
 	url := "https://talksport.com/wp-json/talksport/v2/talksport-live/commentary"
 	body, err := filecacher.GetUrl(url, filecacher.HttpGetter{})
 	if err != nil {
-		log.Fatalf("error getting url: %v", err)
+		return nil, err
 	}
 	var tsFeed []TSGame
 	err = json.Unmarshal(body, &tsFeed)
 	if err != nil {
-		log.Fatalf("error unmarshalling json: %v. Body: %s", err, body)
+		return nil, err
 	}
 
-	return tsFeedToMergedMatches(tsFeed)
+	return tsFeedToMergedMatches(tsFeed), nil
 }
 
 func tsFeedToMergedMatches(tsFeed []TSGame) []MergedMatch {

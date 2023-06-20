@@ -12,7 +12,10 @@ import (
 )
 
 func main() {
-	matches := feeds.GetMergedMatches()
+	matches, err := feeds.GetMergedMatches()
+	if err != nil {
+		log.Fatalln(err)
+	}
 
 	data := struct {
 		MatchDays []feeds.MergedMatchDay

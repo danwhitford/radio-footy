@@ -24,6 +24,7 @@ type DummyGetter struct{}
 func (getter DummyGetter) Get(url string) (*http.Response, error) {
 	response := http.Response{
 		Body: io.NopCloser(strings.NewReader("Hello, world!")),
+		StatusCode: 200,
 	}
 	return &response, nil
 }

@@ -9,7 +9,7 @@ import (
 	"whitford.io/radiofooty/internal/filecacher"
 )
 
-func getBBCMatches() []MergedMatch {
+func getBBCMatches() ([]MergedMatch, error) {
 	var matches = []MergedMatch{}
 	baseUrls := []string{
 		"https://rms.api.bbc.co.uk/v2/experience/inline/schedules/bbc_radio_five_live/",
@@ -29,7 +29,7 @@ func getBBCMatches() []MergedMatch {
 	for _, url := range urls {
 		body, err := filecacher.GetUrl(url, filecacher.HttpGetter{})
 		if err != nil {
-			panic(err)
+			return nil, err
 		}
 		json.Unmarshal(body, &bbcFeed)
 
@@ -37,7 +37,7 @@ func getBBCMatches() []MergedMatch {
 		matches = append(matches, merged...)
 	}
 
-	return matches
+	return matches, nil
 }
 
 func isLeagueGame(title BBCTitles) bool {

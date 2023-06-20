@@ -11,12 +11,21 @@ import (
 const niceDate = "Monday, Jan 2"
 const timeLayout = "15:04"
 
-func GetMergedMatches() []MergedMatchDay {
+func GetMergedMatches() ([]MergedMatchDay, error) {
 	var matches []MergedMatch
-	matches = append(matches, getTalkSportMatches()...)
-	matches = append(matches, getBBCMatches()...)
+	tsMatches, err := getTalkSportMatches()
+	if err != nil {
+		return nil, err
+	}
+	bbcMatches, err := getBBCMatches()
+	if err != nil {
+		return nil, err
+	}
 
-	return mergedMatchesToMergedMatchDays(matches)
+	matches = append(matches, tsMatches...)
+	matches = append(matches, bbcMatches...)
+
+	return mergedMatchesToMergedMatchDays(matches), nil
 }
 
 func mergedMatchesToMergedMatchDays(matches []MergedMatch) []MergedMatchDay {
