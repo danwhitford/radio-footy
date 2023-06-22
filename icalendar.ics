@@ -7,8 +7,17 @@ UID:englandvaustralia-2ndtest,day1/theashes
 SUMMARY:England v Australia - 2nd Test, Day 1 [The Ashes]
 DESCRIPTION:England v Australia - 2nd Test, Day 1 [The Ashes]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230621T120732Z
+DTSTAMP:20230622T001452Z
 DTSTART:20230628T092500Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:englandvaustralia-2ndtest,day2/theashes
+SUMMARY:England v Australia - 2nd Test, Day 2 [The Ashes]
+DESCRIPTION:England v Australia - 2nd Test, Day 2 [The Ashes]
+LOCATION:Radio 5 Sports Extra
+DTSTAMP:20230622T001452Z
+DTSTART:20230629T090000Z
 DURATION:PT2H
 END:VEVENT
 END:VCALENDAR
