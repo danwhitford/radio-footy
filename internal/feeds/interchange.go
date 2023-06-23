@@ -49,6 +49,9 @@ type BBCProgramData struct {
 	Title   BBCTitles  `json:"titles"`
 	Start   string     `json:"start"`
 	Network BBCNetwork `json:"network"`
+	Synopses struct {
+		Short string `json:"short"`
+	} `json:"synopses"`
 }
 
 type BBCNetwork struct {

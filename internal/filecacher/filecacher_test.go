@@ -20,7 +20,7 @@ func shutdown() {
 	}
 }
 
-type DummyGetter struct{
+type DummyGetter struct {
 	used bool
 }
 
@@ -30,7 +30,7 @@ func (getter *DummyGetter) Get(url string) (*http.Response, error) {
 	}
 	getter.used = true
 	response := http.Response{
-		Body: io.NopCloser(strings.NewReader("Hello, world!")),
+		Body:       io.NopCloser(strings.NewReader("Hello, world!")),
 		StatusCode: 200,
 	}
 	return &response, nil

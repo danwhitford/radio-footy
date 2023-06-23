@@ -11,13 +11,14 @@ import (
 const niceDate = "Monday, Jan 2"
 const timeLayout = "15:04"
 
-type MatchGetter func()([]MergedMatch, error)
+type MatchGetter func() ([]MergedMatch, error)
 
 func GetMergedMatches() ([]MergedMatchDay, error) {
 	var matches []MergedMatch
 	getters := []MatchGetter{
 		getTalkSportMatches,
 		getBBCMatches,
+		getSolentMatches,
 	}
 	for _, getter := range getters {
 		got, err := getter()
