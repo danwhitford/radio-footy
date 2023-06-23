@@ -2,13 +2,11 @@ package feeds
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"regexp"
 	"strings"
 	"time"
 
-	"github.com/antchfx/htmlquery"
 	"whitford.io/radiofooty/internal/filecacher"
 )
 
@@ -33,7 +31,7 @@ func getSolentMatches() ([]MergedMatch, error) {
 			return nil, err
 		}
 
-		merged, err := getSolentDay(string(body))
+		merged, err := getSolentDay(body)
 		if err != nil {
 			return nil, err
 		}
@@ -43,33 +41,13 @@ func getSolentMatches() ([]MergedMatch, error) {
 	return matches, nil
 }
 
-func getSolentDay(html string) ([]MergedMatch, error) {
-	doc, err := htmlquery.Parse(strings.NewReader(html))
-	if err != nil {
-		return nil, err
-	}
-	scripts := htmlquery.Find(doc, "//script")
-	for _, sc := range scripts {
-		if sc.FirstChild != nil {
-			scriptContent := sc.FirstChild.Data
-			if strings.HasPrefix(strings.TrimSpace(scriptContent), "window.__PRELOADED_STATE__") {
-				actualJson := strings.TrimSuffix(
-					strings.TrimPrefix(strings.TrimSpace(scriptContent), "window.__PRELOADED_STATE__ = "),
-					";",
-				)
-				var foo struct {
-					Modules BBCFeed `json:"modules"`
-				}
-				err := json.Unmarshal([]byte(actualJson), &foo)
-				if err != nil {
-					return nil, err
-				}
-				return solentDayToMergedMatch(foo.Modules), nil
-			}
-		}
-	}
-
-	return nil, fmt.Errorf("script tag for json not found")
+func getSolentDay(body []byte) ([]MergedMatch, error) {
+	var feed BBCFeed
+	var merged []MergedMatch
+	json.Unmarshal(body, &feed)
+	mm := solentDayToMergedMatch(feed)
+	merged = append(merged, mm...)
+	return merged, nil
 }
 
 func solentDayToMergedMatch(bbcFeed BBCFeed) []MergedMatch {
@@ -123,5 +101,5 @@ func solentDayToMergedMatch(bbcFeed BBCFeed) []MergedMatch {
 }
 
 func isLocalCricket(title BBCTitles) bool {
-	return title.Primary == "Summer Sport"
+	return title.Primary == "Summer Sport" || title.Primary == "Cricket"
 }
