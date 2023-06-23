@@ -75,7 +75,7 @@ func solentDayToMergedMatch(bbcFeed BBCFeed) []MergedMatch {
 
 				rg := regexp.MustCompile(`[(].+[)]`)
 				title := rg.ReplaceAllString(prog.Title.Secondary, "")
-				title = strings.TrimSpace(title)				
+				title = strings.TrimSpace(title)
 				comp := strings.SplitAfter(prog.Synopses.Short, "cricket")[0]
 
 				m := MergedMatch{
