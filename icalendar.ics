@@ -3,20 +3,11 @@ VERSION:2.0
 METHOD:PUBLISH
 PRODID:-wirelessfootball.co.uk/icalendar
 BEGIN:VEVENT
-UID:hampshirehawksvessexeagles/t20blastcricket
-SUMMARY:Hampshire Hawks v Essex Eagles [T20 Blast cricket]
-DESCRIPTION:Hampshire Hawks v Essex Eagles [T20 Blast cricket]
-LOCATION:BBC Radio Solent
-DTSTAMP:20230623T132311Z
-DTSTART:20230623T170000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
 UID:englandvaustralia-2ndtest,day1/theashes
 SUMMARY:England v Australia - 2nd Test, Day 1 [The Ashes]
 DESCRIPTION:England v Australia - 2nd Test, Day 1 [The Ashes]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230623T132311Z
+DTSTAMP:20230624T001648Z
 DTSTART:20230628T092500Z
 DURATION:PT2H
 END:VEVENT
@@ -25,7 +16,7 @@ UID:englandvaustralia-2ndtest,day2/theashes
 SUMMARY:England v Australia - 2nd Test, Day 2 [The Ashes]
 DESCRIPTION:England v Australia - 2nd Test, Day 2 [The Ashes]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230623T132311Z
+DTSTAMP:20230624T001648Z
 DTSTART:20230629T090000Z
 DURATION:PT2H
 END:VEVENT
@@ -34,7 +25,7 @@ UID:englandvaustralia-2ndtest,day3/theashes
 SUMMARY:England v Australia - 2nd Test, Day 3 [The Ashes]
 DESCRIPTION:England v Australia - 2nd Test, Day 3 [The Ashes]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230623T132311Z
+DTSTAMP:20230624T001648Z
 DTSTART:20230630T090000Z
 DURATION:PT2H
 END:VEVENT
@@ -43,8 +34,98 @@ UID:hampshirehawksvglamorgan/t20blastcricket
 SUMMARY:Hampshire Hawks v Glamorgan [T20 Blast cricket]
 DESCRIPTION:Hampshire Hawks v Glamorgan [T20 Blast cricket]
 LOCATION:BBC Radio Solent
-DTSTAMP:20230623T132311Z
+DTSTAMP:20230624T001648Z
 DTSTART:20230630T170000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:englandvaustralia-2ndtest,day4/theashes
+SUMMARY:England v Australia - 2nd Test, Day 4 [The Ashes]
+DESCRIPTION:England v Australia - 2nd Test, Day 4 [The Ashes]
+LOCATION:Radio 5 Sports Extra
+DTSTAMP:20230624T001648Z
+DTSTART:20230701T090000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:englandvportugal/internationalfriendlies
+SUMMARY:England v Portugal [International Friendlies]
+DESCRIPTION:England v Portugal [International Friendlies]
+LOCATION:talkSPORT
+DTSTAMP:20230624T001648Z
+DTSTART:20230701T141500Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:englandwomenvportugalwomen/international
+SUMMARY:England Women v Portugal Women [International]
+DESCRIPTION:England Women v Portugal Women [International]
+LOCATION:BBC Radio 5
+DTSTAMP:20230624T001648Z
+DTSTART:20230701T141500Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:sheffieldwednesdayvsouthampton/championship
+SUMMARY:Sheffield Wednesday v Southampton [Championship]
+DESCRIPTION:Sheffield Wednesday v Southampton [Championship]
+LOCATION:talkSPORT
+DTSTAMP:20230624T001648Z
+DTSTART:20230804T190000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:leicestercityvcoventrycity/championship
+SUMMARY:Leicester City v Coventry City [Championship]
+DESCRIPTION:Leicester City v Coventry City [Championship]
+LOCATION:talkSPORT
+DTSTAMP:20230624T001648Z
+DTSTART:20230806T110000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:leedsunitedvcardiffcity/championship
+SUMMARY:Leeds United v Cardiff City [Championship]
+DESCRIPTION:Leeds United v Cardiff City [Championship]
+LOCATION:talkSPORT2
+DTSTAMP:20230624T001648Z
+DTSTART:20230806T133000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:sunderlandvipswichtown/championship
+SUMMARY:Sunderland v Ipswich Town [Championship]
+DESCRIPTION:Sunderland v Ipswich Town [Championship]
+LOCATION:talkSPORT2
+DTSTAMP:20230624T001648Z
+DTSTART:20230806T160000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:burnleyvmanchestercity/premierleague
+SUMMARY:Burnley v Manchester City [Premier League]
+DESCRIPTION:Burnley v Manchester City [Premier League]
+LOCATION:talkSPORT
+DTSTAMP:20230624T001648Z
+DTSTART:20230811T190000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:arsenalvnottinghamforest/premierleague
+SUMMARY:Arsenal v Nottingham Forest [Premier League]
+DESCRIPTION:Arsenal v Nottingham Forest [Premier League]
+LOCATION:talkSPORT
+DTSTAMP:20230624T001648Z
+DTSTART:20230812T113000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:manchesterunitedvwolverhamptonwanderers/premierleague
+SUMMARY:Manchester United v Wolverhampton Wanderers [Premier League]
+DESCRIPTION:Manchester United v Wolverhampton Wanderers [Premier League]
+LOCATION:talkSPORT
+DTSTAMP:20230624T001648Z
+DTSTART:20230814T190000Z
 DURATION:PT2H
 END:VEVENT
 END:VCALENDAR
