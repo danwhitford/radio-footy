@@ -7,7 +7,7 @@ docs:
 .cache:
 	mkdir -p .cache
 
-radiofooty:
+radiofooty: $(wildcard cmd/radiofooty/*.go) $(wildcard internal/feeds/*.go) $(wildcard internal/filecacher/*.go) $(wildcard internal/website/*.tmpl)
 	go build cmd/radiofooty/radiofooty.go
 
 index.html: .cache radiofooty

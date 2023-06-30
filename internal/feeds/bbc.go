@@ -60,7 +60,7 @@ func bbcDayToMergedMatches(bbcFeed BBCFeed) []MergedMatch {
 		log.Fatalf("error loading location: %v", err)
 	}
 	longFormat := "2006-01-02T15:04:05Z"
-
+	
 	for _, data := range bbcFeed.Data {
 		for _, prog := range data.Data {
 			if strings.HasPrefix(prog.Title.Secondary, "Women") ||
