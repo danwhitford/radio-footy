@@ -20,10 +20,8 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version-file: './go.mod'
-      - run: go version
       - run: go test -v ./...
-      - run: go run cmd/radiofooty/radiofooty.go
-      - run: ./scripts/build.sh
+      - run: make website
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
