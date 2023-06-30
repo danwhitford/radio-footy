@@ -12,14 +12,17 @@ docs:
 .cache:
 	mkdir -p .cache
 
-index.html: .cache
-	go run cmd/radiofooty/radiofooty.go
+radiofooty:
+	go build cmd/radiofooty/radiofooty.go
+
+index.html: .cache radiofooty
+	./radiofooty
 
 docs/index.html: docs index.html
 	cp index.html docs/index.html
 
-icalendar.ics:
-	go run cmd/radiofooty/radiofooty.go
+icalendar.ics: .cache radiofooty
+	./radiofooty
 
 docs/icalendar.ics: docs icalendar.ics
 	cp icalendar.ics docs/icalendar.ics
