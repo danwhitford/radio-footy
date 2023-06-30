@@ -1,8 +1,3 @@
-
-.PHONY: cleancache
-cleancache:
-	find .cache/ -type f -delete
-
 website: docs/index.html docs/icalendar.ics docs/lu.ttf
 .PHONY: website
 
@@ -27,5 +22,5 @@ icalendar.ics: .cache radiofooty
 docs/icalendar.ics: docs icalendar.ics
 	cp icalendar.ics docs/icalendar.ics
 
-docs/lu.ttf: docs
+docs/lu.ttf: docs lu.ttf
 	cp lu.ttf docs/lu.ttf

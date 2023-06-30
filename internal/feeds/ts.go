@@ -49,8 +49,6 @@ func tsFeedToMergedMatches(tsFeed []TSGame) []MergedMatch {
 			continue
 		}
 
-		fmt.Printf("%#v\n", m)
-
 		t, _ := time.ParseInLocation(longForm, m.Date, loc)
 		title := fmt.Sprintf("%s v %s", m.HomeTeam, m.AwayTeam)
 		displayDate := t.Format(niceDate)
