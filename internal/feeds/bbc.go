@@ -33,7 +33,7 @@ func getBBCMatches() ([]MergedMatch, error) {
 		}
 		json.Unmarshal(body, &bbcFeed)
 
-		merged := bbcDayToMergedMatch(bbcFeed)
+		merged := bbcDayToMergedMatches(bbcFeed)
 		matches = append(matches, merged...)
 	}
 
@@ -52,7 +52,7 @@ func isCricket(title BBCTitles) bool {
 		(title.Primary == "The Ashes" && title.Secondary == "Test Match Special")
 }
 
-func bbcDayToMergedMatch(bbcFeed BBCFeed) []MergedMatch {
+func bbcDayToMergedMatches(bbcFeed BBCFeed) []MergedMatch {
 	matches := make([]MergedMatch, 0)
 
 	loc, err := time.LoadLocation("Europe/London")
@@ -63,7 +63,8 @@ func bbcDayToMergedMatch(bbcFeed BBCFeed) []MergedMatch {
 
 	for _, data := range bbcFeed.Data {
 		for _, prog := range data.Data {
-			if strings.HasPrefix(prog.Title.Secondary, "Women") {
+			if strings.HasPrefix(prog.Title.Secondary, "Women") ||
+				strings.Contains(prog.Title.Tertiary, "Women") {
 				continue
 			}
 			if isLeagueGame(prog.Title) {

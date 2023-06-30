@@ -25,7 +25,7 @@ func getTalkSportMatches() ([]MergedMatch, error) {
 }
 
 func tsFeedToMergedMatches(tsFeed []TSGame) []MergedMatch {
-	var matches []MergedMatch
+	matches := make([]MergedMatch, 0)
 	longForm := "2006-01-02 15:04:05"
 	loc, _ := time.LoadLocation("Europe/London")
 
@@ -44,9 +44,13 @@ func tsFeedToMergedMatches(tsFeed []TSGame) []MergedMatch {
 		if m.League == "" {
 			continue
 		}
-		if strings.HasPrefix(m.Title, "Women") {
+		if strings.HasPrefix(m.Title, "Women") ||
+			strings.Contains(m.Title, "Women") {
 			continue
 		}
+
+		fmt.Printf("%#v\n", m)
+
 		t, _ := time.ParseInLocation(longForm, m.Date, loc)
 		title := fmt.Sprintf("%s v %s", m.HomeTeam, m.AwayTeam)
 		displayDate := t.Format(niceDate)

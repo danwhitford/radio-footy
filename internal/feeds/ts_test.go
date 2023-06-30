@@ -37,6 +37,24 @@ func TestTsFeedToMergedMatches(t *testing.T) {
 				},
 			},
 		},
+		{
+			input: []TSGame{
+				{
+					Livefeed: []TSLiveFeed{
+						{
+							Feedname: "talkSPORT",
+						},
+					},
+					Sport:    "Football",
+					Date:     "2023-07-01 15:15:00",
+					HomeTeam: "England",
+					AwayTeam: "Portugal",
+					League:   "International Friendlies",
+					Title:    "England Women v Portugal Women",
+				},
+			},
+			output: []MergedMatch{},
+		},
 	}
 
 	for _, test := range table {

@@ -1,8 +1,9 @@
 package feeds
 
 import (
-	"github.com/google/go-cmp/cmp"
 	"testing"
+
+	"github.com/google/go-cmp/cmp"
 )
 
 func TestBBCDayToMergedMatch(t *testing.T) {
@@ -38,10 +39,35 @@ func TestBBCDayToMergedMatch(t *testing.T) {
 				},
 			},
 		},
+		{
+			input: BBCFeed{
+				Data: []BBCFeedData{
+					{
+						Data: []BBCProgramData{
+							{
+								Title: BBCTitles{
+									Primary:   "5 Live Sport",
+									Secondary: "International Football 2022-23",
+									Tertiary:  "England Women v Portugal Women",
+								},
+								Start: "2023-07-01T14:15:00Z",
+								Network: BBCNetwork{
+									ShortTitle: "Radio 5 Live",
+								},
+								Synopses: BBCSynopses{
+									Short: "Live football commentary of England Women v Portugal Women in an international friendly.",
+								},
+							},
+						},
+					},
+				},
+			},
+			output: []MergedMatch{},
+		},
 	}
 
 	for _, test := range table {
-		got := bbcDayToMergedMatch(test.input)
+		got := bbcDayToMergedMatches(test.input)
 		if diff := cmp.Diff(test.output, got); diff != "" {
 			t.Errorf("bbcDayToMergedMatch() mismatch (-want +got):\n%s", diff)
 		}
