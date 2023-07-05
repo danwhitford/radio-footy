@@ -7,7 +7,7 @@ UID:englandvaustralia-3rdtest,day1/theashes
 SUMMARY:England v Australia - 3rd Test, Day 1 [The Ashes]
 DESCRIPTION:England v Australia - 3rd Test, Day 1 [The Ashes]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230704T183950Z
+DTSTAMP:20230705T005709Z
 DTSTART:20230706T092500Z
 DURATION:PT2H
 END:VEVENT
@@ -16,7 +16,7 @@ UID:englandvaustralia-3rdtest,day2/theashes
 SUMMARY:England v Australia - 3rd Test, Day 2 [The Ashes]
 DESCRIPTION:England v Australia - 3rd Test, Day 2 [The Ashes]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230704T183950Z
+DTSTAMP:20230705T005709Z
 DTSTART:20230707T090000Z
 DURATION:PT2H
 END:VEVENT
@@ -25,7 +25,7 @@ UID:hampshirehawksvworcestershirerapids/t20blastquarter-final:hampshirehawksvwor
 SUMMARY:Hampshire Hawks v Worcestershire Rapids [T20 Blast quarter-final: Hampshire Hawks v Worcestershire Rapids (weather permitting).]
 DESCRIPTION:Hampshire Hawks v Worcestershire Rapids [T20 Blast quarter-final: Hampshire Hawks v Worcestershire Rapids (weather permitting).]
 LOCATION:BBC Radio Solent
-DTSTAMP:20230704T183950Z
+DTSTAMP:20230705T005709Z
 DTSTART:20230707T170000Z
 DURATION:PT2H
 END:VEVENT
@@ -34,7 +34,7 @@ UID:englandvaustralia-3rdtest,day3/theashes
 SUMMARY:England v Australia - 3rd Test, Day 3 [The Ashes]
 DESCRIPTION:England v Australia - 3rd Test, Day 3 [The Ashes]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230704T183950Z
+DTSTAMP:20230705T005709Z
 DTSTART:20230708T090000Z
 DURATION:PT2H
 END:VEVENT
@@ -43,7 +43,7 @@ UID:englandvaustralia-3rdtest,day4/theashes
 SUMMARY:England v Australia - 3rd Test, Day 4 [The Ashes]
 DESCRIPTION:England v Australia - 3rd Test, Day 4 [The Ashes]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230704T183950Z
+DTSTAMP:20230705T005709Z
 DTSTART:20230709T090000Z
 DURATION:PT2H
 END:VEVENT
@@ -52,7 +52,7 @@ UID:englandvaustralia-3rdtest,day5/theashes
 SUMMARY:England v Australia - 3rd Test, Day 5 [The Ashes]
 DESCRIPTION:England v Australia - 3rd Test, Day 5 [The Ashes]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230704T183950Z
+DTSTAMP:20230705T005709Z
 DTSTART:20230710T090000Z
 DURATION:PT2H
 END:VEVENT
@@ -61,7 +61,7 @@ UID:sheffieldwednesdayvsouthampton/championship
 SUMMARY:Sheffield Wednesday v Southampton [Championship]
 DESCRIPTION:Sheffield Wednesday v Southampton [Championship]
 LOCATION:talkSPORT
-DTSTAMP:20230704T183950Z
+DTSTAMP:20230705T005709Z
 DTSTART:20230804T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -70,7 +70,7 @@ UID:leicestercityvcoventrycity/championship
 SUMMARY:Leicester City v Coventry City [Championship]
 DESCRIPTION:Leicester City v Coventry City [Championship]
 LOCATION:talkSPORT
-DTSTAMP:20230704T183950Z
+DTSTAMP:20230705T005709Z
 DTSTART:20230806T110000Z
 DURATION:PT2H
 END:VEVENT
@@ -79,7 +79,7 @@ UID:leedsunitedvcardiffcity/championship
 SUMMARY:Leeds United v Cardiff City [Championship]
 DESCRIPTION:Leeds United v Cardiff City [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230704T183950Z
+DTSTAMP:20230705T005709Z
 DTSTART:20230806T133000Z
 DURATION:PT2H
 END:VEVENT
@@ -88,7 +88,7 @@ UID:sunderlandvipswichtown/championship
 SUMMARY:Sunderland v Ipswich Town [Championship]
 DESCRIPTION:Sunderland v Ipswich Town [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230704T183950Z
+DTSTAMP:20230705T005709Z
 DTSTART:20230806T160000Z
 DURATION:PT2H
 END:VEVENT
@@ -97,7 +97,7 @@ UID:burnleyvmanchestercity/premierleague
 SUMMARY:Burnley v Manchester City [Premier League]
 DESCRIPTION:Burnley v Manchester City [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230704T183950Z
+DTSTAMP:20230705T005709Z
 DTSTART:20230811T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -106,7 +106,7 @@ UID:arsenalvnottinghamforest/premierleague
 SUMMARY:Arsenal v Nottingham Forest [Premier League]
 DESCRIPTION:Arsenal v Nottingham Forest [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230704T183950Z
+DTSTAMP:20230705T005709Z
 DTSTART:20230812T113000Z
 DURATION:PT2H
 END:VEVENT
@@ -115,7 +115,7 @@ UID:manchesterunitedvwolverhamptonwanderers/premierleague
 SUMMARY:Manchester United v Wolverhampton Wanderers [Premier League]
 DESCRIPTION:Manchester United v Wolverhampton Wanderers [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230704T183950Z
+DTSTAMP:20230705T005709Z
 DTSTART:20230814T190000Z
 DURATION:PT2H
 END:VEVENT
