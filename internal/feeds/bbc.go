@@ -46,10 +46,23 @@ func isLeagueGame(title BBCTitles) bool {
 		strings.Contains(title.Tertiary, " v ")
 }
 
-func isCricket(title BBCTitles) bool {
-	return !strings.Contains(title.Tertiary, "Women") &&
-		strings.Contains(title.Tertiary, " v ") &&
-		(title.Primary == "The Ashes" && title.Secondary == "Test Match Special")
+func isAshes(title BBCTitles) bool {
+	if strings.Contains(title.Tertiary, "Women") {
+		return false
+	}
+	if strings.Contains(title.Tertiary, " v ") && title.Primary == "The Ashes" && title.Secondary == "Test Match Special" {
+		return true
+	}
+
+	return false
+}
+
+func isCountyCricket(title BBCTitles) bool {
+	if strings.Contains(title.Primary, "Cricket") && strings.Contains(title.Secondary, " v ") {
+		return true
+	}
+
+	return false
 }
 
 func bbcDayToMergedMatches(bbcFeed BBCFeed) []MergedMatch {
@@ -60,7 +73,7 @@ func bbcDayToMergedMatches(bbcFeed BBCFeed) []MergedMatch {
 		log.Fatalf("error loading location: %v", err)
 	}
 	longFormat := "2006-01-02T15:04:05Z"
-	
+
 	for _, data := range bbcFeed.Data {
 		for _, prog := range data.Data {
 			if strings.HasPrefix(prog.Title.Secondary, "Women") ||
@@ -84,7 +97,7 @@ func bbcDayToMergedMatches(bbcFeed BBCFeed) []MergedMatch {
 					Competition: prog.Title.Secondary,
 				}
 				matches = append(matches, m)
-			} else if isCricket(prog.Title) {
+			} else if isAshes(prog.Title) {
 				start, err := time.Parse(longFormat, prog.Start)
 				if err != nil {
 					panic(err)
@@ -101,7 +114,28 @@ func bbcDayToMergedMatches(bbcFeed BBCFeed) []MergedMatch {
 					Competition: "The Ashes",
 				}
 
-				//debug
+				if !strings.Contains(m.Title, " v ") {
+					log.Fatalf("oh no %+v\n", prog)
+				}
+
+				matches = append(matches, m)
+			} else if isCountyCricket(prog.Title) {
+				start, err := time.Parse(longFormat, prog.Start)
+				if err != nil {
+					panic(err)
+				}
+				start = start.In(loc)
+				clock := start.Format(timeLayout)
+				date := start.Format(niceDate)
+				m := MergedMatch{
+					Time:        clock,
+					Date:        date,
+					Stations:    []string{prog.Network.ShortTitle},
+					Datetime:    start.Format(time.RFC3339),
+					Title:       prog.Title.Secondary,
+					Competition: "County Championship",
+				}
+
 				if !strings.Contains(m.Title, " v ") {
 					log.Fatalf("oh no %+v\n", prog)
 				}

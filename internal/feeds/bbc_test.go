@@ -64,6 +64,32 @@ func TestBBCDayToMergedMatch(t *testing.T) {
 			},
 			output: []MergedMatch{},
 		},
+		{
+			input: BBCFeed{
+				Data: []BBCFeedData{
+					{
+						Data: []BBCProgramData{
+							{
+								Title:    BBCTitles{Primary: "Cricket", Secondary: "Surrey v Nottinghamshire", Tertiary: ""},
+								Start:    "2023-07-13T09:55:00Z",
+								Network:  BBCNetwork{ShortTitle: "Radio 5 Sports Extra"},
+								Synopses: BBCSynopses{Short: "Kevin Howells presents commentary of Surrey v Nottinghamshire in the County Championship."},
+							},
+						},
+					},
+				},
+			},
+			output: []MergedMatch{
+				{
+					Title:       "Surrey v Nottinghamshire",
+					Stations:    []string{"Radio 5 Sports Extra"},
+					Competition: "County Championship",
+					Time:        "10:55",
+					Date:        "Thursday, Jul 13",
+					Datetime:    "2023-07-13T10:55:00+01:00",
+				},
+			},
+		},
 	}
 
 	for _, test := range table {

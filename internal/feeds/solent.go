@@ -87,7 +87,6 @@ func solentDayToMergedMatch(bbcFeed BBCFeed) []MergedMatch {
 					Competition: comp,
 				}
 
-				//debug
 				if !strings.Contains(title, " v ") {
 					log.Fatalf("oh no %+v\nbecame %+v\n", prog, m)
 				}
