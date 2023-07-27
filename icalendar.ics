@@ -3,20 +3,11 @@ VERSION:2.0
 METHOD:PUBLISH
 PRODID:-wirelessfootball.co.uk/icalendar
 BEGIN:VEVENT
-UID:hampshirevessex/countychampionship
-SUMMARY:Hampshire v Essex [County Championship]
-DESCRIPTION:Hampshire v Essex [County Championship]
-LOCATION:Radio 5 Sports Extra | Radio 5 Sports Extra
-DTSTAMP:20230726T183839Z
-DTSTART:20230726T095500Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
 UID:englandvaustralia–5thtest,day1/theashes
 SUMMARY:England v Australia – 5th Test, Day 1 [The Ashes]
 DESCRIPTION:England v Australia – 5th Test, Day 1 [The Ashes]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230726T183839Z
+DTSTAMP:20230727T005600Z
 DTSTART:20230727T092500Z
 DURATION:PT2H
 END:VEVENT
@@ -25,7 +16,7 @@ UID:englandvaustralia–5thtest,day2/theashes
 SUMMARY:England v Australia – 5th Test, Day 2 [The Ashes]
 DESCRIPTION:England v Australia – 5th Test, Day 2 [The Ashes]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230726T183839Z
+DTSTAMP:20230727T005600Z
 DTSTART:20230728T090000Z
 DURATION:PT2H
 END:VEVENT
@@ -34,7 +25,7 @@ UID:englandvaustralia–5thtest,day3/theashes
 SUMMARY:England v Australia – 5th Test, Day 3 [The Ashes]
 DESCRIPTION:England v Australia – 5th Test, Day 3 [The Ashes]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230726T183839Z
+DTSTAMP:20230727T005600Z
 DTSTART:20230729T090000Z
 DURATION:PT2H
 END:VEVENT
@@ -43,7 +34,7 @@ UID:englandvaustralia–5thtest,day4/theashes
 SUMMARY:England v Australia – 5th Test, Day 4 [The Ashes]
 DESCRIPTION:England v Australia – 5th Test, Day 4 [The Ashes]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230726T183839Z
+DTSTAMP:20230727T005600Z
 DTSTART:20230730T090000Z
 DURATION:PT2H
 END:VEVENT
@@ -52,7 +43,7 @@ UID:englandvaustralia–5thtest,day5/theashes
 SUMMARY:England v Australia – 5th Test, Day 5 [The Ashes]
 DESCRIPTION:England v Australia – 5th Test, Day 5 [The Ashes]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230726T183839Z
+DTSTAMP:20230727T005600Z
 DTSTART:20230731T090000Z
 DURATION:PT2H
 END:VEVENT
@@ -61,7 +52,7 @@ UID:trentrocketswomenvsouthernbravewomen/countychampionship
 SUMMARY:Trent Rockets Women v Southern Brave Women [County Championship]
 DESCRIPTION:Trent Rockets Women v Southern Brave Women [County Championship]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230726T183839Z
+DTSTAMP:20230727T005600Z
 DTSTART:20230801T134500Z
 DURATION:PT2H
 END:VEVENT
@@ -70,7 +61,7 @@ UID:trentrocketsmenvsouthernbravemen/countychampionship
 SUMMARY:Trent Rockets Men v Southern Brave Men [County Championship]
 DESCRIPTION:Trent Rockets Men v Southern Brave Men [County Championship]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230726T183839Z
+DTSTAMP:20230727T005600Z
 DTSTART:20230801T172500Z
 DURATION:PT2H
 END:VEVENT
@@ -79,7 +70,7 @@ UID:welshfirewomenvmanchesteroriginalswomen/countychampionship
 SUMMARY:Welsh Fire Women v Manchester Originals Women [County Championship]
 DESCRIPTION:Welsh Fire Women v Manchester Originals Women [County Championship]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230726T183839Z
+DTSTAMP:20230727T005600Z
 DTSTART:20230802T102500Z
 DURATION:PT2H
 END:VEVENT
@@ -88,8 +79,26 @@ UID:welshfiremenvmanchesteroriginalsmen/countychampionship
 SUMMARY:Welsh Fire Men v Manchester Originals Men [County Championship]
 DESCRIPTION:Welsh Fire Men v Manchester Originals Men [County Championship]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230726T183839Z
+DTSTAMP:20230727T005600Z
 DTSTART:20230802T135500Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:northernsuperchargerswomenvbirminghamphoenixwomen/countychampionship
+SUMMARY:Northern Superchargers Women v Birmingham Phoenix Women [County Championship]
+DESCRIPTION:Northern Superchargers Women v Birmingham Phoenix Women [County Championship]
+LOCATION:Radio 5 Sports Extra
+DTSTAMP:20230727T005600Z
+DTSTART:20230803T135500Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:northernsuperchargersmenvbirminghamphoenixmen/countychampionship
+SUMMARY:Northern Superchargers Men v Birmingham Phoenix Men [County Championship]
+DESCRIPTION:Northern Superchargers Men v Birmingham Phoenix Men [County Championship]
+LOCATION:Radio 5 Sports Extra
+DTSTAMP:20230727T005600Z
+DTSTART:20230803T172500Z
 DURATION:PT2H
 END:VEVENT
 BEGIN:VEVENT
@@ -97,7 +106,7 @@ UID:sheffieldwednesdayvsouthampton/championship
 SUMMARY:Sheffield Wednesday v Southampton [Championship]
 DESCRIPTION:Sheffield Wednesday v Southampton [Championship]
 LOCATION:talkSPORT
-DTSTAMP:20230726T183839Z
+DTSTAMP:20230727T005600Z
 DTSTART:20230804T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -106,7 +115,7 @@ UID:leicestercityvcoventrycity/championship
 SUMMARY:Leicester City v Coventry City [Championship]
 DESCRIPTION:Leicester City v Coventry City [Championship]
 LOCATION:talkSPORT
-DTSTAMP:20230726T183839Z
+DTSTAMP:20230727T005600Z
 DTSTART:20230806T110000Z
 DURATION:PT2H
 END:VEVENT
@@ -115,7 +124,7 @@ UID:leedsunitedvcardiffcity/championship
 SUMMARY:Leeds United v Cardiff City [Championship]
 DESCRIPTION:Leeds United v Cardiff City [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230726T183839Z
+DTSTAMP:20230727T005600Z
 DTSTART:20230806T133000Z
 DURATION:PT2H
 END:VEVENT
@@ -124,7 +133,7 @@ UID:manchestercityvarsenal/communityshield
 SUMMARY:Manchester City v Arsenal [Community Shield]
 DESCRIPTION:Manchester City v Arsenal [Community Shield]
 LOCATION:talkSPORT
-DTSTAMP:20230726T183839Z
+DTSTAMP:20230727T005600Z
 DTSTART:20230806T150000Z
 DURATION:PT2H
 END:VEVENT
@@ -133,7 +142,7 @@ UID:sunderlandvipswichtown/championship
 SUMMARY:Sunderland v Ipswich Town [Championship]
 DESCRIPTION:Sunderland v Ipswich Town [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230726T183839Z
+DTSTAMP:20230727T005600Z
 DTSTART:20230806T160000Z
 DURATION:PT2H
 END:VEVENT
@@ -142,7 +151,7 @@ UID:gillinghamvsouthampton/eflcup
 SUMMARY:Gillingham v Southampton [EFL Cup]
 DESCRIPTION:Gillingham v Southampton [EFL Cup]
 LOCATION:talkSPORT2
-DTSTAMP:20230726T183839Z
+DTSTAMP:20230727T005600Z
 DTSTART:20230808T184500Z
 DURATION:PT2H
 END:VEVENT
@@ -151,7 +160,7 @@ UID:afcwimbledonvcoventrycity/eflcup
 SUMMARY:AFC Wimbledon v Coventry City [EFL Cup]
 DESCRIPTION:AFC Wimbledon v Coventry City [EFL Cup]
 LOCATION:talkSPORT2
-DTSTAMP:20230726T183839Z
+DTSTAMP:20230727T005600Z
 DTSTART:20230809T184500Z
 DURATION:PT2H
 END:VEVENT
@@ -160,7 +169,7 @@ UID:burnleyvmanchestercity/premierleague
 SUMMARY:Burnley v Manchester City [Premier League]
 DESCRIPTION:Burnley v Manchester City [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230726T183839Z
+DTSTAMP:20230727T005600Z
 DTSTART:20230811T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -169,7 +178,7 @@ UID:arsenalvnottinghamforest/premierleague
 SUMMARY:Arsenal v Nottingham Forest [Premier League]
 DESCRIPTION:Arsenal v Nottingham Forest [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230726T183839Z
+DTSTAMP:20230727T005600Z
 DTSTART:20230812T113000Z
 DURATION:PT2H
 END:VEVENT
@@ -178,7 +187,7 @@ UID:coventrycityvmiddlesbrough/championship
 SUMMARY:Coventry City v Middlesbrough [Championship]
 DESCRIPTION:Coventry City v Middlesbrough [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230726T183839Z
+DTSTAMP:20230727T005600Z
 DTSTART:20230812T113000Z
 DURATION:PT2H
 END:VEVENT
