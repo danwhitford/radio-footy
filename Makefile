@@ -1,9 +1,9 @@
+.PHONY: website
+website: docs/index.html docs/icalendar.ics docs/lu.ttf
+
 .PHONY: clean
 clean:
 	git clean -fdx
-
-.PHONY: website
-website: docs/index.html docs/icalendar.ics docs/lu.ttf
 
 docs:
 	mkdir -p docs
