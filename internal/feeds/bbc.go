@@ -57,7 +57,7 @@ func isAshes(title BBCTitles) bool {
 	return false
 }
 
-func isCountyCricket(title BBCTitles) bool {
+func isDomesticCricket(title BBCTitles) bool {
 	if strings.Contains(title.Primary, "Cricket") && strings.Contains(title.Secondary, " v ") {
 		return true
 	}
@@ -119,7 +119,7 @@ func bbcDayToMergedMatches(bbcFeed BBCFeed) []MergedMatch {
 				}
 
 				matches = append(matches, m)
-			} else if isCountyCricket(prog.Title) {
+			} else if isDomesticCricket(prog.Title) {
 				start, err := time.Parse(longFormat, prog.Start)
 				if err != nil {
 					panic(err)
@@ -127,13 +127,26 @@ func bbcDayToMergedMatches(bbcFeed BBCFeed) []MergedMatch {
 				start = start.In(loc)
 				clock := start.Format(timeLayout)
 				date := start.Format(niceDate)
+
+				var competition string
+				switch {
+				case strings.Contains(prog.Synopses.Short, "County Championship"):
+					competition = "County Championship"
+				case strings.Contains(prog.Synopses.Short, "The Hundred"):
+					competition = "The Hundred"
+				case strings.Contains(prog.Synopses.Short, "One Day Cup"):
+					competition = "One Day Cup"
+				default:
+					log.Fatalf("unknown cricket competition: %+v\n", prog)
+				}
+
 				m := MergedMatch{
 					Time:        clock,
 					Date:        date,
 					Stations:    []string{prog.Network.ShortTitle},
 					Datetime:    start.Format(time.RFC3339),
 					Title:       prog.Title.Secondary,
-					Competition: "County Championship",
+					Competition: competition,
 				}
 
 				if !strings.Contains(m.Title, " v ") {

@@ -90,6 +90,40 @@ func TestBBCDayToMergedMatch(t *testing.T) {
 				},
 			},
 		},
+		{
+			input: BBCFeed{
+				Data: []BBCFeedData{
+					{
+						Data: []BBCProgramData{
+							{
+								Title: BBCTitles{
+									Primary:   "Cricket",
+									Secondary: "Oval Invincibles Men v Welsh Fire Men",
+									Tertiary:  "",
+								},
+								Start: "2023-08-06T18:00:00Z",
+								Network: BBCNetwork{
+									ShortTitle: "Radio 5 Sports Extra",
+								},
+								Synopses: BBCSynopses{
+									Short: "Live commentary of Oval Invincibles Men v Welsh Fire Men in The Hundred at the Oval.",
+								},
+							},
+						},
+					},
+				},
+			},
+			output: []MergedMatch{
+				{
+					Title:       "Oval Invincibles Men v Welsh Fire Men",
+					Stations:    []string{"Radio 5 Sports Extra"},
+					Competition: "The Hundred",
+					Time:        "19:00",
+					Date:        "Sunday, Aug 6",
+					Datetime:    "2023-08-06T19:00:00+01:00",
+				},
+			},
+		},
 	}
 
 	for _, test := range table {
