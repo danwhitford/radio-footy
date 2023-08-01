@@ -28,7 +28,7 @@ func getAndSave(url, fname string, getter Getter) ([]byte, error) {
 		return nil, err
 	}
 	if resp.StatusCode != 200 {
-		return nil, fmt.Errorf("error getting url: %s. code: %d. body: %s", url, resp.StatusCode, resp.Body)
+		return nil, fmt.Errorf("error getting url: %s. code: %d. body: %v", url, resp.StatusCode, resp.Body)
 	}
 	defer resp.Body.Close()
 	body, err := io.ReadAll(resp.Body)
