@@ -7,7 +7,7 @@ UID:yorkshirevikingsvkentspitfires/onedaycup
 SUMMARY:Yorkshire Vikings v Kent Spitfires [One Day Cup]
 DESCRIPTION:Yorkshire Vikings v Kent Spitfires [One Day Cup]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230801T095500Z
 DURATION:PT2H
 END:VEVENT
@@ -16,7 +16,7 @@ UID:trentrocketswomenvsouthernbravewomen/thehundred
 SUMMARY:Trent Rockets Women v Southern Brave Women [The Hundred]
 DESCRIPTION:Trent Rockets Women v Southern Brave Women [The Hundred]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230801T134500Z
 DURATION:PT2H
 END:VEVENT
@@ -25,7 +25,7 @@ UID:trentrocketsmenvsouthernbravemen/thehundred
 SUMMARY:Trent Rockets Men v Southern Brave Men [The Hundred]
 DESCRIPTION:Trent Rockets Men v Southern Brave Men [The Hundred]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230801T172500Z
 DURATION:PT2H
 END:VEVENT
@@ -34,7 +34,7 @@ UID:welshfirewomenvmanchesteroriginalswomen/thehundred
 SUMMARY:Welsh Fire Women v Manchester Originals Women [The Hundred]
 DESCRIPTION:Welsh Fire Women v Manchester Originals Women [The Hundred]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230802T102500Z
 DURATION:PT2H
 END:VEVENT
@@ -43,7 +43,7 @@ UID:londonspiritwomenvovalinvincibleswomen/thehundred
 SUMMARY:London Spirit Women v Oval Invincibles Women [The Hundred]
 DESCRIPTION:London Spirit Women v Oval Invincibles Women [The Hundred]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230802T135500Z
 DURATION:PT2H
 END:VEVENT
@@ -52,7 +52,7 @@ UID:yorkshirevikingsvlancashirecricket/onedaycup
 SUMMARY:Yorkshire Vikings v Lancashire Cricket [One Day Cup]
 DESCRIPTION:Yorkshire Vikings v Lancashire Cricket [One Day Cup]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230803T095500Z
 DURATION:PT2H
 END:VEVENT
@@ -61,7 +61,7 @@ UID:northernsuperchargerswomenvbirminghamphoenixwomen/thehundred
 SUMMARY:Northern Superchargers Women v Birmingham Phoenix Women [The Hundred]
 DESCRIPTION:Northern Superchargers Women v Birmingham Phoenix Women [The Hundred]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230803T135500Z
 DURATION:PT2H
 END:VEVENT
@@ -70,7 +70,7 @@ UID:northernsuperchargersmenvbirminghamphoenixmen/thehundred
 SUMMARY:Northern Superchargers Men v Birmingham Phoenix Men [The Hundred]
 DESCRIPTION:Northern Superchargers Men v Birmingham Phoenix Men [The Hundred]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230803T172500Z
 DURATION:PT2H
 END:VEVENT
@@ -79,7 +79,7 @@ UID:worcestershirerapidsvglamorgan/onedaycup
 SUMMARY:Worcestershire Rapids v Glamorgan [One Day Cup]
 DESCRIPTION:Worcestershire Rapids v Glamorgan [One Day Cup]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230804T095500Z
 DURATION:PT2H
 END:VEVENT
@@ -88,7 +88,7 @@ UID:southernbravewomenvwelshfirewomen/thehundred
 SUMMARY:Southern Brave Women v Welsh Fire Women [The Hundred]
 DESCRIPTION:Southern Brave Women v Welsh Fire Women [The Hundred]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230804T135500Z
 DURATION:PT2H
 END:VEVENT
@@ -97,7 +97,7 @@ UID:sheffieldwednesdayvsouthampton/championship
 SUMMARY:Sheffield Wednesday v Southampton [Championship]
 DESCRIPTION:Sheffield Wednesday v Southampton [Championship]
 LOCATION:talkSPORT
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230804T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -106,7 +106,7 @@ UID:manchesteroriginalswomenvlondonspiritwomen/thehundred
 SUMMARY:Manchester Originals Women v London Spirit Women [The Hundred]
 DESCRIPTION:Manchester Originals Women v London Spirit Women [The Hundred]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230805T095500Z
 DURATION:PT2H
 END:VEVENT
@@ -115,7 +115,7 @@ UID:birminghamphoenixmenvtrentrocketsmen/thehundred
 SUMMARY:Birmingham Phoenix Men v Trent Rockets Men [The Hundred]
 DESCRIPTION:Birmingham Phoenix Men v Trent Rockets Men [The Hundred]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230805T164500Z
 DURATION:PT2H
 END:VEVENT
@@ -124,7 +124,7 @@ UID:leicestercityvcoventrycity/championship
 SUMMARY:Leicester City v Coventry City [Championship]
 DESCRIPTION:Leicester City v Coventry City [Championship]
 LOCATION:talkSPORT
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230806T110000Z
 DURATION:PT2H
 END:VEVENT
@@ -133,7 +133,7 @@ UID:southernbravewomenvnorthernsuperchargerswomen/thehundred
 SUMMARY:Southern Brave Women v Northern Superchargers Women [The Hundred]
 DESCRIPTION:Southern Brave Women v Northern Superchargers Women [The Hundred]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230806T110000Z
 DURATION:PT2H
 END:VEVENT
@@ -142,7 +142,7 @@ UID:southernbravemenvnorthernsuperchargersmen/thehundred
 SUMMARY:Southern Brave Men v Northern Superchargers Men [The Hundred]
 DESCRIPTION:Southern Brave Men v Northern Superchargers Men [The Hundred]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230806T132500Z
 DURATION:PT2H
 END:VEVENT
@@ -151,7 +151,7 @@ UID:leedsunitedvcardiffcity/championship
 SUMMARY:Leeds United v Cardiff City [Championship]
 DESCRIPTION:Leeds United v Cardiff City [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230806T133000Z
 DURATION:PT2H
 END:VEVENT
@@ -160,7 +160,7 @@ UID:manchestercityvarsenal/communityshield
 SUMMARY:Manchester City v Arsenal [Community Shield]
 DESCRIPTION:Manchester City v Arsenal [Community Shield]
 LOCATION:talkSPORT
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230806T150000Z
 DURATION:PT2H
 END:VEVENT
@@ -169,7 +169,7 @@ UID:sunderlandvipswichtown/championship
 SUMMARY:Sunderland v Ipswich Town [Championship]
 DESCRIPTION:Sunderland v Ipswich Town [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230806T160000Z
 DURATION:PT2H
 END:VEVENT
@@ -178,7 +178,7 @@ UID:ovalinvinciblesmenvwelshfiremen/thehundred
 SUMMARY:Oval Invincibles Men v Welsh Fire Men [The Hundred]
 DESCRIPTION:Oval Invincibles Men v Welsh Fire Men [The Hundred]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230806T180000Z
 DURATION:PT2H
 END:VEVENT
@@ -187,7 +187,7 @@ UID:manchesteroriginalswomenvbirminghamphoenixwomen/thehundred
 SUMMARY:Manchester Originals Women v Birmingham Phoenix Women [The Hundred]
 DESCRIPTION:Manchester Originals Women v Birmingham Phoenix Women [The Hundred]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230807T135500Z
 DURATION:PT2H
 END:VEVENT
@@ -196,7 +196,7 @@ UID:manchesteroriginalsmenvbirminghamphoenixmen/thehundred
 SUMMARY:Manchester Originals Men v Birmingham Phoenix Men [The Hundred]
 DESCRIPTION:Manchester Originals Men v Birmingham Phoenix Men [The Hundred]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230807T172500Z
 DURATION:PT2H
 END:VEVENT
@@ -205,7 +205,7 @@ UID:londonspiritwomenvsouthernbravewomen/thehundred
 SUMMARY:London Spirit Women v Southern Brave Women [The Hundred]
 DESCRIPTION:London Spirit Women v Southern Brave Women [The Hundred]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230808T135500Z
 DURATION:PT2H
 END:VEVENT
@@ -214,7 +214,7 @@ UID:londonspiritmenvsouthernbravemen/thehundred
 SUMMARY:London Spirit Men v Southern Brave Men [The Hundred]
 DESCRIPTION:London Spirit Men v Southern Brave Men [The Hundred]
 LOCATION:Radio 5 Sports Extra
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230808T172500Z
 DURATION:PT2H
 END:VEVENT
@@ -223,7 +223,7 @@ UID:gillinghamvsouthampton/eflcup
 SUMMARY:Gillingham v Southampton [EFL Cup]
 DESCRIPTION:Gillingham v Southampton [EFL Cup]
 LOCATION:talkSPORT2
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230808T184500Z
 DURATION:PT2H
 END:VEVENT
@@ -232,7 +232,7 @@ UID:afcwimbledonvcoventrycity/eflcup
 SUMMARY:AFC Wimbledon v Coventry City [EFL Cup]
 DESCRIPTION:AFC Wimbledon v Coventry City [EFL Cup]
 LOCATION:talkSPORT2
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230809T184500Z
 DURATION:PT2H
 END:VEVENT
@@ -241,7 +241,7 @@ UID:burnleyvmanchestercity/premierleague
 SUMMARY:Burnley v Manchester City [Premier League]
 DESCRIPTION:Burnley v Manchester City [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230811T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -250,7 +250,7 @@ UID:arsenalvnottinghamforest/premierleague
 SUMMARY:Arsenal v Nottingham Forest [Premier League]
 DESCRIPTION:Arsenal v Nottingham Forest [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230812T113000Z
 DURATION:PT2H
 END:VEVENT
@@ -259,7 +259,7 @@ UID:coventrycityvmiddlesbrough/championship
 SUMMARY:Coventry City v Middlesbrough [Championship]
 DESCRIPTION:Coventry City v Middlesbrough [Championship]
 LOCATION:talkSPORT2
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230812T113000Z
 DURATION:PT2H
 END:VEVENT
@@ -268,7 +268,7 @@ UID:manchesterunitedvwolverhamptonwanderers/premierleague
 SUMMARY:Manchester United v Wolverhampton Wanderers [Premier League]
 DESCRIPTION:Manchester United v Wolverhampton Wanderers [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230801T124130Z
+DTSTAMP:20230801T124537Z
 DTSTART:20230814T190000Z
 DURATION:PT2H
 END:VEVENT
