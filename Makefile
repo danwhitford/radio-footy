@@ -2,8 +2,8 @@
 clean:
 	git clean -fdx
 
-website: docs/index.html docs/icalendar.ics docs/lu.ttf
 .PHONY: website
+website: docs/index.html docs/icalendar.ics docs/lu.ttf
 
 docs:
 	mkdir -p docs
