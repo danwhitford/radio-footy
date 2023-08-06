@@ -83,7 +83,7 @@ func TestWriteIndex(t *testing.T) {
 
 <body>
     <div id="container">
-        <h1>Football (and cricket!) on the radio</h1>
+        <h1>Football and cricket to watch and listen to</h1>
         
         <div class="matchday">
             <h2>Monday, May 15</h2>
