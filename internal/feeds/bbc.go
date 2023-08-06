@@ -132,7 +132,7 @@ func bbcDayToMergedMatches(bbcFeed BBCFeed) []MergedMatch {
 				switch {
 				case strings.Contains(prog.Synopses.Short, "County Championship"):
 					competition = "County Championship"
-				case strings.Contains(prog.Synopses.Short, "The Hundred"):
+				case strings.Contains(strings.Title(prog.Synopses.Short), "The Hundred"):
 					competition = "The Hundred"
 				case strings.Contains(prog.Synopses.Short, "One Day Cup"):
 					competition = "One Day Cup"

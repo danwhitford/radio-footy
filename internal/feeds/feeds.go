@@ -19,6 +19,7 @@ func GetMergedMatches() ([]MergedMatchDay, error) {
 		getTalkSportMatches,
 		getBBCMatches,
 		getSolentMatches,
+		getTvMatches,
 	}
 	for _, getter := range getters {
 		got, err := getter()
