@@ -109,6 +109,27 @@ func TestRollUpStations(t *testing.T) {
 				},
 			},
 		},
+		{
+			input: []MergedMatch{
+				{
+					Stations: []string{"Sky Sports", "Sky Sports Football"},
+					Time:     "10:00",
+					Date:     "Saturday, Dec 26",
+				},
+				{
+					Stations: []string{"BBC Radio 5"},
+					Time:     "10:00",
+					Date:     "Saturday, Dec 26",
+				},
+			},
+			output: []MergedMatch{
+				{
+					Time:     "10:00",
+					Date:     "Saturday, Dec 26",
+					Stations: []string{"BBC Radio 5", "Sky Sports", "Sky Sports Football"},
+				},
+			},
+		},		
 	}
 
 	for _, tst := range table {

@@ -55,8 +55,11 @@ func mergedMatchesToMergedMatchDays(matches []MergedMatch) []MergedMatchDay {
 	return mergedFeed
 }
 
-func shouldSkip(s string) bool {
-	return strings.Contains(s, "Scottish")
+func shouldSkip(m MergedMatch) bool {
+	return strings.Contains(m.Competition, "Scottish") || 
+		strings.Contains(m.Competition, "Women") ||
+		strings.Contains(m.Title, "Scottish") || 
+		strings.Contains(m.Title, "Women")
 }
 
 func stationRank(station string) int {
@@ -100,6 +103,7 @@ func mapTeamName(name string) string {
 
 func mapCompName(match *MergedMatch) {
 	match.Competition = strings.TrimSuffix(match.Competition, " Football 2022-23")
+	match.Competition = strings.TrimPrefix(match.Competition, "FA ")
 	if match.Competition == "Test Match Special" {
 		match.Competition = "The Ashes"
 	}
@@ -108,6 +112,7 @@ func mapCompName(match *MergedMatch) {
 func rollUpStations(matches []MergedMatch) []MergedMatch {
 	stationsRollUp := make(map[string][]MergedMatch)
 	for _, match := range matches {
+		fmt.Printf("%+v\n", match)
 		hashLol := fmt.Sprintf("%s%s%s", match.Competition, match.Date, match.Title)
 		stationsRollUp[hashLol] = append(stationsRollUp[hashLol], match)
 	}
@@ -170,7 +175,7 @@ func rollUpDates(matches []MergedMatch) []MergedMatchDay {
 func filterMatches(matches []MergedMatch) []MergedMatch {
 	filtered := make([]MergedMatch, 0)
 	for _, match := range matches {
-		if shouldSkip(match.Competition) {
+		if shouldSkip(match) {
 			continue
 		}
 		filtered = append(filtered, match)
