@@ -56,9 +56,9 @@ func mergedMatchesToMergedMatchDays(matches []MergedMatch) []MergedMatchDay {
 }
 
 func shouldSkip(m MergedMatch) bool {
-	return strings.Contains(m.Competition, "Scottish") || 
+	return strings.Contains(m.Competition, "Scottish") ||
 		strings.Contains(m.Competition, "Women") ||
-		strings.Contains(m.Title, "Scottish") || 
+		strings.Contains(m.Title, "Scottish") ||
 		strings.Contains(m.Title, "Women")
 }
 

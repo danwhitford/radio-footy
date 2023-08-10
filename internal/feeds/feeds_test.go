@@ -129,7 +129,7 @@ func TestRollUpStations(t *testing.T) {
 					Stations: []string{"BBC Radio 5", "Sky Sports", "Sky Sports Football"},
 				},
 			},
-		},		
+		},
 	}
 
 	for _, tst := range table {

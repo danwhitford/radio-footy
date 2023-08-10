@@ -1,3 +1,5 @@
+GO_FILES := $(shell find . -name "*.go")
+
 .PHONY: website
 website: docs/index.html docs/icalendar.ics docs/lu.ttf
 
@@ -11,7 +13,7 @@ docs:
 .cache:
 	mkdir -p .cache
 
-radiofooty: $(wildcard cmd/radiofooty/*.go) $(wildcard internal/feeds/*.go) $(wildcard internal/filecacher/*.go) $(wildcard internal/website/*.tmpl)
+radiofooty: $(GO_FILES)
 	go build cmd/radiofooty/radiofooty.go
 
 index.html: .cache radiofooty

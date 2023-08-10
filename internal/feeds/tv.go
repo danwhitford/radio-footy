@@ -97,12 +97,12 @@ func getTvMatches() ([]MergedMatch, error) {
 					compName: compName,
 					dateTime: fixtureDateTime,
 					channels: channelStrings,
-				})				
+				})
 			}
 		}
 	}
 
-	mergedMatches := make([]MergedMatch, 0)	
+	mergedMatches := make([]MergedMatch, 0)
 	for _, fixture := range fixtures {
 		mergedMatches = append(mergedMatches, MergedMatch{
 			Title:       fixture.teams,
