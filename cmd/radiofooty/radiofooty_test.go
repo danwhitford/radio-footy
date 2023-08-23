@@ -61,8 +61,6 @@ func TestWriteIndex(t *testing.T) {
     <meta name="Description" content="Upcoming football matches on the wireless">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
-
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 </head>
 
 <body>
