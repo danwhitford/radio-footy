@@ -10,15 +10,15 @@
 </head>
 
 <body>
-    <div id="container">
+    <div>
         <h1>Football on radio and TV</h1>
         {{ range .MatchDays }}
-        <div class="matchday">
+        <div>
             <h2>{{ .NiceDate }}</h2>
             {{ range .Matches }}
-                <div class="match">                    
-                    <p class="row text-row"><b>{{ .Time }} | {{ join .Stations " | " }}</b></p>
-                    <p class="row text-row">{{ .Title }} ({{ .Competition }})</p>
+                <div>
+                    <p><b>{{ .Time }} | {{ join .Stations " | " }}</b></p>
+                    <p>{{ .Title }} ({{ .Competition }})</p>
                 </div>
             {{ end }}
         </div>
