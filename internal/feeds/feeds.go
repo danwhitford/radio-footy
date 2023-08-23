@@ -18,7 +18,6 @@ func GetMergedMatches() ([]MergedMatchDay, error) {
 	getters := []MatchGetter{
 		getTalkSportMatches,
 		getBBCMatches,
-		getSolentMatches,
 		getTvMatches,
 	}
 	for _, getter := range getters {
@@ -113,7 +112,6 @@ func mapCompName(match *MergedMatch) {
 func rollUpStations(matches []MergedMatch) []MergedMatch {
 	stationsRollUp := make(map[string][]MergedMatch)
 	for _, match := range matches {
-		fmt.Printf("%+v\n", match)
 		hashLol := fmt.Sprintf("%s%s%s", match.Competition, match.Date, match.Title)
 		stationsRollUp[hashLol] = append(stationsRollUp[hashLol], match)
 	}

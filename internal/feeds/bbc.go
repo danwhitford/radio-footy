@@ -46,25 +46,6 @@ func isLeagueGame(title BBCTitles) bool {
 		strings.Contains(title.Tertiary, " v ")
 }
 
-func isAshes(title BBCTitles) bool {
-	if strings.Contains(title.Tertiary, "Women") {
-		return false
-	}
-	if strings.Contains(title.Tertiary, " v ") && title.Primary == "The Ashes" && title.Secondary == "Test Match Special" {
-		return true
-	}
-
-	return false
-}
-
-func isDomesticCricket(title BBCTitles) bool {
-	if strings.Contains(title.Primary, "Cricket") && strings.Contains(title.Secondary, " v ") {
-		return true
-	}
-
-	return false
-}
-
 func bbcDayToMergedMatches(bbcFeed BBCFeed) []MergedMatch {
 	matches := make([]MergedMatch, 0)
 
@@ -96,63 +77,6 @@ func bbcDayToMergedMatches(bbcFeed BBCFeed) []MergedMatch {
 					Title:       prog.Title.Tertiary,
 					Competition: prog.Title.Secondary,
 				}
-				matches = append(matches, m)
-			} else if isAshes(prog.Title) {
-				start, err := time.Parse(longFormat, prog.Start)
-				if err != nil {
-					panic(err)
-				}
-				start = start.In(loc)
-				clock := start.Format(timeLayout)
-				date := start.Format(niceDate)
-				m := MergedMatch{
-					Time:        clock,
-					Date:        date,
-					Stations:    []string{prog.Network.ShortTitle},
-					Datetime:    start.Format(time.RFC3339),
-					Title:       strings.Replace(prog.Title.Tertiary, " Ashes ", " ", 1),
-					Competition: "The Ashes",
-				}
-
-				if !strings.Contains(m.Title, " v ") {
-					log.Fatalf("oh no %+v\n", prog)
-				}
-
-				matches = append(matches, m)
-			} else if isDomesticCricket(prog.Title) {
-				start, err := time.Parse(longFormat, prog.Start)
-				if err != nil {
-					panic(err)
-				}
-				start = start.In(loc)
-				clock := start.Format(timeLayout)
-				date := start.Format(niceDate)
-
-				var competition string
-				switch {
-				case strings.Contains(prog.Synopses.Short, "County Championship"):
-					competition = "County Championship"
-				case strings.Contains(strings.Title(prog.Synopses.Short), "The Hundred"):
-					competition = "The Hundred"
-				case strings.Contains(prog.Synopses.Short, "One Day Cup"):
-					competition = "One Day Cup"
-				default:
-					log.Fatalf("unknown cricket competition: %+v\n", prog)
-				}
-
-				m := MergedMatch{
-					Time:        clock,
-					Date:        date,
-					Stations:    []string{prog.Network.ShortTitle},
-					Datetime:    start.Format(time.RFC3339),
-					Title:       prog.Title.Secondary,
-					Competition: competition,
-				}
-
-				if !strings.Contains(m.Title, " v ") {
-					log.Fatalf("oh no %+v\n", prog)
-				}
-
 				matches = append(matches, m)
 			}
 		}

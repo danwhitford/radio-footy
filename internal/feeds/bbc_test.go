@@ -79,16 +79,7 @@ func TestBBCDayToMergedMatch(t *testing.T) {
 					},
 				},
 			},
-			output: []MergedMatch{
-				{
-					Title:       "Surrey v Nottinghamshire",
-					Stations:    []string{"Radio 5 Sports Extra"},
-					Competition: "County Championship",
-					Time:        "10:55",
-					Date:        "Thursday, Jul 13",
-					Datetime:    "2023-07-13T10:55:00+01:00",
-				},
-			},
+			output: []MergedMatch{},
 		},
 		{
 			input: BBCFeed{
@@ -113,16 +104,7 @@ func TestBBCDayToMergedMatch(t *testing.T) {
 					},
 				},
 			},
-			output: []MergedMatch{
-				{
-					Title:       "Oval Invincibles Men v Welsh Fire Men",
-					Stations:    []string{"Radio 5 Sports Extra"},
-					Competition: "The Hundred",
-					Time:        "19:00",
-					Date:        "Sunday, Aug 6",
-					Datetime:    "2023-08-06T19:00:00+01:00",
-				},
-			},
+			output: []MergedMatch{},
 		},
 	}
 
