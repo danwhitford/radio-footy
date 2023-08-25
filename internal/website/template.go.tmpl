@@ -14,7 +14,7 @@
         <h1>Football on radio and TV</h1>
         {{ range .MatchDays }}
         <div>
-            <h2>{{ .NiceDate }}</h2>
+            <h2 id="{{ rfc3339 .DateTime }}">{{ .NiceDate }} <a href="#{{ rfc3339 .DateTime }}">#</a></h2>
             {{ range .Matches }}
                 <div>
                     <p><b>{{ .Time }} | {{ join .Stations " | " }}</b></p>

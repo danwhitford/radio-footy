@@ -53,6 +53,9 @@ func main() {
 func writeIndex(data interface{}, templatePath string, writer io.Writer) {
 	funcs := template.FuncMap{
 		"join": strings.Join,
+		"rfc3339": func(t time.Time) string {
+			return t.Format(time.DateOnly)
+		},
 	}
 	tmpl, err := template.New("template.go.tmpl").Funcs(funcs).ParseFiles(templatePath)
 	if err != nil {
