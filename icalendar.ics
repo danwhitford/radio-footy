@@ -7,7 +7,7 @@ UID:watfordvblackburnrovers/championship
 SUMMARY:Watford v Blackburn Rovers [Championship]
 DESCRIPTION:Watford v Blackburn Rovers [Championship]
 LOCATION:talkSPORT2 | Sky Sports Main Event | Sky Sports Football
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230827T110000Z
 DURATION:PT2H
 END:VEVENT
@@ -16,7 +16,7 @@ UID:sheffieldunitedvmanchestercity/premierleague
 SUMMARY:Sheffield United v Manchester City [Premier League]
 DESCRIPTION:Sheffield United v Manchester City [Premier League]
 LOCATION:BBC Radio 5 | Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230827T130000Z
 DURATION:PT2H
 END:VEVENT
@@ -25,7 +25,7 @@ UID:newcastleunitedvliverpool/premierleague
 SUMMARY:Newcastle United v Liverpool [Premier League]
 DESCRIPTION:Newcastle United v Liverpool [Premier League]
 LOCATION:BBC Radio 5 | Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230827T153000Z
 DURATION:PT2H
 END:VEVENT
@@ -34,8 +34,8 @@ UID:fulhamvtottenhamhotspur/eflcup
 SUMMARY:Fulham v Tottenham Hotspur [EFL Cup]
 DESCRIPTION:Fulham v Tottenham Hotspur [EFL Cup]
 LOCATION:BBC Radio 5 | talkSPORT2
-DTSTAMP:20230827T005527Z
-DTSTART:20230829T184000Z
+DTSTAMP:20230827T063841Z
+DTSTART:20230829T184500Z
 DURATION:PT2H
 END:VEVENT
 BEGIN:VEVENT
@@ -43,7 +43,7 @@ UID:plymouthargylevcrystalpalace/eflcup
 SUMMARY:Plymouth Argyle v Crystal Palace [EFL Cup]
 DESCRIPTION:Plymouth Argyle v Crystal Palace [EFL Cup]
 LOCATION:BBC Radio 5
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230829T184500Z
 DURATION:PT2H
 END:VEVENT
@@ -52,7 +52,7 @@ UID:salfordcityvleedsunited/carabaocup secondround
 SUMMARY:Salford City v Leeds United   [Carabao Cup Second Round]
 DESCRIPTION:Salford City v Leeds United   [Carabao Cup Second Round]
 LOCATION:Sky Sports Main Event | Sky Sports Football
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230829T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -61,7 +61,7 @@ UID:chelseavafcwimbledon/eflcup
 SUMMARY:Chelsea v AFC Wimbledon [EFL Cup]
 DESCRIPTION:Chelsea v AFC Wimbledon [EFL Cup]
 LOCATION:talkSPORT2
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230830T184500Z
 DURATION:PT2H
 END:VEVENT
@@ -70,7 +70,7 @@ UID:doncasterroversveverton/eflcup
 SUMMARY:Doncaster Rovers v Everton [EFL Cup]
 DESCRIPTION:Doncaster Rovers v Everton [EFL Cup]
 LOCATION:BBC Radio 5
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230830T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -79,7 +79,7 @@ UID:doncasterroversveverton/carabaocup secondround
 SUMMARY:Doncaster Rovers v Everton   [Carabao Cup Second Round]
 DESCRIPTION:Doncaster Rovers v Everton   [Carabao Cup Second Round]
 LOCATION:Sky Sports Main Event | Sky Sports Football
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230830T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -88,7 +88,7 @@ UID:lutontownvwesthamunited/premierleague
 SUMMARY:Luton Town v West Ham United [Premier League]
 DESCRIPTION:Luton Town v West Ham United [Premier League]
 LOCATION:talkSPORT | Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230901T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -97,7 +97,7 @@ UID:sheffieldunitedveverton/premierleague
 SUMMARY:Sheffield United v Everton [Premier League]
 DESCRIPTION:Sheffield United v Everton [Premier League]
 LOCATION:talkSPORT
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230902T113000Z
 DURATION:PT2H
 END:VEVENT
@@ -106,7 +106,7 @@ UID:sunderlandvsouthampton/championship
 SUMMARY:Sunderland v Southampton [Championship]
 DESCRIPTION:Sunderland v Southampton [Championship]
 LOCATION:talkSPORT2 | Sky Sports Main Event | Sky Sports Football
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230902T113000Z
 DURATION:PT2H
 END:VEVENT
@@ -115,7 +115,7 @@ UID:burnleyvtottenhamhotspur/premierleague
 SUMMARY:Burnley v Tottenham Hotspur [Premier League]
 DESCRIPTION:Burnley v Tottenham Hotspur [Premier League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230902T140000Z
 DURATION:PT2H
 END:VEVENT
@@ -124,7 +124,7 @@ UID:chelseavnottinghamforest/premierleague
 SUMMARY:Chelsea v Nottingham Forest [Premier League]
 DESCRIPTION:Chelsea v Nottingham Forest [Premier League]
 LOCATION:talkSPORT2
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230902T140000Z
 DURATION:PT2H
 END:VEVENT
@@ -133,7 +133,7 @@ UID:brighton&amp;hovealbionvnewcastleunited/premierleague
 SUMMARY:Brighton &amp; Hove Albion v Newcastle United [Premier League]
 DESCRIPTION:Brighton &amp; Hove Albion v Newcastle United [Premier League]
 LOCATION:BBC Radio 5 | Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230902T163000Z
 DURATION:PT2H
 END:VEVENT
@@ -142,7 +142,7 @@ UID:liverpoolvastonvilla/premierleague
 SUMMARY:Liverpool v Aston Villa [Premier League]
 DESCRIPTION:Liverpool v Aston Villa [Premier League]
 LOCATION:BBC Radio 5
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230903T130000Z
 DURATION:PT2H
 END:VEVENT
@@ -151,7 +151,7 @@ UID:crystalpalacevwolves/premierleague
 SUMMARY:Crystal Palace v Wolves   [Premier League]
 DESCRIPTION:Crystal Palace v Wolves   [Premier League]
 LOCATION:Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230903T130000Z
 DURATION:PT2H
 END:VEVENT
@@ -160,7 +160,7 @@ UID:arsenalvmanchesterunited/premierleague
 SUMMARY:Arsenal v Manchester United [Premier League]
 DESCRIPTION:Arsenal v Manchester United [Premier League]
 LOCATION:BBC Radio 5 | Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230903T153000Z
 DURATION:PT2H
 END:VEVENT
@@ -169,7 +169,7 @@ UID:cambridgeunitedvreading/leagueone
 SUMMARY:Cambridge United v Reading   [League One]
 DESCRIPTION:Cambridge United v Reading   [League One]
 LOCATION:Sky Sports Football
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230904T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -178,7 +178,7 @@ UID:boltonwanderersvsalfordcity/englishfootballleaguetrophy
 SUMMARY:Bolton Wanderers v Salford City [English Football League Trophy]
 DESCRIPTION:Bolton Wanderers v Salford City [English Football League Trophy]
 LOCATION:talkSPORT2
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230905T184500Z
 DURATION:PT2H
 END:VEVENT
@@ -187,7 +187,7 @@ UID:bradfordcityvgrimsbytown/leaguetwo
 SUMMARY:Bradford City v Grimsby Town [League Two]
 DESCRIPTION:Bradford City v Grimsby Town [League Two]
 LOCATION:talkSPORT2 | Sky Sports Main Event | Sky Sports Football
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230909T113000Z
 DURATION:PT2H
 END:VEVENT
@@ -196,7 +196,7 @@ UID:southamptonvleicestercity/championship
 SUMMARY:Southampton v Leicester City   [Championship]
 DESCRIPTION:Southampton v Leicester City   [Championship]
 LOCATION:Sky Sports Main Event | Sky Sports Football
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230915T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -205,7 +205,7 @@ UID:evertonvarsenal/premierleague
 SUMMARY:Everton v Arsenal   [Premier League]
 DESCRIPTION:Everton v Arsenal   [Premier League]
 LOCATION:Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230916T163000Z
 DURATION:PT2H
 END:VEVENT
@@ -214,7 +214,7 @@ UID:cardiffcityvswanseacity/championship
 SUMMARY:Cardiff City v Swansea City   [Championship]
 DESCRIPTION:Cardiff City v Swansea City   [Championship]
 LOCATION:Sky Sports Main Event | Sky Sports Football
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230916T184500Z
 DURATION:PT2H
 END:VEVENT
@@ -223,7 +223,7 @@ UID:millwallvleedsunited/championship
 SUMMARY:Millwall v Leeds United   [Championship]
 DESCRIPTION:Millwall v Leeds United   [Championship]
 LOCATION:Sky Sports Main Event | Sky Sports Football
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230917T110000Z
 DURATION:PT2H
 END:VEVENT
@@ -232,7 +232,7 @@ UID:afcbournemouthvchelsea/premierleague
 SUMMARY:AFC Bournemouth v Chelsea   [Premier League]
 DESCRIPTION:AFC Bournemouth v Chelsea   [Premier League]
 LOCATION:Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230917T130000Z
 DURATION:PT2H
 END:VEVENT
@@ -241,7 +241,7 @@ UID:newcastleunitedvbrentford/premierleague
 SUMMARY:Newcastle United v Brentford   [Premier League]
 DESCRIPTION:Newcastle United v Brentford   [Premier League]
 LOCATION:Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230917T153000Z
 DURATION:PT2H
 END:VEVENT
@@ -250,7 +250,7 @@ UID:sheffieldwednesdayvmiddlesbrough/championship
 SUMMARY:Sheffield Wednesday v Middlesbrough   [Championship]
 DESCRIPTION:Sheffield Wednesday v Middlesbrough   [Championship]
 LOCATION:Sky Sports Main Event | Sky Sports Football
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230919T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -259,7 +259,7 @@ UID:norwichcityvleicestercity/championship
 SUMMARY:Norwich City v Leicester City   [Championship]
 DESCRIPTION:Norwich City v Leicester City   [Championship]
 LOCATION:Sky Sports Main Event | Sky Sports Football
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230920T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -268,7 +268,7 @@ UID:birminghamcityvqpr/championship
 SUMMARY:Birmingham City v QPR   [Championship]
 DESCRIPTION:Birmingham City v QPR   [Championship]
 LOCATION:Sky Sports Main Event | Sky Sports Football
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230922T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -277,7 +277,7 @@ UID:brentfordveverton/premierleague
 SUMMARY:Brentford v Everton   [Premier League]
 DESCRIPTION:Brentford v Everton   [Premier League]
 LOCATION:Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230923T163000Z
 DURATION:PT2H
 END:VEVENT
@@ -286,7 +286,7 @@ UID:stokecityvhullcity/championship
 SUMMARY:Stoke City v Hull City   [Championship]
 DESCRIPTION:Stoke City v Hull City   [Championship]
 LOCATION:Sky Sports Main Event | Sky Sports Football
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230924T110000Z
 DURATION:PT2H
 END:VEVENT
@@ -295,7 +295,7 @@ UID:arsenalvtottenhamhotspur/premierleague
 SUMMARY:Arsenal v Tottenham Hotspur   [Premier League]
 DESCRIPTION:Arsenal v Tottenham Hotspur   [Premier League]
 LOCATION:Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230924T130000Z
 DURATION:PT2H
 END:VEVENT
@@ -304,7 +304,7 @@ UID:sheffieldunitedvnewcastleunited/premierleague
 SUMMARY:Sheffield United v Newcastle United   [Premier League]
 DESCRIPTION:Sheffield United v Newcastle United   [Premier League]
 LOCATION:Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230924T153000Z
 DURATION:PT2H
 END:VEVENT
@@ -313,7 +313,7 @@ UID:coventrycityvhuddersfieldtown/championship
 SUMMARY:Coventry City v Huddersfield Town   [Championship]
 DESCRIPTION:Coventry City v Huddersfield Town   [Championship]
 LOCATION:Sky Sports Main Event | Sky Sports Football
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230925T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -322,7 +322,7 @@ UID:blackburnroversvleicestercity/championship
 SUMMARY:Blackburn Rovers v Leicester City   [Championship]
 DESCRIPTION:Blackburn Rovers v Leicester City   [Championship]
 LOCATION:Sky Sports Main Event | Sky Sports Football
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230929T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -331,7 +331,7 @@ UID:southamptonvleedsunited/championship
 SUMMARY:Southampton v Leeds United   [Championship]
 DESCRIPTION:Southampton v Leeds United   [Championship]
 LOCATION:Sky Sports Main Event | Sky Sports Football
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230930T113000Z
 DURATION:PT2H
 END:VEVENT
@@ -340,7 +340,7 @@ UID:tottenhamhotspurvliverpool/premierleague
 SUMMARY:Tottenham Hotspur v Liverpool   [Premier League]
 DESCRIPTION:Tottenham Hotspur v Liverpool   [Premier League]
 LOCATION:Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20230930T163000Z
 DURATION:PT2H
 END:VEVENT
@@ -349,7 +349,7 @@ UID:nottinghamforestvbrentford/premierleague
 SUMMARY:Nottingham Forest v Brentford   [Premier League]
 DESCRIPTION:Nottingham Forest v Brentford   [Premier League]
 LOCATION:Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231001T130000Z
 DURATION:PT2H
 END:VEVENT
@@ -358,7 +358,7 @@ UID:fulhamvchelsea/premierleague
 SUMMARY:Fulham v Chelsea   [Premier League]
 DESCRIPTION:Fulham v Chelsea   [Premier League]
 LOCATION:Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231002T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -367,7 +367,7 @@ UID:stokecityvsouthampton/championship
 SUMMARY:Stoke City v Southampton   [Championship]
 DESCRIPTION:Stoke City v Southampton   [Championship]
 LOCATION:Sky Sports Main Event | Sky Sports Football
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231003T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -376,7 +376,7 @@ UID:rotherhamunitedvbristolcity/championship
 SUMMARY:Rotherham United v Bristol City   [Championship]
 DESCRIPTION:Rotherham United v Bristol City   [Championship]
 LOCATION:Sky Sports Main Event | Sky Sports Football
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231004T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -385,7 +385,7 @@ UID:birminghamcityvwestbrom/championship
 SUMMARY:Birmingham City v West Brom   [Championship]
 DESCRIPTION:Birmingham City v West Brom   [Championship]
 LOCATION:Sky Sports Main Event | Sky Sports Football
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231006T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -394,7 +394,7 @@ UID:sunderlandvmiddlesbrough/championship
 SUMMARY:Sunderland v Middlesbrough   [Championship]
 DESCRIPTION:Sunderland v Middlesbrough   [Championship]
 LOCATION:Sky Sports Main Event | Sky Sports Football
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231007T113000Z
 DURATION:PT2H
 END:VEVENT
@@ -403,7 +403,7 @@ UID:crystalpalacevnottinghamforest/premierleague
 SUMMARY:Crystal Palace v Nottingham Forest   [Premier League]
 DESCRIPTION:Crystal Palace v Nottingham Forest   [Premier League]
 LOCATION:Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231007T163000Z
 DURATION:PT2H
 END:VEVENT
@@ -412,7 +412,7 @@ UID:brighton&amp;hovealbionvliverpool/premierleague
 SUMMARY:Brighton &amp; Hove Albion v Liverpool   [Premier League]
 DESCRIPTION:Brighton &amp; Hove Albion v Liverpool   [Premier League]
 LOCATION:Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231008T130000Z
 DURATION:PT2H
 END:VEVENT
@@ -421,7 +421,7 @@ UID:arsenalvmanchestercity/premierleague
 SUMMARY:Arsenal v Manchester City   [Premier League]
 DESCRIPTION:Arsenal v Manchester City   [Premier League]
 LOCATION:Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231008T153000Z
 DURATION:PT2H
 END:VEVENT
@@ -430,7 +430,7 @@ UID:burtonalbionvcambridgeunited/leagueone
 SUMMARY:Burton Albion v Cambridge United   [League One]
 DESCRIPTION:Burton Albion v Cambridge United   [League One]
 LOCATION:Sky Sports Main Event | Sky Sports Football
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231009T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -439,7 +439,7 @@ UID:chelseavarsenal/premierleague
 SUMMARY:Chelsea v Arsenal   [Premier League]
 DESCRIPTION:Chelsea v Arsenal   [Premier League]
 LOCATION:Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231021T163000Z
 DURATION:PT2H
 END:VEVENT
@@ -448,7 +448,7 @@ UID:sheffieldunitedvmanchesterunited/premierleague
 SUMMARY:Sheffield United v Manchester United   [Premier League]
 DESCRIPTION:Sheffield United v Manchester United   [Premier League]
 LOCATION:Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231022T130000Z
 DURATION:PT2H
 END:VEVENT
@@ -457,7 +457,7 @@ UID:astonvillavwesthamunited/premierleague
 SUMMARY:Aston Villa v West Ham United   [Premier League]
 DESCRIPTION:Aston Villa v West Ham United   [Premier League]
 LOCATION:Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231022T153000Z
 DURATION:PT2H
 END:VEVENT
@@ -466,7 +466,7 @@ UID:tottenhamhotspurvfulham/premierleague
 SUMMARY:Tottenham Hotspur v Fulham   [Premier League]
 DESCRIPTION:Tottenham Hotspur v Fulham   [Premier League]
 LOCATION:Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231023T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -475,7 +475,7 @@ UID:crystalpalacevtottenhamhotspur/premierleague
 SUMMARY:Crystal Palace v Tottenham Hotspur   [Premier League]
 DESCRIPTION:Crystal Palace v Tottenham Hotspur   [Premier League]
 LOCATION:Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231027T190000Z
 DURATION:PT2H
 END:VEVENT
@@ -484,7 +484,7 @@ UID:wolvesvnewcastleunited/premierleague
 SUMMARY:Wolves v Newcastle United   [Premier League]
 DESCRIPTION:Wolves v Newcastle United   [Premier League]
 LOCATION:Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231028T163000Z
 DURATION:PT2H
 END:VEVENT
@@ -493,7 +493,7 @@ UID:westhamunitedveverton/premierleague
 SUMMARY:West Ham United v Everton   [Premier League]
 DESCRIPTION:West Ham United v Everton   [Premier League]
 LOCATION:Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231029T130000Z
 DURATION:PT2H
 END:VEVENT
@@ -502,8 +502,17 @@ UID:manchesterunitedvmanchestercity/premierleague
 SUMMARY:Manchester United v Manchester City   [Premier League]
 DESCRIPTION:Manchester United v Manchester City   [Premier League]
 LOCATION:Sky Sports Main Event | Sky Sports Premier League
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231029T153000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:fulhamvnottinghamforest/premierleague
+SUMMARY:Fulham v Nottingham Forest   [Premier League]
+DESCRIPTION:Fulham v Nottingham Forest   [Premier League]
+LOCATION:Amazon Prime Video
+DTSTAMP:20230827T063841Z
+DTSTART:20231205T194500Z
 DURATION:PT2H
 END:VEVENT
 BEGIN:VEVENT
@@ -511,25 +520,7 @@ UID:wolvesvburnley/premierleague
 SUMMARY:Wolves v Burnley   [Premier League]
 DESCRIPTION:Wolves v Burnley   [Premier League]
 LOCATION:Amazon Prime Video
-DTSTAMP:20230827T005527Z
-DTSTART:20231205T194500Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:astonvillavmanchestercity/premierleague
-SUMMARY:Aston Villa v Manchester City   [Premier League]
-DESCRIPTION:Aston Villa v Manchester City   [Premier League]
-LOCATION:Amazon Prime Video
-DTSTAMP:20230827T005527Z
-DTSTART:20231205T194500Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:evertonvnewcastleunited/premierleague
-SUMMARY:Everton v Newcastle United   [Premier League]
-DESCRIPTION:Everton v Newcastle United   [Premier League]
-LOCATION:Amazon Prime Video
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231205T194500Z
 DURATION:PT2H
 END:VEVENT
@@ -538,16 +529,7 @@ UID:brighton&amp;hovealbionvbrentford/premierleague
 SUMMARY:Brighton &amp; Hove Albion v Brentford   [Premier League]
 DESCRIPTION:Brighton &amp; Hove Albion v Brentford   [Premier League]
 LOCATION:Amazon Prime Video
-DTSTAMP:20230827T005527Z
-DTSTART:20231205T194500Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:fulhamvnottinghamforest/premierleague
-SUMMARY:Fulham v Nottingham Forest   [Premier League]
-DESCRIPTION:Fulham v Nottingham Forest   [Premier League]
-LOCATION:Amazon Prime Video
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231205T194500Z
 DURATION:PT2H
 END:VEVENT
@@ -556,16 +538,16 @@ UID:sheffieldunitedvliverpool/premierleague
 SUMMARY:Sheffield United v Liverpool   [Premier League]
 DESCRIPTION:Sheffield United v Liverpool   [Premier League]
 LOCATION:Amazon Prime Video
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231205T194500Z
 DURATION:PT2H
 END:VEVENT
 BEGIN:VEVENT
-UID:lutontownvarsenal/premierleague
-SUMMARY:Luton Town v Arsenal   [Premier League]
-DESCRIPTION:Luton Town v Arsenal   [Premier League]
+UID:evertonvnewcastleunited/premierleague
+SUMMARY:Everton v Newcastle United   [Premier League]
+DESCRIPTION:Everton v Newcastle United   [Premier League]
 LOCATION:Amazon Prime Video
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231205T194500Z
 DURATION:PT2H
 END:VEVENT
@@ -574,7 +556,25 @@ UID:tottenhamhotspurvwesthamunited/premierleague
 SUMMARY:Tottenham Hotspur v West Ham United   [Premier League]
 DESCRIPTION:Tottenham Hotspur v West Ham United   [Premier League]
 LOCATION:Amazon Prime Video
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
+DTSTART:20231205T194500Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:astonvillavmanchestercity/premierleague
+SUMMARY:Aston Villa v Manchester City   [Premier League]
+DESCRIPTION:Aston Villa v Manchester City   [Premier League]
+LOCATION:Amazon Prime Video
+DTSTAMP:20230827T063841Z
+DTSTART:20231205T194500Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:lutontownvarsenal/premierleague
+SUMMARY:Luton Town v Arsenal   [Premier League]
+DESCRIPTION:Luton Town v Arsenal   [Premier League]
+LOCATION:Amazon Prime Video
+DTSTAMP:20230827T063841Z
 DTSTART:20231205T194500Z
 DURATION:PT2H
 END:VEVENT
@@ -583,7 +583,7 @@ UID:crystalpalacevafcbournemouth/premierleague
 SUMMARY:Crystal Palace v AFC Bournemouth   [Premier League]
 DESCRIPTION:Crystal Palace v AFC Bournemouth   [Premier League]
 LOCATION:Amazon Prime Video
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231205T200000Z
 DURATION:PT2H
 END:VEVENT
@@ -592,53 +592,8 @@ UID:manchesterunitedvchelsea/premierleague
 SUMMARY:Manchester United v Chelsea   [Premier League]
 DESCRIPTION:Manchester United v Chelsea   [Premier League]
 LOCATION:Amazon Prime Video
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231206T200000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:sheffieldunitedvlutontown/premierleague
-SUMMARY:Sheffield United v Luton Town   [Premier League]
-DESCRIPTION:Sheffield United v Luton Town   [Premier League]
-LOCATION:Amazon Prime Video
-DTSTAMP:20230827T005527Z
-DTSTART:20231226T150000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:brentfordvwolves/premierleague
-SUMMARY:Brentford v Wolves   [Premier League]
-DESCRIPTION:Brentford v Wolves   [Premier League]
-LOCATION:Amazon Prime Video
-DTSTAMP:20230827T005527Z
-DTSTART:20231226T150000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:evertonvmanchestercity/premierleague
-SUMMARY:Everton v Manchester City   [Premier League]
-DESCRIPTION:Everton v Manchester City   [Premier League]
-LOCATION:Amazon Prime Video
-DTSTAMP:20230827T005527Z
-DTSTART:20231226T150000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:newcastleunitedvnottinghamforest/premierleague
-SUMMARY:Newcastle United v Nottingham Forest   [Premier League]
-DESCRIPTION:Newcastle United v Nottingham Forest   [Premier League]
-LOCATION:Amazon Prime Video
-DTSTAMP:20230827T005527Z
-DTSTART:20231226T150000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:burnleyvliverpool/premierleague
-SUMMARY:Burnley v Liverpool   [Premier League]
-DESCRIPTION:Burnley v Liverpool   [Premier League]
-LOCATION:Amazon Prime Video
-DTSTAMP:20230827T005527Z
-DTSTART:20231226T150000Z
 DURATION:PT2H
 END:VEVENT
 BEGIN:VEVENT
@@ -646,25 +601,7 @@ UID:chelseavcrystalpalace/premierleague
 SUMMARY:Chelsea v Crystal Palace   [Premier League]
 DESCRIPTION:Chelsea v Crystal Palace   [Premier League]
 LOCATION:Amazon Prime Video
-DTSTAMP:20230827T005527Z
-DTSTART:20231226T150000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:afcbournemouthvfulham/premierleague
-SUMMARY:AFC Bournemouth v Fulham   [Premier League]
-DESCRIPTION:AFC Bournemouth v Fulham   [Premier League]
-LOCATION:Amazon Prime Video
-DTSTAMP:20230827T005527Z
-DTSTART:20231226T150000Z
-DURATION:PT2H
-END:VEVENT
-BEGIN:VEVENT
-UID:manchesterunitedvastonvilla/premierleague
-SUMMARY:Manchester United v Aston Villa   [Premier League]
-DESCRIPTION:Manchester United v Aston Villa   [Premier League]
-LOCATION:Amazon Prime Video
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
 DTSTART:20231226T150000Z
 DURATION:PT2H
 END:VEVENT
@@ -673,7 +610,61 @@ UID:brighton&amp;hovealbionvtottenhamhotspur/premierleague
 SUMMARY:Brighton &amp; Hove Albion v Tottenham Hotspur   [Premier League]
 DESCRIPTION:Brighton &amp; Hove Albion v Tottenham Hotspur   [Premier League]
 LOCATION:Amazon Prime Video
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
+DTSTART:20231226T150000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:brentfordvwolves/premierleague
+SUMMARY:Brentford v Wolves   [Premier League]
+DESCRIPTION:Brentford v Wolves   [Premier League]
+LOCATION:Amazon Prime Video
+DTSTAMP:20230827T063841Z
+DTSTART:20231226T150000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:newcastleunitedvnottinghamforest/premierleague
+SUMMARY:Newcastle United v Nottingham Forest   [Premier League]
+DESCRIPTION:Newcastle United v Nottingham Forest   [Premier League]
+LOCATION:Amazon Prime Video
+DTSTAMP:20230827T063841Z
+DTSTART:20231226T150000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:afcbournemouthvfulham/premierleague
+SUMMARY:AFC Bournemouth v Fulham   [Premier League]
+DESCRIPTION:AFC Bournemouth v Fulham   [Premier League]
+LOCATION:Amazon Prime Video
+DTSTAMP:20230827T063841Z
+DTSTART:20231226T150000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:manchesterunitedvastonvilla/premierleague
+SUMMARY:Manchester United v Aston Villa   [Premier League]
+DESCRIPTION:Manchester United v Aston Villa   [Premier League]
+LOCATION:Amazon Prime Video
+DTSTAMP:20230827T063841Z
+DTSTART:20231226T150000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:burnleyvliverpool/premierleague
+SUMMARY:Burnley v Liverpool   [Premier League]
+DESCRIPTION:Burnley v Liverpool   [Premier League]
+LOCATION:Amazon Prime Video
+DTSTAMP:20230827T063841Z
+DTSTART:20231226T150000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:evertonvmanchestercity/premierleague
+SUMMARY:Everton v Manchester City   [Premier League]
+DESCRIPTION:Everton v Manchester City   [Premier League]
+LOCATION:Amazon Prime Video
+DTSTAMP:20230827T063841Z
 DTSTART:20231226T150000Z
 DURATION:PT2H
 END:VEVENT
@@ -682,7 +673,16 @@ UID:arsenalvwesthamunited/premierleague
 SUMMARY:Arsenal v West Ham United   [Premier League]
 DESCRIPTION:Arsenal v West Ham United   [Premier League]
 LOCATION:Amazon Prime Video
-DTSTAMP:20230827T005527Z
+DTSTAMP:20230827T063841Z
+DTSTART:20231226T150000Z
+DURATION:PT2H
+END:VEVENT
+BEGIN:VEVENT
+UID:sheffieldunitedvlutontown/premierleague
+SUMMARY:Sheffield United v Luton Town   [Premier League]
+DESCRIPTION:Sheffield United v Luton Town   [Premier League]
+LOCATION:Amazon Prime Video
+DTSTAMP:20230827T063841Z
 DTSTART:20231226T150000Z
 DURATION:PT2H
 END:VEVENT
