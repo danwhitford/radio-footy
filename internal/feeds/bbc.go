@@ -77,6 +77,7 @@ func bbcDayToMergedMatches(bbcFeed BBCFeed) []MergedMatch {
 					Title:       prog.Title.Tertiary,
 					Competition: prog.Title.Secondary,
 				}
+
 				matches = append(matches, m)
 			}
 		}
