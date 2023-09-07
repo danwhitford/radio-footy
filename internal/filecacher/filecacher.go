@@ -16,10 +16,20 @@ type Getter interface {
 	Get(url string) (*http.Response, error)
 }
 
-type HttpGetter struct{}
+type HttpGetter struct{
+	client *http.Client
+}
 
 func (getter HttpGetter) Get(url string) (*http.Response, error) {
-	return http.Get(url)
+	return getter.client.Get(url)
+}
+
+func NewHttpGetter() HttpGetter {
+	// Create http client with custom timeout
+	client := &http.Client{
+		Timeout: time.Second * 10,
+	}
+	return HttpGetter{client: client}
 }
 
 func getAndSave(url, fname string, getter Getter) ([]byte, error) {
@@ -28,7 +38,11 @@ func getAndSave(url, fname string, getter Getter) ([]byte, error) {
 		return nil, err
 	}
 	if resp.StatusCode != 200 {
-		return nil, fmt.Errorf("error getting url: %s. code: %d. body: %v", url, resp.StatusCode, resp.Body)
+		body, err := io.ReadAll(resp.Body)
+		if err != nil {
+			return nil, fmt.Errorf("error reading body from error state: %w", err)
+		}
+		return nil, fmt.Errorf("error getting url: %s. code: %d. body: %s", url, resp.StatusCode, string(body))
 	}
 	defer resp.Body.Close()
 	body, err := io.ReadAll(resp.Body)

@@ -35,7 +35,8 @@ func getTvMatches() ([]MergedMatch, error) {
 		return nil, fmt.Errorf("error loading location: %v", err)
 	}
 
-	html, err := filecacher.GetUrl(englishFootballUrl, filecacher.HttpGetter{})
+	getter := filecacher.NewHttpGetter()
+	html, err := filecacher.GetUrl(englishFootballUrl, getter)
 	if err != nil {
 		return nil, err
 	}

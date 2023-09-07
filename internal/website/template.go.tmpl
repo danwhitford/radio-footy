@@ -13,15 +13,13 @@
     <div>
         <h1>Football on radio and TV</h1>
         {{ range .MatchDays }}
-        <div>
+        <section>
             <h2 id="{{ rfc3339 .DateTime }}">{{ .NiceDate }} <a href="#{{ rfc3339 .DateTime }}">#</a></h2>
             {{ range .Matches }}
-                <div>
-                    <p><b>{{ .Time }} | {{ join .Stations " | " }}</b></p>
-                    <p>{{ .Title }} ({{ .Competition }})</p>
-                </div>
+                <h3>{{ .Time }} | {{ join .Stations " | " }}</h3>
+                <p>{{ .Title }} ({{ .Competition }})</p>
             {{ end }}
-        </div>
+        </section>
         <hr />
         {{ end }}
     </div>

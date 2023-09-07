@@ -26,8 +26,9 @@ func getBBCMatches() ([]MergedMatch, error) {
 	}
 
 	var bbcFeed BBCFeed
+	getter := filecacher.NewHttpGetter()
 	for _, url := range urls {
-		body, err := filecacher.GetUrl(url, filecacher.HttpGetter{})
+		body, err := filecacher.GetUrl(url, getter)
 		if err != nil {
 			return nil, err
 		}
