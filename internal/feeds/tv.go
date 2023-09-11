@@ -3,6 +3,7 @@ package feeds
 import (
 	"fmt"
 	"regexp"
+	"strings"
 	"time"
 
 	"github.com/anaskhan96/soup"
@@ -26,6 +27,7 @@ var channelsICareAbout = []string{
 	"BBC Two",
 	"Amazon Prime Video",
 	"ITV1",
+	"Channel 4",
 }
 
 func getTvMatches() ([]MergedMatch, error) {
@@ -64,6 +66,7 @@ func getTvMatches() ([]MergedMatch, error) {
 				fixtureDate = dateTime
 			case "fixture":
 				teams := div.Find("div", "class", "fixture__teams").Text()
+				teams = strings.TrimSpace(teams)
 				compName := div.Find("div", "class", "fixture__competition").Text()
 				channels := div.Find("div", "class", "fixture__channel")
 				channelStrings := make([]string, 0)
@@ -91,7 +94,6 @@ func getTvMatches() ([]MergedMatch, error) {
 					0,
 					loc,
 				)
-				// fixtureDateTime = fixtureDateTime.In(loc)
 
 				fixtures = append(fixtures, tvFixture{
 					teams:    teams,

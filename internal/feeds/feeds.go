@@ -104,6 +104,7 @@ func mapCompName(match *MergedMatch) {
 	match.Competition = strings.TrimSuffix(match.Competition, " Football 2022-23")
 	match.Competition = strings.TrimSuffix(match.Competition, " Football 2023-24")
 	match.Competition = strings.TrimSuffix(match.Competition, " Friendlies")
+	match.Competition = strings.TrimSuffix(match.Competition, " Friendly")
 	match.Competition = strings.TrimPrefix(match.Competition, "FA ")
 	if match.Competition == "Test Match Special" {
 		match.Competition = "The Ashes"

@@ -94,8 +94,8 @@ func TestRollUpStations(t *testing.T) {
 					Date:     "Saturday, Dec 26",
 					Stations: []string{"talkSPORT", "BBC Radio 5"},
 				},
-			},
-		},
+			},			
+		},		
 		{
 			input: []MergedMatch{
 				{
@@ -135,6 +135,32 @@ func TestRollUpStations(t *testing.T) {
 					Time:     "10:00",
 					Date:     "Saturday, Dec 26",
 					Stations: []string{"BBC Radio 5", "Sky Sports", "Sky Sports Football"},
+				},
+			},
+		},
+		{
+			input: []MergedMatch{
+				{
+					Stations: []string{"talkSPORT"},
+					Time:     "10:00",
+					Date:     "Saturday, Dec 26",
+				},
+				{
+					Stations: []string{"BBC Radio 5"},
+					Time:     "10:00",
+					Date:     "Saturday, Dec 26",
+				},
+				{
+					Stations: []string{"Channel 4"},
+					Time:     "10:00",
+					Date:     "Saturday, Dec 26",
+				},
+			},
+			output: []MergedMatch{
+				{
+					Time:     "10:00",
+					Date:     "Saturday, Dec 26",
+					Stations: []string{"talkSPORT", "BBC Radio 5", "Channel 4"},
 				},
 			},
 		},
