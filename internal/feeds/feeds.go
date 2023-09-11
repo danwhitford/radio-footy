@@ -40,7 +40,6 @@ func mergedMatchesToMergedMatchDays(matches []MergedMatch) []MergedMatchDay {
 		mapTeamNames(&matches[i])
 		mapCompName(&matches[i])
 	}
-	matches = fuzzyMergeTeams(matches)
 
 	// Roll up stations
 	matches = rollUpStations(matches)
@@ -62,16 +61,19 @@ func shouldSkip(m MergedMatch) bool {
 }
 
 func stationRank(station string) int {
-	switch strings.Split(station, " | ")[0] {
-	case "talkSPORT":
-		return 1
-	case "BBC Radio 5":
-		return 2
-	case "talkSPORT2":
-		return 3
-	default:
-		return 99
+	stationsInOrder := []string{		
+		"Sky Sports",
+		"talkSPORT",
+		"BBC Radio 5",
+		"talkSPORT2",
 	}
+	for i, s := range stationsInOrder {
+		if station == s {
+			return i
+		}
+	}
+	
+	return 99
 }
 
 func mapTeamNames(match *MergedMatch) {
@@ -200,51 +202,6 @@ func sortMatchDays(matchDays []MergedMatchDay) []MergedMatchDay {
 	}
 
 	return matchDays
-}
-
-func fuzzyMergeTeams(matches []MergedMatch) []MergedMatch {
-	merged := make([]MergedMatch, 0)
-	matchesRollup := make(map[string][]MergedMatch)
-	for _, match := range matches {
-		key := fmt.Sprintf("%s%s", match.Competition, match.Datetime)
-		matchesRollup[key] = append(matchesRollup[key], match)
-	}
-
-	for _, matches := range matchesRollup {
-		if len(matches) == 1 {
-			merged = append(merged, matches[0])
-			continue
-		}
-
-		toCheck := make([]MergedMatch, 0)
-		toCheck = append(toCheck, matches...)
-		for len(toCheck) > 0 {
-			candidate := toCheck[0]
-			toCheck = toCheck[1:]
-			matched := false
-			for i, other := range toCheck {
-				m1Teams := strings.Split(candidate.Title, " v ")
-				m2Teams := strings.Split(other.Title, " v ")
-				if m1Teams[0] == m2Teams[0] || m1Teams[1] == m2Teams[1] {
-					stationList := make([]string, 0)
-					stationList = append(stationList, candidate.Stations...)
-					stationList = append(stationList, other.Stations...)
-					sort.Slice(stationList, func(i, j int) bool {
-						return stationRank(stationList[i]) < stationRank(stationList[j])
-					})
-					candidate.Stations = stationList
-					merged = append(merged, candidate)
-					toCheck = append(toCheck[:i], toCheck[i+1:]...)
-					matched = true
-					break
-				}
-			}
-			if !matched {
-				merged = append(merged, candidate)
-			}
-		}
-	}
-	return merged
 }
 
 func MergedMatchDayToEventList(mergedMatches []MergedMatchDay) []CalEvent {

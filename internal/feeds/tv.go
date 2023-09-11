@@ -72,8 +72,15 @@ func getTvMatches() ([]MergedMatch, error) {
 				channelStrings := make([]string, 0)
 				for _, channelPill := range channels.FindAll("span", "class", "channel-pill") {
 					channelString := channelPill.Text()
+
 					if stringInSlice(channelString, channelsICareAbout) {
-						channelStrings = append(channelStrings, channelPill.Text())
+						if strings.HasPrefix(channelString, "Sky Sports") {
+							channelString = "Sky Sports"
+						}
+						if stringInSlice(channelString, channelStrings) {
+							continue
+						}
+						channelStrings = append(channelStrings, channelString)
 					}
 				}
 				if len(channelStrings) == 0 {
