@@ -21,7 +21,20 @@ type HttpGetter struct{
 }
 
 func (getter HttpGetter) Get(url string) (*http.Response, error) {
-	return getter.client.Get(url)
+	backoff := 1
+	for {
+		res, err := getter.client.Get(url)
+		if err != nil {
+			return nil, err
+		}		
+		if res.StatusCode == 200 {
+			return res, nil
+		}
+		// Sleep for backoff seconds
+		log.Printf("Got status code %d, sleeping for %d seconds\n", res.StatusCode, backoff)
+		time.Sleep(time.Second * time.Duration(backoff))
+		backoff *= 2
+	}	
 }
 
 func NewHttpGetter() HttpGetter {
