@@ -5,7 +5,6 @@ import (
 	"encoding/hex"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -32,7 +31,7 @@ func (getter HttpGetter) Get(url string) (*http.Response, error) {
 			return res, nil
 		}
 		// Sleep for backoff seconds
-		log.Printf("Got status code %d, sleeping for %d seconds\n", res.StatusCode, backoff)
+		fmt.Printf("Got status code %d, sleeping for %d seconds\n", res.StatusCode, backoff)
 		time.Sleep(time.Second * time.Duration(backoff))
 		backoff *= 2
 		if backoff > limit {
@@ -40,8 +39,8 @@ func (getter HttpGetter) Get(url string) (*http.Response, error) {
 			if err != nil {
 				return nil, fmt.Errorf("error reading body from error state: %w", err)
 			}
-			log.Printf("Error getting URL: %s. Code: %d. Body: %s\n", url, res.StatusCode, string(body))
-			return nil, fmt.Errorf("backoff limit reached")
+			return nil,
+				fmt.Errorf("backoff limit reached. Error getting URL: %s. Code: %d. Body: %s", url, res.StatusCode, string(body))
 		}
 	}
 }
@@ -71,7 +70,7 @@ func getAndSave(url, fname string, getter Getter) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	log.Println("Writing file...")
+	fmt.Println("Writing file...")
 	err = os.WriteFile(filepath.Join(".cache", fname), body, 0644)
 	if err != nil {
 		return nil, err
@@ -80,30 +79,23 @@ func getAndSave(url, fname string, getter Getter) ([]byte, error) {
 }
 
 func GetUrl(url string, getter Getter) ([]byte, error) {
-	log.Printf("Getting URL: %s\n", url)
 	h := sha1.Sum([]byte(url))
 	fname := hex.EncodeToString(h[:])
 	data, err := os.ReadFile(fmt.Sprintf(".cache/%s", fname))
 	if err != nil {
-		log.Println("Could not open file from cache")
 		if !os.IsNotExist(err) {
-			log.Println("File open error was not recognised. This is bad.")
-			return nil, err
+			return nil, fmt.Errorf("file open error was not recognised. This is bad. url: %s. error: %w", url, err)
 		} else {
-			log.Println("File does not exist, fetching and caching...")
 			return getAndSave(url, fname, getter)
 		}
 	} else {
-		log.Println("File exists, checking mod time")
 		info, err := os.Stat(fmt.Sprintf(".cache/%s", fname))
 		if err != nil {
 			return nil, err
 		}
 		if info.ModTime().Before(time.Now().Add(-1 * time.Hour * 24)) {
-			log.Println("File is older than 24 hours, fetching and caching...")
 			return getAndSave(url, fname, getter)
 		}
-		log.Println("File is recent, returning cached data")
 		return data, nil
 	}
 }
