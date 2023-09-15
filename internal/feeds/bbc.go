@@ -59,7 +59,8 @@ func bbcDayToMergedMatches(bbcFeed BBCFeed) []MergedMatch {
 	for _, data := range bbcFeed.Data {
 		for _, prog := range data.Data {
 			if strings.HasPrefix(prog.Title.Secondary, "Women") ||
-				strings.Contains(prog.Title.Tertiary, "Women") {
+				strings.Contains(prog.Title.Tertiary, "Women") ||
+				strings.Contains(prog.Synopses.Short, "Women") {
 				continue
 			}
 			if isLeagueGame(prog.Title) {
