@@ -22,6 +22,7 @@ type HttpGetter struct{
 
 func (getter HttpGetter) Get(url string) (*http.Response, error) {
 	backoff := 1
+	limit := 64000
 	for {
 		res, err := getter.client.Get(url)
 		if err != nil {
@@ -34,6 +35,14 @@ func (getter HttpGetter) Get(url string) (*http.Response, error) {
 		log.Printf("Got status code %d, sleeping for %d seconds\n", res.StatusCode, backoff)
 		time.Sleep(time.Second * time.Duration(backoff))
 		backoff *= 2
+		if backoff > limit {
+			body, err := io.ReadAll(res.Body)
+			if err != nil {
+				return nil, fmt.Errorf("error reading body from error state: %w", err)
+			}
+			log.Printf("Error getting URL: %s. Code: %d. Body: %s\n", url, res.StatusCode, string(body))
+			return nil, fmt.Errorf("backoff limit reached")
+		}
 	}	
 }
 
