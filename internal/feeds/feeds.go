@@ -61,7 +61,7 @@ func shouldSkip(m MergedMatch) bool {
 }
 
 func stationRank(station string) int {
-	stationsInOrder := []string{		
+	stationsInOrder := []string{
 		"Sky Sports",
 		"talkSPORT",
 		"BBC Radio 5",
@@ -72,7 +72,7 @@ func stationRank(station string) int {
 			return i
 		}
 	}
-	
+
 	return 99
 }
 

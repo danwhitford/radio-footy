@@ -16,7 +16,7 @@ type Getter interface {
 	Get(url string) (*http.Response, error)
 }
 
-type HttpGetter struct{
+type HttpGetter struct {
 	client *http.Client
 }
 
@@ -27,7 +27,7 @@ func (getter HttpGetter) Get(url string) (*http.Response, error) {
 		res, err := getter.client.Get(url)
 		if err != nil {
 			return nil, err
-		}		
+		}
 		if res.StatusCode == 200 {
 			return res, nil
 		}
@@ -43,7 +43,7 @@ func (getter HttpGetter) Get(url string) (*http.Response, error) {
 			log.Printf("Error getting URL: %s. Code: %d. Body: %s\n", url, res.StatusCode, string(body))
 			return nil, fmt.Errorf("backoff limit reached")
 		}
-	}	
+	}
 }
 
 func NewHttpGetter() HttpGetter {
