@@ -7,17 +7,19 @@
     <meta name="Description" content="Upcoming football matches on the wireless">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
+
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
     <div>
         <h1>Football on radio and TV</h1>
         {{ range .MatchDays }}
-        <section>
-            <h2 id="{{ rfc3339 .DateTime }}">{{ .NiceDate }} <a href="#{{ rfc3339 .DateTime }}">#</a></h2>
+        <section class="day-section">
+            <h2 class="day" id="{{ rfc3339 .DateTime }}">{{ .NiceDate }} <a href="#{{ rfc3339 .DateTime }}">#</a></h2>
             {{ range .Matches }}
-                <h3>{{ .Time }} | {{ join .Stations " | " }}</h3>
-                <p>{{ .Title }} ({{ .Competition }})</p>
+                <h3 class="stations">{{ .Time }} | {{ join .Stations " | " }}</h3>
+                <p class="match-title">{{ .Title }} ({{ .Competition }})</p>
             {{ end }}
         </section>
         <hr />

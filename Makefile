@@ -1,7 +1,7 @@
 GO_FILES := $(shell find . -name "*.go")
 
 .PHONY: website
-website: docs/index.html docs/icalendar.ics
+website: docs/index.html docs/icalendar.ics docs/styles.css
 
 .PHONY: clean
 clean:
@@ -27,3 +27,6 @@ icalendar.ics: .cache radiofooty internal/website/icalendar.go.tmpl
 
 docs/icalendar.ics: docs icalendar.ics
 	mv icalendar.ics docs/icalendar.ics
+
+docs/styles.css: docs
+	cp static/styles.css docs/styles.css

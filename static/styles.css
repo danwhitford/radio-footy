@@ -1,0 +1,55 @@
+/* General */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  line-height: 1.6;
+}
+
+/* Header */
+h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+/* Match Day Section */
+.day-section {
+  margin-bottom: 20px;
+}
+
+.day {
+  font-size: 1.5em;
+  margin-bottom: 5px;
+}
+
+/* Matches */
+.stations {
+  color: #777;
+  margin: 5px 0;
+}
+
+.match-title {
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+/* Footer */
+footer {
+  margin-top: 30px;
+}
+
+/* Additional classes */
+.day a {
+  text-decoration: none;
+  color: #555;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #ddd;
+  margin: 10px 0;
+}
