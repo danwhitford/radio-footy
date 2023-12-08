@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"regexp"
 	"strings"
 	"time"
 
@@ -59,8 +60,8 @@ func writeIndex(data interface{}, templatePath string, writer io.Writer) {
 		},
 		"gamehash": func(m feeds.MergedMatch) string {			
 			s := fmt.Sprintf("%s%s", m.Date, m.Title)
-			s = strings.ReplaceAll(s, " ", "")
-			s = strings.ReplaceAll(s, ",", "")
+			r := regexp.MustCompile("[^0-9a-zA-Z]")
+			s = r.ReplaceAllString(s, "")
 			return s
 		},
 	}
