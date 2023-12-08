@@ -17,9 +17,9 @@
         <h1>Football on radio and TV</h1>
         {{ range .MatchDays }}
         <section class="day-section">
-            <h2 class="day" id="{{ rfc3339 .DateTime }}">{{ .NiceDate }} <a href="#{{ rfc3339 .DateTime }}">#</a></h2>
+            <a href="#{{ rfc3339 .DateTime }}"><h2 class="day" id="{{ rfc3339 .DateTime }}">{{ .NiceDate }}</h2></a>
             {{ range .Matches }}
-                <h3 id="{{ gamehash . }}" class="stations">{{ .Time }} | {{ join .Stations " | " }} <a href=#{{ gamehash . }}>#</a></h3>
+                <a href=#{{ gamehash . }}><h3 id="{{ gamehash . }}" class="stations">{{ .Time }} | {{ join .Stations " | " }}</h3></a>
                 <p class="match-title">{{ .Title }} ({{ .Competition }})</p>
             {{ end }}
         </section>
