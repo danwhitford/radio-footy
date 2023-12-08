@@ -19,7 +19,7 @@
         <section class="day-section">
             <h2 class="day" id="{{ rfc3339 .DateTime }}">{{ .NiceDate }} <a href="#{{ rfc3339 .DateTime }}">#</a></h2>
             {{ range .Matches }}
-                <h3 class="stations">{{ .Time }} | {{ join .Stations " | " }}</h3>
+                <h3 id="{{ gamehash . }}" class="stations">{{ .Time }} | {{ join .Stations " | " }} <a href=#{{ gamehash . }}>#</a></h3>
                 <p class="match-title">{{ .Title }} ({{ .Competition }})</p>
             {{ end }}
         </section>

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"io"
 	"log"
@@ -55,6 +56,12 @@ func writeIndex(data interface{}, templatePath string, writer io.Writer) {
 		"join": strings.Join,
 		"rfc3339": func(t time.Time) string {
 			return t.Format(time.DateOnly)
+		},
+		"gamehash": func(m feeds.MergedMatch) string {			
+			s := fmt.Sprintf("%s%s", m.Date, m.Title)
+			s = strings.ReplaceAll(s, " ", "")
+			s = strings.ReplaceAll(s, ",", "")
+			return s
 		},
 	}
 	tmpl, err := template.New("template.go.tmpl").Funcs(funcs).ParseFiles(templatePath)
