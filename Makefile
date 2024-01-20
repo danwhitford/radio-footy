@@ -10,19 +10,16 @@ clean:
 docs:
 	mkdir -p docs
 
-.cache:
-	mkdir -p .cache
-
 radiofooty: $(GO_FILES)
 	go build cmd/radiofooty/radiofooty.go
 
-index.html: .cache radiofooty internal/website/template.go.tmpl
+index.html: radiofooty internal/website/template.go.tmpl
 	./radiofooty
 
 docs/index.html: docs index.html
 	mv index.html docs/index.html
 
-icalendar.ics: .cache radiofooty internal/website/icalendar.go.tmpl
+icalendar.ics: radiofooty internal/website/icalendar.go.tmpl
 	./radiofooty
 
 docs/icalendar.ics: docs icalendar.ics
