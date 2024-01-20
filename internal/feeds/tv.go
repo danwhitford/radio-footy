@@ -28,6 +28,10 @@ var channelsICareAbout = []string{
 	"Amazon Prime Video",
 	"ITV1",
 	"Channel 4",
+	"TNT Sports 1",
+	"TNT Sports 2",
+	"TNT Sports 3",
+	"TNT Sports Ultimate",
 }
 
 func getTvMatches() ([]MergedMatch, error) {
@@ -73,9 +77,13 @@ func getTvMatches() ([]MergedMatch, error) {
 				for _, channelPill := range channels.FindAll("span", "class", "channel-pill") {
 					channelString := channelPill.Text()
 
+					fmt.Println(channelString)
 					if stringInSlice(channelString, channelsICareAbout) {
 						if strings.HasPrefix(channelString, "Sky Sports") {
 							channelString = "Sky Sports"
+						}
+						if strings.HasPrefix(channelString, "TNT Sports") {
+							channelString = "TNT Sports"
 						}
 						if stringInSlice(channelString, channelStrings) {
 							continue
