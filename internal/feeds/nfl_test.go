@@ -3,8 +3,10 @@ package feeds
 import (
 	"testing"
 
-	"github.com/google/go-cmp/cmp"
 	_ "embed"
+
+	"github.com/google/go-cmp/cmp"
+	"whitford.io/radiofooty/internal/filecacher"
 )
 
 //go:embed nfl_test_day.html
@@ -42,7 +44,10 @@ func TestGetNflOnSky(t *testing.T) {
 		t.Errorf("failed to embed file")
 	}
 	
-	got, err := nflPageToMergedMatches(html)
+	getter := filecacher.StringGetter{
+		Contents: html,
+	}
+	got, err := getNflOnSky(getter)
 	if err != nil {
 		t.Fatalf("got error: %s", err)
 	}

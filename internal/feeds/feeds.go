@@ -6,23 +6,27 @@ import (
 	"sort"
 	"strings"
 	"time"
+
+	"whitford.io/radiofooty/internal/filecacher"
 )
 
 const niceDate = "Monday, Jan 2"
 const timeLayout = "15:04"
 
-type MatchGetter func() ([]MergedMatch, error)
+type MatchGetter func(getter filecacher.Getter) ([]MergedMatch, error)
 
 func GetMergedMatches() ([]MergedMatchDay, error) {
 	var matches []MergedMatch
-	getters := []MatchGetter{
+	macthGetters := []MatchGetter{
 		getTalkSportMatches,
 		getBBCMatches,
 		getTvMatches,
 		getNflOnSky,
 	}
-	for _, getter := range getters {
-		got, err := getter()
+
+	httpGetter := filecacher.NewHttpGetter()
+	for _, matchGetter := range macthGetters {
+		got, err := matchGetter(httpGetter)
 		if err != nil {
 			return nil, err
 		}

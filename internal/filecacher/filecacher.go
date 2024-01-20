@@ -1,25 +1,21 @@
 package filecacher
 
 import (
-	"crypto/sha1"
-	"encoding/hex"
 	"fmt"
 	"io"
 	"net/http"
-	"os"
-	"path/filepath"
 	"time"
 )
 
 type Getter interface {
-	Get(url string) (*http.Response, error)
+	GetUrl(url string) ([]byte, error)
 }
 
 type HttpGetter struct {
 	client *http.Client
 }
 
-func (getter HttpGetter) Get(url string) (*http.Response, error) {
+func (getter HttpGetter) getWithBackoff(url string) (*http.Response, error) {
 	backoff := 1
 	limit := 64000
 	for {
@@ -53,12 +49,8 @@ func NewHttpGetter() HttpGetter {
 	return HttpGetter{client: client}
 }
 
-type CachedGetter struct {
-	Getter Getter
-}
-
-func (cached CachedGetter) getAndSave(url, fname string) ([]byte, error) {
-	resp, err := cached.Getter.Get(url)
+func (cached HttpGetter) GetUrl(url string) ([]byte, error) {
+	resp, err := cached.getWithBackoff(url)
 	if err != nil {
 		return nil, err
 	}
@@ -74,31 +66,13 @@ func (cached CachedGetter) getAndSave(url, fname string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	err = os.WriteFile(filepath.Join(".cache", fname), body, 0644)
-	if err != nil {
-		return nil, err
-	}
 	return body, nil
 }
 
-func (cached CachedGetter) GetUrl(url string) ([]byte, error) {
-	h := sha1.Sum([]byte(url))
-	fname := hex.EncodeToString(h[:])
-	data, err := os.ReadFile(fmt.Sprintf(".cache/%s", fname))
-	if err != nil {
-		if !os.IsNotExist(err) {
-			return nil, fmt.Errorf("file open error was not recognised. This is bad. url: %s. error: %w", url, err)
-		} else {
-			return cached.getAndSave(url, fname)
-		}
-	} else {
-		info, err := os.Stat(fmt.Sprintf(".cache/%s", fname))
-		if err != nil {
-			return nil, err
-		}
-		if info.ModTime().Before(time.Now().Add(-1 * time.Hour * 24)) {
-			return cached.getAndSave(url, fname)
-		}
-		return data, nil
-	}
+type StringGetter struct {
+	Contents string
+}
+
+func (getter StringGetter) GetUrl(_ string) ([]byte, error) {
+	return []byte(getter.Contents), nil
 }

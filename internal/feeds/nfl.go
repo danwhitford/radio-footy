@@ -12,11 +12,8 @@ import (
 
 const nflUrl string = "https://www.skysports.com/watch/nfl-on-sky"
 
-func getNflOnSky() ([]MergedMatch, error) {
-	cacher := filecacher.CachedGetter{
-		Getter: filecacher.NewHttpGetter(),
-	}
-	html, err := cacher.GetUrl(nflUrl)
+func getNflOnSky(getter filecacher.Getter) ([]MergedMatch, error) {
+	html, err := getter.GetUrl(nflUrl)
 	if err != nil {
 		return nil, err
 	}

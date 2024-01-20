@@ -34,17 +34,14 @@ var channelsICareAbout = []string{
 	"TNT Sports Ultimate",
 }
 
-func getTvMatches() ([]MergedMatch, error) {
+func getTvMatches(getter filecacher.Getter) ([]MergedMatch, error) {
 	re := regexp.MustCompile(`(\d+)(st|nd|rd|th)`)
 	loc, err := time.LoadLocation("Europe/London")
 	if err != nil {
 		return nil, fmt.Errorf("error loading location: %v", err)
 	}
 
-	cacher := filecacher.CachedGetter{
-		Getter: filecacher.NewHttpGetter(),
-	}
-	html, err := cacher.GetUrl(englishFootballUrl)
+	html, err := getter.GetUrl(englishFootballUrl)
 	if err != nil {
 		return nil, err
 	}
