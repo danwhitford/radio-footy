@@ -41,8 +41,10 @@ func getTvMatches() ([]MergedMatch, error) {
 		return nil, fmt.Errorf("error loading location: %v", err)
 	}
 
-	getter := filecacher.NewHttpGetter()
-	html, err := filecacher.GetUrl(englishFootballUrl, getter)
+	cacher := filecacher.CachedGetter{
+		Getter: filecacher.NewHttpGetter(),
+	}
+	html, err := cacher.GetUrl(englishFootballUrl)
 	if err != nil {
 		return nil, err
 	}
@@ -77,7 +79,6 @@ func getTvMatches() ([]MergedMatch, error) {
 				for _, channelPill := range channels.FindAll("span", "class", "channel-pill") {
 					channelString := channelPill.Text()
 
-					fmt.Println(channelString)
 					if stringInSlice(channelString, channelsICareAbout) {
 						if strings.HasPrefix(channelString, "Sky Sports") {
 							channelString = "Sky Sports"

@@ -13,8 +13,10 @@ import (
 const nflUrl string = "https://www.skysports.com/watch/nfl-on-sky"
 
 func getNflOnSky() ([]MergedMatch, error) {
-	getter := filecacher.NewHttpGetter()
-	html, err := filecacher.GetUrl(nflUrl, getter)
+	cacher := filecacher.CachedGetter{
+		Getter: filecacher.NewHttpGetter(),
+	}
+	html, err := cacher.GetUrl(nflUrl)
 	if err != nil {
 		return nil, err
 	}
@@ -100,7 +102,6 @@ func nflPageToMergedMatches(html string) ([]MergedMatch, error) {
 				}
 			}
 		}
-		fmt.Println(curDate)
 	}
 
 	// groups := pageData.FindAll("div", "class", "event-group")

@@ -40,8 +40,9 @@ func TestCreatesCache(t *testing.T) {
 	setup()
 	defer shutdown()
 
-	getter := DummyGetter{}
-	b, err := GetUrl("https://www.example.com", &getter)
+	cacher := CachedGetter{Getter: &DummyGetter{}}
+	
+	b, err := cacher.GetUrl("https://www.example.com")
 	if err != nil {
 		t.Fatalf("err was %v", err)
 	}
@@ -62,8 +63,8 @@ func TestUsesCache(t *testing.T) {
 	setup()
 	defer shutdown()
 
-	getter := DummyGetter{}
-	b, err := GetUrl("https://www.example.com", &getter)
+	cacher := CachedGetter{Getter: &DummyGetter{}}
+	b, err := cacher.GetUrl("https://www.example.com")
 	if err != nil {
 		t.Fatalf("err was %v", err)
 	}
@@ -71,7 +72,7 @@ func TestUsesCache(t *testing.T) {
 		t.Fatal("b was nil")
 	}
 
-	b, err = GetUrl("https://www.example.com", &getter)
+	b, err = cacher.GetUrl("https://www.example.com")
 	if err != nil {
 		t.Fatalf("err was %v", err)
 	}

@@ -53,8 +53,12 @@ func NewHttpGetter() HttpGetter {
 	return HttpGetter{client: client}
 }
 
-func getAndSave(url, fname string, getter Getter) ([]byte, error) {
-	resp, err := getter.Get(url)
+type CachedGetter struct {
+	Getter Getter
+}
+
+func (cached CachedGetter) getAndSave(url, fname string) ([]byte, error) {
+	resp, err := cached.Getter.Get(url)
 	if err != nil {
 		return nil, err
 	}
@@ -70,7 +74,6 @@ func getAndSave(url, fname string, getter Getter) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println("Writing file...")
 	err = os.WriteFile(filepath.Join(".cache", fname), body, 0644)
 	if err != nil {
 		return nil, err
@@ -78,7 +81,7 @@ func getAndSave(url, fname string, getter Getter) ([]byte, error) {
 	return body, nil
 }
 
-func GetUrl(url string, getter Getter) ([]byte, error) {
+func (cached CachedGetter) GetUrl(url string) ([]byte, error) {
 	h := sha1.Sum([]byte(url))
 	fname := hex.EncodeToString(h[:])
 	data, err := os.ReadFile(fmt.Sprintf(".cache/%s", fname))
@@ -86,7 +89,7 @@ func GetUrl(url string, getter Getter) ([]byte, error) {
 		if !os.IsNotExist(err) {
 			return nil, fmt.Errorf("file open error was not recognised. This is bad. url: %s. error: %w", url, err)
 		} else {
-			return getAndSave(url, fname, getter)
+			return cached.getAndSave(url, fname)
 		}
 	} else {
 		info, err := os.Stat(fmt.Sprintf(".cache/%s", fname))
@@ -94,7 +97,7 @@ func GetUrl(url string, getter Getter) ([]byte, error) {
 			return nil, err
 		}
 		if info.ModTime().Before(time.Now().Add(-1 * time.Hour * 24)) {
-			return getAndSave(url, fname, getter)
+			return cached.getAndSave(url, fname)
 		}
 		return data, nil
 	}
