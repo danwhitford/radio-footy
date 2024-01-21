@@ -99,6 +99,7 @@ func mapTeamName(name string) string {
 		"Brighton and Hove Albion": "Brighton & Hove Albion",
 		"Internazionale":           "Inter Milan",
 		"Wolverhampton Wanderers":  "Wolves",
+		"West Bromwich Albion":     "West Brom",
 	}
 	newName, prs := nameMapper[name]
 	if prs {
