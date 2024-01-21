@@ -58,7 +58,7 @@ func writeIndex(data interface{}, templatePath string, writer io.Writer) {
 		"rfc3339": func(t time.Time) string {
 			return t.Format(time.DateOnly)
 		},
-		"gamehash": func(m feeds.MergedMatch) string {			
+		"gamehash": func(m feeds.MergedMatch) string {
 			s := fmt.Sprintf("%s%s", m.Date, m.Title)
 			r := regexp.MustCompile("[^0-9a-zA-Z]")
 			s = r.ReplaceAllString(s, "")

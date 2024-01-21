@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/anaskhan96/soup"
-	"whitford.io/radiofooty/internal/filecacher"
+	"whitford.io/radiofooty/internal/urlgetter"
 )
 
 const englishFootballUrl = "https://www.live-footballontv.com/live-english-football-on-tv.html"
@@ -34,7 +34,7 @@ var channelsICareAbout = []string{
 	"TNT Sports Ultimate",
 }
 
-func getTvMatches(getter filecacher.Getter) ([]MergedMatch, error) {
+func getTvMatches(getter urlgetter.UrlGetter) ([]MergedMatch, error) {
 	re := regexp.MustCompile(`(\d+)(st|nd|rd|th)`)
 	loc, err := time.LoadLocation("Europe/London")
 	if err != nil {

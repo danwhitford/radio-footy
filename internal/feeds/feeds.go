@@ -7,13 +7,13 @@ import (
 	"strings"
 	"time"
 
-	"whitford.io/radiofooty/internal/filecacher"
+	"whitford.io/radiofooty/internal/urlgetter"
 )
 
 const niceDate = "Monday, Jan 2"
 const timeLayout = "15:04"
 
-type MatchGetter func(getter filecacher.Getter) ([]MergedMatch, error)
+type MatchGetter func(getter urlgetter.UrlGetter) ([]MergedMatch, error)
 
 func GetMergedMatches() ([]MergedMatchDay, error) {
 	var matches []MergedMatch
@@ -24,7 +24,7 @@ func GetMergedMatches() ([]MergedMatchDay, error) {
 		getNflOnSky,
 	}
 
-	httpGetter := filecacher.NewHttpGetter()
+	httpGetter := urlgetter.NewHttpGetter()
 	for _, matchGetter := range macthGetters {
 		got, err := matchGetter(httpGetter)
 		if err != nil {
@@ -98,7 +98,7 @@ func mapTeamName(name string) string {
 		"FC Bayern München":        "Bayern Munich",
 		"Brighton and Hove Albion": "Brighton & Hove Albion",
 		"Internazionale":           "Inter Milan",
-		"Wolverhampton Wanderers": "Wolves",
+		"Wolverhampton Wanderers":  "Wolves",
 	}
 	newName, prs := nameMapper[name]
 	if prs {

@@ -6,12 +6,12 @@ import (
 	"strings"
 	"time"
 
-	"whitford.io/radiofooty/internal/filecacher"
+	"whitford.io/radiofooty/internal/urlgetter"
 )
 
-func getTalkSportMatches(getter filecacher.Getter) ([]MergedMatch, error) {
+func getTalkSportMatches(getter urlgetter.UrlGetter) ([]MergedMatch, error) {
 	url := "https://talksport.com/wp-json/talksport/v2/talksport-live/commentary"
-	
+
 	body, err := getter.GetUrl(url)
 	if err != nil {
 		return nil, err

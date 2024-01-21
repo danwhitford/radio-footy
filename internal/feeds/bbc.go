@@ -6,10 +6,10 @@ import (
 	"strings"
 	"time"
 
-	"whitford.io/radiofooty/internal/filecacher"
+	"whitford.io/radiofooty/internal/urlgetter"
 )
 
-func getBBCMatches(getter filecacher.Getter) ([]MergedMatch, error) {
+func getBBCMatches(getter urlgetter.UrlGetter) ([]MergedMatch, error) {
 	var matches = []MergedMatch{}
 	baseUrls := []string{
 		"https://rms.api.bbc.co.uk/v2/experience/inline/schedules/bbc_radio_five_live/",

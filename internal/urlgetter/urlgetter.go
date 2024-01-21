@@ -1,4 +1,4 @@
-package filecacher
+package urlgetter
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-type Getter interface {
+type UrlGetter interface {
 	GetUrl(url string) ([]byte, error)
 }
 

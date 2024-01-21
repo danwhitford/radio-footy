@@ -7,12 +7,12 @@ import (
 	"time"
 
 	"github.com/anaskhan96/soup"
-	"whitford.io/radiofooty/internal/filecacher"
+	"whitford.io/radiofooty/internal/urlgetter"
 )
 
 const nflUrl string = "https://www.skysports.com/watch/nfl-on-sky"
 
-func getNflOnSky(getter filecacher.Getter) ([]MergedMatch, error) {
+func getNflOnSky(getter urlgetter.UrlGetter) ([]MergedMatch, error) {
 	html, err := getter.GetUrl(nflUrl)
 	if err != nil {
 		return nil, err
@@ -24,7 +24,7 @@ var dateRe *regexp.Regexp = regexp.MustCompile(`(\d+)(st|nd|rd|th)`)
 
 func nflPageToMergedMatches(html string) ([]MergedMatch, error) {
 	mergedMatches := make([]MergedMatch, 0)
-	
+
 	re := regexp.MustCompile(`\([0-9:]+\)`)
 	loc, err := time.LoadLocation("Europe/London")
 	if err != nil {
