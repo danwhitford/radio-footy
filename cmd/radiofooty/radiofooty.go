@@ -35,24 +35,22 @@ func main() {
 		Events:  events,
 	}
 
-	// Write index.html
-	f, err := os.Create("index.html")
-	if err != nil {
-		log.Fatalf("error creating file: %v", err)
+	if len(os.Args) < 2 {
+		log.Fatalf("Need to supply a target. website or calendar.")
 	}
-	defer f.Close()
-	writeIndex(data, "./internal/website/template.go.tmpl", f)
+	target := os.Args[1]
+	switch target {
+	case "website":
+		writeIndex(data, "template.go.tmpl", "./internal/website/template.go.tmpl", os.Stdout)
+	case "calendar":
+		writeIndex(calData, "icalendar.go.tmpl", "./internal/website/icalendar.go.tmpl", os.Stdout)
+	default:
+		log.Fatalf("Target not recognised: %s\n", target)
+	}
 
-	// Write iCalendar
-	fcal, err := os.Create("icalendar.ics")
-	if err != nil {
-		log.Fatalf("error creating file: %v", err)
-	}
-	defer fcal.Close()
-	writeCal(calData, "./internal/website/icalendar.go.tmpl", fcal)
 }
 
-func writeIndex(data interface{}, templatePath string, writer io.Writer) {
+func writeIndex(data interface{}, templateName, templatePath string, writer io.Writer) {
 	funcs := template.FuncMap{
 		"join": strings.Join,
 		"rfc3339": func(t time.Time) string {
@@ -65,27 +63,12 @@ func writeIndex(data interface{}, templatePath string, writer io.Writer) {
 			return s
 		},
 	}
-	tmpl, err := template.New("template.go.tmpl").Funcs(funcs).ParseFiles(templatePath)
+	tmpl, err := template.New(templateName).Funcs(funcs).ParseFiles(templatePath)
 	if err != nil {
 		log.Fatalf("template parsing: %s", err)
 	}
 	err = tmpl.Execute(writer, data)
 	if err != nil {
 		log.Fatalf("template execution: %s", err)
-	}
-}
-
-func writeCal(data interface{}, templatePath string, w io.Writer) {
-	funcs := template.FuncMap{
-		"join": strings.Join,
-	}
-	calTemplate, err := template.New("icalendar.go.tmpl").Funcs(funcs).ParseFiles(templatePath)
-	if err != nil {
-		panic(err)
-	}
-
-	err = calTemplate.Execute(w, data)
-	if err != nil {
-		panic(err)
 	}
 }

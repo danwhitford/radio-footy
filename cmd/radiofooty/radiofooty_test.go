@@ -50,7 +50,7 @@ func TestWriteCal(t *testing.T) {
 
 	for _, tst := range table {
 		var buffer bytes.Buffer
-		writeCal(tst.input, "../../internal/website/icalendar.go.tmpl", &buffer)
+		writeIndex(tst.input, "icalendar.go.tmpl", "../../internal/website/icalendar.go.tmpl", &buffer)
 
 		if diff := cmp.Diff(tst.output, buffer.String()); diff != "" {
 			t.Errorf("writeCal(%v) mismatch (-want +got):\n%s", tst.input, diff)
