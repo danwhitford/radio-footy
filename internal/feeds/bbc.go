@@ -40,10 +40,11 @@ func getBBCMatches(getter filecacher.Getter) ([]MergedMatch, error) {
 	return matches, nil
 }
 
-func isLeagueGame(title BBCTitles) bool {
+func isAMatch(title BBCTitles) bool {
 	return (title.Primary == "5 Live Sport") &&
 		(strings.Contains(title.Secondary, "Football")) &&
-		strings.Contains(title.Tertiary, " v ")
+		strings.Contains(title.Tertiary, " v ") &&
+		!strings.HasPrefix(title.Tertiary, "Prematch")
 }
 
 func bbcDayToMergedMatches(bbcFeed BBCFeed) []MergedMatch {
@@ -62,7 +63,7 @@ func bbcDayToMergedMatches(bbcFeed BBCFeed) []MergedMatch {
 				strings.Contains(prog.Synopses.Short, "Women") {
 				continue
 			}
-			if isLeagueGame(prog.Title) {
+			if isAMatch(prog.Title) {
 				start, err := time.Parse(longFormat, prog.Start)
 				if err != nil {
 					panic(err)
