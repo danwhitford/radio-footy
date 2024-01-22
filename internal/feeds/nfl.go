@@ -42,7 +42,10 @@ func nflPageToMergedMatches(html string) ([]MergedMatch, error) {
 		}
 	}
 
-	var curDate time.Time
+	if pageData.Pointer == nil {
+		return mergedMatches, nil
+	}
+	var curDate time.Time	
 	for _, child := range pageData.Children() {
 		switch child.NodeValue {
 		case "h3":
@@ -73,7 +76,7 @@ func nflPageToMergedMatches(html string) ([]MergedMatch, error) {
 					mergedMatch.Stations = []string{"Sky Sports"}
 
 					eventTitles := g.Find("ul", "class", "event").FindAll("strong")
-					mergedMatch.Title = eventTitles[0].Text() + " v " + eventTitles[1].Text()
+					mergedMatch.Title = eventTitles[0].Text() + " @ " + eventTitles[1].Text()
 
 					eventDetail := g.Find("p", "class", "event-detail").Text()
 					foundTime := re.FindString(eventDetail)
@@ -100,23 +103,6 @@ func nflPageToMergedMatches(html string) ([]MergedMatch, error) {
 			}
 		}
 	}
-
-	// groups := pageData.FindAll("div", "class", "event-group")
-	// for _, g := range groups {
-	// 	var mergedMatch MergedMatch
-	// 	mergedMatch.Competition = "NFL"
-	// 	mergedMatch.Stations = []string{"Sky Sports"}
-
-	// 	eventTitles := g.Find("ul", "class", "event").FindAll("strong")
-	// 	mergedMatch.Title = eventTitles[0].Text() + " v " + eventTitles[1].Text()
-
-	// 	eventDetail := g.Find("p", "class", "event-detail").Text()
-	// 	foundTime := re.FindString(eventDetail)
-	// 	time := strings.Trim(foundTime, "()")
-	// 	mergedMatch.Time = time
-
-	// 	mergedMatches = append(mergedMatches, mergedMatch)
-	// }
 
 	return mergedMatches, nil
 }

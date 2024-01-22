@@ -19,7 +19,7 @@ func TestGetNflOnSky(t *testing.T) {
 			Date:        "Saturday, Jan 20",
 			Stations:    []string{"Sky Sports"},
 			Datetime:    "2024-01-20T20:30:00Z",
-			Title:       "Houston Texans v Baltimore Ravens",
+			Title:       "Houston Texans @ Baltimore Ravens",
 			Competition: "NFL",
 		},
 		{
@@ -27,7 +27,7 @@ func TestGetNflOnSky(t *testing.T) {
 			Date:        "Sunday, Jan 21",
 			Stations:    []string{"Sky Sports"},
 			Datetime:    "2024-01-21T01:00:00Z",
-			Title:       "Green Bay Packers v San Francisco 49ers",
+			Title:       "Green Bay Packers @ San Francisco 49ers",
 			Competition: "NFL",
 		},
 		{
@@ -35,7 +35,7 @@ func TestGetNflOnSky(t *testing.T) {
 			Date:        "Sunday, Jan 21",
 			Stations:    []string{"Sky Sports"},
 			Datetime:    "2024-01-21T19:00:00Z",
-			Title:       "Tampa Bay Buccaneers v Detroit Lions",
+			Title:       "Tampa Bay Buccaneers @ Detroit Lions",
 			Competition: "NFL",
 		},
 	}
