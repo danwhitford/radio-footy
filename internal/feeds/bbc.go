@@ -9,8 +9,8 @@ import (
 	"whitford.io/radiofooty/internal/urlgetter"
 )
 
-func getBBCMatches(getter urlgetter.UrlGetter) ([]MergedMatch, error) {
-	var matches = []MergedMatch{}
+func getBBCMatches(getter urlgetter.UrlGetter) ([]Match, error) {
+	var matches = []Match{}
 	baseUrls := []string{
 		"https://rms.api.bbc.co.uk/v2/experience/inline/schedules/bbc_radio_five_live/",
 		"https://rms.api.bbc.co.uk/v2/experience/inline/schedules/bbc_radio_five_live_sports_extra/",
@@ -33,7 +33,7 @@ func getBBCMatches(getter urlgetter.UrlGetter) ([]MergedMatch, error) {
 		}
 		json.Unmarshal(body, &bbcFeed)
 
-		merged := bbcDayToMergedMatches(bbcFeed)
+		merged := bbcDayToMatches(bbcFeed)
 		matches = append(matches, merged...)
 	}
 
@@ -47,8 +47,8 @@ func isAMatch(title BBCTitles) bool {
 		!strings.HasPrefix(title.Tertiary, "Prematch")
 }
 
-func bbcDayToMergedMatches(bbcFeed BBCFeed) []MergedMatch {
-	matches := make([]MergedMatch, 0)
+func bbcDayToMatches(bbcFeed BBCFeed) []Match {
+	matches := make([]Match, 0)
 
 	loc, err := time.LoadLocation("Europe/London")
 	if err != nil {
@@ -71,12 +71,14 @@ func bbcDayToMergedMatches(bbcFeed BBCFeed) []MergedMatch {
 				start = start.In(loc)
 				clock := start.Format(timeLayout)
 				date := start.Format(niceDate)
-				m := MergedMatch{
+				teams := strings.Split(prog.Title.Tertiary, " v ")
+				m := Match{
 					Time:        clock,
 					Date:        date,
 					Stations:    []string{"BBC Radio 5"},
 					Datetime:    start.Format(time.RFC3339),
-					Title:       prog.Title.Tertiary,
+					HomeTeam: teams[0],
+					AwayTeam: teams[1],
 					Competition: prog.Title.Secondary,
 				}
 

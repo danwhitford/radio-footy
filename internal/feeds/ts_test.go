@@ -6,10 +6,10 @@ import (
 	"github.com/google/go-cmp/cmp"
 )
 
-func TestTsFeedToMergedMatches(t *testing.T) {
+func TestTsFeedToMatches(t *testing.T) {
 	table := []struct {
 		input  []TSGame
-		output []MergedMatch
+		output []Match
 	}{
 		{
 			input: []TSGame{
@@ -26,13 +26,14 @@ func TestTsFeedToMergedMatches(t *testing.T) {
 					},
 				},
 			},
-			output: []MergedMatch{
+			output: []Match{
 				{
 					Time:        "17:30",
 					Date:        "Saturday, Dec 26",
 					Stations:    []string{"talkSPORT"},
 					Datetime:    "2020-12-26T17:30:00Z",
-					Title:       "Arsenal v Chelsea",
+					HomeTeam: "Arsenal",
+					AwayTeam: "Chelsea",
 					Competition: "Premier League",
 				},
 			},
@@ -53,14 +54,14 @@ func TestTsFeedToMergedMatches(t *testing.T) {
 					Title:    "England Women v Portugal Women",
 				},
 			},
-			output: []MergedMatch{},
+			output: []Match{},
 		},
 	}
 
 	for _, test := range table {
-		got := tsFeedToMergedMatches(test.input)
+		got := tsFeedToMatches(test.input)
 		if diff := cmp.Diff(test.output, got); diff != "" {
-			t.Errorf("tsFeedToMergedMatches(%v) mismatch (-want +got):\n%s", test.input, diff)
+			t.Errorf("tsFeedToMatches(%v) mismatch (-want +got):\n%s", test.input, diff)
 		}
 
 	}

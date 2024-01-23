@@ -12,18 +12,18 @@ import (
 
 const nflUrl string = "https://www.skysports.com/watch/nfl-on-sky"
 
-func getNflOnSky(getter urlgetter.UrlGetter) ([]MergedMatch, error) {
+func getNflOnSky(getter urlgetter.UrlGetter) ([]Match, error) {
 	html, err := getter.GetUrl(nflUrl)
 	if err != nil {
 		return nil, err
 	}
-	return nflPageToMergedMatches(string(html))
+	return nflPageToMatches(string(html))
 }
 
 var dateRe *regexp.Regexp = regexp.MustCompile(`(\d+)(st|nd|rd|th)`)
 
-func nflPageToMergedMatches(html string) ([]MergedMatch, error) {
-	mergedMatches := make([]MergedMatch, 0)
+func nflPageToMatches(html string) ([]Match, error) {
+	Matches := make([]Match, 0)
 
 	re := regexp.MustCompile(`\([0-9:]+\)`)
 	loc, err := time.LoadLocation("Europe/London")
@@ -43,9 +43,9 @@ func nflPageToMergedMatches(html string) ([]MergedMatch, error) {
 	}
 
 	if pageData.Pointer == nil {
-		return mergedMatches, nil
+		return Matches, nil
 	}
-	var curDate time.Time	
+	var curDate time.Time
 	for _, child := range pageData.Children() {
 		switch child.NodeValue {
 		case "h3":
@@ -54,7 +54,7 @@ func nflPageToMergedMatches(html string) ([]MergedMatch, error) {
 				cleanstring := dateRe.ReplaceAllString(datestring, "$1")
 				date, err := time.Parse("Mon 2 January", cleanstring)
 				if err != nil {
-					return mergedMatches, fmt.Errorf("could not parse %s: %s", cleanstring, err)
+					return Matches, fmt.Errorf("could not parse %s: %s", cleanstring, err)
 				}
 				curDate = time.Date(
 					time.Now().Local().Year(),
@@ -71,17 +71,18 @@ func nflPageToMergedMatches(html string) ([]MergedMatch, error) {
 			{
 				groups := child.FindAll("div", "class", "event-group")
 				for _, g := range groups {
-					var mergedMatch MergedMatch
-					mergedMatch.Competition = "NFL"
-					mergedMatch.Stations = []string{"Sky Sports"}
+					var match Match
+					match.Competition = "NFL"
+					match.Stations = []string{"Sky Sports"}
 
 					eventTitles := g.Find("ul", "class", "event").FindAll("strong")
-					mergedMatch.Title = eventTitles[0].Text() + " @ " + eventTitles[1].Text()
+					match.HomeTeam = eventTitles[1].Text()
+					match.AwayTeam = eventTitles[0].Text()
 
 					eventDetail := g.Find("p", "class", "event-detail").Text()
 					foundTime := re.FindString(eventDetail)
 					timeString := strings.Trim(foundTime, "()")
-					mergedMatch.Time = timeString
+					match.Time = timeString
 					var hours, mins int
 					fmt.Sscanf(timeString, "%d:%d", &hours, &mins)
 
@@ -95,14 +96,14 @@ func nflPageToMergedMatches(html string) ([]MergedMatch, error) {
 						0,
 						curDate.Location(),
 					)
-					mergedMatch.Datetime = curDateTime.Format(time.RFC3339)
-					mergedMatch.Date = curDateTime.Format(niceDate)
+					match.Datetime = curDateTime.Format(time.RFC3339)
+					match.Date = curDateTime.Format(niceDate)
 
-					mergedMatches = append(mergedMatches, mergedMatch)
+					Matches = append(Matches, match)
 				}
 			}
 		}
 	}
 
-	return mergedMatches, nil
+	return Matches, nil
 }

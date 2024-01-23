@@ -14,18 +14,18 @@ import (
 )
 
 func main() {
-	matches, err := feeds.GetMergedMatches()
+	matches, err := feeds.GetMatches()
 	if err != nil {
 		log.Fatalln(err)
 	}
 
 	data := struct {
-		MatchDays []feeds.MergedMatchDay
+		MatchDays []feeds.MatchDay
 	}{
 		MatchDays: matches,
 	}
 
-	events := feeds.MergedMatchDayToEventList(matches)
+	events := feeds.MatchDayToEventList(matches)
 	dtstamp := time.Now().UTC().Format(feeds.CalTimeString)
 	calData := struct {
 		DtStamp string
@@ -56,8 +56,8 @@ func writeIndex(data interface{}, templateName, templatePath string, writer io.W
 		"rfc3339": func(t time.Time) string {
 			return t.Format(time.DateOnly)
 		},
-		"gamehash": func(m feeds.MergedMatch) string {
-			s := fmt.Sprintf("%s%s", m.Date, m.Title)
+		"gamehash": func(m feeds.Match) string {
+			s := fmt.Sprintf("%s%s", m.Date, m.Title())
 			r := regexp.MustCompile("[^0-9a-zA-Z]")
 			s = r.ReplaceAllString(s, "")
 			return s

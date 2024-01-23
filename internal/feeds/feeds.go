@@ -13,10 +13,10 @@ import (
 const niceDate = "Monday, Jan 2"
 const timeLayout = "15:04"
 
-type MatchGetter func(getter urlgetter.UrlGetter) ([]MergedMatch, error)
+type MatchGetter func(getter urlgetter.UrlGetter) ([]Match, error)
 
-func GetMergedMatches() ([]MergedMatchDay, error) {
-	var matches []MergedMatch
+func GetMatches() ([]MatchDay, error) {
+	var matches []Match
 	macthGetters := []MatchGetter{
 		getTalkSportMatches,
 		getBBCMatches,
@@ -33,10 +33,10 @@ func GetMergedMatches() ([]MergedMatchDay, error) {
 		matches = append(matches, got...)
 	}
 
-	return mergedMatchesToMergedMatchDays(matches), nil
+	return MatchesToMatchDays(matches), nil
 }
 
-func mergedMatchesToMergedMatchDays(matches []MergedMatch) []MergedMatchDay {
+func MatchesToMatchDays(matches []Match) []MatchDay {
 	// Filter out matches we don't want
 	matches = filterMatches(matches)
 
@@ -58,11 +58,11 @@ func mergedMatchesToMergedMatchDays(matches []MergedMatch) []MergedMatchDay {
 	return mergedFeed
 }
 
-func shouldSkip(m MergedMatch) bool {
+func shouldSkip(m Match) bool {
 	return strings.Contains(m.Competition, "Scottish") ||
 		strings.Contains(m.Competition, "Women") ||
-		strings.Contains(m.Title, "Scottish") ||
-		strings.Contains(m.Title, "Women")
+		strings.Contains(m.HomeTeam, "Scottish") ||
+		strings.Contains(m.HomeTeam, "Women")
 }
 
 func stationRank(station string) int {
@@ -81,13 +81,9 @@ func stationRank(station string) int {
 	return 99
 }
 
-func mapTeamNames(match *MergedMatch) {
-	teams := strings.Split(match.Title, " v ")
-	if len(teams) != 2 {
-		log.Fatalf("Got match with bad title: %+v", match)
-	}
-	newTitle := fmt.Sprintf("%s v %s", mapTeamName(teams[0]), mapTeamName(teams[1]))
-	match.Title = newTitle
+func mapTeamNames(match *Match) {
+	match.HomeTeam = mapTeamName(match.HomeTeam)
+	match.AwayTeam = mapTeamName(match.AwayTeam)
 }
 
 func mapTeamName(name string) string {
@@ -109,7 +105,7 @@ func mapTeamName(name string) string {
 	}
 }
 
-func mapCompName(match *MergedMatch) {
+func mapCompName(match *Match) {
 	match.Competition = strings.TrimSuffix(match.Competition, " Football 2022-23")
 	match.Competition = strings.TrimSuffix(match.Competition, " Football 2023-24")
 	match.Competition = strings.TrimSuffix(match.Competition, " Friendlies")
@@ -125,22 +121,22 @@ func mapCompName(match *MergedMatch) {
 	}
 }
 
-func rollUpStations(matches []MergedMatch) []MergedMatch {
-	stationsRollUp := make(map[string][]MergedMatch)
+func rollUpStations(matches []Match) []Match {
+	stationsRollUp := make(map[string][]Match)
 	for _, match := range matches {
-		hashLol := fmt.Sprintf("%s%s%s", match.Competition, match.Date, match.Title)
+		hashLol := fmt.Sprintf("%s%s%s%s", match.Competition, match.Date, match.HomeTeam, match.AwayTeam)
 		stationsRollUp[hashLol] = append(stationsRollUp[hashLol], match)
 	}
-	matches = make([]MergedMatch, 0)
+	matches = make([]Match, 0)
 	for _, v := range stationsRollUp {
 		if len(v) > 1 {
 			stations := make([]string, 0)
-			events := make([]MergedMatchRadioEvent, 0)
+			events := make([]MatchRadioEvent, 0)
 			for _, foo := range v {
 				stations = append(stations, foo.Stations...)
 			}
 			for _, foo := range v {
-				event := MergedMatchRadioEvent{
+				event := MatchRadioEvent{
 					Station: foo.Stations[0],
 					Date:    foo.Date,
 					Time:    foo.Time,
@@ -163,8 +159,8 @@ func rollUpStations(matches []MergedMatch) []MergedMatch {
 	return matches
 }
 
-func rollUpDates(matches []MergedMatch) []MergedMatchDay {
-	matchesRollup := make(map[string][]MergedMatch)
+func rollUpDates(matches []Match) []MatchDay {
+	matchesRollup := make(map[string][]Match)
 	for _, match := range matches {
 		d, err := time.Parse(time.RFC3339, match.Datetime)
 		if err != nil {
@@ -174,21 +170,21 @@ func rollUpDates(matches []MergedMatch) []MergedMatchDay {
 		matchesRollup[key] = append(matchesRollup[key], match)
 	}
 
-	matchDays := make([]MergedMatchDay, 0)
+	matchDays := make([]MatchDay, 0)
 	for k, matches := range matchesRollup {
 		dt, err := time.Parse(time.DateOnly, k)
 		if err != nil {
 			log.Fatal(err)
 		}
-		md := MergedMatchDay{NiceDate: dt.Format(niceDate), Matches: matches, DateTime: dt}
+		md := MatchDay{NiceDate: dt.Format(niceDate), Matches: matches, DateTime: dt}
 		matchDays = append(matchDays, md)
 	}
 
 	return matchDays
 }
 
-func filterMatches(matches []MergedMatch) []MergedMatch {
-	filtered := make([]MergedMatch, 0)
+func filterMatches(matches []Match) []Match {
+	filtered := make([]Match, 0)
 	for _, match := range matches {
 		if shouldSkip(match) {
 			continue
@@ -198,7 +194,7 @@ func filterMatches(matches []MergedMatch) []MergedMatch {
 	return filtered
 }
 
-func sortMatchDays(matchDays []MergedMatchDay) []MergedMatchDay {
+func sortMatchDays(matchDays []MatchDay) []MatchDay {
 	sort.Slice(matchDays, func(i, j int) bool {
 		return matchDays[i].DateTime.Before(matchDays[j].DateTime)
 	})
@@ -216,18 +212,18 @@ func sortMatchDays(matchDays []MergedMatchDay) []MergedMatchDay {
 	return matchDays
 }
 
-func MergedMatchDayToEventList(mergedMatches []MergedMatchDay) []CalEvent {
+func MatchDayToEventList(Matches []MatchDay) []CalEvent {
 	events := make([]CalEvent, 0)
-	for _, day := range mergedMatches {
+	for _, day := range Matches {
 		for _, match := range day.Matches {
 			starttime, err := time.Parse(time.RFC3339, match.Datetime)
 			if err != nil {
 				log.Fatalln("error while creating event list", err)
 			}
 			event := CalEvent{
-				Uid:      strings.ReplaceAll(strings.ToLower(fmt.Sprintf("%s/%s", match.Title, match.Competition)), " ", ""),
+				Uid:      strings.ReplaceAll(strings.ToLower(fmt.Sprintf("%s/%s", match.Title(), match.Competition)), " ", ""),
 				DtStart:  starttime.UTC().Format(CalTimeString),
-				Summary:  fmt.Sprintf("%s [%s]", match.Title, match.Competition),
+				Summary:  fmt.Sprintf("%s [%s]", match.Title(), match.Competition),
 				Location: match.Stations,
 			}
 			events = append(events, event)

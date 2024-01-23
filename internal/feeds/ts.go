@@ -2,14 +2,13 @@ package feeds
 
 import (
 	"encoding/json"
-	"fmt"
 	"strings"
 	"time"
 
 	"whitford.io/radiofooty/internal/urlgetter"
 )
 
-func getTalkSportMatches(getter urlgetter.UrlGetter) ([]MergedMatch, error) {
+func getTalkSportMatches(getter urlgetter.UrlGetter) ([]Match, error) {
 	url := "https://talksport.com/wp-json/talksport/v2/talksport-live/commentary"
 
 	body, err := getter.GetUrl(url)
@@ -22,11 +21,11 @@ func getTalkSportMatches(getter urlgetter.UrlGetter) ([]MergedMatch, error) {
 		return nil, err
 	}
 
-	return tsFeedToMergedMatches(tsFeed), nil
+	return tsFeedToMatches(tsFeed), nil
 }
 
-func tsFeedToMergedMatches(tsFeed []TSGame) []MergedMatch {
-	matches := make([]MergedMatch, 0)
+func tsFeedToMatches(tsFeed []TSGame) []Match {
+	matches := make([]Match, 0)
 	longForm := "2006-01-02 15:04:05"
 	loc, _ := time.LoadLocation("Europe/London")
 
@@ -51,11 +50,17 @@ func tsFeedToMergedMatches(tsFeed []TSGame) []MergedMatch {
 		}
 
 		t, _ := time.ParseInLocation(longForm, m.Date, loc)
-		title := fmt.Sprintf("%s v %s", m.HomeTeam, m.AwayTeam)
 		displayDate := t.Format(niceDate)
 		displayTime := t.Format(timeLayout)
 		datetime := t.Format(time.RFC3339)
-		m := MergedMatch{Time: displayTime, Date: displayDate, Stations: []string{feedname}, Datetime: datetime, Title: title, Competition: m.League}
+		m := Match{
+			Time: displayTime, 
+			Date: displayDate, 
+			Stations: []string{feedname}, 
+			Datetime: datetime, 
+			HomeTeam: m.HomeTeam,
+			AwayTeam: m.AwayTeam,
+			Competition: m.League}
 		matches = append(matches, m)
 	}
 

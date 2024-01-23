@@ -13,7 +13,8 @@ import (
 const englishFootballUrl = "https://www.live-footballontv.com/live-english-football-on-tv.html"
 
 type tvFixture struct {
-	teams    string
+	homeTeam string
+	awayTeam string
 	compName string
 	dateTime time.Time
 	channels []string
@@ -34,7 +35,7 @@ var channelsICareAbout = []string{
 	"TNT Sports Ultimate",
 }
 
-func getTvMatches(getter urlgetter.UrlGetter) ([]MergedMatch, error) {
+func getTvMatches(getter urlgetter.UrlGetter) ([]Match, error) {
 	re := regexp.MustCompile(`(\d+)(st|nd|rd|th)`)
 	loc, err := time.LoadLocation("Europe/London")
 	if err != nil {
@@ -70,6 +71,7 @@ func getTvMatches(getter urlgetter.UrlGetter) ([]MergedMatch, error) {
 			case "fixture":
 				teams := div.Find("div", "class", "fixture__teams").Text()
 				teams = strings.TrimSpace(teams)
+				splitTeams := strings.Split(teams, " v ")
 				compName := div.Find("div", "class", "fixture__competition").Text()
 				channels := div.Find("div", "class", "fixture__channel")
 				channelStrings := make([]string, 0)
@@ -109,7 +111,8 @@ func getTvMatches(getter urlgetter.UrlGetter) ([]MergedMatch, error) {
 				)
 
 				fixtures = append(fixtures, tvFixture{
-					teams:    teams,
+					homeTeam: splitTeams[0],
+					awayTeam: splitTeams[1],
 					compName: compName,
 					dateTime: fixtureDateTime,
 					channels: channelStrings,
@@ -118,10 +121,11 @@ func getTvMatches(getter urlgetter.UrlGetter) ([]MergedMatch, error) {
 		}
 	}
 
-	mergedMatches := make([]MergedMatch, 0)
+	Matches := make([]Match, 0)
 	for _, fixture := range fixtures {
-		mergedMatches = append(mergedMatches, MergedMatch{
-			Title:       fixture.teams,
+		Matches = append(Matches, Match{
+			HomeTeam:    fixture.homeTeam,
+			AwayTeam:    fixture.awayTeam,
 			Competition: fixture.compName,
 			Datetime:    fixture.dateTime.Format(time.RFC3339),
 			Date:        fixture.dateTime.Format(niceDate),
@@ -129,7 +133,7 @@ func getTvMatches(getter urlgetter.UrlGetter) ([]MergedMatch, error) {
 			Stations:    fixture.channels,
 		})
 	}
-	return mergedMatches, nil
+	return Matches, nil
 }
 
 func stringInSlice(str string, slice []string) bool {

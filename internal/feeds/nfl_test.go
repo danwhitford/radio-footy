@@ -13,13 +13,14 @@ import (
 var html string
 
 func TestGetNflOnSky(t *testing.T) {
-	want := []MergedMatch{
+	want := []Match{
 		{
 			Time:        "20:30",
 			Date:        "Saturday, Jan 20",
 			Stations:    []string{"Sky Sports"},
 			Datetime:    "2024-01-20T20:30:00Z",
-			Title:       "Houston Texans @ Baltimore Ravens",
+			HomeTeam:    "Baltimore Ravens",
+			AwayTeam:    "Houston Texans",
 			Competition: "NFL",
 		},
 		{
@@ -27,7 +28,8 @@ func TestGetNflOnSky(t *testing.T) {
 			Date:        "Sunday, Jan 21",
 			Stations:    []string{"Sky Sports"},
 			Datetime:    "2024-01-21T01:00:00Z",
-			Title:       "Green Bay Packers @ San Francisco 49ers",
+			HomeTeam:    "San Francisco 49ers",
+			AwayTeam:    "Green Bay Packers",
 			Competition: "NFL",
 		},
 		{
@@ -35,7 +37,8 @@ func TestGetNflOnSky(t *testing.T) {
 			Date:        "Sunday, Jan 21",
 			Stations:    []string{"Sky Sports"},
 			Datetime:    "2024-01-21T19:00:00Z",
-			Title:       "Tampa Bay Buccaneers @ Detroit Lions",
+			HomeTeam:    "Detroit Lions",
+			AwayTeam:    "Tampa Bay Buccaneers",
 			Competition: "NFL",
 		},
 	}

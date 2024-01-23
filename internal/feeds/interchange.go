@@ -1,23 +1,34 @@
 package feeds
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
-type MergedMatchDay struct {
+type MatchDay struct {
 	NiceDate string `json:"date"`
 	DateTime time.Time
-	Matches  []MergedMatch `json:"matches"`
+	Matches  []Match `json:"matches"`
 }
 
-type MergedMatch struct {
+type Match struct {
 	Time        string   `json:"time"`
 	Date        string   `json:"date"`
 	Stations    []string `json:"station"`
 	Datetime    string   `json:"datetime"`
-	Title       string   `json:"title"`
-	Competition string   `json:"competition"`
+	HomeTeam    string
+	AwayTeam    string
+	Competition string `json:"competition"`
 }
 
-type MergedMatchRadioEvent struct {
+func (m Match) Title() string {
+	if m.Competition == "NFL" {
+		return fmt.Sprintf("%s @ %s", m.AwayTeam, m.HomeTeam)
+	}
+	return fmt.Sprintf("%s v %s", m.HomeTeam, m.AwayTeam)
+}
+
+type MatchRadioEvent struct {
 	Station string
 	Time    string
 	Date    string

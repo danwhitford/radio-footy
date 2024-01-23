@@ -10,23 +10,27 @@ import (
 
 func TestMapTeamNames(t *testing.T) {
 	table := []struct {
-		input  MergedMatch
-		output MergedMatch
+		input  Match
+		output Match
 	}{
 		{
-			input: MergedMatch{
-				Title: "Milan v Chelsea",
+			input: Match{
+				HomeTeam: "Milan",
+				AwayTeam: "Chelsea",
 			},
-			output: MergedMatch{
-				Title: "AC Milan v Chelsea",
+			output: Match{
+				HomeTeam: "AC Milan",
+				AwayTeam: "Chelsea",
 			},
 		},
 		{
-			input: MergedMatch{
-				Title: "Chelsea v Milan",
+			input: Match{
+				HomeTeam: "Chelsea",
+				AwayTeam: "Milan",
 			},
-			output: MergedMatch{
-				Title: "Chelsea v AC Milan",
+			output: Match{
+				HomeTeam: "Chelsea",
+				AwayTeam: "AC Milan",
 			},
 		},
 	}
@@ -41,22 +45,22 @@ func TestMapTeamNames(t *testing.T) {
 
 func TestMapCompName(t *testing.T) {
 	table := []struct {
-		input  MergedMatch
-		output MergedMatch
+		input  Match
+		output Match
 	}{
 		{
-			input: MergedMatch{
+			input: Match{
 				Competition: "Premier League Football 2022-23",
 			},
-			output: MergedMatch{
+			output: Match{
 				Competition: "Premier League",
 			},
 		},
 		{
-			input: MergedMatch{
+			input: Match{
 				Competition: "International Friendlies",
 			},
-			output: MergedMatch{
+			output: Match{
 				Competition: "International",
 			},
 		},
@@ -72,11 +76,11 @@ func TestMapCompName(t *testing.T) {
 
 func TestRollUpStations(t *testing.T) {
 	table := []struct {
-		input  []MergedMatch
-		output []MergedMatch
+		input  []Match
+		output []Match
 	}{
 		{
-			input: []MergedMatch{
+			input: []Match{
 				{
 					Stations: []string{"BBC Radio 5"},
 					Time:     "17:30",
@@ -88,7 +92,7 @@ func TestRollUpStations(t *testing.T) {
 					Date:     "Saturday, Dec 26",
 				},
 			},
-			output: []MergedMatch{
+			output: []Match{
 				{
 					Time:     "17:30",
 					Date:     "Saturday, Dec 26",
@@ -97,7 +101,7 @@ func TestRollUpStations(t *testing.T) {
 			},
 		},
 		{
-			input: []MergedMatch{
+			input: []Match{
 				{
 					Stations: []string{"BBC Radio 5"},
 					Time:     "10:00",
@@ -109,7 +113,7 @@ func TestRollUpStations(t *testing.T) {
 					Date:     "Saturday, Dec 26",
 				},
 			},
-			output: []MergedMatch{
+			output: []Match{
 				{
 					Time:     "10:00",
 					Date:     "Saturday, Dec 26",
@@ -118,7 +122,7 @@ func TestRollUpStations(t *testing.T) {
 			},
 		},
 		{
-			input: []MergedMatch{
+			input: []Match{
 				{
 					Stations: []string{"Sky Sports", "Sky Sports Football"},
 					Time:     "10:00",
@@ -130,7 +134,7 @@ func TestRollUpStations(t *testing.T) {
 					Date:     "Saturday, Dec 26",
 				},
 			},
-			output: []MergedMatch{
+			output: []Match{
 				{
 					Time:     "10:00",
 					Date:     "Saturday, Dec 26",
@@ -139,7 +143,7 @@ func TestRollUpStations(t *testing.T) {
 			},
 		},
 		{
-			input: []MergedMatch{
+			input: []Match{
 				{
 					Stations: []string{"talkSPORT"},
 					Time:     "10:00",
@@ -156,7 +160,7 @@ func TestRollUpStations(t *testing.T) {
 					Date:     "Saturday, Dec 26",
 				},
 			},
-			output: []MergedMatch{
+			output: []Match{
 				{
 					Time:     "10:00",
 					Date:     "Saturday, Dec 26",
@@ -176,46 +180,52 @@ func TestRollUpStations(t *testing.T) {
 
 func TestRollUpDates(t *testing.T) {
 	table := []struct {
-		input  []MergedMatch
-		output []MergedMatchDay
+		input  []Match
+		output []MatchDay
 	}{
 		{
-			input: []MergedMatch{
+			input: []Match{
 				{
 					Datetime: "2021-08-14T19:00:00Z",
-					Title:    "Chelsea v Milan",
+					HomeTeam: "Milan",
+					AwayTeam: "Chelsea",
 				},
 				{
 					Datetime: "2021-08-14T21:00:00Z",
-					Title:    "Bolton v Barnslay",
+					HomeTeam: "Bolton",
+					AwayTeam: "Barnsley",
 				},
 				{
 					Datetime: "2021-08-15T19:00:00Z",
-					Title:    "Romsey v Worthing",
+					HomeTeam: "Romsey",
+					AwayTeam: "Worthing",
 				},
 			},
-			output: []MergedMatchDay{
+			output: []MatchDay{
 				{
 					NiceDate: "Saturday, Aug 14",
 					DateTime: time.Date(2021, 8, 14, 0, 0, 0, 0, time.UTC),
-					Matches: []MergedMatch{
+					Matches: []Match{
 						{
 							Datetime: "2021-08-14T19:00:00Z",
-							Title:    "Chelsea v Milan",
+							HomeTeam: "Milan",
+							AwayTeam: "Chelsea",
 						},
 						{
 							Datetime: "2021-08-14T21:00:00Z",
-							Title:    "Bolton v Barnslay",
+							HomeTeam: "Bolton",
+							AwayTeam: "Barnsley",
 						},
 					},
 				},
 				{
 					NiceDate: "Sunday, Aug 15",
 					DateTime: time.Date(2021, 8, 15, 0, 0, 0, 0, time.UTC),
-					Matches: []MergedMatch{
+					Matches: []Match{
 						{
 							Datetime: "2021-08-15T19:00:00Z",
-							Title:    "Romsey v Worthing",
+							HomeTeam: "Romsey",
+							AwayTeam: "Worthing",
 						},
 					},
 				},
@@ -224,7 +234,7 @@ func TestRollUpDates(t *testing.T) {
 	}
 
 	for _, tst := range table {
-		less := func(i, j MergedMatchDay) bool {
+		less := func(i, j MatchDay) bool {
 			return i.NiceDate < j.NiceDate
 		}
 		got := rollUpDates(tst.input)
@@ -236,23 +246,26 @@ func TestRollUpDates(t *testing.T) {
 
 func TestFilterMatches(t *testing.T) {
 	table := []struct {
-		input  []MergedMatch
-		output []MergedMatch
+		input  []Match
+		output []Match
 	}{
 		{
-			input: []MergedMatch{
+			input: []Match{
 				{
-					Title:       "Chelsea v Milan",
+					HomeTeam:    "Chelsea",
+					AwayTeam:    "Milan",
 					Competition: "Premier League",
 				},
 				{
-					Title:       "Inverness v Hibernian",
+					HomeTeam:    "Inverness",
+					AwayTeam:    "Hibernian",
 					Competition: "Scottish Premiership",
 				},
 			},
-			output: []MergedMatch{
+			output: []Match{
 				{
-					Title:       "Chelsea v Milan",
+					HomeTeam:    "Chelsea",
+					AwayTeam:    "Milan",
 					Competition: "Premier League",
 				},
 			},
@@ -269,18 +282,19 @@ func TestFilterMatches(t *testing.T) {
 
 func TestSortMatchDays(t *testing.T) {
 	table := []struct {
-		input  []MergedMatchDay
-		output []MergedMatchDay
+		input  []MatchDay
+		output []MatchDay
 	}{
 		{
-			input: []MergedMatchDay{
+			input: []MatchDay{
 				{
 					NiceDate: "Monday, Aug 18",
 					DateTime: time.Date(2021, 8, 18, 19, 0, 0, 0, time.UTC),
-					Matches: []MergedMatch{
+					Matches: []Match{
 						{
 							Date:     "Monday, Aug 18",
-							Title:    "Brentford v Arsenal",
+							HomeTeam: "Brentford",
+							AwayTeam: "Arsenal",
 							Datetime: "2021-08-18T19:00:00Z",
 							Time:     "19:00",
 						},
@@ -289,24 +303,27 @@ func TestSortMatchDays(t *testing.T) {
 				{
 					NiceDate: "Tuesday, Aug 14",
 					DateTime: time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
-					Matches: []MergedMatch{
+					Matches: []Match{
 						{
 							Date:     "Tuesday, Aug 14",
-							Title:    "Chelsea v Milan",
+							HomeTeam: "Bolton",
+							AwayTeam: "Barnsley",
 							Datetime: "2021-08-14T15:00:00Z",
 							Time:     "15:00",
 							Stations: []string{"talkSPORT"},
 						},
 						{
 							Date:     "Tuesday, Aug 14",
-							Title:    "Fulham v Brentford",
+							HomeTeam: "Fulham",
+							AwayTeam: "Barnsley",
 							Datetime: "2021-08-14T15:00:00Z",
 							Time:     "15:00",
 							Stations: []string{"talkSPORT2"},
 						},
 						{
 							Date:     "Tuesday, Aug 14",
-							Title:    "Bolton v Barnslay",
+							HomeTeam: "Chelsea",
+							AwayTeam: "Milan",
 							Datetime: "2021-08-14T12:00:00Z",
 							Time:     "12:00",
 						},
@@ -315,37 +332,41 @@ func TestSortMatchDays(t *testing.T) {
 				{
 					NiceDate: "Sunday, Aug 15",
 					DateTime: time.Date(2021, 8, 15, 15, 0, 0, 0, time.UTC),
-					Matches: []MergedMatch{
+					Matches: []Match{
 						{
 							Date:     "Wednesday, Aug 15",
-							Title:    "Romsey v Worthing",
+							HomeTeam: "Romsey",
+							AwayTeam: "Worthing",
 							Datetime: "2021-08-15T15:00:00Z",
 							Time:     "15:00",
 						},
 					},
 				},
 			},
-			output: []MergedMatchDay{
+			output: []MatchDay{
 				{
 					NiceDate: "Tuesday, Aug 14",
 					DateTime: time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
-					Matches: []MergedMatch{
+					Matches: []Match{
 						{
 							Date:     "Tuesday, Aug 14",
-							Title:    "Bolton v Barnslay",
+							HomeTeam: "Chelsea",
+							AwayTeam: "Milan",
 							Datetime: "2021-08-14T12:00:00Z",
 							Time:     "12:00",
 						},
 						{
 							Date:     "Tuesday, Aug 14",
-							Title:    "Chelsea v Milan",
+							HomeTeam: "Bolton",
+							AwayTeam: "Barnsley",
 							Datetime: "2021-08-14T15:00:00Z",
 							Time:     "15:00",
 							Stations: []string{"talkSPORT"},
 						},
 						{
 							Date:     "Tuesday, Aug 14",
-							Title:    "Fulham v Brentford",
+							HomeTeam: "Fulham",
+							AwayTeam: "Barnsley",
 							Datetime: "2021-08-14T15:00:00Z",
 							Time:     "15:00",
 							Stations: []string{"talkSPORT2"},
@@ -355,10 +376,11 @@ func TestSortMatchDays(t *testing.T) {
 				{
 					NiceDate: "Sunday, Aug 15",
 					DateTime: time.Date(2021, 8, 15, 15, 0, 0, 0, time.UTC),
-					Matches: []MergedMatch{
+					Matches: []Match{
 						{
 							Date:     "Wednesday, Aug 15",
-							Title:    "Romsey v Worthing",
+							HomeTeam: "Romsey",
+							AwayTeam: "Worthing",
 							Datetime: "2021-08-15T15:00:00Z",
 							Time:     "15:00",
 						},
@@ -367,10 +389,11 @@ func TestSortMatchDays(t *testing.T) {
 				{
 					NiceDate: "Monday, Aug 18",
 					DateTime: time.Date(2021, 8, 18, 19, 0, 0, 0, time.UTC),
-					Matches: []MergedMatch{
+					Matches: []Match{
 						{
 							Date:     "Monday, Aug 18",
-							Title:    "Brentford v Arsenal",
+							HomeTeam: "Brentford",
+							AwayTeam: "Arsenal",
 							Datetime: "2021-08-18T19:00:00Z",
 							Time:     "19:00",
 						},
@@ -388,43 +411,47 @@ func TestSortMatchDays(t *testing.T) {
 	}
 }
 
-func TestMergedMatchesToMergedMatchDays(t *testing.T) {
+func TestMatchesToMatchDays(t *testing.T) {
 	table := []struct {
-		input  []MergedMatch
-		output []MergedMatchDay
+		input  []Match
+		output []MatchDay
 	}{
 		{
-			input: []MergedMatch{
+			input: []Match{
 				{
 					Date:        "Saturday, Aug 14",
-					Title:       "Chelsea v Tottenham",
+					HomeTeam:    "Chelsea",
+					AwayTeam:    "Tottenham",
 					Competition: "Premier League",
 					Datetime:    "2021-08-14T15:00:00Z",
 					Stations:    []string{"talkSPORT", "BBC Radio 5"},
 				},
 				{
 					Date:        "Saturday, Aug 14",
-					Title:       "Inverness v Hibernian",
+					HomeTeam:    "Inverness",
+					AwayTeam:    "Hibernian",
 					Competition: "Scottish Premiership",
 					Datetime:    "2021-08-14T15:00:00Z",
 					Stations:    []string{"BBC Radio Scotland"},
 				},
 				{
 					Date:        "Sunday, Aug 15",
-					Title:       "Chelsea v Spurs",
+					HomeTeam:    "Chelsea",
+					AwayTeam:    "Spurs",
 					Competition: "Premier League",
 					Datetime:    "2021-08-15T15:00:00Z",
 					Stations:    []string{"BBC Radio 5"},
 				},
 			},
-			output: []MergedMatchDay{
+			output: []MatchDay{
 				{
 					NiceDate: "Saturday, Aug 14",
 					DateTime: time.Date(2021, 8, 14, 0, 0, 0, 0, time.UTC),
-					Matches: []MergedMatch{
+					Matches: []Match{
 						{
 							Date:        "Saturday, Aug 14",
-							Title:       "Chelsea v Tottenham",
+							HomeTeam:    "Chelsea",
+							AwayTeam:    "Tottenham",
 							Competition: "Premier League",
 							Datetime:    "2021-08-14T15:00:00Z",
 							Stations:    []string{"talkSPORT", "BBC Radio 5"},
@@ -434,10 +461,11 @@ func TestMergedMatchesToMergedMatchDays(t *testing.T) {
 				{
 					NiceDate: "Sunday, Aug 15",
 					DateTime: time.Date(2021, 8, 15, 0, 0, 0, 0, time.UTC),
-					Matches: []MergedMatch{
+					Matches: []Match{
 						{
 							Date:        "Sunday, Aug 15",
-							Title:       "Chelsea v Spurs",
+							HomeTeam:    "Chelsea",
+							AwayTeam:    "Spurs",
 							Competition: "Premier League",
 							Datetime:    "2021-08-15T15:00:00Z",
 							Stations:    []string{"BBC Radio 5"},
@@ -449,27 +477,28 @@ func TestMergedMatchesToMergedMatchDays(t *testing.T) {
 	}
 
 	for _, tst := range table {
-		got := mergedMatchesToMergedMatchDays(tst.input)
+		got := MatchesToMatchDays(tst.input)
 		if diff := cmp.Diff(tst.output, got); diff != "" {
 			t.Errorf("mismatch (-want +got):\n%s", diff)
 		}
 	}
 }
 
-func TestMergedMatchDayToEventList(t *testing.T) {
+func TestMatchDayToEventList(t *testing.T) {
 	table := []struct {
-		input  []MergedMatchDay
+		input  []MatchDay
 		output []CalEvent
 	}{
 		{
-			input: []MergedMatchDay{
+			input: []MatchDay{
 				{
 					NiceDate: "Saturday, Aug 14",
 					DateTime: time.Date(2021, 8, 14, 0, 0, 0, 0, time.UTC),
-					Matches: []MergedMatch{
+					Matches: []Match{
 						{
 							Date:        "Saturday, Aug 14",
-							Title:       "Chelsea v Tottenham",
+							HomeTeam:    "Chelsea",
+							AwayTeam:    "Tottenham",
 							Competition: "Premier League",
 							Datetime:    "2021-08-14T15:00:00Z",
 							Stations:    []string{"talkSPORT", "BBC Radio 5"},
@@ -489,7 +518,7 @@ func TestMergedMatchDayToEventList(t *testing.T) {
 	}
 
 	for _, tst := range table {
-		got := MergedMatchDayToEventList(tst.input)
+		got := MatchDayToEventList(tst.input)
 		if diff := cmp.Diff(tst.output, got); diff != "" {
 			t.Errorf("mismatch (-want +got):\n%s", diff)
 		}

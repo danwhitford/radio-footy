@@ -6,10 +6,10 @@ import (
 	"github.com/google/go-cmp/cmp"
 )
 
-func TestBBCDayToMergedMatch(t *testing.T) {
+func TestBBCDayToMatch(t *testing.T) {
 	table := []struct {
 		input  BBCFeed
-		output []MergedMatch
+		output []Match
 	}{
 		{
 			input: BBCFeed{
@@ -28,9 +28,10 @@ func TestBBCDayToMergedMatch(t *testing.T) {
 					},
 				},
 			},
-			output: []MergedMatch{
+			output: []Match{
 				{
-					Title:       "Arsenal v Chelsea",
+					HomeTeam:    "Arsenal",
+					AwayTeam:    "Chelsea",
 					Stations:    []string{"BBC Radio 5"},
 					Competition: "Premier League Football 2022-23",
 					Time:        "17:30",
@@ -62,7 +63,7 @@ func TestBBCDayToMergedMatch(t *testing.T) {
 					},
 				},
 			},
-			output: []MergedMatch{},
+			output: []Match{},
 		},
 		{
 			input: BBCFeed{
@@ -79,7 +80,7 @@ func TestBBCDayToMergedMatch(t *testing.T) {
 					},
 				},
 			},
-			output: []MergedMatch{},
+			output: []Match{},
 		},
 		{
 			input: BBCFeed{
@@ -104,14 +105,14 @@ func TestBBCDayToMergedMatch(t *testing.T) {
 					},
 				},
 			},
-			output: []MergedMatch{},
+			output: []Match{},
 		},
 	}
 
 	for _, test := range table {
-		got := bbcDayToMergedMatches(test.input)
+		got := bbcDayToMatches(test.input)
 		if diff := cmp.Diff(test.output, got); diff != "" {
-			t.Errorf("bbcDayToMergedMatch() mismatch (-want +got):\n%s", diff)
+			t.Errorf("bbcDayToMatch() mismatch (-want +got):\n%s", diff)
 		}
 	}
 }
