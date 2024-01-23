@@ -9,8 +9,8 @@ import (
 	"whitford.io/radiofooty/internal/urlgetter"
 )
 
-func getBBCMatches(getter urlgetter.UrlGetter) ([]Match, error) {
-	var matches = []Match{}
+func getBBCMatches(getter urlgetter.UrlGetter) ([]Broadcast, error) {
+	var matches = make([]Broadcast, 0)
 	baseUrls := []string{
 		"https://rms.api.bbc.co.uk/v2/experience/inline/schedules/bbc_radio_five_live/",
 		"https://rms.api.bbc.co.uk/v2/experience/inline/schedules/bbc_radio_five_live_sports_extra/",
@@ -47,8 +47,8 @@ func isAMatch(title BBCTitles) bool {
 		!strings.HasPrefix(title.Tertiary, "Prematch")
 }
 
-func bbcDayToMatches(bbcFeed BBCFeed) []Match {
-	matches := make([]Match, 0)
+func bbcDayToMatches(bbcFeed BBCFeed) []Broadcast {
+	matches := make([]Broadcast, 0)
 
 	loc, err := time.LoadLocation("Europe/London")
 	if err != nil {
@@ -75,14 +75,13 @@ func bbcDayToMatches(bbcFeed BBCFeed) []Match {
 				m := Match{
 					Time:        clock,
 					Date:        date,
-					Stations:    []string{"BBC Radio 5"},
 					Datetime:    start.Format(time.RFC3339),
 					HomeTeam:    teams[0],
 					AwayTeam:    teams[1],
 					Competition: prog.Title.Secondary,
 				}
 
-				matches = append(matches, m)
+				matches = append(matches, Broadcast{m, "BBC Radio 5"})
 			}
 		}
 	}

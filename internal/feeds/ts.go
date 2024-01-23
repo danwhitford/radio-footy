@@ -8,7 +8,7 @@ import (
 	"whitford.io/radiofooty/internal/urlgetter"
 )
 
-func getTalkSportMatches(getter urlgetter.UrlGetter) ([]Match, error) {
+func getTalkSportMatches(getter urlgetter.UrlGetter) ([]Broadcast, error) {
 	url := "https://talksport.com/wp-json/talksport/v2/talksport-live/commentary"
 
 	body, err := getter.GetUrl(url)
@@ -24,8 +24,8 @@ func getTalkSportMatches(getter urlgetter.UrlGetter) ([]Match, error) {
 	return tsFeedToMatches(tsFeed), nil
 }
 
-func tsFeedToMatches(tsFeed []TSGame) []Match {
-	matches := make([]Match, 0)
+func tsFeedToMatches(tsFeed []TSGame) []Broadcast {
+	matches := make([]Broadcast, 0)
 	longForm := "2006-01-02 15:04:05"
 	loc, _ := time.LoadLocation("Europe/London")
 
@@ -56,12 +56,11 @@ func tsFeedToMatches(tsFeed []TSGame) []Match {
 		m := Match{
 			Time:        displayTime,
 			Date:        displayDate,
-			Stations:    []string{feedname},
 			Datetime:    datetime,
 			HomeTeam:    m.HomeTeam,
 			AwayTeam:    m.AwayTeam,
 			Competition: m.League}
-		matches = append(matches, m)
+		matches = append(matches, Broadcast{m, feedname})
 	}
 
 	return matches

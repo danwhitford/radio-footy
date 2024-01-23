@@ -35,7 +35,7 @@ var channelsICareAbout = []string{
 	"TNT Sports Ultimate",
 }
 
-func getTvMatches(getter urlgetter.UrlGetter) ([]Match, error) {
+func getTvMatches(getter urlgetter.UrlGetter) ([]Broadcast, error) {
 	re := regexp.MustCompile(`(\d+)(st|nd|rd|th)`)
 	loc, err := time.LoadLocation("Europe/London")
 	if err != nil {
@@ -121,17 +121,21 @@ func getTvMatches(getter urlgetter.UrlGetter) ([]Match, error) {
 		}
 	}
 
-	Matches := make([]Match, 0)
+	Matches := make([]Broadcast, 0)
 	for _, fixture := range fixtures {
-		Matches = append(Matches, Match{
-			HomeTeam:    fixture.homeTeam,
-			AwayTeam:    fixture.awayTeam,
-			Competition: fixture.compName,
-			Datetime:    fixture.dateTime.Format(time.RFC3339),
-			Date:        fixture.dateTime.Format(niceDate),
-			Time:        fixture.dateTime.Format(timeLayout),
-			Stations:    fixture.channels,
-		})
+		for _, channel := range fixture.channels {
+			Matches = append(Matches, Broadcast{
+				Match: Match{
+					HomeTeam:    fixture.homeTeam,
+					AwayTeam:    fixture.awayTeam,
+					Competition: fixture.compName,
+					Datetime:    fixture.dateTime.Format(time.RFC3339),
+					Date:        fixture.dateTime.Format(niceDate),
+					Time:        fixture.dateTime.Format(timeLayout),
+				},
+				Station: channel,
+			})
+		}
 	}
 	return Matches, nil
 }

@@ -13,33 +13,39 @@ import (
 var html string
 
 func TestGetNflOnSky(t *testing.T) {
-	want := []Match{
+	want := []Broadcast{
 		{
-			Time:        "20:30",
-			Date:        "Saturday, Jan 20",
-			Stations:    []string{"Sky Sports"},
-			Datetime:    "2024-01-20T20:30:00Z",
-			HomeTeam:    "Baltimore Ravens",
-			AwayTeam:    "Houston Texans",
-			Competition: "NFL",
+			Match: Match{
+				Time:        "20:30",
+				Date:        "Saturday, Jan 20",
+				Datetime:    "2024-01-20T20:30:00Z",
+				HomeTeam:    "Baltimore Ravens",
+				AwayTeam:    "Houston Texans",
+				Competition: "NFL",
+			},
+			Station: "Sky Sports",
 		},
 		{
-			Time:        "01:00",
-			Date:        "Sunday, Jan 21",
-			Stations:    []string{"Sky Sports"},
-			Datetime:    "2024-01-21T01:00:00Z",
-			HomeTeam:    "San Francisco 49ers",
-			AwayTeam:    "Green Bay Packers",
-			Competition: "NFL",
+			Match: Match{
+				Time:        "01:00",
+				Date:        "Sunday, Jan 21",
+				Datetime:    "2024-01-21T01:00:00Z",
+				HomeTeam:    "San Francisco 49ers",
+				AwayTeam:    "Green Bay Packers",
+				Competition: "NFL",
+			},
+			Station: "Sky Sports",
 		},
 		{
-			Time:        "19:00",
-			Date:        "Sunday, Jan 21",
-			Stations:    []string{"Sky Sports"},
-			Datetime:    "2024-01-21T19:00:00Z",
-			HomeTeam:    "Detroit Lions",
-			AwayTeam:    "Tampa Bay Buccaneers",
-			Competition: "NFL",
+			Match: Match{
+				Time:        "19:00",
+				Date:        "Sunday, Jan 21",
+				Datetime:    "2024-01-21T19:00:00Z",
+				HomeTeam:    "Detroit Lions",
+				AwayTeam:    "Tampa Bay Buccaneers",
+				Competition: "NFL",
+			},
+			Station: "Sky Sports",
 		},
 	}
 

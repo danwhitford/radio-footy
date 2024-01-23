@@ -13,10 +13,10 @@ import (
 const niceDate = "Monday, Jan 2"
 const timeLayout = "15:04"
 
-type MatchGetter func(getter urlgetter.UrlGetter) ([]Match, error)
+type MatchGetter func(getter urlgetter.UrlGetter) ([]Broadcast, error)
 
 func GetMatches() ([]MatchDay, error) {
-	var matches []Match
+	var matches []Broadcast
 	macthGetters := []MatchGetter{
 		getTalkSportMatches,
 		getBBCMatches,
@@ -36,21 +36,21 @@ func GetMatches() ([]MatchDay, error) {
 	return MatchesToMatchDays(matches), nil
 }
 
-func MatchesToMatchDays(matches []Match) []MatchDay {
+func MatchesToMatchDays(matches []Broadcast) []MatchDay {
 	// Filter out matches we don't want
 	matches = filterMatches(matches)
 
 	// Map team names and competition names
 	for i := range matches {
-		mapTeamNames(&matches[i])
-		mapCompName(&matches[i])
+		mapTeamNames(&matches[i].Match)
+		mapCompName(&matches[i].Match)
 	}
 
 	// Roll up stations
-	matches = rollUpStations(matches)
+	listings := rollUpStations(matches)
 
 	// Roll up dates
-	mergedFeed := rollUpDates(matches)
+	mergedFeed := rollUpDates(listings)
 
 	// Sort by date, time, competition, title
 	mergedFeed = sortMatchDays(mergedFeed)
@@ -121,46 +121,31 @@ func mapCompName(match *Match) {
 	}
 }
 
-func rollUpStations(matches []Match) []Match {
-	stationsRollUp := make(map[string][]Match)
+func rollUpStations(matches []Broadcast) []Listing {
+	stationsRollUp := make(map[string][]Broadcast)
 	for _, match := range matches {
 		hashLol := fmt.Sprintf("%s%s%s%s", match.Competition, match.Date, match.HomeTeam, match.AwayTeam)
 		stationsRollUp[hashLol] = append(stationsRollUp[hashLol], match)
 	}
-	matches = make([]Match, 0)
+	listings := make([]Listing, 0)
 	for _, v := range stationsRollUp {
-		if len(v) > 1 {
-			stations := make([]string, 0)
-			events := make([]MatchRadioEvent, 0)
-			for _, foo := range v {
-				stations = append(stations, foo.Stations...)
-			}
-			for _, foo := range v {
-				event := MatchRadioEvent{
-					Station: foo.Stations[0],
-					Date:    foo.Date,
-					Time:    foo.Time,
-				}
-				events = append(events, event)
-			}
-			smoshed := v[0]
-			sort.Slice(stations, func(i, j int) bool {
-				return stationRank(stations[i]) < stationRank(stations[j])
-			})
-			sort.Slice(events, func(i, j int) bool {
-				return stationRank(events[i].Station) < stationRank(events[j].Station)
-			})
-			smoshed.Stations = stations
-			matches = append(matches, smoshed)
-		} else {
-			matches = append(matches, v[0])
+		stations := make([]string, 0)
+		for _, bcst := range v {
+			stations = append(stations, bcst.Station)
 		}
+		sort.Slice(stations, func(i, j int) bool {
+			return stationRank(stations[i]) < stationRank(stations[j])
+		})
+		listings = append(listings, Listing{
+			Match:    v[0].Match,
+			Stations: stations,
+		})
 	}
-	return matches
+	return listings
 }
 
-func rollUpDates(matches []Match) []MatchDay {
-	matchesRollup := make(map[string][]Match)
+func rollUpDates(matches []Listing) []MatchDay {
+	matchesRollup := make(map[string][]Listing)
 	for _, match := range matches {
 		d, err := time.Parse(time.RFC3339, match.Datetime)
 		if err != nil {
@@ -183,10 +168,10 @@ func rollUpDates(matches []Match) []MatchDay {
 	return matchDays
 }
 
-func filterMatches(matches []Match) []Match {
-	filtered := make([]Match, 0)
+func filterMatches(matches []Broadcast) []Broadcast {
+	filtered := make([]Broadcast, 0)
 	for _, match := range matches {
-		if shouldSkip(match) {
+		if shouldSkip(match.Match) {
 			continue
 		}
 		filtered = append(filtered, match)

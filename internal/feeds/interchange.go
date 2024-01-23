@@ -6,19 +6,28 @@ import (
 )
 
 type MatchDay struct {
-	NiceDate string `json:"date"`
+	NiceDate string
 	DateTime time.Time
-	Matches  []Match `json:"matches"`
+	Matches  []Listing
 }
 
 type Match struct {
-	Time        string   `json:"time"`
-	Date        string   `json:"date"`
-	Stations    []string `json:"station"`
-	Datetime    string   `json:"datetime"`
+	Time        string
+	Date        string
+	Datetime    string
 	HomeTeam    string
 	AwayTeam    string
-	Competition string `json:"competition"`
+	Competition string
+}
+
+type Broadcast struct {
+	Match
+	Station string
+}
+
+type Listing struct {
+	Match
+	Stations []string
 }
 
 func (m Match) Title() string {

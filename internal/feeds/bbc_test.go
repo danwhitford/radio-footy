@@ -9,7 +9,7 @@ import (
 func TestBBCDayToMatch(t *testing.T) {
 	table := []struct {
 		input  BBCFeed
-		output []Match
+		output []Broadcast
 	}{
 		{
 			input: BBCFeed{
@@ -28,15 +28,17 @@ func TestBBCDayToMatch(t *testing.T) {
 					},
 				},
 			},
-			output: []Match{
+			output: []Broadcast{
 				{
-					HomeTeam:    "Arsenal",
-					AwayTeam:    "Chelsea",
-					Stations:    []string{"BBC Radio 5"},
-					Competition: "Premier League Football 2022-23",
-					Time:        "17:30",
-					Date:        "Saturday, Dec 26",
-					Datetime:    "2020-12-26T17:30:00Z",
+					Match: Match{
+						HomeTeam:    "Arsenal",
+						AwayTeam:    "Chelsea",
+						Competition: "Premier League Football 2022-23",
+						Time:        "17:30",
+						Date:        "Saturday, Dec 26",
+						Datetime:    "2020-12-26T17:30:00Z",
+					},
+					Station: "BBC Radio 5",
 				},
 			},
 		},
@@ -63,7 +65,7 @@ func TestBBCDayToMatch(t *testing.T) {
 					},
 				},
 			},
-			output: []Match{},
+			output: []Broadcast{},
 		},
 		{
 			input: BBCFeed{
@@ -80,7 +82,7 @@ func TestBBCDayToMatch(t *testing.T) {
 					},
 				},
 			},
-			output: []Match{},
+			output: []Broadcast{},
 		},
 		{
 			input: BBCFeed{
@@ -105,7 +107,7 @@ func TestBBCDayToMatch(t *testing.T) {
 					},
 				},
 			},
-			output: []Match{},
+			output: []Broadcast{},
 		},
 	}
 

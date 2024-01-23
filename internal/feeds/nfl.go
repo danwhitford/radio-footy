@@ -12,7 +12,7 @@ import (
 
 const nflUrl string = "https://www.skysports.com/watch/nfl-on-sky"
 
-func getNflOnSky(getter urlgetter.UrlGetter) ([]Match, error) {
+func getNflOnSky(getter urlgetter.UrlGetter) ([]Broadcast, error) {
 	html, err := getter.GetUrl(nflUrl)
 	if err != nil {
 		return nil, err
@@ -22,8 +22,8 @@ func getNflOnSky(getter urlgetter.UrlGetter) ([]Match, error) {
 
 var dateRe *regexp.Regexp = regexp.MustCompile(`(\d+)(st|nd|rd|th)`)
 
-func nflPageToMatches(html string) ([]Match, error) {
-	Matches := make([]Match, 0)
+func nflPageToMatches(html string) ([]Broadcast, error) {
+	Matches := make([]Broadcast, 0)
 
 	re := regexp.MustCompile(`\([0-9:]+\)`)
 	loc, err := time.LoadLocation("Europe/London")
@@ -73,7 +73,6 @@ func nflPageToMatches(html string) ([]Match, error) {
 				for _, g := range groups {
 					var match Match
 					match.Competition = "NFL"
-					match.Stations = []string{"Sky Sports"}
 
 					eventTitles := g.Find("ul", "class", "event").FindAll("strong")
 					match.HomeTeam = eventTitles[1].Text()
@@ -99,7 +98,7 @@ func nflPageToMatches(html string) ([]Match, error) {
 					match.Datetime = curDateTime.Format(time.RFC3339)
 					match.Date = curDateTime.Format(niceDate)
 
-					Matches = append(Matches, match)
+					Matches = append(Matches, Broadcast{match, "Sky Sports"})
 				}
 			}
 		}

@@ -76,94 +76,92 @@ func TestMapCompName(t *testing.T) {
 
 func TestRollUpStations(t *testing.T) {
 	table := []struct {
-		input  []Match
-		output []Match
+		input  []Broadcast
+		output []Listing
 	}{
 		{
-			input: []Match{
+			input: []Broadcast{
 				{
-					Stations: []string{"BBC Radio 5"},
-					Time:     "17:30",
-					Date:     "Saturday, Dec 26",
+					Station: "BBC Radio 5",
+					Match: Match{
+						Time: "17:30",
+						Date: "Saturday, Dec 26",
+					},
 				},
 				{
-					Stations: []string{"talkSPORT"},
-					Time:     "17:30",
-					Date:     "Saturday, Dec 26",
+					Station: "talkSPORT",
+					Match: Match{
+						Time: "17:30",
+						Date: "Saturday, Dec 26",
+					},
 				},
 			},
-			output: []Match{
+			output: []Listing{
 				{
-					Time:     "17:30",
-					Date:     "Saturday, Dec 26",
+					Match: Match{
+						Time: "17:30",
+						Date: "Saturday, Dec 26",
+					},
 					Stations: []string{"talkSPORT", "BBC Radio 5"},
 				},
 			},
 		},
 		{
-			input: []Match{
+			input: []Broadcast{
 				{
-					Stations: []string{"BBC Radio 5"},
-					Time:     "10:00",
-					Date:     "Saturday, Dec 26",
+					Station: "BBC Radio 5",
+					Match: Match{
+						Time: "10:00",
+						Date: "Saturday, Dec 26",
+					},
 				},
 				{
-					Stations: []string{"BBC Radio 5 Extra"},
-					Time:     "12:00",
-					Date:     "Saturday, Dec 26",
+					Station: "BBC Radio 5 Extra",
+					Match: Match{Time: "12:00",
+						Date: "Saturday, Dec 26",
+					},
 				},
 			},
-			output: []Match{
+			output: []Listing{
 				{
-					Time:     "10:00",
-					Date:     "Saturday, Dec 26",
+					Match: Match{
+						Time: "10:00",
+						Date: "Saturday, Dec 26",
+					},
 					Stations: []string{"BBC Radio 5", "BBC Radio 5 Extra"},
 				},
 			},
 		},
 		{
-			input: []Match{
+			input: []Broadcast{
 				{
-					Stations: []string{"Sky Sports", "Sky Sports Football"},
-					Time:     "10:00",
-					Date:     "Saturday, Dec 26",
+					Station: "talkSPORT",
+					Match: Match{
+						Time: "10:00",
+						Date: "Saturday, Dec 26",
+					},
 				},
 				{
-					Stations: []string{"BBC Radio 5"},
-					Time:     "10:00",
-					Date:     "Saturday, Dec 26",
-				},
-			},
-			output: []Match{
-				{
-					Time:     "10:00",
-					Date:     "Saturday, Dec 26",
-					Stations: []string{"Sky Sports", "BBC Radio 5", "Sky Sports Football"},
-				},
-			},
-		},
-		{
-			input: []Match{
-				{
-					Stations: []string{"talkSPORT"},
-					Time:     "10:00",
-					Date:     "Saturday, Dec 26",
+					Station: "BBC Radio 5",
+					Match: Match{
+						Time: "10:00",
+						Date: "Saturday, Dec 26",
+					},
 				},
 				{
-					Stations: []string{"BBC Radio 5"},
-					Time:     "10:00",
-					Date:     "Saturday, Dec 26",
-				},
-				{
-					Stations: []string{"Channel 4"},
-					Time:     "10:00",
-					Date:     "Saturday, Dec 26",
+					Station: "Channel 4",
+					Match: Match{
+						Time: "10:00",
+						Date: "Saturday, Dec 26",
+					},
 				},
 			},
-			output: []Match{
+			output: []Listing{
 				{
-					Time:     "10:00",
-					Date:     "Saturday, Dec 26",
+					Match: Match{
+						Time: "10:00",
+						Date: "Saturday, Dec 26",
+					},
 					Stations: []string{"talkSPORT", "BBC Radio 5", "Channel 4"},
 				},
 			},
@@ -180,52 +178,64 @@ func TestRollUpStations(t *testing.T) {
 
 func TestRollUpDates(t *testing.T) {
 	table := []struct {
-		input  []Match
+		input  []Listing
 		output []MatchDay
 	}{
 		{
-			input: []Match{
+			input: []Listing{
 				{
-					Datetime: "2021-08-14T19:00:00Z",
-					HomeTeam: "Milan",
-					AwayTeam: "Chelsea",
+					Match: Match{
+						Datetime: "2021-08-14T19:00:00Z",
+						HomeTeam: "Milan",
+						AwayTeam: "Chelsea",
+					},
 				},
 				{
-					Datetime: "2021-08-14T21:00:00Z",
-					HomeTeam: "Bolton",
-					AwayTeam: "Barnsley",
+					Match: Match{
+						Datetime: "2021-08-14T21:00:00Z",
+						HomeTeam: "Bolton",
+						AwayTeam: "Barnsley",
+					},
 				},
 				{
-					Datetime: "2021-08-15T19:00:00Z",
-					HomeTeam: "Romsey",
-					AwayTeam: "Worthing",
+					Match: Match{
+						Datetime: "2021-08-15T19:00:00Z",
+						HomeTeam: "Romsey",
+						AwayTeam: "Worthing",
+					},
 				},
 			},
 			output: []MatchDay{
 				{
 					NiceDate: "Saturday, Aug 14",
 					DateTime: time.Date(2021, 8, 14, 0, 0, 0, 0, time.UTC),
-					Matches: []Match{
+					Matches: []Listing{
 						{
-							Datetime: "2021-08-14T19:00:00Z",
-							HomeTeam: "Milan",
-							AwayTeam: "Chelsea",
+							Match: Match{
+								Datetime: "2021-08-14T19:00:00Z",
+								HomeTeam: "Milan",
+								AwayTeam: "Chelsea",
+							},
 						},
 						{
-							Datetime: "2021-08-14T21:00:00Z",
-							HomeTeam: "Bolton",
-							AwayTeam: "Barnsley",
+							Match: Match{
+								Datetime: "2021-08-14T21:00:00Z",
+								HomeTeam: "Bolton",
+								AwayTeam: "Barnsley",
+							},
 						},
 					},
 				},
 				{
 					NiceDate: "Sunday, Aug 15",
 					DateTime: time.Date(2021, 8, 15, 0, 0, 0, 0, time.UTC),
-					Matches: []Match{
+					Matches: []Listing{
 						{
-							Datetime: "2021-08-15T19:00:00Z",
-							HomeTeam: "Romsey",
-							AwayTeam: "Worthing",
+							Match: Match{
+								Datetime: "2021-08-15T19:00:00Z",
+								HomeTeam: "Romsey",
+								AwayTeam: "Worthing",
+							},
 						},
 					},
 				},
@@ -246,27 +256,33 @@ func TestRollUpDates(t *testing.T) {
 
 func TestFilterMatches(t *testing.T) {
 	table := []struct {
-		input  []Match
-		output []Match
+		input  []Broadcast
+		output []Broadcast
 	}{
 		{
-			input: []Match{
+			input: []Broadcast{
 				{
-					HomeTeam:    "Chelsea",
-					AwayTeam:    "Milan",
-					Competition: "Premier League",
+					Match: Match{
+						HomeTeam:    "Chelsea",
+						AwayTeam:    "Milan",
+						Competition: "Premier League",
+					},
 				},
 				{
-					HomeTeam:    "Inverness",
-					AwayTeam:    "Hibernian",
-					Competition: "Scottish Premiership",
+					Match: Match{
+						HomeTeam:    "Inverness",
+						AwayTeam:    "Hibernian",
+						Competition: "Scottish Premiership",
+					},
 				},
 			},
-			output: []Match{
+			output: []Broadcast{
 				{
-					HomeTeam:    "Chelsea",
-					AwayTeam:    "Milan",
-					Competition: "Premier League",
+					Match: Match{
+						HomeTeam:    "Chelsea",
+						AwayTeam:    "Milan",
+						Competition: "Premier League",
+					},
 				},
 			},
 		},
@@ -290,55 +306,65 @@ func TestSortMatchDays(t *testing.T) {
 				{
 					NiceDate: "Monday, Aug 18",
 					DateTime: time.Date(2021, 8, 18, 19, 0, 0, 0, time.UTC),
-					Matches: []Match{
+					Matches: []Listing{
 						{
-							Date:     "Monday, Aug 18",
-							HomeTeam: "Brentford",
-							AwayTeam: "Arsenal",
-							Datetime: "2021-08-18T19:00:00Z",
-							Time:     "19:00",
+							Match: Match{
+								Date:     "Monday, Aug 18",
+								HomeTeam: "Brentford",
+								AwayTeam: "Arsenal",
+								Datetime: "2021-08-18T19:00:00Z",
+								Time:     "19:00",
+							},
 						},
 					},
 				},
 				{
 					NiceDate: "Tuesday, Aug 14",
 					DateTime: time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
-					Matches: []Match{
+					Matches: []Listing{
 						{
-							Date:     "Tuesday, Aug 14",
-							HomeTeam: "Bolton",
-							AwayTeam: "Barnsley",
-							Datetime: "2021-08-14T15:00:00Z",
-							Time:     "15:00",
+							Match: Match{
+								Date:     "Tuesday, Aug 14",
+								HomeTeam: "Bolton",
+								AwayTeam: "Barnsley",
+								Datetime: "2021-08-14T15:00:00Z",
+								Time:     "15:00",
+							},
 							Stations: []string{"talkSPORT"},
 						},
 						{
-							Date:     "Tuesday, Aug 14",
-							HomeTeam: "Fulham",
-							AwayTeam: "Barnsley",
-							Datetime: "2021-08-14T15:00:00Z",
-							Time:     "15:00",
+							Match: Match{
+								Date:     "Tuesday, Aug 14",
+								HomeTeam: "Fulham",
+								AwayTeam: "Barnsley",
+								Datetime: "2021-08-14T15:00:00Z",
+								Time:     "15:00",
+							},
 							Stations: []string{"talkSPORT2"},
 						},
 						{
-							Date:     "Tuesday, Aug 14",
-							HomeTeam: "Chelsea",
-							AwayTeam: "Milan",
-							Datetime: "2021-08-14T12:00:00Z",
-							Time:     "12:00",
+							Match: Match{
+								Date:     "Tuesday, Aug 14",
+								HomeTeam: "Chelsea",
+								AwayTeam: "Milan",
+								Datetime: "2021-08-14T12:00:00Z",
+								Time:     "12:00",
+							},
 						},
 					},
 				},
 				{
 					NiceDate: "Sunday, Aug 15",
 					DateTime: time.Date(2021, 8, 15, 15, 0, 0, 0, time.UTC),
-					Matches: []Match{
+					Matches: []Listing{
 						{
-							Date:     "Wednesday, Aug 15",
-							HomeTeam: "Romsey",
-							AwayTeam: "Worthing",
-							Datetime: "2021-08-15T15:00:00Z",
-							Time:     "15:00",
+							Match: Match{
+								Date:     "Wednesday, Aug 15",
+								HomeTeam: "Romsey",
+								AwayTeam: "Worthing",
+								Datetime: "2021-08-15T15:00:00Z",
+								Time:     "15:00",
+							},
 						},
 					},
 				},
@@ -347,28 +373,35 @@ func TestSortMatchDays(t *testing.T) {
 				{
 					NiceDate: "Tuesday, Aug 14",
 					DateTime: time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
-					Matches: []Match{
+					Matches: []Listing{
 						{
-							Date:     "Tuesday, Aug 14",
-							HomeTeam: "Chelsea",
-							AwayTeam: "Milan",
-							Datetime: "2021-08-14T12:00:00Z",
-							Time:     "12:00",
+							Match: Match{
+								Date:     "Tuesday, Aug 14",
+								HomeTeam: "Chelsea",
+								AwayTeam: "Milan",
+								Datetime: "2021-08-14T12:00:00Z",
+								Time:     "12:00",
+							},
 						},
 						{
-							Date:     "Tuesday, Aug 14",
-							HomeTeam: "Bolton",
-							AwayTeam: "Barnsley",
-							Datetime: "2021-08-14T15:00:00Z",
-							Time:     "15:00",
+							Match: Match{
+
+								Date:     "Tuesday, Aug 14",
+								HomeTeam: "Bolton",
+								AwayTeam: "Barnsley",
+								Datetime: "2021-08-14T15:00:00Z",
+								Time:     "15:00",
+							},
 							Stations: []string{"talkSPORT"},
 						},
 						{
-							Date:     "Tuesday, Aug 14",
-							HomeTeam: "Fulham",
-							AwayTeam: "Barnsley",
-							Datetime: "2021-08-14T15:00:00Z",
-							Time:     "15:00",
+							Match: Match{
+								Date:     "Tuesday, Aug 14",
+								HomeTeam: "Fulham",
+								AwayTeam: "Barnsley",
+								Datetime: "2021-08-14T15:00:00Z",
+								Time:     "15:00",
+							},
 							Stations: []string{"talkSPORT2"},
 						},
 					},
@@ -376,26 +409,30 @@ func TestSortMatchDays(t *testing.T) {
 				{
 					NiceDate: "Sunday, Aug 15",
 					DateTime: time.Date(2021, 8, 15, 15, 0, 0, 0, time.UTC),
-					Matches: []Match{
+					Matches: []Listing{
 						{
-							Date:     "Wednesday, Aug 15",
-							HomeTeam: "Romsey",
-							AwayTeam: "Worthing",
-							Datetime: "2021-08-15T15:00:00Z",
-							Time:     "15:00",
+							Match: Match{
+								Date:     "Wednesday, Aug 15",
+								HomeTeam: "Romsey",
+								AwayTeam: "Worthing",
+								Datetime: "2021-08-15T15:00:00Z",
+								Time:     "15:00",
+							},
 						},
 					},
 				},
 				{
 					NiceDate: "Monday, Aug 18",
 					DateTime: time.Date(2021, 8, 18, 19, 0, 0, 0, time.UTC),
-					Matches: []Match{
+					Matches: []Listing{
 						{
-							Date:     "Monday, Aug 18",
-							HomeTeam: "Brentford",
-							AwayTeam: "Arsenal",
-							Datetime: "2021-08-18T19:00:00Z",
-							Time:     "19:00",
+							Match: Match{
+								Date:     "Monday, Aug 18",
+								HomeTeam: "Brentford",
+								AwayTeam: "Arsenal",
+								Datetime: "2021-08-18T19:00:00Z",
+								Time:     "19:00",
+							},
 						},
 					},
 				},
@@ -413,62 +450,73 @@ func TestSortMatchDays(t *testing.T) {
 
 func TestMatchesToMatchDays(t *testing.T) {
 	table := []struct {
-		input  []Match
+		input  []Broadcast
 		output []MatchDay
 	}{
 		{
-			input: []Match{
+			input: []Broadcast{
 				{
-					Date:        "Saturday, Aug 14",
-					HomeTeam:    "Chelsea",
-					AwayTeam:    "Tottenham",
-					Competition: "Premier League",
-					Datetime:    "2021-08-14T15:00:00Z",
-					Stations:    []string{"talkSPORT", "BBC Radio 5"},
+					Match: Match{
+
+						Date:        "Saturday, Aug 14",
+						HomeTeam:    "Chelsea",
+						AwayTeam:    "Tottenham",
+						Competition: "Premier League",
+						Datetime:    "2021-08-14T15:00:00Z",
+					},
+					Station: "talkSPORT",
 				},
 				{
-					Date:        "Saturday, Aug 14",
-					HomeTeam:    "Inverness",
-					AwayTeam:    "Hibernian",
-					Competition: "Scottish Premiership",
-					Datetime:    "2021-08-14T15:00:00Z",
-					Stations:    []string{"BBC Radio Scotland"},
+					Match: Match{
+						Date:        "Saturday, Aug 14",
+						HomeTeam:    "Inverness",
+						AwayTeam:    "Hibernian",
+						Competition: "Scottish Premiership",
+						Datetime:    "2021-08-14T15:00:00Z",
+					},
+					Station: "BBC Radio Scotland",
 				},
 				{
-					Date:        "Sunday, Aug 15",
-					HomeTeam:    "Chelsea",
-					AwayTeam:    "Spurs",
-					Competition: "Premier League",
-					Datetime:    "2021-08-15T15:00:00Z",
-					Stations:    []string{"BBC Radio 5"},
+					Match: Match{
+						Date:        "Sunday, Aug 15",
+						HomeTeam:    "Chelsea",
+						AwayTeam:    "Spurs",
+						Competition: "Premier League",
+						Datetime:    "2021-08-15T15:00:00Z",
+					},
+					Station: "BBC Radio 5",
 				},
 			},
 			output: []MatchDay{
 				{
 					NiceDate: "Saturday, Aug 14",
 					DateTime: time.Date(2021, 8, 14, 0, 0, 0, 0, time.UTC),
-					Matches: []Match{
+					Matches: []Listing{
 						{
-							Date:        "Saturday, Aug 14",
-							HomeTeam:    "Chelsea",
-							AwayTeam:    "Tottenham",
-							Competition: "Premier League",
-							Datetime:    "2021-08-14T15:00:00Z",
-							Stations:    []string{"talkSPORT", "BBC Radio 5"},
+							Match: Match{
+								Date:        "Saturday, Aug 14",
+								HomeTeam:    "Chelsea",
+								AwayTeam:    "Tottenham",
+								Competition: "Premier League",
+								Datetime:    "2021-08-14T15:00:00Z",
+							},
+							Stations: []string{"talkSPORT"},
 						},
 					},
 				},
 				{
 					NiceDate: "Sunday, Aug 15",
 					DateTime: time.Date(2021, 8, 15, 0, 0, 0, 0, time.UTC),
-					Matches: []Match{
+					Matches: []Listing{
 						{
-							Date:        "Sunday, Aug 15",
-							HomeTeam:    "Chelsea",
-							AwayTeam:    "Spurs",
-							Competition: "Premier League",
-							Datetime:    "2021-08-15T15:00:00Z",
-							Stations:    []string{"BBC Radio 5"},
+							Match: Match{
+								Date:        "Sunday, Aug 15",
+								HomeTeam:    "Chelsea",
+								AwayTeam:    "Spurs",
+								Competition: "Premier League",
+								Datetime:    "2021-08-15T15:00:00Z",
+							},
+							Stations: []string{"BBC Radio 5"},
 						},
 					},
 				},
@@ -494,14 +542,16 @@ func TestMatchDayToEventList(t *testing.T) {
 				{
 					NiceDate: "Saturday, Aug 14",
 					DateTime: time.Date(2021, 8, 14, 0, 0, 0, 0, time.UTC),
-					Matches: []Match{
+					Matches: []Listing{
 						{
-							Date:        "Saturday, Aug 14",
-							HomeTeam:    "Chelsea",
-							AwayTeam:    "Tottenham",
-							Competition: "Premier League",
-							Datetime:    "2021-08-14T15:00:00Z",
-							Stations:    []string{"talkSPORT", "BBC Radio 5"},
+							Match: Match{
+								Date:        "Saturday, Aug 14",
+								HomeTeam:    "Chelsea",
+								AwayTeam:    "Tottenham",
+								Competition: "Premier League",
+								Datetime:    "2021-08-14T15:00:00Z",
+							},
+							Stations: []string{"talkSPORT", "BBC Radio 5"},
 						},
 					},
 				},

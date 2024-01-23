@@ -9,7 +9,7 @@ import (
 func TestTsFeedToMatches(t *testing.T) {
 	table := []struct {
 		input  []TSGame
-		output []Match
+		output []Broadcast
 	}{
 		{
 			input: []TSGame{
@@ -26,15 +26,17 @@ func TestTsFeedToMatches(t *testing.T) {
 					},
 				},
 			},
-			output: []Match{
+			output: []Broadcast{
 				{
-					Time:        "17:30",
-					Date:        "Saturday, Dec 26",
-					Stations:    []string{"talkSPORT"},
-					Datetime:    "2020-12-26T17:30:00Z",
-					HomeTeam:    "Arsenal",
-					AwayTeam:    "Chelsea",
-					Competition: "Premier League",
+					Match: Match{
+						Time:        "17:30",
+						Date:        "Saturday, Dec 26",
+						Datetime:    "2020-12-26T17:30:00Z",
+						HomeTeam:    "Arsenal",
+						AwayTeam:    "Chelsea",
+						Competition: "Premier League",
+					},
+					Station: "talkSPORT",
 				},
 			},
 		},
@@ -54,7 +56,7 @@ func TestTsFeedToMatches(t *testing.T) {
 					Title:    "England Women v Portugal Women",
 				},
 			},
-			output: []Match{},
+			output: []Broadcast{},
 		},
 	}
 
