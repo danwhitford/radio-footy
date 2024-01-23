@@ -54,12 +54,12 @@ func tsFeedToMatches(tsFeed []TSGame) []Match {
 		displayTime := t.Format(timeLayout)
 		datetime := t.Format(time.RFC3339)
 		m := Match{
-			Time: displayTime, 
-			Date: displayDate, 
-			Stations: []string{feedname}, 
-			Datetime: datetime, 
-			HomeTeam: m.HomeTeam,
-			AwayTeam: m.AwayTeam,
+			Time:        displayTime,
+			Date:        displayDate,
+			Stations:    []string{feedname},
+			Datetime:    datetime,
+			HomeTeam:    m.HomeTeam,
+			AwayTeam:    m.AwayTeam,
 			Competition: m.League}
 		matches = append(matches, m)
 	}

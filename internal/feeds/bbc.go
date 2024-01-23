@@ -77,8 +77,8 @@ func bbcDayToMatches(bbcFeed BBCFeed) []Match {
 					Date:        date,
 					Stations:    []string{"BBC Radio 5"},
 					Datetime:    start.Format(time.RFC3339),
-					HomeTeam: teams[0],
-					AwayTeam: teams[1],
+					HomeTeam:    teams[0],
+					AwayTeam:    teams[1],
 					Competition: prog.Title.Secondary,
 				}
 
