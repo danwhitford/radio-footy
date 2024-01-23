@@ -37,12 +37,6 @@ func (m Match) Title() string {
 	return fmt.Sprintf("%s v %s", m.HomeTeam, m.AwayTeam)
 }
 
-type MatchRadioEvent struct {
-	Station string
-	Time    string
-	Date    string
-}
-
 type TSGame struct {
 	Livefeed []TSLiveFeed `json:"livefeed"`
 	Sport    string
