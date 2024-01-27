@@ -28,6 +28,7 @@ var channelsICareAbout = []string{
 	"BBC Two",
 	"Amazon Prime Video",
 	"ITV1",
+	"ITV4",
 	"Channel 4",
 	"TNT Sports 1",
 	"TNT Sports 2",

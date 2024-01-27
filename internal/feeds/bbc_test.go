@@ -38,7 +38,6 @@ func TestBBCDayToMatch(t *testing.T) {
 						Date:        "Saturday, Dec 26",
 						Datetime:    "2020-12-26T17:30:00Z",
 					},
-					Station: "BBC Radio 5",
 				},
 			},
 		},
@@ -108,6 +107,40 @@ func TestBBCDayToMatch(t *testing.T) {
 				},
 			},
 			output: []Broadcast{},
+		},
+		{
+			input: BBCFeed{
+				Data: []BBCFeedData{
+					{
+						Data: []BBCProgramData{
+							{
+								Title: BBCTitles{
+									Primary:   "5 Live Sport",
+									Secondary: "Premier League Football 2022-23",
+									Tertiary:  "Arsenal v Chelsea",
+								},
+								Network: BBCNetwork{
+									ShortTitle: "BBC Radio 5 Sports Extra",
+								},
+								Start: "2020-12-26T17:30:00Z",
+							},
+						},
+					},
+				},
+			},
+			output: []Broadcast{
+				{
+					Match: Match{
+						HomeTeam:    "Arsenal",
+						AwayTeam:    "Chelsea",
+						Competition: "Premier League Football 2022-23",
+						Time:        "17:30",
+						Date:        "Saturday, Dec 26",
+						Datetime:    "2020-12-26T17:30:00Z",
+					},
+					Station: "BBC Radio 5 Sports Extra",
+				},
+			},
 		},
 	}
 

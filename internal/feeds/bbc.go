@@ -81,7 +81,7 @@ func bbcDayToMatches(bbcFeed BBCFeed) []Broadcast {
 					Competition: prog.Title.Secondary,
 				}
 
-				matches = append(matches, Broadcast{m, "BBC Radio 5"})
+				matches = append(matches, Broadcast{m, prog.Network.ShortTitle})
 			}
 		}
 	}
