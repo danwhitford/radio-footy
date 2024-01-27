@@ -106,18 +106,27 @@ func mapTeamName(name string) string {
 }
 
 func mapCompName(match *Match) {
-	match.Competition = strings.TrimSuffix(match.Competition, " Football 2022-23")
-	match.Competition = strings.TrimSuffix(match.Competition, " Football 2023-24")
-	match.Competition = strings.TrimSuffix(match.Competition, " Friendlies")
-	match.Competition = strings.TrimSuffix(match.Competition, " Friendly")
-	if match.Competition == "Test Match Special" {
-		match.Competition = "The Ashes"
+	keepPrefixes := []string{
+		"Premier League",
+		"FA Cup",
+		"UEFA Champions League",
 	}
-	if strings.HasPrefix(match.Competition, "Carabao Cup") {
-		match.Competition = "EFL Cup"
+	for _, prefix := range keepPrefixes {
+		if strings.HasPrefix(match.Competition, prefix) {
+			match.Competition = prefix
+			return
+		}
 	}
-	if strings.HasPrefix(match.Competition, "FA Cup") {
-		match.Competition = "FA Cup"
+
+	replacements := map[string]string {
+		"Carabao Cup": "EFL Cup",
+		"English Football League Trophy": "EFL Cup",
+	}
+	for old, new := range replacements { 
+		if match.Competition == old {
+			match.Competition = new
+			return
+		}
 	}
 }
 

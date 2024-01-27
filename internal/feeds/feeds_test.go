@@ -56,14 +56,6 @@ func TestMapCompName(t *testing.T) {
 				Competition: "Premier League",
 			},
 		},
-		{
-			input: Match{
-				Competition: "International Friendlies",
-			},
-			output: Match{
-				Competition: "International",
-			},
-		},
 	}
 
 	for _, tst := range table {
