@@ -14,7 +14,7 @@
 
 <body>
     <div>
-        <h1>Football on radio and TV</h1>
+        <a href="#"><h1>Football on radio and TV</h1></a>
         {{ range .MatchDays }}
         <section class="day-section">
             <a href="#{{ rfc3339 .DateTime }}"><h2 class="day" id="{{ rfc3339 .DateTime }}">{{ .NiceDate }}</h2></a>
