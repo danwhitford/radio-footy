@@ -2,6 +2,7 @@ package feeds
 
 import (
 	"testing"
+	"time"
 
 	"github.com/google/go-cmp/cmp"
 )
@@ -34,9 +35,7 @@ func TestBBCDayToMatch(t *testing.T) {
 						HomeTeam:    "Arsenal",
 						AwayTeam:    "Chelsea",
 						Competition: "Premier League Football 2022-23",
-						Time:        "17:30",
-						Date:        "Saturday, Dec 26",
-						Datetime:    "2020-12-26T17:30:00Z",
+						Datetime:    time.Date(2020, 12, 26, 17, 30, 0, 0, time.UTC),
 					},
 				},
 			},
@@ -134,9 +133,7 @@ func TestBBCDayToMatch(t *testing.T) {
 						HomeTeam:    "Arsenal",
 						AwayTeam:    "Chelsea",
 						Competition: "Premier League Football 2022-23",
-						Time:        "17:30",
-						Date:        "Saturday, Dec 26",
-						Datetime:    "2020-12-26T17:30:00Z",
+						Datetime:    time.Date(2020, 12, 26, 17, 30, 0, 0, time.UTC),
 					},
 					Station: "BBC Radio 5 Sports Extra",
 				},
@@ -174,9 +171,7 @@ func TestBBCDayToMatch(t *testing.T) {
 						HomeTeam:    "Italy",
 						AwayTeam:    "England",
 						Competition: "Six Nations 2024",
-						Time:        "14:15",
-						Date:        "Saturday, Feb 3",
-						Datetime:    "2024-02-03T14:15:00Z",
+						Datetime:    time.Date(2024, 2, 3, 14, 15, 0, 0, time.UTC),
 					},
 					Station: "Radio 5 Sports Extra",
 				},
@@ -187,7 +182,7 @@ func TestBBCDayToMatch(t *testing.T) {
 	for _, test := range table {
 		got := bbcDayToMatches(test.input)
 		if diff := cmp.Diff(test.output, got); diff != "" {
-			t.Errorf("bbcDayToMatch() mismatch (-want +got):\n%s", diff)
+			t.Fatalf("bbcDayToMatch() mismatch (-want +got):\n%s", diff)
 		}
 	}
 }

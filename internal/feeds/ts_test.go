@@ -2,6 +2,7 @@ package feeds
 
 import (
 	"testing"
+	"time"
 
 	"github.com/google/go-cmp/cmp"
 )
@@ -29,9 +30,7 @@ func TestTsFeedToMatches(t *testing.T) {
 			output: []Broadcast{
 				{
 					Match: Match{
-						Time:        "17:30",
-						Date:        "Saturday, Dec 26",
-						Datetime:    "2020-12-26T17:30:00Z",
+						Datetime: time.Date(2020, 12, 26, 17, 30, 0, 0, time.UTC),
 						HomeTeam:    "Arsenal",
 						AwayTeam:    "Chelsea",
 						Competition: "Premier League",

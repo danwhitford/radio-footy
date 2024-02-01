@@ -74,13 +74,9 @@ func bbcDayToMatches(bbcFeed BBCFeed) []Broadcast {
 					panic(err)
 				}
 				start = start.In(loc)
-				clock := start.Format(timeLayout)
-				date := start.Format(niceDate)
 				teams := strings.Split(prog.Title.Tertiary, " v ")
 				m := Match{
-					Time:        clock,
-					Date:        date,
-					Datetime:    start.Format(time.RFC3339),
+					Datetime:    start,
 					HomeTeam:    teams[0],
 					AwayTeam:    teams[1],
 					Competition: prog.Title.Secondary,
@@ -93,13 +89,9 @@ func bbcDayToMatches(bbcFeed BBCFeed) []Broadcast {
 					panic(err)
 				}
 				start = start.In(loc)
-				clock := start.Format(timeLayout)
-				date := start.Format(niceDate)
 				teams := strings.Split(prog.Title.Secondary, " v ")
 				m := Match{
-					Time:        clock,
-					Date:        date,
-					Datetime:    start.Format(time.RFC3339),
+					Datetime:    start,
 					HomeTeam:    teams[0],
 					AwayTeam:    teams[1],
 					Competition: prog.Title.Primary,

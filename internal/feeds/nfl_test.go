@@ -2,6 +2,7 @@ package feeds
 
 import (
 	"testing"
+	"time"
 
 	_ "embed"
 
@@ -16,9 +17,7 @@ func TestGetNflOnSky(t *testing.T) {
 	want := []Broadcast{
 		{
 			Match: Match{
-				Time:        "20:30",
-				Date:        "Saturday, Jan 20",
-				Datetime:    "2024-01-20T20:30:00Z",
+				Datetime:    time.Date(2024, 1, 20, 20, 30, 0, 0, time.UTC),
 				HomeTeam:    "Baltimore Ravens",
 				AwayTeam:    "Houston Texans",
 				Competition: "NFL",
@@ -27,9 +26,7 @@ func TestGetNflOnSky(t *testing.T) {
 		},
 		{
 			Match: Match{
-				Time:        "01:00",
-				Date:        "Sunday, Jan 21",
-				Datetime:    "2024-01-21T01:00:00Z",
+				Datetime:    time.Date(2024, 1, 21, 01, 00, 0, 0, time.UTC),
 				HomeTeam:    "San Francisco 49ers",
 				AwayTeam:    "Green Bay Packers",
 				Competition: "NFL",
@@ -38,9 +35,7 @@ func TestGetNflOnSky(t *testing.T) {
 		},
 		{
 			Match: Match{
-				Time:        "19:00",
-				Date:        "Sunday, Jan 21",
-				Datetime:    "2024-01-21T19:00:00Z",
+				Datetime:    time.Date(2024, 1, 21, 19, 00, 0, 0, time.UTC),
 				HomeTeam:    "Detroit Lions",
 				AwayTeam:    "Tampa Bay Buccaneers",
 				Competition: "NFL",

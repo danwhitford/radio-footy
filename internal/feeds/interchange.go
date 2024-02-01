@@ -5,16 +5,16 @@ import (
 	"time"
 )
 
+const niceDate = "Monday, Jan 2"
+const timeLayout = "15:04"
+
 type MatchDay struct {
-	NiceDate string
 	DateTime time.Time
 	Matches  []Listing
 }
 
 type Match struct {
-	Time        string
-	Date        string
-	Datetime    string
+	Datetime    time.Time
 	HomeTeam    string
 	AwayTeam    string
 	Competition string
@@ -35,6 +35,14 @@ func (m Match) Title() string {
 		return fmt.Sprintf("%s @ %s", m.AwayTeam, m.HomeTeam)
 	}
 	return fmt.Sprintf("%s v %s", m.HomeTeam, m.AwayTeam)
+}
+
+func (m Match) Time() string {
+	return m.Datetime.Format(timeLayout)
+}
+
+func (m MatchDay) NiceDate() string {
+	return m.DateTime.Format(niceDate)
 }
 
 type TSGame struct {

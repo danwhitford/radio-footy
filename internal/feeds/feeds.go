@@ -10,9 +10,6 @@ import (
 	"whitford.io/radiofooty/internal/urlgetter"
 )
 
-const niceDate = "Monday, Jan 2"
-const timeLayout = "15:04"
-
 type MatchGetter func(getter urlgetter.UrlGetter) ([]Broadcast, error)
 
 func GetMatches() ([]MatchDay, error) {
@@ -133,7 +130,7 @@ func mapCompName(match *Match) {
 func rollUpStations(matches []Broadcast) []Listing {
 	stationsRollUp := make(map[string][]Broadcast)
 	for _, match := range matches {
-		hashLol := fmt.Sprintf("%s%s%s%s", match.Competition, match.Date, match.HomeTeam, match.AwayTeam)
+		hashLol := fmt.Sprintf("%s%v%s%s", match.Competition, match.Datetime, match.HomeTeam, match.AwayTeam)
 		stationsRollUp[hashLol] = append(stationsRollUp[hashLol], match)
 	}
 	listings := make([]Listing, 0)
@@ -156,10 +153,8 @@ func rollUpStations(matches []Broadcast) []Listing {
 func rollUpDates(matches []Listing) []MatchDay {
 	matchesRollup := make(map[string][]Listing)
 	for _, match := range matches {
-		d, err := time.Parse(time.RFC3339, match.Datetime)
-		if err != nil {
-			log.Fatalf("error rolling up dates %s", err)
-		}
+		d := match.Datetime
+		
 		key := d.Format(time.DateOnly)
 		matchesRollup[key] = append(matchesRollup[key], match)
 	}
@@ -170,7 +165,7 @@ func rollUpDates(matches []Listing) []MatchDay {
 		if err != nil {
 			log.Fatal(err)
 		}
-		md := MatchDay{NiceDate: dt.Format(niceDate), Matches: matches, DateTime: dt}
+		md := MatchDay{Matches: matches, DateTime: dt}
 		matchDays = append(matchDays, md)
 	}
 
@@ -196,10 +191,10 @@ func sortMatchDays(matchDays []MatchDay) []MatchDay {
 	// Sort by time and station
 	for _, matchDay := range matchDays {
 		sort.Slice(matchDay.Matches, func(i, j int) bool {
-			if matchDay.Matches[i].Time == matchDay.Matches[j].Time {
+			if matchDay.Matches[i].Datetime.Compare(matchDay.Matches[j].Datetime) == 0 {
 				return stationRank(matchDay.Matches[i].Stations[0]) < stationRank(matchDay.Matches[j].Stations[0])
 			}
-			return matchDay.Matches[i].Time < matchDay.Matches[j].Time
+			return matchDay.Matches[i].Datetime.Before(matchDay.Matches[j].Datetime)
 		})
 	}
 
@@ -210,10 +205,8 @@ func MatchDayToEventList(Matches []MatchDay) []CalEvent {
 	events := make([]CalEvent, 0)
 	for _, day := range Matches {
 		for _, match := range day.Matches {
-			starttime, err := time.Parse(time.RFC3339, match.Datetime)
-			if err != nil {
-				log.Fatalln("error while creating event list", err)
-			}
+			starttime := match.Datetime
+			
 			event := CalEvent{
 				Uid:      strings.ReplaceAll(strings.ToLower(fmt.Sprintf("%s/%s", match.Title(), match.Competition)), " ", ""),
 				DtStart:  starttime.UTC().Format(CalTimeString),

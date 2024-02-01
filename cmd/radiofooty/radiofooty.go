@@ -57,7 +57,7 @@ func writeIndex(data interface{}, templateName, templatePath string, writer io.W
 			return t.Format(time.DateOnly)
 		},
 		"gamehash": func(m feeds.Listing) string {
-			s := fmt.Sprintf("%s%s", m.Date, m.Title())
+			s := fmt.Sprintf("%s%s", m.Datetime.Format(time.RFC3339), m.Title())
 			r := regexp.MustCompile("[^0-9a-zA-Z]")
 			s = r.ReplaceAllString(s, "")
 			return s

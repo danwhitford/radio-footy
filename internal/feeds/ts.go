@@ -50,12 +50,8 @@ func tsFeedToMatches(tsFeed []TSGame) []Broadcast {
 		}
 
 		t, _ := time.ParseInLocation(longForm, m.Date, loc)
-		displayDate := t.Format(niceDate)
-		displayTime := t.Format(timeLayout)
-		datetime := t.Format(time.RFC3339)
+		datetime := t
 		m := Match{
-			Time:        displayTime,
-			Date:        displayDate,
 			Datetime:    datetime,
 			HomeTeam:    m.HomeTeam,
 			AwayTeam:    m.AwayTeam,

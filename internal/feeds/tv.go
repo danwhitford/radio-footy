@@ -130,9 +130,7 @@ func getTvMatches(getter urlgetter.UrlGetter) ([]Broadcast, error) {
 					HomeTeam:    fixture.homeTeam,
 					AwayTeam:    fixture.awayTeam,
 					Competition: fixture.compName,
-					Datetime:    fixture.dateTime.Format(time.RFC3339),
-					Date:        fixture.dateTime.Format(niceDate),
-					Time:        fixture.dateTime.Format(timeLayout),
+					Datetime:    fixture.dateTime,
 				},
 				Station: channel,
 			})

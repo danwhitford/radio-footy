@@ -81,7 +81,6 @@ func nflPageToMatches(html string) ([]Broadcast, error) {
 					eventDetail := g.Find("p", "class", "event-detail").Text()
 					foundTime := re.FindString(eventDetail)
 					timeString := strings.Trim(foundTime, "()")
-					match.Time = timeString
 					var hours, mins int
 					fmt.Sscanf(timeString, "%d:%d", &hours, &mins)
 
@@ -95,8 +94,7 @@ func nflPageToMatches(html string) ([]Broadcast, error) {
 						0,
 						curDate.Location(),
 					)
-					match.Datetime = curDateTime.Format(time.RFC3339)
-					match.Date = curDateTime.Format(niceDate)
+					match.Datetime = curDateTime
 
 					Matches = append(Matches, Broadcast{match, "Sky Sports"})
 				}
