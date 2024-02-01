@@ -47,6 +47,11 @@ func isAMatch(title BBCTitles) bool {
 		!strings.HasPrefix(title.Tertiary, "Prematch")
 }
 
+func isSixNations(title BBCTitles) bool {
+	return title.Primary == "Six Nations 2024" &&
+		strings.Contains(title.Secondary, " v ")
+}
+
 func bbcDayToMatches(bbcFeed BBCFeed) []Broadcast {
 	matches := make([]Broadcast, 0)
 
@@ -79,6 +84,25 @@ func bbcDayToMatches(bbcFeed BBCFeed) []Broadcast {
 					HomeTeam:    teams[0],
 					AwayTeam:    teams[1],
 					Competition: prog.Title.Secondary,
+				}
+
+				matches = append(matches, Broadcast{m, prog.Network.ShortTitle})
+			} else if isSixNations(prog.Title) {
+				start, err := time.Parse(longFormat, prog.Start)
+				if err != nil {
+					panic(err)
+				}
+				start = start.In(loc)
+				clock := start.Format(timeLayout)
+				date := start.Format(niceDate)
+				teams := strings.Split(prog.Title.Secondary, " v ")
+				m := Match{
+					Time:        clock,
+					Date:        date,
+					Datetime:    start.Format(time.RFC3339),
+					HomeTeam:    teams[0],
+					AwayTeam:    teams[1],
+					Competition: prog.Title.Primary,
 				}
 
 				matches = append(matches, Broadcast{m, prog.Network.ShortTitle})

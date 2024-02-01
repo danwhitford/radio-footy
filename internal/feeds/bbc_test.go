@@ -142,6 +142,46 @@ func TestBBCDayToMatch(t *testing.T) {
 				},
 			},
 		},
+		{
+			input: BBCFeed{
+				Data: []BBCFeedData{
+					{
+						Data: []BBCProgramData{
+							{
+								Title: BBCTitles{
+									Primary:   "Six Nations 2024",
+									Secondary: "Italy v England",
+								},
+								Start: "2024-02-03T14:15:00Z",
+								Network: BBCNetwork{
+									ShortTitle: "Radio 5 Sports Extra",
+								},
+								Synopses: BBCSynopses{
+									Short: "Live rugby union commentary of Italy v England in the Six Nations at Stadio Olimpico.",
+								}},
+						},
+					},
+					{
+						Data: []BBCProgramData{
+							{Title: BBCTitles{Primary: "Six Nations 2024", Secondary: "Round two preview", Tertiary: ""}, Start: "2024-02-08T19:00:00Z", Network: BBCNetwork{ShortTitle: "Radio 5 Live"}, Synopses: BBCSynopses{Short: "Sonja McLaughlan looks ahead to round two of the Six Nations Championships."}},
+						},
+					},
+				},
+			},
+			output: []Broadcast{
+				{
+					Match: Match{
+						HomeTeam:    "Italy",
+						AwayTeam:    "England",
+						Competition: "Six Nations 2024",
+						Time:        "14:15",
+						Date:        "Saturday, Feb 3",
+						Datetime:    "2024-02-03T14:15:00Z",
+					},
+					Station: "Radio 5 Sports Extra",
+				},
+			},
+		},
 	}
 
 	for _, test := range table {
