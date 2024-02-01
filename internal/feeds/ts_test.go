@@ -30,7 +30,7 @@ func TestTsFeedToMatches(t *testing.T) {
 			output: []Broadcast{
 				{
 					Match: Match{
-						Datetime: time.Date(2020, 12, 26, 17, 30, 0, 0, time.UTC),
+						Datetime:    time.Date(2020, 12, 26, 17, 30, 0, 0, time.UTC),
 						HomeTeam:    "Arsenal",
 						AwayTeam:    "Chelsea",
 						Competition: "Premier League",

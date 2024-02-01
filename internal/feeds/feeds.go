@@ -120,11 +120,11 @@ func mapCompName(match *Match) {
 		}
 	}
 
-	replacements := map[string]string {
-		"Carabao Cup": "EFL Cup",
+	replacements := map[string]string{
+		"Carabao Cup":                    "EFL Cup",
 		"English Football League Trophy": "EFL Cup",
 	}
-	for old, new := range replacements { 
+	for old, new := range replacements {
 		if match.Competition == old {
 			match.Competition = new
 			return
@@ -163,7 +163,7 @@ func rollUpDates(matches []Listing) []MatchDay {
 	matchesRollup := make(map[string][]Listing)
 	for _, match := range matches {
 		d := match.Datetime
-		
+
 		key := d.Format(time.DateOnly)
 		matchesRollup[key] = append(matchesRollup[key], match)
 	}
@@ -215,7 +215,7 @@ func MatchDayToEventList(Matches []MatchDay) []CalEvent {
 	for _, day := range Matches {
 		for _, match := range day.Matches {
 			starttime := match.Datetime
-			
+
 			event := CalEvent{
 				Uid:      strings.ReplaceAll(strings.ToLower(fmt.Sprintf("%s/%s", match.Title(), match.Competition)), " ", ""),
 				DtStart:  starttime.UTC().Format(CalTimeString),

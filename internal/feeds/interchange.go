@@ -104,4 +104,3 @@ type CalEvent struct {
 	Summary  string
 	Location []string
 }
-
