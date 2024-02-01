@@ -7,6 +7,7 @@ import (
 
 const niceDate = "Monday, Jan 2"
 const timeLayout = "15:04"
+const CalTimeString = "20060102T150405Z"
 
 type MatchDay struct {
 	DateTime time.Time
@@ -104,4 +105,3 @@ type CalEvent struct {
 	Location []string
 }
 
-const CalTimeString = "20060102T150405Z"

@@ -125,7 +125,7 @@ func TestRollUpStations(t *testing.T) {
 			output: []Listing{
 				{
 					Match:    Match{},
-					Stations: []string{"talkSPORT", "BBC Radio 5", "Channel 4"},
+					Stations: []string{ "Channel 4", "talkSPORT", "BBC Radio 5"},
 				},
 			},
 		},

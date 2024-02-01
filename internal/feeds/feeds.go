@@ -65,9 +65,14 @@ func shouldSkip(m Match) bool {
 func stationRank(station string) int {
 	stationsInOrder := []string{
 		"Sky Sports",
+		"BBC One",
+		"BBC Two",
+		"ITV1",
+		"Channel 4",
 		"talkSPORT",
-		"BBC Radio 5",
 		"talkSPORT2",
+		"Radio 5 Live",
+		"Radio 5 Sports Extra",
 	}
 	for i, s := range stationsInOrder {
 		if station == s {
