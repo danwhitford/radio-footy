@@ -41,6 +41,15 @@ func (m Match) Time() string {
 	return m.Datetime.Format(timeLayout)
 }
 
+func (match Match) RollUpHash() string {
+	return fmt.Sprintf("%s%v%s%s",
+		match.Competition,
+		match.Datetime.Format(time.DateOnly),
+		match.HomeTeam,
+		match.AwayTeam,
+	)
+}
+
 func (m MatchDay) NiceDate() string {
 	return m.DateTime.Format(niceDate)
 }

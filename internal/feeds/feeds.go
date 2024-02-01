@@ -130,20 +130,24 @@ func mapCompName(match *Match) {
 func rollUpStations(matches []Broadcast) []Listing {
 	stationsRollUp := make(map[string][]Broadcast)
 	for _, match := range matches {
-		hashLol := fmt.Sprintf("%s%v%s%s", match.Competition, match.Datetime, match.HomeTeam, match.AwayTeam)
+		hashLol := match.RollUpHash()
 		stationsRollUp[hashLol] = append(stationsRollUp[hashLol], match)
 	}
 	listings := make([]Listing, 0)
 	for _, v := range stationsRollUp {
 		stations := make([]string, 0)
+		var latest Match
 		for _, bcst := range v {
 			stations = append(stations, bcst.Station)
+			if bcst.Datetime.After(latest.Datetime) {
+				latest = bcst.Match
+			}
 		}
 		sort.Slice(stations, func(i, j int) bool {
 			return stationRank(stations[i]) < stationRank(stations[j])
 		})
 		listings = append(listings, Listing{
-			Match:    v[0].Match,
+			Match:    latest,
 			Stations: stations,
 		})
 	}
