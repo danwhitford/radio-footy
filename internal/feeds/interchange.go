@@ -34,6 +34,11 @@ type Listing struct {
 	Stations []Station
 }
 
+type Station struct {
+	Name string
+	Rank int
+}
+
 func (m Match) Title() string {
 	if m.Competition == "NFL" {
 		return fmt.Sprintf("%s @ %s", m.AwayTeam, m.HomeTeam)
@@ -67,11 +72,6 @@ func (l Listing) GameHash() string {
 	r := regexp.MustCompile("[^0-9a-zA-Z]")
 	s = r.ReplaceAllString(s, "")
 	return s
-}
-
-type Station struct {
-	Name string
-	Rank int
 }
 
 func (stn Station) String() string {
