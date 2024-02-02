@@ -164,7 +164,7 @@ func TestRollUpStations(t *testing.T) {
 	for _, tst := range table {
 		got := rollUpStations(tst.input)
 		if diff := cmp.Diff(tst.output, got); diff != "" {
-			t.Errorf("mismatch (-want +got):\n%s", diff)
+			t.Fatalf("mismatch (-want +got):\n%s", diff)
 		}
 	}
 }

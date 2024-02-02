@@ -132,29 +132,30 @@ func mapCompName(match *Match) {
 	}
 }
 
-func rollUpStations(matches []Broadcast) []Listing {
-	stationsRollUp := make(map[string][]Broadcast)
-	for _, match := range matches {
-		hashLol := match.RollUpHash()
-		stationsRollUp[hashLol] = append(stationsRollUp[hashLol], match)
-	}
-	listings := make([]Listing, 0)
-	for _, v := range stationsRollUp {
-		stations := make([]string, 0)
-		var latest Match
-		for _, bcst := range v {
-			stations = append(stations, bcst.Station)
-			if bcst.Datetime.After(latest.Datetime) {
-				latest = bcst.Match
+func rollUpStations(broadcasts []Broadcast) []Listing {
+	stationsRollUp := make(map[string]Listing)
+	for _, bcst := range broadcasts {
+		hashLol := bcst.RollUpHash()
+		if listing, prs := stationsRollUp[hashLol]; prs {
+			listing.Stations = append(listing.Stations, bcst.Station)
+			if bcst.Datetime.After(listing.Datetime) {
+				listing.Datetime = bcst.Datetime
+			}
+			stationsRollUp[hashLol] = listing
+		} else {
+			stationsRollUp[hashLol] = Listing{
+				bcst.Match,
+				[]string{bcst.Station},
 			}
 		}
-		sort.Slice(stations, func(i, j int) bool {
-			return stationRank(stations[i]) < stationRank(stations[j])
+	}
+
+	listings := make([]Listing, 0)
+	for _, listing := range stationsRollUp {
+		sort.Slice(listing.Stations, func(i, j int) bool {
+			return stationRank(listing.Stations[i]) < stationRank(listing.Stations[j])
 		})
-		listings = append(listings, Listing{
-			Match:    latest,
-			Stations: stations,
-		})
+		listings = append(listings, listing)
 	}
 	return listings
 }
