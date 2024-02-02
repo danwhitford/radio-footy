@@ -54,7 +54,6 @@ hr {
 .pill {
   display: inline-block;
   padding: 0 1em;
-  margin: 3px 0.5em;
   background-color: #777; /* Bootstrap primary color */
   color: white;
   border-radius: 30px; /* Gives the pill-like shape */
@@ -65,4 +64,5 @@ hr {
 .match-header {
   display: flex;
   align-items: center;
+  gap: 3px 0.5em;
 }

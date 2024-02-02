@@ -7,7 +7,7 @@ BEGIN:VEVENT{{ printf "\r" }}
 UID:{{ .Uid }}{{ printf "\r" }}
 SUMMARY:{{ .Summary }}{{ printf "\r" }}
 DESCRIPTION:{{ .Summary }}{{ printf "\r"}}
-LOCATION:{{ join .Location " | " }}{{ printf "\r" }}
+LOCATION:{{ join .Location ", " }}{{ printf "\r" }}
 DTSTAMP:{{ $.DtStamp }}{{ printf "\r" }}
 DTSTART:{{ .DtStart }}{{ printf "\r" }}
 DURATION:PT2H{{ printf "\r" }}
