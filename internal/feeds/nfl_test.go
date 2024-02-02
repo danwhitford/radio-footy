@@ -22,7 +22,7 @@ func TestGetNflOnSky(t *testing.T) {
 				AwayTeam:    "Houston Texans",
 				Competition: "NFL",
 			},
-			Station: "Sky Sports",
+			Station: SkySports,
 		},
 		{
 			Match: Match{
@@ -31,7 +31,7 @@ func TestGetNflOnSky(t *testing.T) {
 				AwayTeam:    "Green Bay Packers",
 				Competition: "NFL",
 			},
-			Station: "Sky Sports",
+			Station: SkySports,
 		},
 		{
 			Match: Match{
@@ -40,7 +40,7 @@ func TestGetNflOnSky(t *testing.T) {
 				AwayTeam:    "Tampa Bay Buccaneers",
 				Competition: "NFL",
 			},
-			Station: "Sky Sports",
+			Station: SkySports,
 		},
 	}
 

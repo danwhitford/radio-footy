@@ -96,7 +96,7 @@ func nflPageToMatches(html string) ([]Broadcast, error) {
 					)
 					match.Datetime = curDateTime
 
-					Matches = append(Matches, Broadcast{match, "Sky Sports"})
+					Matches = append(Matches, Broadcast{match, SkySports})
 				}
 			}
 		}

@@ -62,27 +62,6 @@ func shouldSkip(m Match) bool {
 		strings.Contains(m.HomeTeam, "Women")
 }
 
-func stationRank(station string) int {
-	stationsInOrder := []string{
-		"Sky Sports",
-		"BBC One",
-		"BBC Two",
-		"ITV1",
-		"Channel 4",
-		"talkSPORT",
-		"talkSPORT2",
-		"Radio 5 Live",
-		"Radio 5 Sports Extra",
-	}
-	for i, s := range stationsInOrder {
-		if station == s {
-			return i
-		}
-	}
-
-	return 99
-}
-
 func mapTeamNames(match *Match) {
 	match.HomeTeam = mapTeamName(match.HomeTeam)
 	match.AwayTeam = mapTeamName(match.AwayTeam)
@@ -145,15 +124,15 @@ func rollUpStations(broadcasts []Broadcast) []Listing {
 		} else {
 			stationsRollUp[hashLol] = Listing{
 				bcst.Match,
-				[]string{bcst.Station},
+				[]Station{bcst.Station},
 			}
 		}
-	}
+	}	
 
 	listings := make([]Listing, 0)
 	for _, listing := range stationsRollUp {
 		sort.Slice(listing.Stations, func(i, j int) bool {
-			return stationRank(listing.Stations[i]) < stationRank(listing.Stations[j])
+			return listing.Stations[i].Rank < listing.Stations[j].Rank
 		})
 		listings = append(listings, listing)
 	}
@@ -202,7 +181,7 @@ func sortMatchDays(matchDays []MatchDay) []MatchDay {
 	for _, matchDay := range matchDays {
 		sort.Slice(matchDay.Matches, func(i, j int) bool {
 			if matchDay.Matches[i].Datetime.Compare(matchDay.Matches[j].Datetime) == 0 {
-				return stationRank(matchDay.Matches[i].Stations[0]) < stationRank(matchDay.Matches[j].Stations[0])
+				return matchDay.Matches[i].Stations[0].Rank < matchDay.Matches[j].Stations[0].Rank
 			}
 			return matchDay.Matches[i].Datetime.Before(matchDay.Matches[j].Datetime)
 		})

@@ -27,7 +27,7 @@ func TestWriteCal(t *testing.T) {
 						Uid:      "leicestercityvliverpool/premierleague",
 						DtStart:  "20230515T150000Z",
 						Summary:  "Leicester City v Liverpool",
-						Location: []string{"talkSPORT", "BBC Radio 5 Live"},
+						Location: []feeds.Station{feeds.Talksport, feeds.Radio5},
 					},
 				},
 			},
@@ -39,7 +39,7 @@ func TestWriteCal(t *testing.T) {
 				"UID:leicestercityvliverpool/premierleague\r\n" +
 				"SUMMARY:Leicester City v Liverpool\r\n" +
 				"DESCRIPTION:Leicester City v Liverpool\r\n" +
-				"LOCATION:talkSPORT | BBC Radio 5 Live\r\n" +
+				"LOCATION:talkSPORT | Radio 5 Live\r\n" +
 				"DTSTAMP:20230515T205714Z\r\n" +
 				"DTSTART:20230515T150000Z\r\n" +
 				"DURATION:PT2H\r\n" +

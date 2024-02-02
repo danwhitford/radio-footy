@@ -56,7 +56,7 @@ func tsFeedToMatches(tsFeed []TSGame) []Broadcast {
 			HomeTeam:    m.HomeTeam,
 			AwayTeam:    m.AwayTeam,
 			Competition: m.League}
-		matches = append(matches, Broadcast{m, feedname})
+		matches = append(matches, Broadcast{m, StationFromString(feedname)})
 	}
 
 	return matches

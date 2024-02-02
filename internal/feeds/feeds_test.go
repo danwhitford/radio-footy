@@ -74,65 +74,65 @@ func TestRollUpStations(t *testing.T) {
 		{
 			input: []Broadcast{
 				{
-					Station: "BBC Radio 5",
+					Station: Radio5,
 					Match:   Match{},
 				},
 				{
-					Station: "talkSPORT",
-					Match:   Match{},
-				},
-			},
-			output: []Listing{
-				{
-					Match:    Match{},
-					Stations: []string{"talkSPORT", "BBC Radio 5"},
-				},
-			},
-		},
-		{
-			input: []Broadcast{
-				{
-					Station: "BBC Radio 5",
-					Match:   Match{},
-				},
-				{
-					Station: "BBC Radio 5 Extra",
+					Station: Talksport,
 					Match:   Match{},
 				},
 			},
 			output: []Listing{
 				{
 					Match:    Match{},
-					Stations: []string{"BBC Radio 5", "BBC Radio 5 Extra"},
+					Stations: []Station{Talksport, Radio5},
 				},
 			},
 		},
 		{
 			input: []Broadcast{
 				{
-					Station: "talkSPORT",
+					Station: Radio5,
 					Match:   Match{},
 				},
 				{
-					Station: "BBC Radio 5",
-					Match:   Match{},
-				},
-				{
-					Station: "Channel 4",
+					Station: Radio5Extra,
 					Match:   Match{},
 				},
 			},
 			output: []Listing{
 				{
 					Match:    Match{},
-					Stations: []string{"Channel 4", "talkSPORT", "BBC Radio 5"},
+					Stations: []Station{Radio5, Radio5Extra},
 				},
 			},
 		},
 		{
 			input: []Broadcast{
 				{
-					Station: "Radio 5 Sports Extra",
+					Station: Talksport,
+					Match:   Match{},
+				},
+				{
+					Station: Radio5,
+					Match:   Match{},
+				},
+				{
+					Station: ChannelFour,
+					Match:   Match{},
+				},
+			},
+			output: []Listing{
+				{
+					Match:    Match{},
+					Stations: []Station{ChannelFour, Talksport, Radio5},
+				},
+			},
+		},
+		{
+			input: []Broadcast{
+				{
+					Station: Radio5Extra,
 					Match: Match{
 						HomeTeam: "West Ham United",
 						AwayTeam: "AFC Bournemouth",
@@ -140,7 +140,7 @@ func TestRollUpStations(t *testing.T) {
 					},
 				},
 				{
-					Station: "TNT Sports",
+					Station: TNTSports,
 					Match: Match{
 						HomeTeam: "West Ham United",
 						AwayTeam: "AFC Bournemouth",
@@ -150,7 +150,7 @@ func TestRollUpStations(t *testing.T) {
 			},
 			output: []Listing{
 				{
-					Stations: []string{"Radio 5 Sports Extra", "TNT Sports"},
+					Stations: []Station{TNTSports, Radio5Extra},
 					Match: Match{
 						HomeTeam: "West Ham United",
 						AwayTeam: "AFC Bournemouth",
@@ -317,7 +317,7 @@ func TestSortMatchDays(t *testing.T) {
 								AwayTeam: "Barnsley",
 								Datetime: time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
 							},
-							Stations: []string{"talkSPORT"},
+							Stations: []Station{Talksport},
 						},
 						{
 							Match: Match{
@@ -326,7 +326,7 @@ func TestSortMatchDays(t *testing.T) {
 								AwayTeam: "Barnsley",
 								Datetime: time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
 							},
-							Stations: []string{"talkSPORT2"},
+							Stations: []Station{Talksport2},
 						},
 						{
 							Match: Match{
@@ -371,7 +371,7 @@ func TestSortMatchDays(t *testing.T) {
 								AwayTeam: "Barnsley",
 								Datetime: time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
 							},
-							Stations: []string{"talkSPORT"},
+							Stations: []Station{Talksport},
 						},
 						{
 							Match: Match{
@@ -380,7 +380,7 @@ func TestSortMatchDays(t *testing.T) {
 								AwayTeam: "Barnsley",
 								Datetime: time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
 							},
-							Stations: []string{"talkSPORT2"},
+							Stations: []Station{Talksport2},
 						},
 					},
 				},
@@ -437,7 +437,7 @@ func TestMatchesToMatchDays(t *testing.T) {
 						Competition: "Premier League",
 						Datetime:    time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
 					},
-					Station: "talkSPORT",
+					Station: Talksport,
 				},
 				{
 					Match: Match{
@@ -447,7 +447,7 @@ func TestMatchesToMatchDays(t *testing.T) {
 						Competition: "Scottish Premiership",
 						Datetime:    time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
 					},
-					Station: "BBC Radio Scotland",
+					Station: Station{"BBC Radio Scotland", 9999},
 				},
 				{
 					Match: Match{
@@ -456,7 +456,7 @@ func TestMatchesToMatchDays(t *testing.T) {
 						Competition: "Premier League",
 						Datetime:    time.Date(2021, 8, 15, 15, 0, 0, 0, time.UTC),
 					},
-					Station: "BBC Radio 5",
+					Station: Radio5,
 				},
 			},
 			output: []MatchDay{
@@ -471,7 +471,7 @@ func TestMatchesToMatchDays(t *testing.T) {
 								Competition: "Premier League",
 								Datetime:    time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
 							},
-							Stations: []string{"talkSPORT"},
+							Stations: []Station{Talksport},
 						},
 					},
 				},
@@ -485,7 +485,7 @@ func TestMatchesToMatchDays(t *testing.T) {
 								Competition: "Premier League",
 								Datetime:    time.Date(2021, 8, 15, 15, 0, 0, 0, time.UTC),
 							},
-							Stations: []string{"BBC Radio 5"},
+							Stations: []Station{Radio5},
 						},
 					},
 				},
@@ -496,7 +496,7 @@ func TestMatchesToMatchDays(t *testing.T) {
 	for _, tst := range table {
 		got := MatchesToMatchDays(tst.input)
 		if diff := cmp.Diff(tst.output, got); diff != "" {
-			t.Errorf("mismatch (-want +got):\n%s", diff)
+			t.Fatalf("mismatch (-want +got):\n%s", diff)
 		}
 	}
 }
@@ -519,7 +519,7 @@ func TestMatchDayToEventList(t *testing.T) {
 								Competition: "Premier League",
 								Datetime:    time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
 							},
-							Stations: []string{"talkSPORT", "BBC Radio 5"},
+							Stations: []Station{Talksport, Radio5},
 						},
 					},
 				},
@@ -529,7 +529,7 @@ func TestMatchDayToEventList(t *testing.T) {
 					Uid:      "chelseavtottenham/premierleague",
 					DtStart:  "20210814T150000Z",
 					Summary:  "Chelsea v Tottenham [Premier League]",
-					Location: []string{"talkSPORT", "BBC Radio 5"},
+					Location: []Station{Talksport, Radio5},
 				},
 			},
 		},

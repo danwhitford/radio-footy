@@ -1,12 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"html/template"
 	"io"
 	"log"
 	"os"
-	"regexp"
 	"strings"
 	"time"
 
@@ -52,15 +50,12 @@ func main() {
 
 func writeIndex(data interface{}, templateName, templatePath string, writer io.Writer) {
 	funcs := template.FuncMap{
-		"join": strings.Join,
-		"rfc3339": func(t time.Time) string {
-			return t.Format(time.DateOnly)
-		},
-		"gamehash": func(m feeds.Listing) string {
-			s := fmt.Sprintf("%s%s", m.Datetime.Format(time.RFC3339), m.Title())
-			r := regexp.MustCompile("[^0-9a-zA-Z]")
-			s = r.ReplaceAllString(s, "")
-			return s
+		"join": func (li []feeds.Station, sep string) string {
+			stringList := make([]string, len(li))
+			for i, el := range li {
+				stringList[i] = el.String()
+			}
+			return strings.Join(stringList, sep)
 		},
 	}
 	tmpl, err := template.New(templateName).Funcs(funcs).ParseFiles(templatePath)

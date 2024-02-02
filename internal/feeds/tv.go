@@ -132,7 +132,7 @@ func getTvMatches(getter urlgetter.UrlGetter) ([]Broadcast, error) {
 					Competition: fixture.compName,
 					Datetime:    fixture.dateTime,
 				},
-				Station: channel,
+				Station: StationFromString(channel),
 			})
 		}
 	}

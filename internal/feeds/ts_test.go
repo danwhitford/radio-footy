@@ -35,7 +35,7 @@ func TestTsFeedToMatches(t *testing.T) {
 						AwayTeam:    "Chelsea",
 						Competition: "Premier League",
 					},
-					Station: "talkSPORT",
+					Station: Talksport,
 				},
 			},
 		},

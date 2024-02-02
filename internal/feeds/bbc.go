@@ -82,7 +82,7 @@ func bbcDayToMatches(bbcFeed BBCFeed) []Broadcast {
 					Competition: prog.Title.Secondary,
 				}
 
-				matches = append(matches, Broadcast{m, prog.Network.ShortTitle})
+				matches = append(matches, Broadcast{m, StationFromString(prog.Network.ShortTitle)})
 			} else if isSixNations(prog.Title) {
 				start, err := time.Parse(longFormat, prog.Start)
 				if err != nil {
@@ -97,7 +97,7 @@ func bbcDayToMatches(bbcFeed BBCFeed) []Broadcast {
 					Competition: prog.Title.Primary,
 				}
 
-				matches = append(matches, Broadcast{m, prog.Network.ShortTitle})
+				matches = append(matches, Broadcast{m, StationFromString(prog.Network.ShortTitle)})
 			}
 		}
 	}
