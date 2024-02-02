@@ -66,3 +66,23 @@ hr {
   align-items: center;
   gap: 3px 0.5em;
 }
+
+.sky-sports {
+  background-color: darkblue;
+  color: gold;
+}
+
+.talksport,.talksport2 {
+  background-color: #000;
+  color: yellow;
+}
+
+.bbc-one,.radio-5-live,.radio-5-sports-extra {
+  background-color: yellow;
+  color: #000;
+}
+
+.tnt-sports {
+  background-color: purple;
+  color: white;
+}

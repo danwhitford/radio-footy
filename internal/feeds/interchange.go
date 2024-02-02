@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"regexp"
+	"strings"
 	"time"
 )
 
@@ -75,6 +76,12 @@ type Station struct {
 
 func (stn Station) String() string {
 	return stn.Name
+}
+
+func (stn Station) ClassName() string {
+	return strings.ToLower(
+		strings.ReplaceAll(stn.Name, " ", "-"),
+	)
 }
 
 var SkySports = Station{"Sky Sports", 0}
