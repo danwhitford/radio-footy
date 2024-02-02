@@ -50,3 +50,19 @@ hr {
   background: #ddd;
   margin: 10px 0;
 }
+
+.pill {
+  display: inline-block;
+  padding: 0 1em;
+  margin: 3px 0.5em;
+  background-color: #777; /* Bootstrap primary color */
+  color: white;
+  border-radius: 30px; /* Gives the pill-like shape */
+  text-align: center;
+  font-size: smaller;
+}
+
+.match-header {
+  display: flex;
+  align-items: center;
+}

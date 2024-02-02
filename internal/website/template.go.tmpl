@@ -17,9 +17,12 @@
         <a href="#"><h1>Football on radio and TV</h1></a>
         {{ range .MatchDays }}
         <section class="day-section">
-            <a href="#{{ .DateOnly }}"><h2 class="day" id="{{ .DateOnly }}">{{ .NiceDate }}</h2></a>
-            {{ range .Matches }}
-                <a href=#{{ .GameHash }}><h3 id="{{ .GameHash }}" class="stations">{{ .Time }} | {{ join .Stations " | " }}</h3></a>
+            <a href="#{{ .DateOnly }}"><h2 class="day" id="{{ .DateOnly }}">{{ .NiceDate }}</h2></a>            
+            {{ range .Matches }}                
+                <div class="match-header">
+                    <h3 id="{{ .GameHash }}" class="stations">{{ .Time }}</h3>
+                    {{ range .Stations }}<span class="pill">{{ . }}</span>{{ end }}
+                </div>
                 <p class="match-title">{{ .Title }} ({{ .Competition }})</p>
             {{ end }}
         </section>

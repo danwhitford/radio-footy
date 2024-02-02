@@ -50,7 +50,7 @@ func main() {
 
 func writeIndex(data interface{}, templateName, templatePath string, writer io.Writer) {
 	funcs := template.FuncMap{
-		"join": func (li []feeds.Station, sep string) string {
+		"join": func(li []feeds.Station, sep string) string {
 			stringList := make([]string, len(li))
 			for i, el := range li {
 				stringList[i] = el.String()

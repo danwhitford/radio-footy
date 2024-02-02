@@ -127,7 +127,7 @@ func rollUpStations(broadcasts []Broadcast) []Listing {
 				[]Station{bcst.Station},
 			}
 		}
-	}	
+	}
 
 	listings := make([]Listing, 0)
 	for _, listing := range stationsRollUp {
