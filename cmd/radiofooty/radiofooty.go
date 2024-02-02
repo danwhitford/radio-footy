@@ -5,7 +5,6 @@ import (
 	"io"
 	"log"
 	"os"
-	"strings"
 	"time"
 
 	"whitford.io/radiofooty/internal/feeds"
@@ -49,16 +48,7 @@ func main() {
 }
 
 func writeIndex(data interface{}, templateName, templatePath string, writer io.Writer) {
-	funcs := template.FuncMap{
-		"join": func(li []feeds.Station, sep string) string {
-			stringList := make([]string, len(li))
-			for i, el := range li {
-				stringList[i] = el.String()
-			}
-			return strings.Join(stringList, sep)
-		},
-	}
-	tmpl, err := template.New(templateName).Funcs(funcs).ParseFiles(templatePath)
+	tmpl, err := template.New(templateName).ParseFiles(templatePath)
 	if err != nil {
 		log.Fatalf("template parsing: %s", err)
 	}

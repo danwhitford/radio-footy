@@ -140,7 +140,10 @@ func filterOld(bb []Broadcast) []Broadcast {
 }
 
 func getManualFeeds(_ urlgetter.UrlGetter) ([]Broadcast, error) {
-	rugby, _ := parseRugby()
+	rugby, err := parseRugby()
+	if err != nil {
+		return rugby, err
+	}
 	crick := cricket()
 
 	games := make([]Broadcast, 0)
