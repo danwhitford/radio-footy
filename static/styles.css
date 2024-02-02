@@ -32,6 +32,8 @@ h1 {
 .match-title {
   margin: 5px 0;
   font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 15px;
 }
 
 /* Footer */
