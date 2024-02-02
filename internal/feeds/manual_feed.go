@@ -89,23 +89,23 @@ func cricket() []Broadcast {
 		to time.Time
 	}{
 		{
-			time.Date(2024, 1, 25, 1, 0, 0, 0, time.UTC),
+			time.Date(2024, 1, 25, 4, 0, 0, 0, time.UTC),
 			time.Date(2024, 1, 29, 12, 0, 0, 0, time.UTC),
 		},
 		{
-			time.Date(2024, 2, 2, 1, 0, 0, 0, time.UTC),
+			time.Date(2024, 2, 2, 4, 0, 0, 0, time.UTC),
 			time.Date(2024, 2, 6, 12, 0, 0, 0, time.UTC),
 		},
 		{
-			time.Date(2024, 2, 15, 1, 0, 0, 0, time.UTC),
+			time.Date(2024, 2, 15, 4, 0, 0, 0, time.UTC),
 			time.Date(2024, 2, 19, 12, 0, 0, 0, time.UTC),
 		},
 		{
-			time.Date(2024, 2, 23, 1, 0, 0, 0, time.UTC),
+			time.Date(2024, 2, 23, 4, 0, 0, 0, time.UTC),
 			time.Date(2024, 2, 27, 12, 0, 0, 0, time.UTC),
 		},
 		{
-			time.Date(2024, 3, 7, 1, 0, 0, 0, time.UTC),
+			time.Date(2024, 3, 7, 4, 0, 0, 0, time.UTC),
 			time.Date(2024, 3, 11, 12, 0, 0, 0, time.UTC),
 		},
 	}
