@@ -33,12 +33,12 @@ Saturday 16 March
 Wales v Italy (2:15pm) BBC One
 Ireland v Scotland (4:45pm) ITV1
 France v England (8:00pm) ITV1
-` 
+`
 
 func parseRugby() ([]Broadcast, error) {
 	broadcasts := make([]Broadcast, 0)
 	sr := strings.NewReader(rugbyText)
-	
+
 	var date time.Time
 	scanner := bufio.NewScanner(sr)
 	for scanner.Scan() {
@@ -46,47 +46,47 @@ func parseRugby() ([]Broadcast, error) {
 		if strings.HasPrefix(line, "Friday") ||
 			strings.HasPrefix(line, "Saturday") ||
 			strings.HasPrefix(line, "Sunday") {
-				d, err := time.Parse("Monday 2 January", line)
-				if err != nil {
-					return broadcasts, err
-				}
-				date = d
-			} else {
-				var hTeam, aTeam, channel string
-				var hours, minutes int
-				fmt.Sscanf(line, "%s v %s (%d:%dpm) %s", &hTeam, &aTeam, &hours, &minutes, &channel)
-				if channel == "BBC" {
-					channel = "BBC One"
-				}
-				
-				broadcasts = append(broadcasts, Broadcast{
-					Match: Match{
-						HomeTeam: hTeam,
-						AwayTeam: aTeam,
-						Competition: "Six Nations 2024",
-						Datetime: time.Date(
-							2024,
-							date.Month(),
-							date.Day(),
-							hours + 12,
-							minutes,
-							0,
-							0,
-							time.UTC,
-						),
-					},
-					Station: StationFromString(channel),
-				})
+			d, err := time.Parse("Monday 2 January", line)
+			if err != nil {
+				return broadcasts, err
 			}
+			date = d
+		} else {
+			var hTeam, aTeam, channel string
+			var hours, minutes int
+			fmt.Sscanf(line, "%s v %s (%d:%dpm) %s", &hTeam, &aTeam, &hours, &minutes, &channel)
+			if channel == "BBC" {
+				channel = "BBC One"
+			}
+
+			broadcasts = append(broadcasts, Broadcast{
+				Match: Match{
+					HomeTeam:    hTeam,
+					AwayTeam:    aTeam,
+					Competition: "Six Nations 2024",
+					Datetime: time.Date(
+						2024,
+						date.Month(),
+						date.Day(),
+						hours+12,
+						minutes,
+						0,
+						0,
+						time.UTC,
+					),
+				},
+				Station: StationFromString(channel),
+			})
+		}
 	}
 
 	return broadcasts, nil
 }
 
 func cricket() []Broadcast {
-	gameDates := []struct{
+	gameDates := []struct {
 		from time.Time
-		to time.Time
+		to   time.Time
 	}{
 		{
 			time.Date(2024, 1, 25, 4, 0, 0, 0, time.UTC),
@@ -116,15 +116,15 @@ func cricket() []Broadcast {
 		for day.Before(date.to) {
 			broadcasts = append(broadcasts, Broadcast{
 				Match: Match{
-					HomeTeam: "India",
-					AwayTeam: "England",
+					HomeTeam:    "India",
+					AwayTeam:    "England",
 					Competition: "Test Match",
-					Datetime: day,
+					Datetime:    day,
 				},
 				Station: Talksport2,
 			})
 			day = day.AddDate(0, 0, 1)
-		}		
+		}
 	}
 	return broadcasts
 }
@@ -152,4 +152,3 @@ func getManualFeeds(_ urlgetter.UrlGetter) ([]Broadcast, error) {
 
 	return filterOld(games), nil
 }
-

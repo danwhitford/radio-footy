@@ -3,6 +3,7 @@ package feeds
 import (
 	"fmt"
 	"log"
+	"regexp"
 	"sort"
 	"strings"
 	"time"
@@ -78,6 +79,7 @@ func mapTeamName(name string) string {
 		"Internazionale":           "Inter Milan",
 		"Wolverhampton Wanderers":  "Wolves",
 		"West Bromwich Albion":     "West Brom",
+		"FC København":             "FC Copenhagen",
 	}
 	newName, prs := nameMapper[name]
 	if prs {
@@ -88,24 +90,15 @@ func mapTeamName(name string) string {
 }
 
 func mapCompName(match *Match) {
-	keepPrefixes := []string{
-		"Premier League",
-		"FA Cup",
-		"UEFA Champions League",
-	}
-	for _, prefix := range keepPrefixes {
-		if strings.HasPrefix(match.Competition, prefix) {
-			match.Competition = prefix
-			return
-		}
-	}
-
-	replacements := map[string]string{
-		"Carabao Cup":                    "EFL Cup",
-		"English Football League Trophy": "EFL Cup",
+	replacements := map[*regexp.Regexp]string{
+		regexp.MustCompile("Carabao Cup"):                    "EFL Cup",
+		regexp.MustCompile("English Football League Trophy"): "EFL Cup",
+		regexp.MustCompile("[UEFA ]*Champions League.*"):     "Champions League",
+		regexp.MustCompile("^Premier League.*"):              "Premier League",
+		regexp.MustCompile("^FA Cup.*"):                      "FA Cup",
 	}
 	for old, new := range replacements {
-		if match.Competition == old {
+		if old.MatchString(match.Competition) {
 			match.Competition = new
 			return
 		}
