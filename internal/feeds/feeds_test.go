@@ -36,7 +36,7 @@ func TestMapTeamNames(t *testing.T) {
 	}
 
 	for _, tst := range table {
-		mapTeamNames(&tst.input)
+		tst.input.mapTeamNames()
 		if diff := cmp.Diff(tst.output, tst.input); diff != "" {
 			t.Errorf("mismatch (-want +got):\n%s", diff)
 		}
@@ -83,7 +83,7 @@ func TestMapCompName(t *testing.T) {
 	}
 
 	for _, tst := range table {
-		mapCompName(&tst.input)
+		tst.input.mapCompName()
 		if diff := cmp.Diff(tst.output, tst.input); diff != "" {
 			t.Errorf("mismatch (-want +got):\n%s", diff)
 		}

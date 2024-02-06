@@ -17,13 +17,6 @@ type MatchDay struct {
 	Matches  []Listing
 }
 
-type Match struct {
-	Datetime    time.Time
-	HomeTeam    string
-	AwayTeam    string
-	Competition string
-}
-
 type Broadcast struct {
 	Match
 	Station Station
@@ -37,26 +30,6 @@ type Listing struct {
 type Station struct {
 	Name string
 	Rank int
-}
-
-func (m Match) Title() string {
-	if m.Competition == "NFL" {
-		return fmt.Sprintf("%s @ %s", m.AwayTeam, m.HomeTeam)
-	}
-	return fmt.Sprintf("%s v %s", m.HomeTeam, m.AwayTeam)
-}
-
-func (m Match) Time() string {
-	return m.Datetime.Format(timeLayout)
-}
-
-func (match Match) RollUpHash() string {
-	return fmt.Sprintf("%s%v%s%s",
-		match.Competition,
-		match.Datetime.Format(time.DateOnly),
-		match.HomeTeam,
-		match.AwayTeam,
-	)
 }
 
 func (m MatchDay) NiceDate() string {

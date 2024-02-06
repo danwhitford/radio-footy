@@ -3,7 +3,6 @@ package feeds
 import (
 	"fmt"
 	"log"
-	"regexp"
 	"sort"
 	"strings"
 	"time"
@@ -14,7 +13,7 @@ import (
 type MatchGetter func(getter urlgetter.UrlGetter) ([]Broadcast, error)
 
 func GetMatches() ([]MatchDay, error) {
-	var matches []Broadcast
+	var broadcasts []Broadcast
 	macthGetters := []MatchGetter{
 		getTalkSportMatches,
 		getBBCMatches,
@@ -30,24 +29,24 @@ func GetMatches() ([]MatchDay, error) {
 			log.Println(err)
 			continue
 		}
-		matches = append(matches, got...)
+		broadcasts = append(broadcasts, got...)
 	}
 
-	return MatchesToMatchDays(matches), nil
+	return MatchesToMatchDays(broadcasts), nil
 }
 
-func MatchesToMatchDays(matches []Broadcast) []MatchDay {
+func MatchesToMatchDays(broadcasts []Broadcast) []MatchDay {
 	// Filter out matches we don't want
-	matches = filterMatches(matches)
+	broadcasts = filterMatches(broadcasts)
 
 	// Map team names and competition names
-	for i := range matches {
-		mapTeamNames(&matches[i].Match)
-		mapCompName(&matches[i].Match)
+	for i := range broadcasts {
+		broadcasts[i].Match.mapTeamNames()
+		broadcasts[i].Match.mapCompName()
 	}
 
 	// Roll up stations
-	listings := rollUpStations(matches)
+	listings := rollUpStations(broadcasts)
 
 	// Roll up dates
 	mergedFeed := rollUpDates(listings)
@@ -63,47 +62,6 @@ func shouldSkip(m Match) bool {
 		strings.Contains(m.Competition, "Women") ||
 		strings.Contains(m.HomeTeam, "Scottish") ||
 		strings.Contains(m.HomeTeam, "Women")
-}
-
-func mapTeamNames(match *Match) {
-	match.HomeTeam = mapTeamName(match.HomeTeam)
-	match.AwayTeam = mapTeamName(match.AwayTeam)
-}
-
-func mapTeamName(name string) string {
-	nameMapper := map[string]string{
-		"IR Iran":                  "Iran",
-		"Korea Republic":           "South Korea",
-		"Milan":                    "AC Milan",
-		"FC Bayern München":        "Bayern Munich",
-		"Brighton and Hove Albion": "Brighton & Hove Albion",
-		"Internazionale":           "Inter Milan",
-		"Wolverhampton Wanderers":  "Wolves",
-		"West Bromwich Albion":     "West Brom",
-		"FC København":             "FC Copenhagen",
-	}
-	newName, prs := nameMapper[name]
-	if prs {
-		return newName
-	} else {
-		return name
-	}
-}
-
-func mapCompName(match *Match) {
-	replacements := map[*regexp.Regexp]string{
-		regexp.MustCompile("Carabao Cup"):                    "EFL Cup",
-		regexp.MustCompile("English Football League Trophy"): "EFL Cup",
-		regexp.MustCompile("[UEFA ]*Champions League.*"):     "Champions League",
-		regexp.MustCompile("^Premier League.*"):              "Premier League",
-		regexp.MustCompile("^FA Cup.*"):                      "FA Cup",
-	}
-	for old, new := range replacements {
-		if old.MatchString(match.Competition) {
-			match.Competition = new
-			return
-		}
-	}
 }
 
 func rollUpStations(broadcasts []Broadcast) []Listing {
