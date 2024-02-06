@@ -27,7 +27,8 @@ func GetMatches() ([]MatchDay, error) {
 	for _, matchGetter := range macthGetters {
 		got, err := matchGetter(httpGetter)
 		if err != nil {
-			return nil, err
+			log.Println(err)
+			continue
 		}
 		matches = append(matches, got...)
 	}
