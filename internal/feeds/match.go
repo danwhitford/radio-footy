@@ -13,7 +13,6 @@ type Match struct {
 	Competition string
 }
 
-
 func (m Match) Title() string {
 	if m.Competition == "NFL" {
 		return fmt.Sprintf("%s @ %s", m.AwayTeam, m.HomeTeam)
@@ -54,12 +53,12 @@ func mapTeamName(name string) string {
 	}
 }
 
-func(match *Match) mapTeamNames() {
+func (match *Match) mapTeamNames() {
 	match.HomeTeam = mapTeamName(match.HomeTeam)
 	match.AwayTeam = mapTeamName(match.AwayTeam)
 }
 
-func (match *Match)mapCompName() {
+func (match *Match) mapCompName() {
 	replacements := map[*regexp.Regexp]string{
 		regexp.MustCompile("Carabao Cup"):                    "EFL Cup",
 		regexp.MustCompile("English Football League Trophy"): "EFL Cup",
