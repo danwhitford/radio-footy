@@ -122,21 +122,21 @@ func getTvMatches(getter urlgetter.UrlGetter) ([]Broadcast, error) {
 		}
 	}
 
-	Matches := make([]Broadcast, 0)
+	broadcasts := make([]Broadcast, 0)
 	for _, fixture := range fixtures {
 		for _, channel := range fixture.channels {
-			Matches = append(Matches, Broadcast{
-				Match: Match{
-					HomeTeam:    fixture.homeTeam,
-					AwayTeam:    fixture.awayTeam,
-					Competition: fixture.compName,
-					Datetime:    fixture.dateTime,
-				},
+			broadcasts = append(broadcasts, Broadcast{
+				Match: NewSantisedMatch(
+					fixture.dateTime,
+					fixture.homeTeam,
+					fixture.awayTeam,
+					fixture.compName,
+				),
 				Station: StationFromString(channel),
 			})
 		}
 	}
-	return Matches, nil
+	return broadcasts, nil
 }
 
 func stringInSlice(str string, slice []string) bool {

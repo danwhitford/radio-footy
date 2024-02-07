@@ -3,6 +3,7 @@ package feeds
 import (
 	"fmt"
 	"regexp"
+	"strings"
 	"time"
 )
 
@@ -11,6 +12,15 @@ type Match struct {
 	HomeTeam    string
 	AwayTeam    string
 	Competition string
+}
+
+func NewSantisedMatch(datetime time.Time, homeTeam, awayTeam, competition string) Match {
+	return Match{
+		datetime,
+		mapTeamName(homeTeam),
+		mapTeamName(awayTeam),
+		mapCompName(competition),
+	}
 }
 
 func (m Match) Title() string {
@@ -53,12 +63,7 @@ func mapTeamName(name string) string {
 	}
 }
 
-func (match *Match) mapTeamNames() {
-	match.HomeTeam = mapTeamName(match.HomeTeam)
-	match.AwayTeam = mapTeamName(match.AwayTeam)
-}
-
-func (match *Match) mapCompName() {
+func mapCompName(competition string) string {
 	replacements := map[*regexp.Regexp]string{
 		regexp.MustCompile("Carabao Cup"):                    "EFL Cup",
 		regexp.MustCompile("English Football League Trophy"): "EFL Cup",
@@ -67,9 +72,16 @@ func (match *Match) mapCompName() {
 		regexp.MustCompile("^FA Cup.*"):                      "FA Cup",
 	}
 	for old, new := range replacements {
-		if old.MatchString(match.Competition) {
-			match.Competition = new
-			return
+		if old.MatchString(competition) {
+			return new
 		}
 	}
+	return competition
+}
+
+func (m Match)shouldSkip() bool {
+	return strings.Contains(m.Competition, "Scottish") ||
+		strings.Contains(m.Competition, "Women") ||
+		strings.Contains(m.HomeTeam, "Scottish") ||
+		strings.Contains(m.HomeTeam, "Women")
 }

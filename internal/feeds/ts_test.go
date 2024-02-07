@@ -57,6 +57,33 @@ func TestTsFeedToMatches(t *testing.T) {
 			},
 			output: []Broadcast{},
 		},
+		{
+			input: []TSGame{
+				{
+					HomeTeam: "Arsenal",
+					AwayTeam: "West Bromwich Albion",
+					League:   "Premier League Football 2023-24",
+					Date:     "2024-02-07 20:00:00",
+					Title:    "Arsenal v West Bromwich Albion",
+					Livefeed: []TSLiveFeed{
+						{
+							Feedname: "talkSPORT",
+						},
+					},
+				},
+			},
+			output: []Broadcast{
+				{
+					Match: Match{
+						HomeTeam:    "Arsenal",
+						AwayTeam:    "West Brom",
+						Competition: "Premier League",
+						Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
+					},
+					Station: Talksport,
+				},
+			},
+		},
 	}
 
 	for _, test := range table {

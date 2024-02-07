@@ -9,6 +9,35 @@ import (
 	"whitford.io/radiofooty/internal/urlgetter"
 )
 
+type BBCFeed struct {
+	Data []BBCFeedData `json:"data"`
+}
+
+type BBCFeedData struct {
+	Data []BBCProgramData `json:"data"`
+}
+
+type BBCProgramData struct {
+	Title    BBCTitles   `json:"titles"`
+	Start    string      `json:"start"`
+	Network  BBCNetwork  `json:"network"`
+	Synopses BBCSynopses `json:"synopses"`
+}
+
+type BBCSynopses struct {
+	Short string `json:"short"`
+}
+
+type BBCNetwork struct {
+	ShortTitle string `json:"short_title"`
+}
+
+type BBCTitles struct {
+	Primary   string `json:"primary"`
+	Secondary string `json:"secondary"`
+	Tertiary  string `json:"tertiary"`
+}
+
 func getBBCMatches(getter urlgetter.UrlGetter) ([]Broadcast, error) {
 	var matches = make([]Broadcast, 0)
 	baseUrls := []string{
@@ -75,12 +104,12 @@ func bbcDayToMatches(bbcFeed BBCFeed) []Broadcast {
 				}
 				start = start.In(loc)
 				teams := strings.Split(prog.Title.Tertiary, " v ")
-				m := Match{
-					Datetime:    start,
-					HomeTeam:    teams[0],
-					AwayTeam:    teams[1],
-					Competition: prog.Title.Secondary,
-				}
+				m := NewSantisedMatch(
+					start,
+					teams[0],
+					teams[1],
+					prog.Title.Secondary,
+				)
 
 				matches = append(matches, Broadcast{m, StationFromString(prog.Network.ShortTitle)})
 			} else if isSixNations(prog.Title) {
@@ -90,12 +119,12 @@ func bbcDayToMatches(bbcFeed BBCFeed) []Broadcast {
 				}
 				start = start.In(loc)
 				teams := strings.Split(prog.Title.Secondary, " v ")
-				m := Match{
-					Datetime:    start,
-					HomeTeam:    teams[0],
-					AwayTeam:    teams[1],
-					Competition: prog.Title.Primary,
-				}
+				m := NewSantisedMatch(
+					start,
+					teams[0],
+					teams[1],
+					prog.Title.Primary,
+				)
 
 				matches = append(matches, Broadcast{m, StationFromString(prog.Network.ShortTitle)})
 			}

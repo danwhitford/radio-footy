@@ -7,4 +7,5 @@ cover.out
 .cache/
 !.cache/.gitkeep
 radiofooty
+radiofooty.exe
 *.log

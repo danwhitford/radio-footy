@@ -34,7 +34,7 @@ func TestBBCDayToMatch(t *testing.T) {
 					Match: Match{
 						HomeTeam:    "Arsenal",
 						AwayTeam:    "Chelsea",
-						Competition: "Premier League Football 2022-23",
+						Competition: "Premier League",
 						Datetime:    time.Date(2020, 12, 26, 17, 30, 0, 0, time.UTC),
 					},
 					Station: BlankStation,
@@ -133,7 +133,7 @@ func TestBBCDayToMatch(t *testing.T) {
 					Match: Match{
 						HomeTeam:    "Arsenal",
 						AwayTeam:    "Chelsea",
-						Competition: "Premier League Football 2022-23",
+						Competition: "Premier League",
 						Datetime:    time.Date(2020, 12, 26, 17, 30, 0, 0, time.UTC),
 					},
 					Station: Radio5Extra,
@@ -173,6 +173,38 @@ func TestBBCDayToMatch(t *testing.T) {
 						AwayTeam:    "England",
 						Competition: "Six Nations 2024",
 						Datetime:    time.Date(2024, 2, 3, 14, 15, 0, 0, time.UTC),
+					},
+					Station: Radio5Extra,
+				},
+			},
+		},
+		{
+			input: BBCFeed{
+				Data: []BBCFeedData{
+					{
+						Data: []BBCProgramData{
+							{
+								Title: BBCTitles{
+									Primary:   "5 Live Sport",
+									Secondary: "Premier League Football 2023-24",
+									Tertiary:  "Arsenal v West Bromwich Albion",
+								},
+								Network: BBCNetwork{
+									ShortTitle: "Radio 5 Sports Extra",
+								},
+								Start: "2024-02-07T20:00:00Z",
+							},
+						},
+					},
+				},
+			},
+			output: []Broadcast{
+				{
+					Match: Match{
+						HomeTeam:    "Arsenal",
+						AwayTeam:    "West Brom",
+						Competition: "Premier League",
+						Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
 					},
 					Station: Radio5Extra,
 				},
