@@ -1,7 +1,6 @@
 package feeds
 
 import (
-	"log"
 	"sort"
 	"time"
 )
@@ -19,7 +18,7 @@ func (m MatchDay) DateOnly() string {
 	return m.DateTime.Format(time.DateOnly)
 }
 
-func matchDaysFromListings(matches []Listing) []MatchDay {
+func matchDaysFromListings(matches []Listing) ([]MatchDay, error) {
 	matchesRollup := make(map[string][]Listing)
 	for _, match := range matches {
 		d := match.Datetime
@@ -32,13 +31,13 @@ func matchDaysFromListings(matches []Listing) []MatchDay {
 	for k, matches := range matchesRollup {
 		dt, err := time.Parse(time.DateOnly, k)
 		if err != nil {
-			log.Fatal(err)
+			return matchDays, err
 		}
 		md := MatchDay{Matches: matches, DateTime: dt}
 		matchDays = append(matchDays, md)
 	}
 
-	return matchDays
+	return matchDays, nil
 }
 
 func sortMatchDays(matchDays []MatchDay) {

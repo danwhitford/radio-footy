@@ -2,7 +2,7 @@ package feeds
 
 import (
 	"encoding/json"
-	"log"
+	"fmt"
 	"strings"
 	"time"
 
@@ -65,7 +65,10 @@ func getBBCMatches(getter urlgetter.UrlGetter) ([]Broadcast, error) {
 			return nil, err
 		}
 
-		merged := bbcDayToMatches(bbcFeed)
+		merged, err := bbcDayToMatches(bbcFeed)
+		if err != nil {
+			return merged, err
+		}
 		matches = append(matches, merged...)
 	}
 
@@ -84,12 +87,12 @@ func isSixNations(title BBCTitles) bool {
 		strings.Contains(title.Secondary, " v ")
 }
 
-func bbcDayToMatches(bbcFeed BBCFeed) []Broadcast {
+func bbcDayToMatches(bbcFeed BBCFeed) ([]Broadcast, error) {
 	matches := make([]Broadcast, 0)
 
 	loc, err := time.LoadLocation("Europe/London")
 	if err != nil {
-		log.Fatalf("error loading location: %v", err)
+		return matches, fmt.Errorf("error loading location: %v", err)
 	}
 	longFormat := "2006-01-02T15:04:05Z"
 
@@ -134,5 +137,5 @@ func bbcDayToMatches(bbcFeed BBCFeed) []Broadcast {
 		}
 	}
 
-	return matches
+	return matches, nil
 }

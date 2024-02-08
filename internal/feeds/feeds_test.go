@@ -256,7 +256,10 @@ func TestMatchesToMatchDays(t *testing.T) {
 	}
 
 	for _, tst := range table {
-		got := MatchesToMatchDays(tst.input)
+		got, err := MatchesToMatchDays(tst.input)
+		if err != nil {
+			t.Fatal(err)
+		}
 		if diff := cmp.Diff(tst.output, got); diff != "" {
 			t.Fatalf("mismatch (-want +got):\n%s", diff)
 		}

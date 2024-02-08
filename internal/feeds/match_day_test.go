@@ -77,7 +77,10 @@ func TestMatchDaysFromListings(t *testing.T) {
 		less := func(i, j MatchDay) bool {
 			return i.DateTime.Before(j.DateTime)
 		}
-		got := matchDaysFromListings(tst.input)
+		got, err := matchDaysFromListings(tst.input)
+		if err != nil {
+			t.Fatal(err)
+		}
 		if diff := cmp.Diff(tst.output, got, cmpopts.SortSlices(less)); diff != "" {
 			t.Errorf("mismatch (-want +got):\n%s", diff)
 		}

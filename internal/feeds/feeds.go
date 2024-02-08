@@ -32,10 +32,10 @@ func GetMatches() ([]MatchDay, error) {
 		broadcasts = append(broadcasts, got...)
 	}
 
-	return MatchesToMatchDays(broadcasts), nil
+	return MatchesToMatchDays(broadcasts)
 }
 
-func MatchesToMatchDays(broadcasts []Broadcast) []MatchDay {
+func MatchesToMatchDays(broadcasts []Broadcast) ([]MatchDay, error) {
 	// Filter out matches we don't want
 	broadcasts = filterBroadcasts(broadcasts)
 
@@ -43,12 +43,15 @@ func MatchesToMatchDays(broadcasts []Broadcast) []MatchDay {
 	listings := listingsFromBroadcasts(broadcasts)
 
 	// Roll up dates
-	mergedFeed := matchDaysFromListings(listings)
+	mergedFeed, err := matchDaysFromListings(listings)
+	if err != nil {
+		return mergedFeed, err
+	}
 
 	// Sort by date, time, competition, title
 	sortMatchDays(mergedFeed)
 
-	return mergedFeed
+	return mergedFeed, nil
 }
 
 func filterBroadcasts(broadcasts []Broadcast) []Broadcast {

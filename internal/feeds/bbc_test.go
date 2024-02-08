@@ -213,7 +213,10 @@ func TestBBCDayToMatch(t *testing.T) {
 	}
 
 	for _, test := range table {
-		got := bbcDayToMatches(test.input)
+		got, err := bbcDayToMatches(test.input)
+		if err != nil {
+			t.Fatal(err)
+		}
 		if diff := cmp.Diff(test.output, got); diff != "" {
 			t.Fatalf("bbcDayToMatch() mismatch (-want +got):\n%s", diff)
 		}
