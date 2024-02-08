@@ -11,6 +11,7 @@ import (
 )
 
 func main() {
+	log.Println("Running wireless football")
 	matches, err := feeds.GetMatches()
 	if err != nil {
 		log.Fatalln(err)
