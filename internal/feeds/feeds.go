@@ -37,7 +37,7 @@ func GetMatches() ([]MatchDay, error) {
 
 func MatchesToMatchDays(broadcasts []Broadcast) []MatchDay {
 	// Filter out matches we don't want
-	broadcasts = filterMatches(broadcasts)
+	broadcasts = filterBroadcasts(broadcasts)
 
 	// Roll up stations
 	listings := listingsFromBroadcasts(broadcasts)
@@ -46,14 +46,14 @@ func MatchesToMatchDays(broadcasts []Broadcast) []MatchDay {
 	mergedFeed := matchDaysFromListings(listings)
 
 	// Sort by date, time, competition, title
-	mergedFeed = sortMatchDays(mergedFeed)
+	sortMatchDays(mergedFeed)
 
 	return mergedFeed
 }
 
-func filterMatches(matches []Broadcast) []Broadcast {
+func filterBroadcasts(broadcasts []Broadcast) []Broadcast {
 	filtered := make([]Broadcast, 0)
-	for _, match := range matches {
+	for _, match := range broadcasts {
 		if match.Match.shouldSkip() {
 			continue
 		}

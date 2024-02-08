@@ -39,5 +39,5 @@ func TestTv(t *testing.T) {
 	for _, b := range got {
 		t.Logf("%#v\n", b)
 	}
-	t.Fatal("TV test game not found")	
+	t.Fatal("TV test game not found")
 }

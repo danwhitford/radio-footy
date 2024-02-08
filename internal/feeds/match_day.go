@@ -41,20 +41,18 @@ func matchDaysFromListings(matches []Listing) []MatchDay {
 	return matchDays
 }
 
-func sortMatchDays(matchDays []MatchDay) []MatchDay {
+func sortMatchDays(matchDays []MatchDay) {
 	sort.Slice(matchDays, func(i, j int) bool {
 		return matchDays[i].DateTime.Before(matchDays[j].DateTime)
 	})
 
-	// Sort by time and station
 	for _, matchDay := range matchDays {
-		sort.Slice(matchDay.Matches, func(i, j int) bool {
-			if matchDay.Matches[i].Datetime.Compare(matchDay.Matches[j].Datetime) == 0 {
-				return matchDay.Matches[i].Rank() < matchDay.Matches[j].Rank()
-			}
-			return matchDay.Matches[i].Datetime.Before(matchDay.Matches[j].Datetime)
-		})
+		matchDay.sortMatchDay()
 	}
+}
 
-	return matchDays
+func (matchDay *MatchDay) sortMatchDay() {
+	sort.Slice(matchDay.Matches, func(i, j int) bool {
+		return matchDay.Matches[i].less(matchDay.Matches[j])
+	})
 }

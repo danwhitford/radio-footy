@@ -60,7 +60,10 @@ func getBBCMatches(getter urlgetter.UrlGetter) ([]Broadcast, error) {
 		if err != nil {
 			return nil, err
 		}
-		json.Unmarshal(body, &bbcFeed)
+		err = json.Unmarshal(body, &bbcFeed)
+		if err != nil {
+			return nil, err
+		}
 
 		merged := bbcDayToMatches(bbcFeed)
 		matches = append(matches, merged...)

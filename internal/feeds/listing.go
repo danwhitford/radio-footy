@@ -47,6 +47,13 @@ func listingsFromBroadcasts(broadcasts []Broadcast) []Listing {
 	return listings
 }
 
-func (l Listing) Rank() int {
+func (l Listing) rank() int {
 	return l.Stations[0].Rank
+}
+
+func (l Listing) less(other Listing) bool {
+	if l.Datetime.Compare(other.Datetime) == 0 {
+		return l.rank() < other.rank()
+	}
+	return l.Datetime.Before(other.Datetime)
 }

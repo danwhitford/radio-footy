@@ -42,7 +42,7 @@ func TestFilterMatches(t *testing.T) {
 	}
 
 	for _, tst := range table {
-		got := filterMatches(tst.input)
+		got := filterBroadcasts(tst.input)
 		if diff := cmp.Diff(tst.output, got); diff != "" {
 			t.Errorf("mismatch (-want +got):\n%s", diff)
 		}
@@ -177,8 +177,8 @@ func TestSortMatchDays(t *testing.T) {
 	}
 
 	for _, tst := range table {
-		got := sortMatchDays(tst.input)
-		if diff := cmp.Diff(tst.output, got); diff != "" {
+		sortMatchDays(tst.input)
+		if diff := cmp.Diff(tst.output, tst.input); diff != "" {
 			t.Errorf("mismatch (-want +got):\n%s", diff)
 		}
 	}

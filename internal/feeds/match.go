@@ -79,7 +79,7 @@ func mapCompName(competition string) string {
 	return competition
 }
 
-func (m Match)shouldSkip() bool {
+func (m Match) shouldSkip() bool {
 	return strings.Contains(m.Competition, "Scottish") ||
 		strings.Contains(m.Competition, "Women") ||
 		strings.Contains(m.HomeTeam, "Scottish") ||
