@@ -156,7 +156,8 @@ func TestBBCDayToMatch(t *testing.T) {
 								},
 								Synopses: BBCSynopses{
 									Short: "Live rugby union commentary of Italy v England in the Six Nations at Stadio Olimpico.",
-								}},
+								},
+							},
 						},
 					},
 					{

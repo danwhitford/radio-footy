@@ -20,18 +20,20 @@ func (stn Station) ClassName() string {
 	)
 }
 
-var SkySports = Station{"Sky Sports", 0}
-var TNTSports = Station{"TNT Sports", 10}
-var BBCOne = Station{"BBC One", 20}
-var BBCTwo = Station{"BBC Two", 30}
-var ITV1 = Station{"ITV1", 40}
-var ITV4 = Station{"ITV4", 44}
-var ChannelFour = Station{"Channel 4", 50}
-var Talksport = Station{"talkSPORT", 60}
-var Talksport2 = Station{"talkSPORT2", 70}
-var Radio5 = Station{"Radio 5 Live", 80}
-var Radio5Extra = Station{"Radio 5 Sports Extra", 90}
-var BlankStation = Station{"", 9999}
+var (
+	SkySports    = Station{"Sky Sports", 0}
+	TNTSports    = Station{"TNT Sports", 10}
+	BBCOne       = Station{"BBC One", 20}
+	BBCTwo       = Station{"BBC Two", 30}
+	ITV1         = Station{"ITV1", 40}
+	ITV4         = Station{"ITV4", 44}
+	ChannelFour  = Station{"Channel 4", 50}
+	Talksport    = Station{"talkSPORT", 60}
+	Talksport2   = Station{"talkSPORT2", 70}
+	Radio5       = Station{"Radio 5 Live", 80}
+	Radio5Extra  = Station{"Radio 5 Sports Extra", 90}
+	BlankStation = Station{"", 9999}
+)
 
 func StationFromString(name string) Station {
 	for _, station := range []Station{

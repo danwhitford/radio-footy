@@ -37,6 +37,7 @@ func main() {
 		log.Fatalf("Need to supply a target. website or calendar.")
 	}
 	target := os.Args[1]
+
 	switch target {
 	case "website":
 		writeIndex(data, "template.go.tmpl", "./internal/website/template.go.tmpl", os.Stdout)
@@ -45,7 +46,6 @@ func main() {
 	default:
 		log.Fatalf("Target not recognised: %s\n", target)
 	}
-
 }
 
 func writeIndex(data interface{}, templateName, templatePath string, writer io.Writer) {

@@ -3,6 +3,7 @@ package urlgetter
 import (
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"time"
 )
@@ -27,7 +28,7 @@ func (getter HttpGetter) getWithBackoff(url string) (*http.Response, error) {
 			return res, nil
 		}
 		// Sleep for backoff seconds
-		fmt.Printf("Got status code %d, sleeping for %d seconds\n", res.StatusCode, backoff)
+		log.Printf("Got status code %d, sleeping for %d seconds\n", res.StatusCode, backoff)
 		time.Sleep(time.Second * time.Duration(backoff))
 		backoff *= 2
 		if backoff > limit {

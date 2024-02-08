@@ -1,10 +1,9 @@
 package feeds
 
 import (
+	_ "embed"
 	"testing"
 	"time"
-
-	_ "embed"
 
 	"github.com/google/go-cmp/cmp"
 	"whitford.io/radiofooty/internal/urlgetter"
@@ -26,7 +25,7 @@ func TestGetNflOnSky(t *testing.T) {
 		},
 		{
 			Match: Match{
-				Datetime:    time.Date(2024, 1, 21, 01, 00, 0, 0, time.UTC),
+				Datetime:    time.Date(2024, 1, 21, 0o1, 0o0, 0, 0, time.UTC),
 				HomeTeam:    "San Francisco 49ers",
 				AwayTeam:    "Green Bay Packers",
 				Competition: "NFL",
@@ -35,7 +34,7 @@ func TestGetNflOnSky(t *testing.T) {
 		},
 		{
 			Match: Match{
-				Datetime:    time.Date(2024, 1, 21, 19, 00, 0, 0, time.UTC),
+				Datetime:    time.Date(2024, 1, 21, 19, 0o0, 0, 0, time.UTC),
 				HomeTeam:    "Detroit Lions",
 				AwayTeam:    "Tampa Bay Buccaneers",
 				Competition: "NFL",

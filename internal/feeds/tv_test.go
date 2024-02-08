@@ -1,10 +1,9 @@
 package feeds
 
 import (
+	_ "embed"
 	"testing"
 	"time"
-
-	_ "embed"
 
 	"github.com/google/go-cmp/cmp"
 	"whitford.io/radiofooty/internal/urlgetter"

@@ -8,9 +8,11 @@ import (
 
 type MatchGetter func(getter urlgetter.UrlGetter) ([]Broadcast, error)
 
-const CalTimeString = "20060102T150405Z"
-const niceDate = "Monday, Jan 2"
-const timeLayout = "15:04"
+const (
+	CalTimeString = "20060102T150405Z"
+	niceDate      = "Monday, Jan 2"
+	timeLayout    = "15:04"
+)
 
 func GetMatches() ([]MatchDay, error) {
 	var broadcasts []Broadcast

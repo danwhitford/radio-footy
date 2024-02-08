@@ -39,7 +39,7 @@ type BBCTitles struct {
 }
 
 func getBBCMatches(getter urlgetter.UrlGetter) ([]Broadcast, error) {
-	var matches = make([]Broadcast, 0)
+	matches := make([]Broadcast, 0)
 	baseUrls := []string{
 		"https://rms.api.bbc.co.uk/v2/experience/inline/schedules/bbc_radio_five_live/",
 		"https://rms.api.bbc.co.uk/v2/experience/inline/schedules/bbc_radio_five_live_sports_extra/",

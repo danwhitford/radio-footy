@@ -61,7 +61,6 @@ func TestSortMatchDays(t *testing.T) {
 					Matches: []Listing{
 						{
 							Match: Match{
-
 								HomeTeam: "Brentford",
 								AwayTeam: "Arsenal",
 								Datetime: time.Date(2021, 8, 18, 19, 0, 0, 0, time.UTC),
@@ -74,7 +73,6 @@ func TestSortMatchDays(t *testing.T) {
 					Matches: []Listing{
 						{
 							Match: Match{
-
 								HomeTeam: "Bolton",
 								AwayTeam: "Barnsley",
 								Datetime: time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
@@ -83,7 +81,6 @@ func TestSortMatchDays(t *testing.T) {
 						},
 						{
 							Match: Match{
-
 								HomeTeam: "Fulham",
 								AwayTeam: "Barnsley",
 								Datetime: time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
@@ -92,7 +89,6 @@ func TestSortMatchDays(t *testing.T) {
 						},
 						{
 							Match: Match{
-
 								HomeTeam: "Chelsea",
 								AwayTeam: "Milan",
 								Datetime: time.Date(2021, 8, 14, 12, 0, 0, 0, time.UTC),
@@ -105,7 +101,6 @@ func TestSortMatchDays(t *testing.T) {
 					Matches: []Listing{
 						{
 							Match: Match{
-
 								HomeTeam: "Romsey",
 								AwayTeam: "Worthing",
 								Datetime: time.Date(2021, 8, 15, 15, 0, 0, 0, time.UTC),
@@ -120,7 +115,6 @@ func TestSortMatchDays(t *testing.T) {
 					Matches: []Listing{
 						{
 							Match: Match{
-
 								HomeTeam: "Chelsea",
 								AwayTeam: "Milan",
 								Datetime: time.Date(2021, 8, 14, 12, 0, 0, 0, time.UTC),
@@ -128,7 +122,6 @@ func TestSortMatchDays(t *testing.T) {
 						},
 						{
 							Match: Match{
-
 								HomeTeam: "Bolton",
 								AwayTeam: "Barnsley",
 								Datetime: time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
@@ -137,7 +130,6 @@ func TestSortMatchDays(t *testing.T) {
 						},
 						{
 							Match: Match{
-
 								HomeTeam: "Fulham",
 								AwayTeam: "Barnsley",
 								Datetime: time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
@@ -151,7 +143,6 @@ func TestSortMatchDays(t *testing.T) {
 					Matches: []Listing{
 						{
 							Match: Match{
-
 								HomeTeam: "Romsey",
 								AwayTeam: "Worthing",
 								Datetime: time.Date(2021, 8, 15, 15, 0, 0, 0, time.UTC),
@@ -164,7 +155,6 @@ func TestSortMatchDays(t *testing.T) {
 					Matches: []Listing{
 						{
 							Match: Match{
-
 								HomeTeam: "Brentford",
 								AwayTeam: "Arsenal",
 								Datetime: time.Date(2021, 8, 18, 19, 0, 0, 0, time.UTC),
@@ -193,7 +183,6 @@ func TestMatchesToMatchDays(t *testing.T) {
 			input: []Broadcast{
 				{
 					Match: Match{
-
 						HomeTeam:    "Chelsea",
 						AwayTeam:    "Tottenham",
 						Competition: "Premier League",
@@ -203,7 +192,6 @@ func TestMatchesToMatchDays(t *testing.T) {
 				},
 				{
 					Match: Match{
-
 						HomeTeam:    "Inverness",
 						AwayTeam:    "Hibernian",
 						Competition: "Scottish Premiership",
@@ -227,7 +215,6 @@ func TestMatchesToMatchDays(t *testing.T) {
 					Matches: []Listing{
 						{
 							Match: Match{
-
 								HomeTeam:    "Chelsea",
 								AwayTeam:    "Tottenham",
 								Competition: "Premier League",
@@ -278,7 +265,6 @@ func TestMatchDayToEventList(t *testing.T) {
 					Matches: []Listing{
 						{
 							Match: Match{
-
 								HomeTeam:    "Chelsea",
 								AwayTeam:    "Tottenham",
 								Competition: "Premier League",

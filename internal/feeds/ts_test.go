@@ -91,6 +91,5 @@ func TestTsFeedToMatches(t *testing.T) {
 		if diff := cmp.Diff(test.output, got); diff != "" {
 			t.Errorf("tsFeedToMatches(%v) mismatch (-want +got):\n%s", test.input, diff)
 		}
-
 	}
 }
