@@ -33,19 +33,17 @@ func main() {
 		Events:  events,
 	}
 
-	if len(os.Args) < 2 {
-		log.Fatalf("Need to supply a target. website or calendar.")
+	idx, err := os.Create("index.html")
+	if err != nil {
+		panic(err)
 	}
-	target := os.Args[1]
+	cal, err := os.Create("icalendar.ics")
+	if err != nil {
+		panic(err)
+	}
 
-	switch target {
-	case "website":
-		writeIndex(data, "template.go.tmpl", "./internal/website/template.go.tmpl", os.Stdout)
-	case "calendar":
-		writeIndex(calData, "icalendar.go.tmpl", "./internal/website/icalendar.go.tmpl", os.Stdout)
-	default:
-		log.Fatalf("Target not recognised: %s\n", target)
-	}
+	writeIndex(data, "template.go.tmpl", "./internal/website/template.go.tmpl", idx)
+	writeIndex(calData, "icalendar.go.tmpl", "./internal/website/icalendar.go.tmpl", cal)	
 }
 
 func writeIndex(data interface{}, templateName, templatePath string, writer io.Writer) {
