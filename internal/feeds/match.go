@@ -68,6 +68,7 @@ func mapCompName(competition string) string {
 		regexp.MustCompile("Carabao Cup"):                    "EFL Cup",
 		regexp.MustCompile("English Football League Trophy"): "EFL Cup",
 		regexp.MustCompile("^EFL Trophy.*"):                  "EFL Cup",
+		regexp.MustCompile("^EFL Cup.*"):                  "EFL Cup",
 		regexp.MustCompile("[UEFA ]*Champions League.*"):     "Champions League",
 		regexp.MustCompile("^Premier League.*"):              "Premier League",
 		regexp.MustCompile("^FA Cup.*"):                      "FA Cup",
