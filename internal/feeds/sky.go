@@ -10,21 +10,62 @@ import (
 	"whitford.io/radiofooty/internal/urlgetter"
 )
 
-const f1Url string = "https://www.skysports.com/watch/f1-on-sky"
-
-type f1MatchGetter struct {
+type skyGetter struct {
 	getter urlgetter.UrlGetter
 }
 
-func (fmg f1MatchGetter) getMatches() ([]Broadcast, error) {
-	html, err := fmg.getter.GetUrl(f1Url)
-	if err != nil {
-		return nil, err
-	}
-	return f1PageToMatches(string(html))
+type skyPage struct {
+	competition   string
+	teamExtractor teamExtractor
+	url           string
 }
 
-func f1PageToMatches(html string) ([]Broadcast, error) {
+type teamExtractor func([]soup.Root) (string, string, bool)
+
+var dateRe *regexp.Regexp = regexp.MustCompile(`(\d+)(st|nd|rd|th)`)
+
+func (sg skyGetter) getMatches() ([]Broadcast, error) {
+	pages := []skyPage{
+		skyPage{
+			"NFL",
+			func(eventTitles []soup.Root) (string, string, bool) {
+				homeTeam := eventTitles[1].Text()
+				awayTeam := eventTitles[0].Text()
+				return homeTeam, awayTeam, true
+			},
+			"https://www.skysports.com/watch/nfl-on-sky",
+		},
+		skyPage{
+			"F1",
+			func(eventTitles []soup.Root) (string, string, bool) {
+				if !strings.HasSuffix(eventTitles[0].Text(), " - Race") {
+					return "", "", false
+				}
+				raceTitle := eventTitles[0].Text()
+				raceTitle, _ = strings.CutSuffix(raceTitle, " - Race")
+				return raceTitle, "", true
+			},
+			"https://www.skysports.com/watch/f1-on-sky",
+		},
+	}
+
+	broadcasts := make([]Broadcast, 0)
+	for _, page := range pages {
+		html, err := sg.getter.GetUrl(page.url)
+		if err != nil {
+			return nil, err
+		}
+		bb, err := skyPageToMatches(string(html), page.competition, page.teamExtractor)
+		if err != nil {
+			return broadcasts, err
+		}
+		broadcasts = append(broadcasts, bb...)
+	}
+
+	return broadcasts, nil
+}
+
+func skyPageToMatches(html, comp string, extr teamExtractor) ([]Broadcast, error) {
 	Matches := make([]Broadcast, 0)
 
 	re := regexp.MustCompile(`\([0-9:]+\)`)
@@ -74,15 +115,15 @@ func f1PageToMatches(html string) ([]Broadcast, error) {
 				groups := child.FindAll("div", "class", "event-group")
 				for _, g := range groups {
 					var match Match
-					match.Competition = "F1"
+					match.Competition = comp
 
 					eventTitles := g.Find("ul", "class", "event").FindAll("strong")
-					raceTitle := eventTitles[0].Text()
-					if !strings.HasSuffix(raceTitle, "Race") {
+					h, a, keep := extr(eventTitles)
+					if !keep {
 						continue
 					}
-					raceTitle, _ = strings.CutSuffix(raceTitle, " - Race")
-					match.HomeTeam = raceTitle
+					match.HomeTeam = h
+					match.AwayTeam = a
 
 					eventDetail := g.Find("p", "class", "event-detail").Text()
 					foundTime := re.FindString(eventDetail)

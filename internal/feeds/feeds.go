@@ -23,8 +23,7 @@ func GetMatches() ([]MatchDay, error) {
 		talkSportGetter{httpGetter},
 		bbcMatchGetter{httpGetter},
 		tvMatchGetter{httpGetter},
-		f1MatchGetter{httpGetter},
-		nflMatchGetter{httpGetter},
+		skyGetter{httpGetter},
 		manualGetter{},
 	}
 
