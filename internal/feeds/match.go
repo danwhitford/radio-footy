@@ -24,10 +24,14 @@ func NewSantisedMatch(datetime time.Time, homeTeam, awayTeam, competition string
 }
 
 func (m Match) Title() string {
-	if m.Competition == "NFL" {
+	switch m.Competition {
+	case "NFL":
 		return fmt.Sprintf("%s @ %s", m.AwayTeam, m.HomeTeam)
+	case "F1":
+		return m.HomeTeam
+	default:
+		return fmt.Sprintf("%s v %s", m.HomeTeam, m.AwayTeam)
 	}
-	return fmt.Sprintf("%s v %s", m.HomeTeam, m.AwayTeam)
 }
 
 func (m Match) Time() string {

@@ -69,3 +69,42 @@ func TestMapCompName(t *testing.T) {
 		}
 	}
 }
+
+func TestTitle(t *testing.T) {
+	table := []struct {
+		match Match
+		want  string
+	}{
+		{
+			match: Match{
+				Competition: "Premier League",
+				HomeTeam:    "Bolton",
+				AwayTeam:    "Barnsley",
+			},
+			want: "Bolton v Barnsley",
+		},
+		{
+			match: Match{
+				Competition: "NFL",
+				HomeTeam:    "Cowboys",
+				AwayTeam:    "Bills",
+			},
+			want: "Bills @ Cowboys",
+		},
+		{
+			match: Match{
+				Competition: "F1",
+				HomeTeam:    "Silverstone Grand Prix",
+				AwayTeam:    "",
+			},
+			want: "Silverstone Grand Prix",
+		},
+	}
+
+	for _, tst := range table {
+		got := tst.match.Title()
+		if got != tst.want {
+			t.Fatalf("wanted '%s' but got '%s'", tst.want, got)
+		}
+	}
+}

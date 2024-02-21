@@ -43,7 +43,7 @@ func main() {
 	}
 
 	writeIndex(data, "template.go.tmpl", "./internal/website/template.go.tmpl", idx)
-	writeIndex(calData, "icalendar.go.tmpl", "./internal/website/icalendar.go.tmpl", cal)	
+	writeIndex(calData, "icalendar.go.tmpl", "./internal/website/icalendar.go.tmpl", cal)
 }
 
 func writeIndex(data interface{}, templateName, templatePath string, writer io.Writer) {

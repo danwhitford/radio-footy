@@ -22,6 +22,7 @@ func GetMatches() ([]MatchDay, error) {
 		getTvMatches,
 		getNflOnSky,
 		getManualFeeds,
+		getF1OnSky,
 	}
 
 	httpGetter := urlgetter.NewHttpGetter()
