@@ -5,7 +5,6 @@ import (
 	"io"
 	"log"
 	"os"
-	"time"
 
 	"whitford.io/radiofooty/internal/feeds"
 )
@@ -23,15 +22,7 @@ func main() {
 		MatchDays: matches,
 	}
 
-	events := feeds.MatchDayToEventList(matches)
-	dtstamp := time.Now().UTC().Format(feeds.CalTimeString)
-	calData := struct {
-		DtStamp string
-		Events  []feeds.CalEvent
-	}{
-		DtStamp: dtstamp,
-		Events:  events,
-	}
+	calData := feeds.MatchDayToCalData(matches)
 
 	idx, err := os.Create("index.html")
 	if err != nil {

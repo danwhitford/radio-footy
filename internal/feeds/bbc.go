@@ -38,7 +38,7 @@ type BBCTitles struct {
 	Tertiary  string `json:"tertiary"`
 }
 
-type bbcMatchGetter struct{
+type bbcMatchGetter struct {
 	urlgetter urlgetter.UrlGetter
 }
 

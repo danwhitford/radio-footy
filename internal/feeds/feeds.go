@@ -11,9 +11,8 @@ type matchGetter interface {
 }
 
 const (
-	CalTimeString = "20060102T150405Z"
-	niceDate      = "Monday, Jan 2"
-	timeLayout    = "15:04"
+	niceDate   = "Monday, Jan 2"
+	timeLayout = "15:04"
 )
 
 func GetMatches() ([]MatchDay, error) {

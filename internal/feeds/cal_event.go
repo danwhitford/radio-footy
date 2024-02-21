@@ -3,6 +3,7 @@ package feeds
 import (
 	"fmt"
 	"strings"
+	"time"
 )
 
 type CalEvent struct {
@@ -12,7 +13,14 @@ type CalEvent struct {
 	Location []Station
 }
 
-func MatchDayToEventList(Matches []MatchDay) []CalEvent {
+type CalData struct {
+	Events  []CalEvent
+	DtStamp string
+}
+
+const calTimeString string = "20060102T150405Z"
+
+func MatchDayToCalData(Matches []MatchDay) CalData {
 	events := make([]CalEvent, 0)
 	for _, day := range Matches {
 		for _, match := range day.Matches {
@@ -20,12 +28,15 @@ func MatchDayToEventList(Matches []MatchDay) []CalEvent {
 
 			event := CalEvent{
 				Uid:      strings.ReplaceAll(strings.ToLower(fmt.Sprintf("%s/%s", match.Title(), match.Competition)), " ", ""),
-				DtStart:  starttime.UTC().Format(CalTimeString),
+				DtStart:  starttime.UTC().Format(calTimeString),
 				Summary:  fmt.Sprintf("%s [%s]", match.Title(), match.Competition),
 				Location: match.Stations,
 			}
 			events = append(events, event)
 		}
 	}
-	return events
+	return CalData{
+		Events:  events,
+		DtStamp: time.Now().Format(calTimeString),
+	}
 }

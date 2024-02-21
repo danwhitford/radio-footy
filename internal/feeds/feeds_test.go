@@ -5,6 +5,8 @@ import (
 	"time"
 
 	"github.com/google/go-cmp/cmp"
+	"github.com/google/go-cmp/cmp/cmpopts"
+
 )
 
 func TestFilterMatches(t *testing.T) {
@@ -253,10 +255,10 @@ func TestMatchesToMatchDays(t *testing.T) {
 	}
 }
 
-func TestMatchDayToEventList(t *testing.T) {
+func TestMatchDayToCalData(t *testing.T) {
 	table := []struct {
 		input  []MatchDay
-		output []CalEvent
+		output CalData
 	}{
 		{
 			input: []MatchDay{
@@ -275,20 +277,24 @@ func TestMatchDayToEventList(t *testing.T) {
 					},
 				},
 			},
-			output: []CalEvent{
-				{
-					Uid:      "chelseavtottenham/premierleague",
-					DtStart:  "20210814T150000Z",
-					Summary:  "Chelsea v Tottenham [Premier League]",
-					Location: []Station{Talksport, Radio5},
+			output: CalData{
+				Events: []CalEvent{
+					{
+						Uid:      "chelseavtottenham/premierleague",
+						DtStart:  "20210814T150000Z",
+						Summary:  "Chelsea v Tottenham [Premier League]",
+						Location: []Station{Talksport, Radio5},
+					},
 				},
 			},
 		},
 	}
 
+	opts := cmpopts.IgnoreFields(CalData{}, "DtStamp")
+
 	for _, tst := range table {
-		got := MatchDayToEventList(tst.input)
-		if diff := cmp.Diff(tst.output, got); diff != "" {
+		got := MatchDayToCalData(tst.input)
+		if diff := cmp.Diff(tst.output, got, opts); diff != "" {
 			t.Errorf("mismatch (-want +got):\n%s", diff)
 		}
 	}

@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"strings"
 	"time"
-
 )
 
 var rugbyText = `Friday 2 February
@@ -138,7 +137,7 @@ func filterOld(bb []Broadcast) []Broadcast {
 	return out
 }
 
-type manualGetter struct {}
+type manualGetter struct{}
 
 func (mg manualGetter) getMatches() ([]Broadcast, error) {
 	rugby, err := parseRugby()
