@@ -36,14 +36,18 @@ var channelsICareAbout = []string{
 	"TNT Sports Ultimate",
 }
 
-func getTvMatches(getter urlgetter.UrlGetter) ([]Broadcast, error) {
+type tvMatchGetter struct {
+	urlgetter urlgetter.UrlGetter
+}
+
+func (tmg tvMatchGetter) getMatches() ([]Broadcast, error) {
 	re := regexp.MustCompile(`(\d+)(st|nd|rd|th)`)
 	loc, err := time.LoadLocation("Europe/London")
 	if err != nil {
 		return nil, fmt.Errorf("error loading location: %v", err)
 	}
 
-	html, err := getter.GetUrl(englishFootballUrl)
+	html, err := tmg.urlgetter.GetUrl(englishFootballUrl)
 	if err != nil {
 		return nil, err
 	}

@@ -6,7 +6,9 @@ import (
 	"whitford.io/radiofooty/internal/urlgetter"
 )
 
-type MatchGetter func(getter urlgetter.UrlGetter) ([]Broadcast, error)
+type matchGetter interface {
+	getMatches() ([]Broadcast, error)
+}
 
 const (
 	CalTimeString = "20060102T150405Z"
@@ -16,18 +18,19 @@ const (
 
 func GetMatches() ([]MatchDay, error) {
 	var broadcasts []Broadcast
-	macthGetters := []MatchGetter{
-		getTalkSportMatches,
-		getBBCMatches,
-		getTvMatches,
-		getNflOnSky,
-		getManualFeeds,
-		getF1OnSky,
-	}
 
 	httpGetter := urlgetter.NewHttpGetter()
+	macthGetters := []matchGetter{
+		talkSportGetter{httpGetter},
+		bbcMatchGetter{httpGetter},
+		tvMatchGetter{httpGetter},
+		f1MatchGetter{httpGetter},
+		nflMatchGetter{httpGetter},
+		manualGetter{},
+	}
+
 	for _, matchGetter := range macthGetters {
-		got, err := matchGetter(httpGetter)
+		got, err := matchGetter.getMatches()
 		if err != nil {
 			log.Println(err)
 			continue
@@ -35,10 +38,10 @@ func GetMatches() ([]MatchDay, error) {
 		broadcasts = append(broadcasts, got...)
 	}
 
-	return MatchesToMatchDays(broadcasts)
+	return matchesToMatchDays(broadcasts)
 }
 
-func MatchesToMatchDays(broadcasts []Broadcast) ([]MatchDay, error) {
+func matchesToMatchDays(broadcasts []Broadcast) ([]MatchDay, error) {
 	// Filter out matches we don't want
 	broadcasts = filterBroadcasts(broadcasts)
 

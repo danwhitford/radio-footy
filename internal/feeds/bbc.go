@@ -38,7 +38,11 @@ type BBCTitles struct {
 	Tertiary  string `json:"tertiary"`
 }
 
-func getBBCMatches(getter urlgetter.UrlGetter) ([]Broadcast, error) {
+type bbcMatchGetter struct{
+	urlgetter urlgetter.UrlGetter
+}
+
+func (bbc bbcMatchGetter) getMatches() ([]Broadcast, error) {
 	matches := make([]Broadcast, 0)
 	baseUrls := []string{
 		"https://rms.api.bbc.co.uk/v2/experience/inline/schedules/bbc_radio_five_live/",
@@ -56,7 +60,7 @@ func getBBCMatches(getter urlgetter.UrlGetter) ([]Broadcast, error) {
 
 	var bbcFeed BBCFeed
 	for _, url := range urls {
-		body, err := getter.GetUrl(url)
+		body, err := bbc.urlgetter.GetUrl(url)
 		if err != nil {
 			return nil, err
 		}

@@ -6,7 +6,6 @@ import (
 	"strings"
 	"time"
 
-	"whitford.io/radiofooty/internal/urlgetter"
 )
 
 var rugbyText = `Friday 2 February
@@ -139,7 +138,9 @@ func filterOld(bb []Broadcast) []Broadcast {
 	return out
 }
 
-func getManualFeeds(_ urlgetter.UrlGetter) ([]Broadcast, error) {
+type manualGetter struct {}
+
+func (mg manualGetter) getMatches() ([]Broadcast, error) {
 	rugby, err := parseRugby()
 	if err != nil {
 		return rugby, err

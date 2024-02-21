@@ -12,8 +12,12 @@ import (
 
 const nflUrl string = "https://www.skysports.com/watch/nfl-on-sky"
 
-func getNflOnSky(getter urlgetter.UrlGetter) ([]Broadcast, error) {
-	html, err := getter.GetUrl(nflUrl)
+type nflMatchGetter struct {
+	getter urlgetter.UrlGetter
+}
+
+func (nmg nflMatchGetter) getMatches() ([]Broadcast, error) {
+	html, err := nmg.getter.GetUrl(nflUrl)
 	if err != nil {
 		return nil, err
 	}

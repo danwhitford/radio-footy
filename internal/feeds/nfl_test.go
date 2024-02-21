@@ -50,7 +50,8 @@ func TestGetNflOnSky(t *testing.T) {
 	getter := urlgetter.StringGetter{
 		Contents: html,
 	}
-	got, err := getNflOnSky(getter)
+	nflGetter := nflMatchGetter{getter}
+	got, err := nflGetter.getMatches()
 	if err != nil {
 		t.Fatalf("got error: %s", err)
 	}

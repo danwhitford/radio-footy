@@ -22,10 +22,14 @@ type TSLiveFeed struct {
 	Feedname string `json:"feedname"`
 }
 
-func getTalkSportMatches(getter urlgetter.UrlGetter) ([]Broadcast, error) {
+type talkSportGetter struct {
+	urlgetter urlgetter.UrlGetter
+}
+
+func (tsg talkSportGetter) getMatches() ([]Broadcast, error) {
 	url := "https://talksport.com/wp-json/talksport/v2/talksport-live/commentary"
 
-	body, err := getter.GetUrl(url)
+	body, err := tsg.urlgetter.GetUrl(url)
 	if err != nil {
 		return nil, err
 	}

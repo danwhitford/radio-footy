@@ -32,7 +32,8 @@ func TestGetF1OnSky(t *testing.T) {
 	getter := urlgetter.StringGetter{
 		Contents: f1Html,
 	}
-	got, err := getF1OnSky(getter)
+	f1Getter := f1MatchGetter{getter}
+	got, err := f1Getter.getMatches()
 	if err != nil {
 		t.Fatalf("got error: %s", err)
 	}

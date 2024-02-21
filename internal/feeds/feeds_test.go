@@ -243,7 +243,7 @@ func TestMatchesToMatchDays(t *testing.T) {
 	}
 
 	for _, tst := range table {
-		got, err := MatchesToMatchDays(tst.input)
+		got, err := matchesToMatchDays(tst.input)
 		if err != nil {
 			t.Fatal(err)
 		}

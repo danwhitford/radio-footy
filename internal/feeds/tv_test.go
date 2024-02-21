@@ -26,7 +26,8 @@ func TestTv(t *testing.T) {
 	getter := urlgetter.StringGetter{
 		Contents: tvHtml,
 	}
-	got, err := getTvMatches(getter)
+	tmg := tvMatchGetter{getter}
+	got, err := tmg.getMatches()
 	if err != nil {
 		t.Fatal(err)
 	}
