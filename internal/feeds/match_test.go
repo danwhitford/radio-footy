@@ -50,11 +50,11 @@ func TestMapCompName(t *testing.T) {
 		},
 		{
 			input:  "EFL Trophy Semi-Final",
-			output: "EFL Cup",
+			output: "EFL Trophy",
 		},
 		{
 			input:  "EFL Trophy Final",
-			output: "EFL Cup",
+			output: "EFL Trophy",
 		},
 		{
 			input:  "EFL Cup Football 2023-24",

@@ -67,7 +67,7 @@ func mapCompName(competition string) string {
 	replacements := map[*regexp.Regexp]string{
 		regexp.MustCompile("Carabao Cup"):                    "EFL Cup",
 		regexp.MustCompile("English Football League Trophy"): "EFL Cup",
-		regexp.MustCompile("^EFL Trophy.*"):                  "EFL Cup",
+		regexp.MustCompile("^EFL Trophy.*"):                  "EFL Trophy",
 		regexp.MustCompile("^EFL Cup.*"):                     "EFL Cup",
 		regexp.MustCompile("[UEFA ]*Champions League.*"):     "Champions League",
 		regexp.MustCompile("^Premier League.*"):              "Premier League",
