@@ -1,6 +1,7 @@
 package main
 
 import (
+	_ "embed"
 	"html/template"
 	"io"
 	"log"
@@ -8,6 +9,12 @@ import (
 
 	"whitford.io/radiofooty/internal/feeds"
 )
+
+//go:embed website/template.go.tmpl
+var webTemplate string
+
+//go:embed website/icalendar.go.tmpl
+var calTemplate string
 
 func main() {
 	log.Println("Running wireless football")
@@ -33,12 +40,12 @@ func main() {
 		panic(err)
 	}
 
-	writeIndex(data, "template.go.tmpl", "./internal/website/template.go.tmpl", idx)
-	writeIndex(calData, "icalendar.go.tmpl", "./internal/website/icalendar.go.tmpl", cal)
+	writeIndex(data, "template.go.tmpl", webTemplate, idx)
+	writeIndex(calData, "icalendar.go.tmpl", calTemplate, cal)
 }
 
-func writeIndex(data interface{}, templateName, templatePath string, writer io.Writer) {
-	tmpl, err := template.New(templateName).ParseFiles(templatePath)
+func writeIndex(data interface{}, templateName, contents string, writer io.Writer) {
+	tmpl, err := template.New(templateName).Parse(contents)
 	if err != nil {
 		log.Fatalf("template parsing: %s", err)
 	}

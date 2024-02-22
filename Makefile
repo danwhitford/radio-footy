@@ -13,7 +13,7 @@ docs:
 radiofooty: $(GO_FILES)
 	go build cmd/radiofooty/radiofooty.go
 
-index.html icalendar.ics log.txt: radiofooty internal/website/template.go.tmpl
+index.html icalendar.ics log.txt: radiofooty
 	./radiofooty 2> log.txt
 
 docs/index.html: docs index.html

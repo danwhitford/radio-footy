@@ -3,6 +3,7 @@ package feeds
 import (
 	"encoding/json"
 	"fmt"
+	"sort"
 	"strings"
 	"time"
 
@@ -90,9 +91,9 @@ func dedupeBbcMatches(matches []Broadcast) []Broadcast {
 
 	unique := make([]Broadcast, 0)
 	for _, bb := range rollUp {
-		if len(bb) > 1 {
-			bb[0].Station = Radio5			
-		}
+		sort.Slice(bb, func(i, j int) bool {
+			return bb[i].Station.Rank < bb[j].Station.Rank
+		})	
 		unique = append(unique, bb[0])
 	}
 
