@@ -6,6 +6,6 @@ icalendar.ics
 cover.out
 .cache/
 !.cache/.gitkeep
-radiofooty
+./radiofooty
 radiofooty.exe
 *.log
