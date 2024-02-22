@@ -26,7 +26,7 @@ var dateRe *regexp.Regexp = regexp.MustCompile(`(\d+)(st|nd|rd|th)`)
 
 func (sg skyGetter) getMatches() ([]Broadcast, error) {
 	pages := []skyPage{
-		skyPage{
+		{
 			"NFL",
 			func(eventTitles []soup.Root) (string, string, bool) {
 				homeTeam := eventTitles[1].Text()
@@ -35,7 +35,7 @@ func (sg skyGetter) getMatches() ([]Broadcast, error) {
 			},
 			"https://www.skysports.com/watch/nfl-on-sky",
 		},
-		skyPage{
+		{
 			"F1",
 			func(eventTitles []soup.Root) (string, string, bool) {
 				if !strings.HasSuffix(eventTitles[0].Text(), " - Race") {

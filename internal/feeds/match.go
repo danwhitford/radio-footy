@@ -39,7 +39,7 @@ func (m Match) Time() string {
 }
 
 func (match Match) RollUpHash() string {
-	return fmt.Sprintf("%s%v%s%s",
+	return fmt.Sprintf("%s%s%s%s",
 		match.Competition,
 		match.Datetime.Format(time.DateOnly),
 		match.HomeTeam,

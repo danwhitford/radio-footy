@@ -223,3 +223,118 @@ func TestBBCDayToMatch(t *testing.T) {
 		}
 	}
 }
+
+func TestDeupeBbcMatches(t *testing.T) {
+	table := []struct{
+		in []Broadcast
+		want []Broadcast
+	}{
+		{
+			in: []Broadcast{
+				{
+					Match: Match{
+						HomeTeam:    "Arsenal",
+						AwayTeam:    "West Brom",
+						Competition: "Premier League",
+						Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
+					},
+					Station: Radio5Extra,
+				},
+			},
+			want: []Broadcast{
+				{
+					Match: Match{
+						HomeTeam:    "Arsenal",
+						AwayTeam:    "West Brom",
+						Competition: "Premier League",
+						Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
+					},
+					Station: Radio5Extra,
+				},
+			},
+		},
+		{
+			in: []Broadcast{
+				{
+					Match: Match{
+						HomeTeam:    "Arsenal",
+						AwayTeam:    "West Brom",
+						Competition: "Premier League",
+						Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
+					},
+					Station: Radio5,
+				},
+				{
+					Match: Match{
+						HomeTeam:    "Arsenal",
+						AwayTeam:    "West Brom",
+						Competition: "Premier League",
+						Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
+					},
+					Station: Radio5Extra,
+				},
+			},
+			want: []Broadcast{
+				{
+					Match: Match{
+						HomeTeam:    "Arsenal",
+						AwayTeam:    "West Brom",
+						Competition: "Premier League",
+						Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
+					},
+					Station: Radio5,
+				},
+			},
+		},
+		{
+			in: []Broadcast{
+				{
+					Match: Match{
+						HomeTeam:    "Arsenal",
+						AwayTeam:    "West Brom",
+						Competition: "Premier League",
+						Datetime:    time.Date(2024, 2, 7, 18, 0, 0, 0, time.UTC),
+					},
+					Station: Radio5,
+				},
+				{
+					Match: Match{
+						HomeTeam:    "Liverpool",
+						AwayTeam:    "Everton",
+						Competition: "Premier League",
+						Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
+					},
+					Station: Radio5Extra,
+				},
+			},
+			want: []Broadcast{
+				{
+					Match: Match{
+						HomeTeam:    "Arsenal",
+						AwayTeam:    "West Brom",
+						Competition: "Premier League",
+						Datetime:    time.Date(2024, 2, 7, 18, 0, 0, 0, time.UTC),
+					},
+					Station: Radio5,
+				},
+				{
+					Match: Match{
+						HomeTeam:    "Liverpool",
+						AwayTeam:    "Everton",
+						Competition: "Premier League",
+						Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
+					},
+					Station: Radio5Extra,
+				},
+			},
+		},
+	}
+
+	for _, tst := range table {
+		got := dedupeBbcMatches(tst.in)
+
+		if diff := cmp.Diff(tst.want, got); diff != "" {
+			t.Fatalf("dedupeBbcMatches() mismatch (-want +got):\n%s", diff)
+		}
+	}
+}

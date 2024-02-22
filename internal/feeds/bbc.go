@@ -76,7 +76,27 @@ func (bbc bbcMatchGetter) getMatches() ([]Broadcast, error) {
 		matches = append(matches, merged...)
 	}
 
+	matches = dedupeBbcMatches(matches)
+
 	return matches, nil
+}
+
+func dedupeBbcMatches(matches []Broadcast) []Broadcast {
+	rollUp := make(map[string][]Broadcast)
+
+	for _, b := range matches {
+		rollUp[b.RollUpHash()] = append(rollUp[b.RollUpHash()], b)
+	}
+
+	unique := make([]Broadcast, 0)
+	for _, bb := range rollUp {
+		if len(bb) > 1 {
+			bb[0].Station = Radio5			
+		}
+		unique = append(unique, bb[0])
+	}
+
+	return unique
 }
 
 func isAMatch(title BBCTitles) bool {
