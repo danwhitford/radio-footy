@@ -61,7 +61,7 @@ func parseRugby() ([]Broadcast, error) {
 				Match: Match{
 					HomeTeam:    hTeam,
 					AwayTeam:    aTeam,
-					Competition: "Six Nations 2024",
+					Competition: "Six Nations",
 					Datetime: time.Date(
 						2024,
 						date.Month(),
