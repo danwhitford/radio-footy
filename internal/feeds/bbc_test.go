@@ -172,7 +172,7 @@ func TestBBCDayToMatch(t *testing.T) {
 					Match: Match{
 						HomeTeam:    "Italy",
 						AwayTeam:    "England",
-						Competition: "Six Nations 2024",
+						Competition: "Six Nations",
 						Datetime:    time.Date(2024, 2, 3, 14, 15, 0, 0, time.UTC),
 					},
 					Station: Radio5Extra,

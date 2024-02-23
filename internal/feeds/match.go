@@ -76,6 +76,7 @@ func mapCompName(competition string) string {
 		regexp.MustCompile("[UEFA ]*Champions League.*"):     "Champions League",
 		regexp.MustCompile("^Premier League.*"):              "Premier League",
 		regexp.MustCompile("^FA Cup.*"):                      "FA Cup",
+		regexp.MustCompile("^Six Nations [0-9]{4}$"): "Six Nations",
 	}
 	for old, new := range replacements {
 		if old.MatchString(competition) {
