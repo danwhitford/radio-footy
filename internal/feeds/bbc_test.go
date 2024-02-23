@@ -225,8 +225,8 @@ func TestBBCDayToMatch(t *testing.T) {
 }
 
 func TestDeupeBbcMatches(t *testing.T) {
-	table := []struct{
-		in []Broadcast
+	table := []struct {
+		in   []Broadcast
 		want []Broadcast
 	}{
 		{

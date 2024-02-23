@@ -38,7 +38,7 @@ func (m Match) Time() string {
 	return m.Datetime.Format(timeLayout)
 }
 
-func (match Match) RollUpHash() string {
+func (match Match) rollUpHash() string {
 	return fmt.Sprintf("%s%s%s%s",
 		match.Competition,
 		match.Datetime.Format(time.DateOnly),

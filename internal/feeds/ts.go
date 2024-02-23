@@ -59,9 +59,10 @@ func tsFeedToMatches(tsFeed []TSGame) []Broadcast {
 		if feedname == "" {
 			continue
 		}
-		if m.League == "" {
+		if m.League == "" || m.League == "International Friendlies" {
 			continue
 		}
+
 		if strings.HasPrefix(m.Title, "Women") ||
 			strings.Contains(m.Title, "Women") {
 			continue

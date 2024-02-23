@@ -84,6 +84,23 @@ func TestTsFeedToMatches(t *testing.T) {
 				},
 			},
 		},
+		{
+			input: []TSGame{
+				{
+					Livefeed: []TSLiveFeed{
+						{
+							Feedname: "talkSPORT2",
+						}},
+					Sport:    "Football",
+					Date:     "2024-02-27 17:00:00",
+					HomeTeam: "England",
+					AwayTeam: "Italy",
+					League:   "International Friendlies", // Not international men's football
+					Title:    "Friendly - England v Italy",
+				},
+			},
+			output: []Broadcast{},
+		},
 	}
 
 	for _, test := range table {

@@ -22,7 +22,7 @@ func (l Listing) GameHash() string {
 func listingsFromBroadcasts(broadcasts []Broadcast) []Listing {
 	stationsRollUp := make(map[string]Listing)
 	for _, bcst := range broadcasts {
-		hashLol := bcst.RollUpHash()
+		hashLol := bcst.rollUpHash()
 		if listing, prs := stationsRollUp[hashLol]; prs {
 			listing.Stations = append(listing.Stations, bcst.Station)
 			if bcst.Datetime.After(listing.Datetime) {

@@ -86,14 +86,14 @@ func dedupeBbcMatches(matches []Broadcast) []Broadcast {
 	rollUp := make(map[string][]Broadcast)
 
 	for _, b := range matches {
-		rollUp[b.RollUpHash()] = append(rollUp[b.RollUpHash()], b)
+		rollUp[b.rollUpHash()] = append(rollUp[b.rollUpHash()], b)
 	}
 
 	unique := make([]Broadcast, 0)
 	for _, bb := range rollUp {
 		sort.Slice(bb, func(i, j int) bool {
 			return bb[i].Station.Rank < bb[j].Station.Rank
-		})	
+		})
 		unique = append(unique, bb[0])
 	}
 
