@@ -58,6 +58,7 @@ func mapTeamName(name string) string {
 		"Wolverhampton Wanderers":  "Wolves",
 		"West Bromwich Albion":     "West Brom",
 		"FC København":             "FC Copenhagen",
+		"Leeds United":             "Leeds",
 	}
 	newName, prs := nameMapper[name]
 	if prs {
@@ -76,7 +77,7 @@ func mapCompName(competition string) string {
 		regexp.MustCompile("[UEFA ]*Champions League.*"):     "Champions League",
 		regexp.MustCompile("^Premier League.*"):              "Premier League",
 		regexp.MustCompile("^FA Cup.*"):                      "FA Cup",
-		regexp.MustCompile("^Six Nations [0-9]{4}$"): "Six Nations",
+		regexp.MustCompile("^Six Nations [0-9]{4}$"):         "Six Nations",
 	}
 	for old, new := range replacements {
 		if old.MatchString(competition) {
@@ -91,4 +92,21 @@ func (m Match) shouldSkip() bool {
 		strings.Contains(m.Competition, "Women") ||
 		strings.Contains(m.HomeTeam, "Scottish") ||
 		strings.Contains(m.HomeTeam, "Women")
+}
+
+func (m Match) similarityScore(other Match) int {
+	score := 0
+	if m.Datetime.Equal(other.Datetime) {
+		score++
+	}
+	if m.HomeTeam == other.HomeTeam {
+		score++
+	}
+	if m.AwayTeam == other.AwayTeam {
+		score++
+	}
+	if m.Competition == other.Competition {
+		score++
+	}
+	return score
 }

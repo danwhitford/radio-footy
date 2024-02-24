@@ -36,7 +36,18 @@ func GetMatches() ([]MatchDay, error) {
 		broadcasts = append(broadcasts, got...)
 	}
 
-	return matchesToMatchDays(broadcasts)
+	days, err := matchesToMatchDays(broadcasts)
+	if err != nil {
+		return days, err
+	}
+
+	for _, d := range days {
+		for _, similar := range d.reportSimilarGames(3) {
+			log.Printf("'%v' is similar to '%v'\n", similar[0], similar[1])
+		}
+	}
+
+	return days, nil
 }
 
 func matchesToMatchDays(broadcasts []Broadcast) ([]MatchDay, error) {

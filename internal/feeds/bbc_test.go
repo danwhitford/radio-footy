@@ -1,6 +1,7 @@
 package feeds
 
 import (
+	"sort"
 	"testing"
 	"time"
 
@@ -330,10 +331,18 @@ func TestDeupeBbcMatches(t *testing.T) {
 		},
 	}
 
+	trans := cmp.Transformer("Sort", func(in []Broadcast) []Broadcast {
+		out := append([]Broadcast(nil), in...) // Copy input to avoid mutating it
+		sort.Slice(out, func(i, j int) bool {
+			return out[i].Datetime.Before(out[j].Datetime)
+		})
+		return out
+	})
+
 	for _, tst := range table {
 		got := dedupeBbcMatches(tst.in)
 
-		if diff := cmp.Diff(tst.want, got); diff != "" {
+		if diff := cmp.Diff(tst.want, got, trans); diff != "" {
 			t.Fatalf("dedupeBbcMatches() mismatch (-want +got):\n%s", diff)
 		}
 	}
