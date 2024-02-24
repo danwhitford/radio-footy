@@ -1,6 +1,6 @@
 module whitford.io/radiofooty
 
-go 1.20
+go 1.22
 
 require (
 	github.com/anaskhan96/soup v1.2.5
