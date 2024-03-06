@@ -38,7 +38,7 @@ func (sg skyGetter) getMatches() ([]Broadcast, error) {
 		{
 			"F1",
 			func(eventTitles []soup.Root) (string, string, bool) {
-				if !strings.HasSuffix(eventTitles[0].Text(), " - Race") {
+				if strings.HasSuffix(eventTitles[0].Text(), " - Pit Lane Live") {
 					return "", "", false
 				}
 				raceTitle := eventTitles[0].Text()
