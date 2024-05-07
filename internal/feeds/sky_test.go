@@ -60,7 +60,7 @@ func TestSkyGetMatches(t *testing.T) {
 		{
 			Match: Match{
 				Datetime:    time.Date(2024, 2, 29, 11, 30, 0, 0, time.UTC),
-				HomeTeam:    "Gulf Air Bahrain Grand Prix - Practice 1",
+				HomeTeam:    "Gulf Air Bahrain Grand Prix - Practice",
 				AwayTeam:    "",
 				Competition: "F1",
 			},
@@ -69,7 +69,7 @@ func TestSkyGetMatches(t *testing.T) {
 		{
 			Match: Match{
 				Datetime:    time.Date(2024, 2, 29, 15, 0, 0, 0, time.UTC),
-				HomeTeam:    "Gulf Air Bahrain Grand Prix - Practice 2",
+				HomeTeam:    "Gulf Air Bahrain Grand Prix - Practice",
 				AwayTeam:    "",
 				Competition: "F1",
 			},
@@ -78,7 +78,7 @@ func TestSkyGetMatches(t *testing.T) {
 		{
 			Match: Match{
 				Datetime:    time.Date(2024, 3, 1, 12, 30, 0, 0, time.UTC),
-				HomeTeam:    "Gulf Air Bahrain Grand Prix - Practice 3",
+				HomeTeam:    "Gulf Air Bahrain Grand Prix - Practice",
 				AwayTeam:    "",
 				Competition: "F1",
 			},
@@ -87,7 +87,7 @@ func TestSkyGetMatches(t *testing.T) {
 		{
 			Match: Match{
 				Datetime:    time.Date(2024, 3, 1, 16, 0, 0, 0, time.UTC),
-				HomeTeam:    "Gulf Air Bahrain Grand Prix - Qualifying 1",
+				HomeTeam:    "Gulf Air Bahrain Grand Prix - Qualifying",
 				AwayTeam:    "",
 				Competition: "F1",
 			},
@@ -96,7 +96,7 @@ func TestSkyGetMatches(t *testing.T) {
 		{
 			Match: Match{
 				Datetime:    time.Date(2024, 3, 1, 16, 22, 0, 0, time.UTC),
-				HomeTeam:    "Gulf Air Bahrain Grand Prix - Qualifying 2",
+				HomeTeam:    "Gulf Air Bahrain Grand Prix - Qualifying",
 				AwayTeam:    "",
 				Competition: "F1",
 			},
@@ -105,7 +105,7 @@ func TestSkyGetMatches(t *testing.T) {
 		{
 			Match: Match{
 				Datetime:    time.Date(2024, 3, 1, 16, 45, 0, 0, time.UTC),
-				HomeTeam:    "Gulf Air Bahrain Grand Prix - Qualifying 3",
+				HomeTeam:    "Gulf Air Bahrain Grand Prix - Qualifying",
 				AwayTeam:    "",
 				Competition: "F1",
 			},
@@ -123,7 +123,7 @@ func TestSkyGetMatches(t *testing.T) {
 		{
 			Match: Match{
 				Datetime:    time.Date(2024, 3, 7, 13, 30, 0, 0, time.UTC),
-				HomeTeam:    "stc Saudi Arabian Grand Prix - Practice 1",
+				HomeTeam:    "stc Saudi Arabian Grand Prix - Practice",
 				AwayTeam:    "",
 				Competition: "F1",
 			},
@@ -132,7 +132,7 @@ func TestSkyGetMatches(t *testing.T) {
 		{
 			Match: Match{
 				Datetime:    time.Date(2024, 3, 7, 17, 0, 0, 0, time.UTC),
-				HomeTeam:    "stc Saudi Arabian Grand Prix - Practice 2",
+				HomeTeam:    "stc Saudi Arabian Grand Prix - Practice",
 				AwayTeam:    "",
 				Competition: "F1",
 			},

@@ -43,6 +43,9 @@ func (sg skyGetter) getMatches() ([]Broadcast, error) {
 				}
 				raceTitle := eventTitles[0].Text()
 				raceTitle, _ = strings.CutSuffix(raceTitle, " - Race")
+				raceTitle, _ = strings.CutSuffix(raceTitle, " 1")
+				raceTitle, _ = strings.CutSuffix(raceTitle, " 2")
+				raceTitle, _ = strings.CutSuffix(raceTitle, " 3")
 				return raceTitle, "", true
 			},
 			"https://www.skysports.com/watch/f1-on-sky",

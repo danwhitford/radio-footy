@@ -24,7 +24,15 @@ func listingsFromBroadcasts(broadcasts []Broadcast) []Listing {
 	for _, bcst := range broadcasts {
 		hashLol := bcst.rollUpHash()
 		if listing, prs := stationsRollUp[hashLol]; prs {
-			listing.Stations = append(listing.Stations, bcst.Station)
+			contains := false
+			for _, s := range listing.Stations {
+				if s == bcst.Station {
+					contains = true
+				}
+			}
+			if !contains {
+				listing.Stations = append(listing.Stations, bcst.Station)
+			}
 			if bcst.Datetime.After(listing.Datetime) {
 				listing.Datetime = bcst.Datetime
 			}

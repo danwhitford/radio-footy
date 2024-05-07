@@ -30,10 +30,6 @@ var channelsICareAbout = []string{
 	"ITV1",
 	"ITV4",
 	"Channel 4",
-	"TNT Sports 1",
-	"TNT Sports 2",
-	"TNT Sports 3",
-	"TNT Sports Ultimate",
 }
 
 type tvMatchGetter struct {
