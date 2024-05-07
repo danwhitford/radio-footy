@@ -1,4 +1,4 @@
-package feeds
+package channel
 
 import (
 	"sort"
@@ -6,12 +6,13 @@ import (
 	"time"
 
 	"github.com/google/go-cmp/cmp"
+	"whitford.io/radiofooty/internal/broadcast"
 )
 
 func TestBBCDayToMatch(t *testing.T) {
 	table := []struct {
 		input  BBCFeed
-		output []Broadcast
+		output []broadcast.Broadcast
 	}{
 		{
 			input: BBCFeed{
@@ -30,15 +31,15 @@ func TestBBCDayToMatch(t *testing.T) {
 					},
 				},
 			},
-			output: []Broadcast{
+			output: []broadcast.Broadcast{
 				{
-					Match: Match{
+					Match: broadcast.Match{
 						HomeTeam:    "Arsenal",
 						AwayTeam:    "Chelsea",
 						Competition: "Premier League",
 						Datetime:    time.Date(2020, 12, 26, 17, 30, 0, 0, time.UTC),
 					},
-					Station: BlankStation,
+					Station: broadcast.BlankStation,
 				},
 			},
 		},
@@ -65,7 +66,7 @@ func TestBBCDayToMatch(t *testing.T) {
 					},
 				},
 			},
-			output: []Broadcast{},
+			output: []broadcast.Broadcast{},
 		},
 		{
 			input: BBCFeed{
@@ -82,7 +83,7 @@ func TestBBCDayToMatch(t *testing.T) {
 					},
 				},
 			},
-			output: []Broadcast{},
+			output: []broadcast.Broadcast{},
 		},
 		{
 			input: BBCFeed{
@@ -107,7 +108,7 @@ func TestBBCDayToMatch(t *testing.T) {
 					},
 				},
 			},
-			output: []Broadcast{},
+			output: []broadcast.Broadcast{},
 		},
 		{
 			input: BBCFeed{
@@ -129,15 +130,15 @@ func TestBBCDayToMatch(t *testing.T) {
 					},
 				},
 			},
-			output: []Broadcast{
+			output: []broadcast.Broadcast{
 				{
-					Match: Match{
+					Match: broadcast.Match{
 						HomeTeam:    "Arsenal",
 						AwayTeam:    "Chelsea",
 						Competition: "Premier League",
 						Datetime:    time.Date(2020, 12, 26, 17, 30, 0, 0, time.UTC),
 					},
-					Station: Radio5Extra,
+					Station: broadcast.Radio5Extra,
 				},
 			},
 		},
@@ -168,15 +169,15 @@ func TestBBCDayToMatch(t *testing.T) {
 					},
 				},
 			},
-			output: []Broadcast{
+			output: []broadcast.Broadcast{
 				{
-					Match: Match{
+					Match: broadcast.Match{
 						HomeTeam:    "Italy",
 						AwayTeam:    "England",
 						Competition: "Six Nations",
 						Datetime:    time.Date(2024, 2, 3, 14, 15, 0, 0, time.UTC),
 					},
-					Station: Radio5Extra,
+					Station: broadcast.Radio5Extra,
 				},
 			},
 		},
@@ -200,15 +201,15 @@ func TestBBCDayToMatch(t *testing.T) {
 					},
 				},
 			},
-			output: []Broadcast{
+			output: []broadcast.Broadcast{
 				{
-					Match: Match{
+					Match: broadcast.Match{
 						HomeTeam:    "Arsenal",
 						AwayTeam:    "West Brom",
 						Competition: "Premier League",
 						Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
 					},
-					Station: Radio5Extra,
+					Station: broadcast.Radio5Extra,
 				},
 			},
 		},
@@ -227,112 +228,112 @@ func TestBBCDayToMatch(t *testing.T) {
 
 func TestDeupeBbcMatches(t *testing.T) {
 	table := []struct {
-		in   []Broadcast
-		want []Broadcast
+		in   []broadcast.Broadcast
+		want []broadcast.Broadcast
 	}{
 		{
-			in: []Broadcast{
+			in: []broadcast.Broadcast{
 				{
-					Match: Match{
+					Match: broadcast.Match{
 						HomeTeam:    "Arsenal",
 						AwayTeam:    "West Brom",
 						Competition: "Premier League",
 						Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
 					},
-					Station: Radio5Extra,
+					Station: broadcast.Radio5Extra,
 				},
 			},
-			want: []Broadcast{
+			want: []broadcast.Broadcast{
 				{
-					Match: Match{
+					Match: broadcast.Match{
 						HomeTeam:    "Arsenal",
 						AwayTeam:    "West Brom",
 						Competition: "Premier League",
 						Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
 					},
-					Station: Radio5Extra,
-				},
-			},
-		},
-		{
-			in: []Broadcast{
-				{
-					Match: Match{
-						HomeTeam:    "Arsenal",
-						AwayTeam:    "West Brom",
-						Competition: "Premier League",
-						Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
-					},
-					Station: Radio5,
-				},
-				{
-					Match: Match{
-						HomeTeam:    "Arsenal",
-						AwayTeam:    "West Brom",
-						Competition: "Premier League",
-						Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
-					},
-					Station: Radio5Extra,
-				},
-			},
-			want: []Broadcast{
-				{
-					Match: Match{
-						HomeTeam:    "Arsenal",
-						AwayTeam:    "West Brom",
-						Competition: "Premier League",
-						Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
-					},
-					Station: Radio5,
+					Station: broadcast.Radio5Extra,
 				},
 			},
 		},
 		{
-			in: []Broadcast{
+			in: []broadcast.Broadcast{
 				{
-					Match: Match{
+					Match: broadcast.Match{
+						HomeTeam:    "Arsenal",
+						AwayTeam:    "West Brom",
+						Competition: "Premier League",
+						Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
+					},
+					Station: broadcast.Radio5,
+				},
+				{
+					Match: broadcast.Match{
+						HomeTeam:    "Arsenal",
+						AwayTeam:    "West Brom",
+						Competition: "Premier League",
+						Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
+					},
+					Station: broadcast.Radio5Extra,
+				},
+			},
+			want: []broadcast.Broadcast{
+				{
+					Match: broadcast.Match{
+						HomeTeam:    "Arsenal",
+						AwayTeam:    "West Brom",
+						Competition: "Premier League",
+						Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
+					},
+					Station: broadcast.Radio5,
+				},
+			},
+		},
+		{
+			in: []broadcast.Broadcast{
+				{
+					Match: broadcast.Match{
 						HomeTeam:    "Arsenal",
 						AwayTeam:    "West Brom",
 						Competition: "Premier League",
 						Datetime:    time.Date(2024, 2, 7, 18, 0, 0, 0, time.UTC),
 					},
-					Station: Radio5,
+					Station: broadcast.Radio5,
 				},
 				{
-					Match: Match{
+					Match: broadcast.Match{
 						HomeTeam:    "Liverpool",
 						AwayTeam:    "Everton",
 						Competition: "Premier League",
 						Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
 					},
-					Station: Radio5Extra,
+					Station: broadcast.Radio5Extra,
 				},
 			},
-			want: []Broadcast{
+			want: []broadcast.Broadcast{
 				{
-					Match: Match{
+					Match: broadcast.Match{
 						HomeTeam:    "Arsenal",
 						AwayTeam:    "West Brom",
 						Competition: "Premier League",
 						Datetime:    time.Date(2024, 2, 7, 18, 0, 0, 0, time.UTC),
 					},
-					Station: Radio5,
+					Station: broadcast.Radio5,
 				},
 				{
-					Match: Match{
+					Match: broadcast.Match{
 						HomeTeam:    "Liverpool",
 						AwayTeam:    "Everton",
 						Competition: "Premier League",
 						Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
 					},
-					Station: Radio5Extra,
+					Station: broadcast.Radio5Extra,
 				},
 			},
 		},
 	}
 
-	trans := cmp.Transformer("Sort", func(in []Broadcast) []Broadcast {
-		out := append([]Broadcast(nil), in...) // Copy input to avoid mutating it
+	trans := cmp.Transformer("Sort", func(in []broadcast.Broadcast) []broadcast.Broadcast {
+		out := append([]broadcast.Broadcast(nil), in...) // Copy input to avoid mutating it
 		sort.Slice(out, func(i, j int) bool {
 			return out[i].Datetime.Before(out[j].Datetime)
 		})

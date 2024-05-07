@@ -4,13 +4,15 @@ import (
 	"fmt"
 	"strings"
 	"time"
+
+	"whitford.io/radiofooty/internal/broadcast"
 )
 
 type CalEvent struct {
 	Uid      string
 	DtStart  string
 	Summary  string
-	Location []Station
+	Location []broadcast.Station
 }
 
 type CalData struct {
@@ -20,7 +22,7 @@ type CalData struct {
 
 const calTimeString string = "20060102T150405Z"
 
-func MatchDayToCalData(Matches []MatchDay) CalData {
+func MatchDayToCalData(Matches []broadcast.MatchDay) CalData {
 	events := make([]CalEvent, 0)
 	for _, day := range Matches {
 		for _, match := range day.Matches {

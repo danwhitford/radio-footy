@@ -6,33 +6,34 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
+	"whitford.io/radiofooty/internal/broadcast"
 )
 
 func TestFilterMatches(t *testing.T) {
 	table := []struct {
-		input  []Broadcast
-		output []Broadcast
+		input  []broadcast.Broadcast
+		output []broadcast.Broadcast
 	}{
 		{
-			input: []Broadcast{
+			input: []broadcast.Broadcast{
 				{
-					Match: Match{
+					Match: broadcast.Match{
 						HomeTeam:    "Chelsea",
 						AwayTeam:    "Milan",
 						Competition: "Premier League",
 					},
 				},
 				{
-					Match: Match{
+					Match: broadcast.Match{
 						HomeTeam:    "Inverness",
 						AwayTeam:    "Hibernian",
 						Competition: "Scottish Premiership",
 					},
 				},
 			},
-			output: []Broadcast{
+			output: []broadcast.Broadcast{
 				{
-					Match: Match{
+					Match: broadcast.Match{
 						HomeTeam:    "Chelsea",
 						AwayTeam:    "Milan",
 						Competition: "Premier League",
@@ -52,16 +53,16 @@ func TestFilterMatches(t *testing.T) {
 
 func TestSortMatchDays(t *testing.T) {
 	table := []struct {
-		input  []MatchDay
-		output []MatchDay
+		input  []broadcast.MatchDay
+		output []broadcast.MatchDay
 	}{
 		{
-			input: []MatchDay{
+			input: []broadcast.MatchDay{
 				{
 					DateTime: time.Date(2021, 8, 18, 19, 0, 0, 0, time.UTC),
-					Matches: []Listing{
+					Matches: []broadcast.Listing{
 						{
-							Match: Match{
+							Match: broadcast.Match{
 								HomeTeam: "Brentford",
 								AwayTeam: "Arsenal",
 								Datetime: time.Date(2021, 8, 18, 19, 0, 0, 0, time.UTC),
@@ -71,25 +72,25 @@ func TestSortMatchDays(t *testing.T) {
 				},
 				{
 					DateTime: time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
-					Matches: []Listing{
+					Matches: []broadcast.Listing{
 						{
-							Match: Match{
+							Match: broadcast.Match{
 								HomeTeam: "Bolton",
 								AwayTeam: "Barnsley",
 								Datetime: time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
 							},
-							Stations: []Station{Talksport},
+							Stations: []broadcast.Station{broadcast.Talksport},
 						},
 						{
-							Match: Match{
+							Match: broadcast.Match{
 								HomeTeam: "Fulham",
 								AwayTeam: "Barnsley",
 								Datetime: time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
 							},
-							Stations: []Station{Talksport2},
+							Stations: []broadcast.Station{broadcast.Talksport2},
 						},
 						{
-							Match: Match{
+							Match: broadcast.Match{
 								HomeTeam: "Chelsea",
 								AwayTeam: "Milan",
 								Datetime: time.Date(2021, 8, 14, 12, 0, 0, 0, time.UTC),
@@ -99,9 +100,9 @@ func TestSortMatchDays(t *testing.T) {
 				},
 				{
 					DateTime: time.Date(2021, 8, 15, 15, 0, 0, 0, time.UTC),
-					Matches: []Listing{
+					Matches: []broadcast.Listing{
 						{
-							Match: Match{
+							Match: broadcast.Match{
 								HomeTeam: "Romsey",
 								AwayTeam: "Worthing",
 								Datetime: time.Date(2021, 8, 15, 15, 0, 0, 0, time.UTC),
@@ -110,40 +111,40 @@ func TestSortMatchDays(t *testing.T) {
 					},
 				},
 			},
-			output: []MatchDay{
+			output: []broadcast.MatchDay{
 				{
 					DateTime: time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
-					Matches: []Listing{
+					Matches: []broadcast.Listing{
 						{
-							Match: Match{
+							Match: broadcast.Match{
 								HomeTeam: "Chelsea",
 								AwayTeam: "Milan",
 								Datetime: time.Date(2021, 8, 14, 12, 0, 0, 0, time.UTC),
 							},
 						},
 						{
-							Match: Match{
+							Match: broadcast.Match{
 								HomeTeam: "Bolton",
 								AwayTeam: "Barnsley",
 								Datetime: time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
 							},
-							Stations: []Station{Talksport},
+							Stations: []broadcast.Station{broadcast.Talksport},
 						},
 						{
-							Match: Match{
+							Match: broadcast.Match{
 								HomeTeam: "Fulham",
 								AwayTeam: "Barnsley",
 								Datetime: time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
 							},
-							Stations: []Station{Talksport2},
+							Stations: []broadcast.Station{broadcast.Talksport2},
 						},
 					},
 				},
 				{
 					DateTime: time.Date(2021, 8, 15, 15, 0, 0, 0, time.UTC),
-					Matches: []Listing{
+					Matches: []broadcast.Listing{
 						{
-							Match: Match{
+							Match: broadcast.Match{
 								HomeTeam: "Romsey",
 								AwayTeam: "Worthing",
 								Datetime: time.Date(2021, 8, 15, 15, 0, 0, 0, time.UTC),
@@ -153,9 +154,9 @@ func TestSortMatchDays(t *testing.T) {
 				},
 				{
 					DateTime: time.Date(2021, 8, 18, 19, 0, 0, 0, time.UTC),
-					Matches: []Listing{
+					Matches: []broadcast.Listing{
 						{
-							Match: Match{
+							Match: broadcast.Match{
 								HomeTeam: "Brentford",
 								AwayTeam: "Arsenal",
 								Datetime: time.Date(2021, 8, 18, 19, 0, 0, 0, time.UTC),
@@ -168,7 +169,7 @@ func TestSortMatchDays(t *testing.T) {
 	}
 
 	for _, tst := range table {
-		sortMatchDays(tst.input)
+		broadcast.SortMatchDays(tst.input)
 		if diff := cmp.Diff(tst.output, tst.input); diff != "" {
 			t.Errorf("mismatch (-want +got):\n%s", diff)
 		}
@@ -177,65 +178,65 @@ func TestSortMatchDays(t *testing.T) {
 
 func TestMatchesToMatchDays(t *testing.T) {
 	table := []struct {
-		input  []Broadcast
-		output []MatchDay
+		input  []broadcast.Broadcast
+		output []broadcast.MatchDay
 	}{
 		{
-			input: []Broadcast{
+			input: []broadcast.Broadcast{
 				{
-					Match: Match{
+					Match: broadcast.Match{
 						HomeTeam:    "Chelsea",
 						AwayTeam:    "Tottenham",
 						Competition: "Premier League",
 						Datetime:    time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
 					},
-					Station: Talksport,
+					Station: broadcast.Talksport,
 				},
 				{
-					Match: Match{
+					Match: broadcast.Match{
 						HomeTeam:    "Inverness",
 						AwayTeam:    "Hibernian",
 						Competition: "Scottish Premiership",
 						Datetime:    time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
 					},
-					Station: Station{"BBC Radio Scotland", 9999},
+					Station: broadcast.Station{Name: "BBC Radio Scotland", Rank: 9999},
 				},
 				{
-					Match: Match{
+					Match: broadcast.Match{
 						HomeTeam:    "Chelsea",
 						AwayTeam:    "Spurs",
 						Competition: "Premier League",
 						Datetime:    time.Date(2021, 8, 15, 15, 0, 0, 0, time.UTC),
 					},
-					Station: Radio5,
+					Station: broadcast.Radio5,
 				},
 			},
-			output: []MatchDay{
+			output: []broadcast.MatchDay{
 				{
 					DateTime: time.Date(2021, 8, 14, 0, 0, 0, 0, time.UTC),
-					Matches: []Listing{
+					Matches: []broadcast.Listing{
 						{
-							Match: Match{
+							Match: broadcast.Match{
 								HomeTeam:    "Chelsea",
 								AwayTeam:    "Tottenham",
 								Competition: "Premier League",
 								Datetime:    time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
 							},
-							Stations: []Station{Talksport},
+							Stations: []broadcast.Station{broadcast.Talksport},
 						},
 					},
 				},
 				{
 					DateTime: time.Date(2021, 8, 15, 0, 0, 0, 0, time.UTC),
-					Matches: []Listing{
+					Matches: []broadcast.Listing{
 						{
-							Match: Match{
+							Match: broadcast.Match{
 								HomeTeam:    "Chelsea",
 								AwayTeam:    "Spurs",
 								Competition: "Premier League",
 								Datetime:    time.Date(2021, 8, 15, 15, 0, 0, 0, time.UTC),
 							},
-							Stations: []Station{Radio5},
+							Stations: []broadcast.Station{broadcast.Radio5},
 						},
 					},
 				},
@@ -256,22 +257,22 @@ func TestMatchesToMatchDays(t *testing.T) {
 
 func TestMatchDayToCalData(t *testing.T) {
 	table := []struct {
-		input  []MatchDay
+		input  []broadcast.MatchDay
 		output CalData
 	}{
 		{
-			input: []MatchDay{
+			input: []broadcast.MatchDay{
 				{
 					DateTime: time.Date(2021, 8, 14, 0, 0, 0, 0, time.UTC),
-					Matches: []Listing{
+					Matches: []broadcast.Listing{
 						{
-							Match: Match{
+							Match: broadcast.Match{
 								HomeTeam:    "Chelsea",
 								AwayTeam:    "Tottenham",
 								Competition: "Premier League",
 								Datetime:    time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
 							},
-							Stations: []Station{Talksport, Radio5},
+							Stations: []broadcast.Station{broadcast.Talksport, broadcast.Radio5},
 						},
 					},
 				},
@@ -282,7 +283,7 @@ func TestMatchDayToCalData(t *testing.T) {
 						Uid:      "chelseavtottenham/premierleague",
 						DtStart:  "20210814T150000Z",
 						Summary:  "Chelsea v Tottenham [Premier League]",
-						Location: []Station{Talksport, Radio5},
+						Location: []broadcast.Station{broadcast.Talksport, broadcast.Radio5},
 					},
 				},
 			},

@@ -1,8 +1,9 @@
-package feeds
+package channel
 
 import (
 	"testing"
 	"time"
+	"whitford.io/radiofooty/internal/broadcast"
 
 	"github.com/google/go-cmp/cmp"
 )
@@ -10,7 +11,7 @@ import (
 func TestTsFeedToMatches(t *testing.T) {
 	table := []struct {
 		input  []TSGame
-		output []Broadcast
+		output []broadcast.Broadcast
 	}{
 		{
 			input: []TSGame{
@@ -27,15 +28,15 @@ func TestTsFeedToMatches(t *testing.T) {
 					},
 				},
 			},
-			output: []Broadcast{
+			output: []broadcast.Broadcast{
 				{
-					Match: Match{
+					Match: broadcast.Match{
 						Datetime:    time.Date(2020, 12, 26, 17, 30, 0, 0, time.UTC),
 						HomeTeam:    "Arsenal",
 						AwayTeam:    "Chelsea",
 						Competition: "Premier League",
 					},
-					Station: Talksport,
+					Station: broadcast.Talksport,
 				},
 			},
 		},
@@ -55,7 +56,7 @@ func TestTsFeedToMatches(t *testing.T) {
 					Title:    "England Women v Portugal Women",
 				},
 			},
-			output: []Broadcast{},
+			output: []broadcast.Broadcast{},
 		},
 		{
 			input: []TSGame{
@@ -72,15 +73,15 @@ func TestTsFeedToMatches(t *testing.T) {
 					},
 				},
 			},
-			output: []Broadcast{
+			output: []broadcast.Broadcast{
 				{
-					Match: Match{
+					Match: broadcast.Match{
 						HomeTeam:    "Arsenal",
 						AwayTeam:    "West Brom",
 						Competition: "Premier League",
 						Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
 					},
-					Station: Talksport,
+					Station: broadcast.Talksport,
 				},
 			},
 		},
@@ -99,7 +100,7 @@ func TestTsFeedToMatches(t *testing.T) {
 					Title:    "Friendly - England v Italy",
 				},
 			},
-			output: []Broadcast{},
+			output: []broadcast.Broadcast{},
 		},
 	}
 

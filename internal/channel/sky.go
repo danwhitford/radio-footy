@@ -1,4 +1,4 @@
-package feeds
+package channel
 
 import (
 	"fmt"
@@ -7,11 +7,12 @@ import (
 	"time"
 
 	"github.com/anaskhan96/soup"
+	"whitford.io/radiofooty/internal/broadcast"
 	"whitford.io/radiofooty/internal/urlgetter"
 )
 
-type skyGetter struct {
-	getter urlgetter.UrlGetter
+type SkyGetter struct {
+	Urlgetter urlgetter.UrlGetter
 }
 
 type skyPage struct {
@@ -24,7 +25,7 @@ type teamExtractor func([]soup.Root) (string, string, bool)
 
 var dateRe *regexp.Regexp = regexp.MustCompile(`(\d+)(st|nd|rd|th)`)
 
-func (sg skyGetter) getMatches() ([]Broadcast, error) {
+func (sg SkyGetter) GetMatches() ([]broadcast.Broadcast, error) {
 	pages := []skyPage{
 		{
 			"NFL",
@@ -52,9 +53,9 @@ func (sg skyGetter) getMatches() ([]Broadcast, error) {
 		},
 	}
 
-	broadcasts := make([]Broadcast, 0)
+	broadcasts := make([]broadcast.Broadcast, 0)
 	for _, page := range pages {
-		html, err := sg.getter.GetUrl(page.url)
+		html, err := sg.Urlgetter.GetUrl(page.url)
 		if err != nil {
 			return nil, err
 		}
@@ -68,8 +69,8 @@ func (sg skyGetter) getMatches() ([]Broadcast, error) {
 	return broadcasts, nil
 }
 
-func skyPageToMatches(html, comp string, extr teamExtractor) ([]Broadcast, error) {
-	Matches := make([]Broadcast, 0)
+func skyPageToMatches(html, comp string, extr teamExtractor) ([]broadcast.Broadcast, error) {
+	Matches := make([]broadcast.Broadcast, 0)
 
 	re := regexp.MustCompile(`\([0-9:]+\)`)
 	loc, err := time.LoadLocation("Europe/London")
@@ -117,7 +118,7 @@ func skyPageToMatches(html, comp string, extr teamExtractor) ([]Broadcast, error
 			{
 				groups := child.FindAll("div", "class", "event-group")
 				for _, g := range groups {
-					var match Match
+					var match broadcast.Match
 					match.Competition = comp
 
 					eventTitles := g.Find("ul", "class", "event").FindAll("strong")
@@ -146,7 +147,7 @@ func skyPageToMatches(html, comp string, extr teamExtractor) ([]Broadcast, error
 					)
 					match.Datetime = curDateTime
 
-					Matches = append(Matches, Broadcast{match, SkySports})
+					Matches = append(Matches, broadcast.Broadcast{Match: match, Station: broadcast.SkySports})
 				}
 			}
 		}

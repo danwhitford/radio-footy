@@ -1,4 +1,4 @@
-package feeds
+package broadcast
 
 import (
 	"fmt"
@@ -38,7 +38,7 @@ func (m Match) Time() string {
 	return m.Datetime.Format(timeLayout)
 }
 
-func (match Match) rollUpHash() string {
+func (match Match) RollUpHash() string {
 	return fmt.Sprintf("%s%s%s%s",
 		match.Competition,
 		match.Datetime.Format(time.DateOnly),
@@ -80,10 +80,10 @@ func mapCompName(competition string) string {
 		regexp.MustCompile("^Six Nations [0-9]{4}$"):         "Six Nations",
 		regexp.MustCompile(".*Europa Conference League.*"):   "Europa Conference League",
 		regexp.MustCompile("Europa League"):                  "Europa League",
-		regexp.MustCompile("^Championship.*"):                  "Championship",
+		regexp.MustCompile("^Championship.*"):                "Championship",
 		regexp.MustCompile("^League One.*"):                  "League One",
 		regexp.MustCompile("^League Two.*"):                  "League One",
-		regexp.MustCompile("^Conference$"):                  "Europa Conference League",
+		regexp.MustCompile("^Conference$"):                   "Europa Conference League",
 	}
 	for old, new := range replacements {
 		if old.MatchString(competition) {
@@ -93,7 +93,7 @@ func mapCompName(competition string) string {
 	return competition
 }
 
-func (m Match) shouldSkip() bool {
+func (m Match) ShouldSkip() bool {
 	return strings.Contains(m.Competition, "Scottish") ||
 		strings.Contains(m.Competition, "Women") ||
 		strings.Contains(m.HomeTeam, "Scottish") ||

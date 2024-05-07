@@ -1,4 +1,4 @@
-package feeds
+package channel
 
 import (
 	"fmt"
@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/anaskhan96/soup"
+	"whitford.io/radiofooty/internal/broadcast"
 	"whitford.io/radiofooty/internal/urlgetter"
 )
 
@@ -32,18 +33,18 @@ var channelsICareAbout = []string{
 	"Channel 4",
 }
 
-type tvMatchGetter struct {
-	urlgetter urlgetter.UrlGetter
+type TvMatchGetter struct {
+	Urlgetter urlgetter.UrlGetter
 }
 
-func (tmg tvMatchGetter) getMatches() ([]Broadcast, error) {
+func (tmg TvMatchGetter) GetMatches() ([]broadcast.Broadcast, error) {
 	re := regexp.MustCompile(`(\d+)(st|nd|rd|th)`)
 	loc, err := time.LoadLocation("Europe/London")
 	if err != nil {
 		return nil, fmt.Errorf("error loading location: %v", err)
 	}
 
-	html, err := tmg.urlgetter.GetUrl(englishFootballUrl)
+	html, err := tmg.Urlgetter.GetUrl(englishFootballUrl)
 	if err != nil {
 		return nil, err
 	}
@@ -122,17 +123,17 @@ func (tmg tvMatchGetter) getMatches() ([]Broadcast, error) {
 		}
 	}
 
-	broadcasts := make([]Broadcast, 0)
+	broadcasts := make([]broadcast.Broadcast, 0)
 	for _, fixture := range fixtures {
 		for _, channel := range fixture.channels {
-			broadcasts = append(broadcasts, Broadcast{
-				Match: NewSantisedMatch(
+			broadcasts = append(broadcasts, broadcast.Broadcast{
+				Match: broadcast.NewSantisedMatch(
 					fixture.dateTime,
 					fixture.homeTeam,
 					fixture.awayTeam,
 					fixture.compName,
 				),
-				Station: StationFromString(channel),
+				Station: broadcast.StationFromString(channel),
 			})
 		}
 	}

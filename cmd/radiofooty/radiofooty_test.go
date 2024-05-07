@@ -6,6 +6,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"whitford.io/radiofooty/internal/feeds"
+	"whitford.io/radiofooty/internal/broadcast"
 )
 
 func TestWriteCal(t *testing.T) {
@@ -27,7 +28,7 @@ func TestWriteCal(t *testing.T) {
 						Uid:      "leicestercityvliverpool/premierleague",
 						DtStart:  "20230515T150000Z",
 						Summary:  "Leicester City v Liverpool",
-						Location: []feeds.Station{feeds.Talksport, feeds.Radio5},
+						Location: []broadcast.Station{broadcast.Talksport, broadcast.Radio5},
 					},
 				},
 			},

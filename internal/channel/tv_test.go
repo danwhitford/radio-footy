@@ -1,4 +1,4 @@
-package feeds
+package channel
 
 import (
 	_ "embed"
@@ -7,27 +7,28 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"whitford.io/radiofooty/internal/urlgetter"
+	"whitford.io/radiofooty/internal/broadcast"
 )
 
 //go:embed tv_test_day.html
 var tvHtml string
 
 func TestTv(t *testing.T) {
-	want := Broadcast{
-		Match: Match{
+	want := broadcast.Broadcast{
+		Match: broadcast.Match{
 			Datetime:    time.Date(2024, 2, 7, 20, 0, 0, 0, time.UTC),
 			HomeTeam:    "West Brom",
 			AwayTeam:    "Chelsea",
 			Competition: "FA Cup",
 		},
-		Station: ITV1,
+		Station: broadcast.ITV1,
 	}
 
 	getter := urlgetter.StringGetter{
 		Contents: tvHtml,
 	}
-	tmg := tvMatchGetter{getter}
-	got, err := tmg.getMatches()
+	tmg := TvMatchGetter{getter}
+	got, err := tmg.GetMatches()
 	if err != nil {
 		t.Fatal(err)
 	}

@@ -1,4 +1,4 @@
-package feeds
+package broadcast
 
 import (
 	"testing"
@@ -77,7 +77,7 @@ func TestMatchDaysFromListings(t *testing.T) {
 		less := func(i, j MatchDay) bool {
 			return i.DateTime.Before(j.DateTime)
 		}
-		got, err := matchDaysFromListings(tst.input)
+		got, err := MatchDaysFromListings(tst.input)
 		if err != nil {
 			t.Fatal(err)
 		}

@@ -1,10 +1,11 @@
-package feeds
+package channel
 
 import (
 	"encoding/json"
 	"strings"
 	"time"
 
+	"whitford.io/radiofooty/internal/broadcast"
 	"whitford.io/radiofooty/internal/urlgetter"
 )
 
@@ -22,14 +23,14 @@ type TSLiveFeed struct {
 	Feedname string `json:"feedname"`
 }
 
-type talkSportGetter struct {
-	urlgetter urlgetter.UrlGetter
+type TalkSportGetter struct {
+	Urlgetter urlgetter.UrlGetter
 }
 
-func (tsg talkSportGetter) getMatches() ([]Broadcast, error) {
+func (tsg TalkSportGetter) GetMatches() ([]broadcast.Broadcast, error) {
 	url := "https://talksport.com/wp-json/talksport/v2/talksport-live/commentary"
 
-	body, err := tsg.urlgetter.GetUrl(url)
+	body, err := tsg.Urlgetter.GetUrl(url)
 	if err != nil {
 		return nil, err
 	}
@@ -42,8 +43,8 @@ func (tsg talkSportGetter) getMatches() ([]Broadcast, error) {
 	return tsFeedToMatches(tsFeed), nil
 }
 
-func tsFeedToMatches(tsFeed []TSGame) []Broadcast {
-	matches := make([]Broadcast, 0)
+func tsFeedToMatches(tsFeed []TSGame) []broadcast.Broadcast {
+	matches := make([]broadcast.Broadcast, 0)
 	longForm := "2006-01-02 15:04:05"
 	loc, _ := time.LoadLocation("Europe/London")
 
@@ -70,13 +71,13 @@ func tsFeedToMatches(tsFeed []TSGame) []Broadcast {
 
 		t, _ := time.ParseInLocation(longForm, m.Date, loc)
 		datetime := t
-		m := NewSantisedMatch(
+		m := broadcast.NewSantisedMatch(
 			datetime,
 			m.HomeTeam,
 			m.AwayTeam,
 			m.League,
 		)
-		matches = append(matches, Broadcast{m, StationFromString(feedname)})
+		matches = append(matches, broadcast.Broadcast{m, broadcast.StationFromString(feedname)})
 	}
 
 	return matches

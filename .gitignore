@@ -9,3 +9,5 @@ cover.out
 ./radiofooty
 radiofooty.exe
 *.log
+.DS_Store
+radiofooty

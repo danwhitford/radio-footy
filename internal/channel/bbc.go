@@ -1,4 +1,4 @@
-package feeds
+package channel
 
 import (
 	"encoding/json"
@@ -7,6 +7,7 @@ import (
 	"strings"
 	"time"
 
+	"whitford.io/radiofooty/internal/broadcast"
 	"whitford.io/radiofooty/internal/urlgetter"
 )
 
@@ -39,12 +40,12 @@ type BBCTitles struct {
 	Tertiary  string `json:"tertiary"`
 }
 
-type bbcMatchGetter struct {
-	urlgetter urlgetter.UrlGetter
+type BbcMatchGetter struct {
+	Urlgetter urlgetter.UrlGetter
 }
 
-func (bbc bbcMatchGetter) getMatches() ([]Broadcast, error) {
-	matches := make([]Broadcast, 0)
+func (bbc BbcMatchGetter) GetMatches() ([]broadcast.Broadcast, error) {
+	matches := make([]broadcast.Broadcast, 0)
 	baseUrls := []string{
 		"https://rms.api.bbc.co.uk/v2/experience/inline/schedules/bbc_radio_five_live/",
 		"https://rms.api.bbc.co.uk/v2/experience/inline/schedules/bbc_radio_five_live_sports_extra/",
@@ -61,7 +62,7 @@ func (bbc bbcMatchGetter) getMatches() ([]Broadcast, error) {
 
 	var bbcFeed BBCFeed
 	for _, url := range urls {
-		body, err := bbc.urlgetter.GetUrl(url)
+		body, err := bbc.Urlgetter.GetUrl(url)
 		if err != nil {
 			return nil, err
 		}
@@ -82,14 +83,14 @@ func (bbc bbcMatchGetter) getMatches() ([]Broadcast, error) {
 	return matches, nil
 }
 
-func dedupeBbcMatches(matches []Broadcast) []Broadcast {
-	rollUp := make(map[string][]Broadcast)
+func dedupeBbcMatches(matches []broadcast.Broadcast) []broadcast.Broadcast {
+	rollUp := make(map[string][]broadcast.Broadcast)
 
 	for _, b := range matches {
-		rollUp[b.rollUpHash()] = append(rollUp[b.rollUpHash()], b)
+		rollUp[b.RollUpHash()] = append(rollUp[b.RollUpHash()], b)
 	}
 
-	unique := make([]Broadcast, 0)
+	unique := make([]broadcast.Broadcast, 0)
 	for _, bb := range rollUp {
 		sort.Slice(bb, func(i, j int) bool {
 			return bb[i].Station.Rank < bb[j].Station.Rank
@@ -112,8 +113,8 @@ func isSixNations(title BBCTitles) bool {
 		strings.Contains(title.Secondary, " v ")
 }
 
-func bbcDayToMatches(bbcFeed BBCFeed) ([]Broadcast, error) {
-	matches := make([]Broadcast, 0)
+func bbcDayToMatches(bbcFeed BBCFeed) ([]broadcast.Broadcast, error) {
+	matches := make([]broadcast.Broadcast, 0)
 
 	loc, err := time.LoadLocation("Europe/London")
 	if err != nil {
@@ -135,14 +136,14 @@ func bbcDayToMatches(bbcFeed BBCFeed) ([]Broadcast, error) {
 				}
 				start = start.In(loc)
 				teams := strings.Split(prog.Title.Tertiary, " v ")
-				m := NewSantisedMatch(
+				m := broadcast.NewSantisedMatch(
 					start,
 					teams[0],
 					teams[1],
 					prog.Title.Secondary,
 				)
 
-				matches = append(matches, Broadcast{m, StationFromString(prog.Network.ShortTitle)})
+				matches = append(matches, broadcast.Broadcast{m, broadcast.StationFromString(prog.Network.ShortTitle)})
 			} else if isSixNations(prog.Title) {
 				start, err := time.Parse(longFormat, prog.Start)
 				if err != nil {
@@ -150,14 +151,14 @@ func bbcDayToMatches(bbcFeed BBCFeed) ([]Broadcast, error) {
 				}
 				start = start.In(loc)
 				teams := strings.Split(prog.Title.Secondary, " v ")
-				m := NewSantisedMatch(
+				m := broadcast.NewSantisedMatch(
 					start,
 					teams[0],
 					teams[1],
 					prog.Title.Primary,
 				)
 
-				matches = append(matches, Broadcast{m, StationFromString(prog.Network.ShortTitle)})
+				matches = append(matches, broadcast.Broadcast{m, broadcast.StationFromString(prog.Network.ShortTitle)})
 			}
 		}
 	}

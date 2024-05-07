@@ -1,4 +1,4 @@
-package feeds
+package broadcast
 
 import (
 	"fmt"
@@ -19,10 +19,10 @@ func (l Listing) GameHash() string {
 	return s
 }
 
-func listingsFromBroadcasts(broadcasts []Broadcast) []Listing {
+func ListingsFromBroadcasts(broadcasts []Broadcast) []Listing {
 	stationsRollUp := make(map[string]Listing)
 	for _, bcst := range broadcasts {
-		hashLol := bcst.rollUpHash()
+		hashLol := bcst.RollUpHash()
 		if listing, prs := stationsRollUp[hashLol]; prs {
 			contains := false
 			for _, s := range listing.Stations {

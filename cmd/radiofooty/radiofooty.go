@@ -8,6 +8,7 @@ import (
 	"os"
 
 	"whitford.io/radiofooty/internal/feeds"
+	"whitford.io/radiofooty/internal/broadcast"
 )
 
 //go:embed website/template.go.tmpl
@@ -24,7 +25,7 @@ func main() {
 	}
 
 	data := struct {
-		MatchDays []feeds.MatchDay
+		MatchDays []broadcast.MatchDay
 	}{
 		MatchDays: matches,
 	}

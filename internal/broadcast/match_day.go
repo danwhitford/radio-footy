@@ -1,4 +1,4 @@
-package feeds
+package broadcast
 
 import (
 	"sort"
@@ -18,7 +18,7 @@ func (m MatchDay) DateOnly() string {
 	return m.DateTime.Format(time.DateOnly)
 }
 
-func matchDaysFromListings(matches []Listing) ([]MatchDay, error) {
+func MatchDaysFromListings(matches []Listing) ([]MatchDay, error) {
 	matchesRollup := make(map[string][]Listing)
 	for _, match := range matches {
 		d := match.Datetime
@@ -40,7 +40,7 @@ func matchDaysFromListings(matches []Listing) ([]MatchDay, error) {
 	return matchDays, nil
 }
 
-func sortMatchDays(matchDays []MatchDay) {
+func SortMatchDays(matchDays []MatchDay) {
 	sort.Slice(matchDays, func(i, j int) bool {
 		return matchDays[i].DateTime.Before(matchDays[j].DateTime)
 	})
@@ -56,7 +56,7 @@ func (matchDay *MatchDay) sortMatchDay() {
 	})
 }
 
-func (matchDay MatchDay) reportSimilarGames(threshold int) [][2]Listing {
+func (matchDay MatchDay) ReportSimilarGames(threshold int) [][2]Listing {
 	similars := make([][2]Listing, 0)
 	for i, m := range matchDay.Matches {
 		for _, other := range matchDay.Matches[i+1:] {

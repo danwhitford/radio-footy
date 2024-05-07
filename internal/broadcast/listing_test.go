@@ -1,4 +1,4 @@
-package feeds
+package broadcast
 
 import (
 	"testing"
@@ -103,7 +103,7 @@ func TestRollUpStations(t *testing.T) {
 	}
 
 	for _, tst := range table {
-		got := listingsFromBroadcasts(tst.input)
+		got := ListingsFromBroadcasts(tst.input)
 		if diff := cmp.Diff(tst.output, got); diff != "" {
 			t.Fatalf("mismatch (-want +got):\n%s", diff)
 		}
