@@ -82,7 +82,7 @@ func mapCompName(competition string) string {
 		regexp.MustCompile("Europa League"):                  "Europa League",
 		regexp.MustCompile("^Championship.*"):                "Championship",
 		regexp.MustCompile("^League One.*"):                  "League One",
-		regexp.MustCompile("^League Two.*"):                  "League One",
+		regexp.MustCompile("^League Two.*"):                  "League Two",
 		regexp.MustCompile("^Conference$"):                   "Europa Conference League",
 	}
 	for old, new := range replacements {
