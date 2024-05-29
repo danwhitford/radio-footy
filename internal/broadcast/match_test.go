@@ -17,6 +17,9 @@ func TestMapTeamNames(t *testing.T) {
 		{
 			"Chelsea", "Chelsea",
 		},
+		{
+			"Bosnia & Herzegovina", "Bosnia-Herzegovina",
+		},
 	}
 
 	for _, tst := range table {

@@ -59,6 +59,7 @@ func mapTeamName(name string) string {
 		"West Bromwich Albion":     "West Brom",
 		"FC København":             "FC Copenhagen",
 		"Leeds United":             "Leeds",
+		"Bosnia & Herzegovina":     "Bosnia-Herzegovina",
 	}
 	newName, prs := nameMapper[name]
 	if prs {
