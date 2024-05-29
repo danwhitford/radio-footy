@@ -5,8 +5,8 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"whitford.io/radiofooty/internal/feeds"
 	"whitford.io/radiofooty/internal/broadcast"
+	"whitford.io/radiofooty/internal/feeds"
 )
 
 func TestWriteCal(t *testing.T) {

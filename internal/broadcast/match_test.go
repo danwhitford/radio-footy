@@ -72,6 +72,17 @@ func TestMapCompName(t *testing.T) {
 			input:  "Europa League Football 2023-24",
 			output: "Europa League",
 		},
+		{
+			input:  "International Football 2023-24",
+			output: "International Friendly",
+		},
+		{
+			input:  "International Football 2024-25",
+			output: "International Friendly",
+		}, {
+			input:  "International Friendly",
+			output: "International Friendly",
+		},
 	}
 
 	for _, tst := range table {

@@ -7,8 +7,8 @@ import (
 	"log"
 	"os"
 
-	"whitford.io/radiofooty/internal/feeds"
 	"whitford.io/radiofooty/internal/broadcast"
+	"whitford.io/radiofooty/internal/feeds"
 )
 
 //go:embed website/template.go.tmpl

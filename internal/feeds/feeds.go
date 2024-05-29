@@ -3,9 +3,9 @@ package feeds
 import (
 	"log"
 
-	"whitford.io/radiofooty/internal/urlgetter"
 	"whitford.io/radiofooty/internal/broadcast"
 	"whitford.io/radiofooty/internal/channel"
+	"whitford.io/radiofooty/internal/urlgetter"
 )
 
 type matchGetter interface {

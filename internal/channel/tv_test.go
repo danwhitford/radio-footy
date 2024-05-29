@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/google/go-cmp/cmp"
-	"whitford.io/radiofooty/internal/urlgetter"
 	"whitford.io/radiofooty/internal/broadcast"
+	"whitford.io/radiofooty/internal/urlgetter"
 )
 
 //go:embed tv_test_day.html

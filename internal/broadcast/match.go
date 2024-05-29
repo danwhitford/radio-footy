@@ -70,20 +70,21 @@ func mapTeamName(name string) string {
 
 func mapCompName(competition string) string {
 	replacements := map[*regexp.Regexp]string{
-		regexp.MustCompile("Carabao Cup"):                    "EFL Cup",
-		regexp.MustCompile("English Football League Trophy"): "EFL Cup",
-		regexp.MustCompile("^EFL Trophy.*"):                  "EFL Trophy",
-		regexp.MustCompile("^EFL Cup.*"):                     "EFL Cup",
-		regexp.MustCompile("[UEFA ]*Champions League.*"):     "Champions League",
-		regexp.MustCompile("^Premier League.*"):              "Premier League",
-		regexp.MustCompile("^FA Cup.*"):                      "FA Cup",
-		regexp.MustCompile("^Six Nations [0-9]{4}$"):         "Six Nations",
-		regexp.MustCompile(".*Europa Conference League.*"):   "Europa Conference League",
-		regexp.MustCompile("Europa League"):                  "Europa League",
-		regexp.MustCompile("^Championship.*"):                "Championship",
-		regexp.MustCompile("^League One.*"):                  "League One",
-		regexp.MustCompile("^League Two.*"):                  "League Two",
-		regexp.MustCompile("^Conference$"):                   "Europa Conference League",
+		regexp.MustCompile("Carabao Cup"):                                "EFL Cup",
+		regexp.MustCompile("English Football League Trophy"):             "EFL Cup",
+		regexp.MustCompile("^EFL Trophy.*"):                              "EFL Trophy",
+		regexp.MustCompile("^EFL Cup.*"):                                 "EFL Cup",
+		regexp.MustCompile("[UEFA ]*Champions League.*"):                 "Champions League",
+		regexp.MustCompile("^Premier League.*"):                          "Premier League",
+		regexp.MustCompile("^FA Cup.*"):                                  "FA Cup",
+		regexp.MustCompile("^Six Nations [0-9]{4}$"):                     "Six Nations",
+		regexp.MustCompile(".*Europa Conference League.*"):               "Europa Conference League",
+		regexp.MustCompile("Europa League"):                              "Europa League",
+		regexp.MustCompile("^Championship.*"):                            "Championship",
+		regexp.MustCompile("^League One.*"):                              "League One",
+		regexp.MustCompile("^League Two.*"):                              "League Two",
+		regexp.MustCompile("^Conference$"):                               "Europa Conference League",
+		regexp.MustCompile("^International Football [0-9]{4}-[0-9]{2}$"): "International Friendly",
 	}
 	for old, new := range replacements {
 		if old.MatchString(competition) {
