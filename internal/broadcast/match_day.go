@@ -55,4 +55,3 @@ func (matchDay *MatchDay) sortMatchDay() {
 		return matchDay.Matches[i].less(matchDay.Matches[j])
 	})
 }
-

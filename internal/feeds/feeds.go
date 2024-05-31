@@ -13,11 +13,6 @@ type matchGetter interface {
 	GetMatches() ([]broadcast.Broadcast, error)
 }
 
-const (
-	niceDate   = "Monday, Jan 2"
-	timeLayout = "15:04"
-)
-
 func GetMatches() ([]broadcast.MatchDay, error) {
 	var broadcasts []broadcast.Broadcast
 
@@ -53,7 +48,7 @@ func GetMatches() ([]broadcast.MatchDay, error) {
 			time.Now().Location(),
 		),
 	)
-		
+
 	days, err := matchesToMatchDays(broadcasts)
 	if err != nil {
 		return days, err
