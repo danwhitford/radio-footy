@@ -21,6 +21,7 @@ func TestFilterMatches(t *testing.T) {
 						HomeTeam:    "Chelsea",
 						AwayTeam:    "Milan",
 						Competition: "Premier League",
+						Datetime: time.Date(2024, 6, 1, 15, 0, 0, 0, time.UTC),						
 					},
 				},
 				{
@@ -28,6 +29,15 @@ func TestFilterMatches(t *testing.T) {
 						HomeTeam:    "Inverness",
 						AwayTeam:    "Hibernian",
 						Competition: "Scottish Premiership",
+						Datetime: time.Date(2024, 6, 1, 15, 0, 0, 0, time.UTC),						
+					},
+				},
+				{
+					Match: broadcast.Match{
+						HomeTeam:    "Southampton",
+						AwayTeam:    "Leeds",
+						Competition: "Championship",
+						Datetime: time.Date(2024, 5, 21, 16, 0, 0, 0, time.UTC),						
 					},
 				},
 			},
@@ -37,14 +47,16 @@ func TestFilterMatches(t *testing.T) {
 						HomeTeam:    "Chelsea",
 						AwayTeam:    "Milan",
 						Competition: "Premier League",
+						Datetime: time.Date(2024, 6, 1, 15, 0, 0, 0, time.UTC),						
 					},
 				},
 			},
 		},
 	}
 
+	fakeNow := time.Date(2024, 5, 31, 0, 0, 0, 0, time.UTC)
 	for _, tst := range table {
-		got := filterBroadcasts(tst.input)
+		got := filterBroadcasts(tst.input, fakeNow)
 		if diff := cmp.Diff(tst.output, got); diff != "" {
 			t.Errorf("mismatch (-want +got):\n%s", diff)
 		}
@@ -191,15 +203,6 @@ func TestMatchesToMatchDays(t *testing.T) {
 						Datetime:    time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
 					},
 					Station: broadcast.Talksport,
-				},
-				{
-					Match: broadcast.Match{
-						HomeTeam:    "Inverness",
-						AwayTeam:    "Hibernian",
-						Competition: "Scottish Premiership",
-						Datetime:    time.Date(2021, 8, 14, 15, 0, 0, 0, time.UTC),
-					},
-					Station: broadcast.Station{Name: "BBC Radio Scotland", Rank: 9999},
 				},
 				{
 					Match: broadcast.Match{

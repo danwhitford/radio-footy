@@ -56,18 +56,3 @@ func (matchDay *MatchDay) sortMatchDay() {
 	})
 }
 
-func (matchDay MatchDay) ReportSimilarGames(threshold int) [][2]Listing {
-	similars := make([][2]Listing, 0)
-	for i, m := range matchDay.Matches {
-		for _, other := range matchDay.Matches[i+1:] {
-			score := m.similarityScore(other.Match)
-			if score >= 2 {
-				similars = append(similars, [2]Listing{
-					m,
-					other,
-				})
-			}
-		}
-	}
-	return similars
-}

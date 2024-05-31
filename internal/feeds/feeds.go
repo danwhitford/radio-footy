@@ -2,6 +2,7 @@ package feeds
 
 import (
 	"log"
+	"time"
 
 	"whitford.io/radiofooty/internal/broadcast"
 	"whitford.io/radiofooty/internal/channel"
@@ -38,24 +39,30 @@ func GetMatches() ([]broadcast.MatchDay, error) {
 		broadcasts = append(broadcasts, got...)
 	}
 
+	// Filter out matches we don't want
+	broadcasts = filterBroadcasts(
+		broadcasts,
+		time.Date(
+			time.Now().Year(),
+			time.Now().Month(),
+			time.Now().Day(),
+			time.Now().Hour(),
+			time.Now().Minute(),
+			time.Now().Second(),
+			time.Now().Nanosecond(),
+			time.Now().Location(),
+		),
+	)
+		
 	days, err := matchesToMatchDays(broadcasts)
 	if err != nil {
 		return days, err
-	}
-
-	for _, d := range days {
-		for _, similar := range d.ReportSimilarGames(3) {
-			log.Printf("'%v' is similar to '%v'\n", similar[0], similar[1])
-		}
 	}
 
 	return days, nil
 }
 
 func matchesToMatchDays(broadcasts []broadcast.Broadcast) ([]broadcast.MatchDay, error) {
-	// Filter out matches we don't want
-	broadcasts = filterBroadcasts(broadcasts)
-
 	// Roll up stations
 	listings := broadcast.ListingsFromBroadcasts(broadcasts)
 
@@ -71,10 +78,13 @@ func matchesToMatchDays(broadcasts []broadcast.Broadcast) ([]broadcast.MatchDay,
 	return mergedFeed, nil
 }
 
-func filterBroadcasts(broadcasts []broadcast.Broadcast) []broadcast.Broadcast {
+func filterBroadcasts(broadcasts []broadcast.Broadcast, now time.Time) []broadcast.Broadcast {
 	filtered := make([]broadcast.Broadcast, 0)
 	for _, match := range broadcasts {
-		if match.Match.ShouldSkip() {
+		if match.Datetime.Before(now) {
+			continue
+		}
+		if match.ShouldSkip() {
 			continue
 		}
 		filtered = append(filtered, match)

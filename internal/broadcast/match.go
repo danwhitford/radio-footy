@@ -101,20 +101,3 @@ func (m Match) ShouldSkip() bool {
 		strings.Contains(m.HomeTeam, "Scottish") ||
 		strings.Contains(m.HomeTeam, "Women")
 }
-
-func (m Match) similarityScore(other Match) int {
-	score := 0
-	if m.Datetime.Equal(other.Datetime) {
-		score++
-	}
-	if m.HomeTeam == other.HomeTeam {
-		score++
-	}
-	if m.AwayTeam == other.AwayTeam {
-		score++
-	}
-	if m.Competition == other.Competition {
-		score++
-	}
-	return score
-}
