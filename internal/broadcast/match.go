@@ -27,7 +27,7 @@ func (m Match) Title() string {
 	switch m.Competition {
 	case "NFL":
 		return fmt.Sprintf("%s @ %s", m.AwayTeam, m.HomeTeam)
-	case "F1":
+	case "F1", "Paris 2024 Olympic Weightlifting":
 		return m.HomeTeam
 	default:
 		return fmt.Sprintf("%s v %s", m.HomeTeam, m.AwayTeam)
@@ -97,7 +97,5 @@ func mapCompName(competition string) string {
 
 func (m Match) ShouldSkip() bool {
 	return strings.Contains(m.Competition, "Scottish") ||
-		strings.Contains(m.Competition, "Women") ||
-		strings.Contains(m.HomeTeam, "Scottish") ||
-		strings.Contains(m.HomeTeam, "Women")
+		strings.Contains(m.HomeTeam, "Scottish")
 }

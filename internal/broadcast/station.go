@@ -23,6 +23,7 @@ func (stn Station) ClassName() string {
 var (
 	SkySports    = Station{"Sky Sports", 0}
 	TNTSports    = Station{"TNT Sports", 10}
+	BBC          = Station{"BBC", 15}
 	BBCOne       = Station{"BBC One", 20}
 	BBCTwo       = Station{"BBC Two", 30}
 	ITV1         = Station{"ITV1", 40}
