@@ -10,13 +10,13 @@ import (
 )
 import "whitford.io/radiofooty/internal/broadcast"
 
-//go:embed nfl_test_day.html
+//go:embed sky_tests/nfl_test_day.html
 var nflHtml string
 
-//go:embed f1_test_day.html
+//go:embed sky_tests/f1_test_day.html
 var f1Html string
 
-//go:embed cricket_test_day.html
+//go:embed sky_tests/cricket_test_day.html
 var cricketHtml string
 
 type skyTestGetter struct{}
