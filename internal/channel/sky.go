@@ -16,19 +16,22 @@ type SkyGetter struct {
 }
 
 type skyPage struct {
-	competition   string
+	compExtractor   compExtractor
 	teamExtractor teamExtractor
 	url           string
 }
 
 type teamExtractor func([]soup.Root) (string, string, bool)
+type compExtractor func(string) string
 
 var dateRe *regexp.Regexp = regexp.MustCompile(`(\d+)(st|nd|rd|th)`)
 
 func (sg SkyGetter) GetMatches() ([]broadcast.Broadcast, error) {
 	pages := []skyPage{
 		{
-			"NFL",
+			func(_ string) string{
+				return "NFL"
+			},
 			func(eventTitles []soup.Root) (string, string, bool) {
 				homeTeam := eventTitles[1].Text()
 				awayTeam := eventTitles[0].Text()
@@ -37,7 +40,9 @@ func (sg SkyGetter) GetMatches() ([]broadcast.Broadcast, error) {
 			"https://www.skysports.com/watch/nfl-on-sky",
 		},
 		{
-			"F1",
+			func(_ string) string{
+				return "F1"
+			},
 			func(eventTitles []soup.Root) (string, string, bool) {
 				if strings.HasSuffix(eventTitles[0].Text(), " - Pit Lane Live") {
 					return "", "", false
@@ -51,6 +56,20 @@ func (sg SkyGetter) GetMatches() ([]broadcast.Broadcast, error) {
 			},
 			"https://www.skysports.com/watch/f1-on-sky",
 		},
+		{
+			func(deets string) string{
+				splitted := strings.Split(strings.Split(deets, ",")[0], ":")
+				return strings.TrimSpace(splitted[0])
+			},
+			func(eventTitles []soup.Root) (string, string, bool) {
+				teamNames := strings.Split(eventTitles[0].Text(), ":")
+				splitted := strings.Split(teamNames[len(teamNames)-1], " v ")
+				return strings.TrimSpace(splitted[0]),
+				 strings.TrimSpace(splitted[1]),
+				 true
+			},
+			"https://www.skysports.com/watch/cricket-on-sky",
+		},
 	}
 
 	broadcasts := make([]broadcast.Broadcast, 0)
@@ -59,7 +78,7 @@ func (sg SkyGetter) GetMatches() ([]broadcast.Broadcast, error) {
 		if err != nil {
 			return nil, err
 		}
-		bb, err := skyPageToMatches(string(html), page.competition, page.teamExtractor)
+		bb, err := skyPageToMatches(string(html), page.compExtractor, page.teamExtractor)
 		if err != nil {
 			return broadcasts, err
 		}
@@ -69,7 +88,7 @@ func (sg SkyGetter) GetMatches() ([]broadcast.Broadcast, error) {
 	return broadcasts, nil
 }
 
-func skyPageToMatches(html, comp string, extr teamExtractor) ([]broadcast.Broadcast, error) {
+func skyPageToMatches(html string, comp compExtractor, extr teamExtractor) ([]broadcast.Broadcast, error) {
 	Matches := make([]broadcast.Broadcast, 0)
 
 	re := regexp.MustCompile(`\([0-9:]+\)`)
@@ -119,7 +138,7 @@ func skyPageToMatches(html, comp string, extr teamExtractor) ([]broadcast.Broadc
 				groups := child.FindAll("div", "class", "event-group")
 				for _, g := range groups {
 					var match broadcast.Match
-					match.Competition = comp
+					// match.Competition = comp
 
 					eventTitles := g.Find("ul", "class", "event").FindAll("strong")
 					h, a, keep := extr(eventTitles)
@@ -130,6 +149,9 @@ func skyPageToMatches(html, comp string, extr teamExtractor) ([]broadcast.Broadc
 					match.AwayTeam = a
 
 					eventDetail := g.Find("p", "class", "event-detail").Text()
+
+					match.Competition = comp(eventDetail)
+
 					foundTime := re.FindString(eventDetail)
 					timeString := strings.Trim(foundTime, "()")
 					var hours, mins int

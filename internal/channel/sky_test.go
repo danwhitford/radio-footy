@@ -16,6 +16,9 @@ var nflHtml string
 //go:embed f1_test_day.html
 var f1Html string
 
+//go:embed cricket_test_day.html
+var cricketHtml string
+
 type skyTestGetter struct{}
 
 func (stg skyTestGetter) GetUrl(url string) ([]byte, error) {
@@ -24,6 +27,8 @@ func (stg skyTestGetter) GetUrl(url string) ([]byte, error) {
 		return []byte(nflHtml), nil
 	case "https://www.skysports.com/watch/f1-on-sky":
 		return []byte(f1Html), nil
+	case "https://www.skysports.com/watch/cricket-on-sky":
+		return []byte(cricketHtml), nil
 	default:
 		return []byte{}, fmt.Errorf("what is this url '%s'", url)
 	}
@@ -136,6 +141,105 @@ func TestSkyGetMatches(t *testing.T) {
 				HomeTeam:    "stc Saudi Arabian Grand Prix - Practice",
 				AwayTeam:    "",
 				Competition: "F1",
+			},
+			Station: broadcast.SkySports,
+		},
+		{
+			Match: broadcast.Match{
+				Datetime:    time.Date(2024, 6, 5, 14, 0, 0, 0, time.UTC),
+				HomeTeam:    "India",
+				AwayTeam:    "Ireland",
+				Competition: "ICC Men's T20 World Cup",
+			},
+			Station: broadcast.SkySports,
+		},
+		{
+			Match: broadcast.Match{
+				Datetime:    time.Date(2024, 6, 5, 23, 0, 0, 0, time.UTC),
+				HomeTeam:    "Papua New Guinea",
+				AwayTeam:    "Uganda",
+				Competition: "ICC Men's T20 World Cup",
+			},
+			Station: broadcast.SkySports,
+		},
+		{
+			Match: broadcast.Match{
+				Datetime:    time.Date(2024, 6, 6, 0, 0, 0, 0, time.UTC),
+				HomeTeam:    "Australia",
+				AwayTeam:    "Oman",
+				Competition: "ICC Men's T20 World Cup",
+			},
+			Station: broadcast.SkySports,
+		},
+		{
+			Match: broadcast.Match{
+				Datetime:    time.Date(2024, 6, 6, 15, 0, 0, 0, time.UTC),
+				HomeTeam:    "USA",
+				AwayTeam:    "Pakistan",
+				Competition: "ICC Men's T20 World Cup",
+			},
+			Station: broadcast.SkySports,
+		},
+		{
+			Match: broadcast.Match{
+				Datetime:    time.Date(2024, 6, 6, 18, 30, 0, 0, time.UTC),
+				HomeTeam:    "Namibia",
+				AwayTeam:    "Scotland",
+				Competition: "ICC Men's T20 World Cup",
+			},
+			Station: broadcast.SkySports,
+		},
+		{
+			Match: broadcast.Match{
+				Datetime:    time.Date(2024, 6, 7, 14, 0, 0, 0, time.UTC),
+				HomeTeam:    "Canada",
+				AwayTeam:    "Ireland",
+				Competition: "ICC Men's T20 World Cup",
+			},
+			Station: broadcast.SkySports,
+		},
+		{
+			Match: broadcast.Match{
+				Datetime:    time.Date(2024, 6, 7, 18, 0, 0, 0, time.UTC),
+				HomeTeam:    "Northampton",
+				AwayTeam:    "Worcester",
+				Competition: "T20",
+			},
+			Station: broadcast.SkySports,
+		},
+		{
+			Match: broadcast.Match{
+				Datetime:    time.Date(2024, 6, 7, 23, 0, 0, 0, time.UTC),
+				HomeTeam:    "New Zealand",
+				AwayTeam:    "Afghanistan",
+				Competition: "ICC Men's T20 World Cup",
+			},
+			Station: broadcast.SkySports,
+		},
+		{
+			Match: broadcast.Match{
+				Datetime:    time.Date(2024, 6, 8, 0, 0, 0, 0, time.UTC),
+				HomeTeam:    "Sri Lanka",
+				AwayTeam:    "Bangladesh",
+				Competition: "ICC Men's T20 World Cup",
+			},
+			Station: broadcast.SkySports,
+		},
+		{
+			Match: broadcast.Match{
+				Datetime:    time.Date(2024, 6, 8, 14, 0, 0, 0, time.UTC),
+				HomeTeam:    "Netherlands",
+				AwayTeam:    "South Africa",
+				Competition: "ICC Men's T20 World Cup",
+			},
+			Station: broadcast.SkySports,
+		},
+		{
+			Match: broadcast.Match{
+				Datetime:    time.Date(2024, 6, 8, 16, 30, 0, 0, time.UTC),
+				HomeTeam:    "Australia",
+				AwayTeam:    "England",
+				Competition: "ICC Men's T20 World Cup",
 			},
 			Station: broadcast.SkySports,
 		},
