@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"slices"
 
 	"whitford.io/radiofooty/internal/broadcast"
 	"whitford.io/radiofooty/internal/feeds"
@@ -24,10 +25,28 @@ func main() {
 		log.Fatalln(err)
 	}
 
+	channelsSet := make(map[broadcast.Station]interface{})
+	for _, day := range matches {
+		for _, listing := range day.Matches {
+			for _, station := range listing.Stations {
+				channelsSet[station] = struct{}{}
+			}
+		}
+	}
+	channels := make([]broadcast.Station, 0)
+	for channel, _ := range channelsSet {
+		channels = append(channels, channel)
+	}
+	slices.SortFunc(channels, func(a, b broadcast.Station) int {
+		return a.Rank - b.Rank
+	})
+
 	data := struct {
 		MatchDays []broadcast.MatchDay
+		UniqueChannels []broadcast.Station
 	}{
 		MatchDays: matches,
+		UniqueChannels: channels,
 	}
 
 	calData := feeds.MatchDayToCalData(matches)

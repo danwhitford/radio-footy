@@ -15,18 +15,33 @@
 <body>
     <div>
         <a href="#"><h1>Football on radio and TV</h1></a>
+
+        <div class="match-header">
+            <h3>Channels</h3>
+            {{ range .UniqueChannels }}
+                <span 
+                    class="pill filter {{ .ClassName }}" 
+                    data-channel-name="{{ .ClassName }}"
+                >{{ .Name }}</span>
+            {{ end }}
+        </div>
+
+        <hr/>
+
         {{ range .MatchDays }}
         <section class="day-section">
             <a href="#{{ .DateOnly }}"><h2 class="day" id="{{ .DateOnly }}">{{ .NiceDate }}</h2></a>            
-            {{ range .Matches }}                
-                <div class="match-header">
-                    <h3 id="{{ .GameHash }}" class="stations">{{ .Time }}</h3>
-                    {{ range .Stations }}<span class="pill {{ .ClassName }}">{{ . }}</span>{{ end }}
+            {{ range .Matches }}
+                <div class="listing">                
+                    <div class="match-header">
+                        <h3 id="{{ .GameHash }}" class="stations">{{ .Time }}</h3>
+                        {{ range .Stations }}<span class="pill {{ .ClassName }}" data-channel-name="{{ .ClassName }}">{{ . }}</span>{{ end }}
+                    </div>
+                    <p class="match-title">{{ .Title }} ({{ .Competition }})</p>
                 </div>
-                <p class="match-title">{{ .Title }} ({{ .Competition }})</p>
             {{ end }}
+            <hr />
         </section>
-        <hr />
         {{ end }}
     </div>
 
@@ -34,5 +49,7 @@
         <p><a href="./icalendar.ics">iCalendar link</a></p>
         <p><a href="./log.txt">Build information</a></p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

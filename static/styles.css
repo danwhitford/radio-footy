@@ -19,6 +19,7 @@ h1 {
 
 .day {
   font-size: 1.5em;
+  margin-top: 0;
   margin-bottom: 5px;
   color: #000;
 }
@@ -87,4 +88,12 @@ hr {
 .tnt-sports {
   background-color: purple;
   color: white;
+}
+
+.itv1,.itv4 {
+  background-color: #19bec8;
+}
+
+.pill.disabled {
+  opacity: 20%;
 }
