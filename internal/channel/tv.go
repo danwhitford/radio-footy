@@ -11,8 +11,6 @@ import (
 	"whitford.io/radiofooty/internal/urlgetter"
 )
 
-const englishFootballUrl = "https://www.live-footballontv.com/live-english-football-on-tv.html"
-
 type tvFixture struct {
 	homeTeam string
 	awayTeam string
@@ -33,18 +31,40 @@ var channelsICareAbout = []string{
 	"Channel 4",
 }
 
+var urls = []string {
+	"https://www.live-footballontv.com/live-english-football-on-tv.html",
+	"https://www.live-footballontv.com/euro-2024-on-tv.html",
+}
+
 type TvMatchGetter struct {
 	Urlgetter urlgetter.UrlGetter
 }
 
 func (tmg TvMatchGetter) GetMatches() ([]broadcast.Broadcast, error) {
+	var matches []broadcast.Broadcast
+	for _, url := range urls {
+		res, err := tmg.getMatchesAtUrl(url)
+		if err != nil {
+			return matches, err
+		}
+		matches = append(matches, res...)
+	}
+	return matches, nil
+}
+
+type EngTvMatchGetter struct {
+	Urlgetter urlgetter.UrlGetter
+	Url string
+}
+
+func (tmg TvMatchGetter) getMatchesAtUrl(url string) ([]broadcast.Broadcast, error) {
 	re := regexp.MustCompile(`(\d+)(st|nd|rd|th)`)
 	loc, err := time.LoadLocation("Europe/London")
 	if err != nil {
 		return nil, fmt.Errorf("error loading location: %v", err)
 	}
 
-	html, err := tmg.Urlgetter.GetUrl(englishFootballUrl)
+	html, err := tmg.Urlgetter.GetUrl(url)
 	if err != nil {
 		return nil, err
 	}
@@ -74,6 +94,9 @@ func (tmg TvMatchGetter) GetMatches() ([]broadcast.Broadcast, error) {
 				teams := div.Find("div", "class", "fixture__teams").Text()
 				teams = strings.TrimSpace(teams)
 				splitTeams := strings.Split(teams, " v ")
+				if len(splitTeams) < 2 {
+					continue
+				}
 				compName := div.Find("div", "class", "fixture__competition").Text()
 				channels := div.Find("div", "class", "fixture__channel")
 				channelStrings := make([]string, 0)
