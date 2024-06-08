@@ -95,7 +95,7 @@ func TestRollUpStations(t *testing.T) {
 					Match: Match{
 						HomeTeam: "West Ham United",
 						AwayTeam: "AFC Bournemouth",
-						Datetime: time.Date(2024, 2, 1, 19, 30, 0, 0, time.UTC),
+						Datetime: time.Date(2024, 2, 1, 19, 25, 0, 0, time.UTC),
 					},
 				},
 			},

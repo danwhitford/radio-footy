@@ -33,7 +33,7 @@ func ListingsFromBroadcasts(broadcasts []Broadcast) []Listing {
 			if !contains {
 				listing.Stations = append(listing.Stations, bcst.Station)
 			}
-			if bcst.Datetime.After(listing.Datetime) {
+			if bcst.Datetime.Before(listing.Datetime) {
 				listing.Datetime = bcst.Datetime
 			}
 			stationsRollUp[hashLol] = listing
