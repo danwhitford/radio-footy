@@ -140,7 +140,7 @@ func (mg ManualGetter) GetMatches() ([]broadcast.Broadcast, error) {
 			}
 			b := broadcast.Broadcast{
 				Match:   m,
-				Station: broadcast.Station{Name: "BBC", Rank: 1},
+				Station: broadcast.Station{Name: "TBC", Rank: 99},
 			}
 			broadcasts = append(broadcasts, b)
 		}
