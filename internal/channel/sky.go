@@ -60,6 +60,9 @@ type cricketPage struct{}
 func (page cricketPage) teamExtractor(eventTitles []soup.Root) (string, string, bool) {
 	teamNames := strings.Split(eventTitles[0].Text(), ":")
 	splitted := strings.Split(teamNames[len(teamNames)-1], " v ")
+	if len(splitted) < 2 {
+		return "", "", false
+	}
 	return strings.TrimSpace(splitted[0]),
 		strings.TrimSpace(splitted[1]),
 		true

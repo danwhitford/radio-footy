@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"slices"
+	"time"
 
 	"whitford.io/radiofooty/internal/broadcast"
 	"whitford.io/radiofooty/internal/feeds"
@@ -41,12 +42,16 @@ func main() {
 		return a.Rank - b.Rank
 	})
 
+	buildTime := time.Now().Format(time.RFC850)
+
 	data := struct {
 		MatchDays []broadcast.MatchDay
 		UniqueChannels []broadcast.Station
+		BuildTime string
 	}{
 		MatchDays: matches,
 		UniqueChannels: channels,
+		BuildTime: buildTime,
 	}
 
 	calData := feeds.MatchDayToCalData(matches)

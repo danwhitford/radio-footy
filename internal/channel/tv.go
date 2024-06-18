@@ -52,11 +52,6 @@ func (tmg TvMatchGetter) GetMatches() ([]broadcast.Broadcast, error) {
 	return matches, nil
 }
 
-type EngTvMatchGetter struct {
-	Urlgetter urlgetter.UrlGetter
-	Url string
-}
-
 func (tmg TvMatchGetter) getMatchesAtUrl(url string) ([]broadcast.Broadcast, error) {
 	re := regexp.MustCompile(`(\d+)(st|nd|rd|th)`)
 	loc, err := time.LoadLocation("Europe/London")
