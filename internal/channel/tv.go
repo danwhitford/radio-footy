@@ -116,8 +116,11 @@ func (tmg TvMatchGetter) getMatchesAtUrl(url string) ([]broadcast.Broadcast, err
 				}
 
 				fixtureTime := div.Find("div", "class", "fixture__time").Text()
-				var fixtureHours, fixtureMins int
+				fixtureHours, fixtureMins := -1, -1
 				fmt.Sscanf(fixtureTime, "%d:%d", &fixtureHours, &fixtureMins)
+				if fixtureHours < 0 || fixtureMins < 0 {
+					continue
+				}
 
 				fixtureDateTime := time.Date(
 					fixtureDate.Year(),
