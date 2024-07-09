@@ -60,9 +60,12 @@ type cricketPage struct{}
 func (page cricketPage) teamExtractor(eventTitles []soup.Root) (string, string, bool) {
 	sections := strings.Split(eventTitles[0].Text(), ":")
 	teamNames := sections[len(sections)-1]
+	sections = strings.Split(teamNames, " - ")
+	teamNames = sections[0]
+
 	var splitOn string
 	if strings.Contains(teamNames, " v ") {
-		splitOn =  " v "
+		splitOn = " v "
 	} else if strings.Contains(teamNames, " vs ") {
 		splitOn = " vs "
 	} else {
@@ -191,7 +194,12 @@ func skyPageToMatches(html string, page skyPage) ([]broadcast.Broadcast, error) 
 					)
 					match.Datetime = curDateTime
 
-					Matches = append(Matches, broadcast.Broadcast{Match: match, Station: broadcast.SkySports})
+					Matches = append(
+						Matches,
+						broadcast.Broadcast{
+							Match: broadcast.NewSantisedMatch(match.Datetime, match.HomeTeam, match.AwayTeam, match.Competition),
+							Station: broadcast.SkySports,
+						})
 				}
 			}
 		}

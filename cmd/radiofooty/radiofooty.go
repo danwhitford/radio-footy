@@ -45,13 +45,13 @@ func main() {
 	buildTime := time.Now().Format(time.RFC850)
 
 	data := struct {
-		MatchDays []broadcast.MatchDay
+		MatchDays      []broadcast.MatchDay
 		UniqueChannels []broadcast.Station
-		BuildTime string
+		BuildTime      string
 	}{
-		MatchDays: matches,
+		MatchDays:      matches,
 		UniqueChannels: channels,
-		BuildTime: buildTime,
+		BuildTime:      buildTime,
 	}
 
 	calData := feeds.MatchDayToCalData(matches)

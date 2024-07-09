@@ -78,7 +78,7 @@ func (bbc BbcMatchGetter) GetMatches() ([]broadcast.Broadcast, error) {
 		matches = append(matches, merged...)
 	}
 
-	matches = dedupeBbcMatches(matches)
+	// matches = dedupeBbcMatches(matches)
 
 	return matches, nil
 }
@@ -111,6 +111,14 @@ func isAMatch(title BBCTitles) bool {
 func isSixNations(title BBCTitles) bool {
 	return title.Primary == "Six Nations 2024" &&
 		strings.Contains(title.Secondary, " v ")
+}
+
+func isEuros(title BBCTitles) bool {
+	return title.Primary == "Euro 2024" && strings.Contains(title.Secondary, " v ") && !strings.Contains(title.Secondary, "Prematch")
+}
+
+func isCricket(title BBCTitles) bool {
+	return title.Primary == "Test Match Special" && strings.Contains(title.Secondary, " v ")
 }
 
 func bbcDayToMatches(bbcFeed BBCFeed) ([]broadcast.Broadcast, error) {
@@ -156,6 +164,38 @@ func bbcDayToMatches(bbcFeed BBCFeed) ([]broadcast.Broadcast, error) {
 					teams[0],
 					teams[1],
 					prog.Title.Primary,
+				)
+
+				matches = append(matches, broadcast.Broadcast{Match: m, Station: broadcast.StationFromString(prog.Network.ShortTitle)})
+			} else if isEuros(prog.Title) {
+				start, err := time.Parse(longFormat, prog.Start)
+				if err != nil {
+					panic(err)
+				}
+				start = start.In(loc)
+				teams := strings.Split(prog.Title.Secondary, " v ")
+				m := broadcast.NewSantisedMatch(
+					start,
+					teams[0],
+					teams[1],
+					"UEFA EURO 2024",
+				)
+
+				matches = append(matches, broadcast.Broadcast{Match: m, Station: broadcast.Talksport})
+				matches = append(matches, broadcast.Broadcast{Match: m, Station: broadcast.StationFromString(prog.Network.ShortTitle)})
+			} else if isCricket(prog.Title) {
+				split := strings.Split(prog.Title.Secondary, " - ")
+				start, err := time.Parse(longFormat, prog.Start)
+				if err != nil {
+					panic(err)
+				}
+				start = start.In(loc)
+				teams := strings.Split(split[0], " v ")
+				m := broadcast.NewSantisedMatch(
+					start,
+					teams[0],
+					teams[1],
+					split[1],
 				)
 
 				matches = append(matches, broadcast.Broadcast{Match: m, Station: broadcast.StationFromString(prog.Network.ShortTitle)})
