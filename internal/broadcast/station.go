@@ -23,6 +23,7 @@ func (stn Station) ClassName() string {
 var (
 	SkySports    = Station{"Sky Sports", 0}
 	TNTSports    = Station{"TNT Sports", 10}
+	AmazonPrime = Station{"Amazon Prime Video", 12}
 	BBC          = Station{"BBC", 15}
 	BBCOne       = Station{"BBC One", 20}
 	BBCTwo       = Station{"BBC Two", 30}
@@ -49,6 +50,7 @@ func StationFromString(name string) Station {
 		Talksport2,
 		Radio5,
 		Radio5Extra,
+		AmazonPrime,
 	} {
 		if name == station.Name {
 			return station

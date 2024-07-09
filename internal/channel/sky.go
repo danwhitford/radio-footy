@@ -58,19 +58,27 @@ func (page nflPage) url() string {
 type cricketPage struct{}
 
 func (page cricketPage) teamExtractor(eventTitles []soup.Root) (string, string, bool) {
-	teamNames := strings.Split(eventTitles[0].Text(), ":")
-	splitted := strings.Split(teamNames[len(teamNames)-1], " v ")
-	if len(splitted) < 2 {
+	sections := strings.Split(eventTitles[0].Text(), ":")
+	teamNames := sections[len(sections)-1]
+	var splitOn string
+	if strings.Contains(teamNames, " v ") {
+		splitOn =  " v "
+	} else if strings.Contains(teamNames, " vs ") {
+		splitOn = " vs "
+	} else {
 		return "", "", false
 	}
+	splitted := strings.Split(teamNames, splitOn)
 	return strings.TrimSpace(splitted[0]),
 		strings.TrimSpace(splitted[1]),
 		true
 }
+
 func (page cricketPage) compExtractor(deets string) string {
 	splitted := strings.Split(strings.Split(deets, ",")[0], ":")
 	return strings.TrimSpace(splitted[0])
 }
+
 func (page cricketPage) url() string {
 	return "https://www.skysports.com/watch/cricket-on-sky"
 }
@@ -150,7 +158,6 @@ func skyPageToMatches(html string, page skyPage) ([]broadcast.Broadcast, error) 
 				groups := child.FindAll("div", "class", "event-group")
 				for _, g := range groups {
 					var match broadcast.Match
-					// match.Competition = comp
 
 					eventTitles := g.Find("ul", "class", "event").FindAll("strong")
 					h, a, keep := page.teamExtractor(eventTitles)
@@ -163,6 +170,9 @@ func skyPageToMatches(html string, page skyPage) ([]broadcast.Broadcast, error) 
 					eventDetail := g.Find("p", "class", "event-detail").Text()
 
 					match.Competition = page.compExtractor(eventDetail)
+					if strings.Contains(match.Competition, "Women") {
+						continue
+					}
 
 					foundTime := re.FindString(eventDetail)
 					timeString := strings.Trim(foundTime, "()")
