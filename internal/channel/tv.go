@@ -93,6 +93,9 @@ func (tmg TvMatchGetter) getMatchesAtUrl(url string) ([]broadcast.Broadcast, err
 					continue
 				}
 				compName := div.Find("div", "class", "fixture__competition").Text()
+				if strings.Contains(compName, "Women") {
+					continue
+				}
 				channels := div.Find("div", "class", "fixture__channel")
 				channelStrings := make([]string, 0)
 				for _, channelPill := range channels.FindAll("span", "class", "channel-pill") {
