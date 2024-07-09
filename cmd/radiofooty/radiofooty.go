@@ -3,6 +3,7 @@ package main
 import (
 	_ "embed"
 	"html/template"
+	texttemplate "text/template"
 	"io"
 	"log"
 	"os"
@@ -66,11 +67,22 @@ func main() {
 	}
 
 	writeIndex(data, "template.go.tmpl", webTemplate, idx)
-	writeIndex(calData, "icalendar.go.tmpl", calTemplate, cal)
+	writeCal(calData, "icalendar.go.tmpl", calTemplate, cal)
 }
 
 func writeIndex(data interface{}, templateName, contents string, writer io.Writer) {
 	tmpl, err := template.New(templateName).Parse(contents)
+	if err != nil {
+		log.Fatalf("template parsing: %s", err)
+	}
+	err = tmpl.Execute(writer, data)
+	if err != nil {
+		log.Fatalf("template execution: %s", err)
+	}
+}
+
+func writeCal(data interface{}, templateName, contents string, writer io.Writer) {
+	tmpl, err := texttemplate.New(templateName).Parse(contents)
 	if err != nil {
 		log.Fatalf("template parsing: %s", err)
 	}
