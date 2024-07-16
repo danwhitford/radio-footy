@@ -33,7 +33,6 @@ var channelsICareAbout = []string{
 
 var urls = []string{
 	"https://www.live-footballontv.com/live-english-football-on-tv.html",
-	"https://www.live-footballontv.com/euro-2024-on-tv.html",
 }
 
 type TvMatchGetter struct {
